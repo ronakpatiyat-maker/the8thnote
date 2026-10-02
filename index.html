@@ -304,11 +304,11 @@ section{padding:72px 0}
 .reset:hover{color:#fff}
 
 /* ================= story cards ================= */
-.stories{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.stories{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
 .story{position:relative;background:var(--story);border:1px solid var(--story-line);
-  border-radius:12px;padding:34px 34px 128px;overflow:hidden;min-height:262px}
-.story h3{font-size:clamp(19px,1.8vw,23px);font-weight:700;margin-bottom:10px}
-.story p{font-size:16px;color:var(--text-2);max-width:88%}
+  border-radius:14px;padding:28px 26px 104px;overflow:hidden;min-height:306px}
+.story h3{font-size:clamp(18px,1.5vw,22px);font-weight:700;margin-bottom:10px;line-height:1.15}
+.story p{font-size:15px;color:var(--text-2);max-width:100%}
 .story .gfx{position:absolute;right:28px;bottom:26px}
 .keys{display:flex;gap:2px;align-items:flex-start}
 .keys i{display:block;width:15px;height:74px;border-radius:0 0 3px 3px;
@@ -406,7 +406,8 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 .rv.in{opacity:1;transform:none}
 
 @media(max-width:1000px){
-  .stories,.plans,.reviews{grid-template-columns:1fr}
+  .plans,.reviews{grid-template-columns:1fr}
+  .stories{grid-template-columns:repeat(2,1fr)}
   .svcs{grid-template-columns:1fr 1fr}
   .about{grid-template-columns:1fr}
   .about-photo{min-height:260px}
@@ -425,6 +426,7 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
   .tile{flex:0 0 152px}
   .tile .rank{font-size:92px;left:-40px}
   .tile .name{font-size:15px}
+  .stories{grid-template-columns:1fr}
   .svcs{grid-template-columns:1fr}
   .iggrid{grid-template-columns:repeat(2,1fr)}
   .pgrid{grid-template-columns:repeat(3,1fr)}
