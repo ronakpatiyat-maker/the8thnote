@@ -194,6 +194,7 @@ Still open:
 24. **Instagram reels:** the official embed can't have its white chrome removed (locked cross-origin iframe), so replaced it with a **custom carousel** — one line, auto-scrolling right-to-left (pauses on hover), same-size 9:16 cards with a play button, no white chrome. CSP reverted to the tight version (no Instagram script). Cards use cover images `img/reel-1.jpg … img/reel-6.jpg` (9:16 portrait, **to upload**); each links to its reel on Instagram. Edit the `REELS` array to change links/images. For true in-page playback, swap cover images for uploaded `.mp4`s and use `<video>`.
 25. Made the **nav logo bigger** (84px desktop / 56px mobile), and replaced the menu's bare red "The 8th Note" text header with the **logo image** (`.menu-logo`).
 26. Moved the **"Launching this November"** teaser off the main page into a **popup**, opened by a pulsing **bell/notification button** (`#notifBtn`) sitting just above the floating WhatsApp button. The popup (`#notifPop`) holds the announcement + live countdown (`#countdown`) + a "Follow for updates" link; closes on ×, outside-click, or Esc.
+27. Removed the two hero **microcopy** lines (phone/WhatsApp + location/links). That info already lives in the footer; added a **"Courses"** link to the footer nav so the YouTube-courses link still has a home. Hero is now just headline + value line + gradient "Book a class".
 
 ---
 
