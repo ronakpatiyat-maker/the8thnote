@@ -157,7 +157,7 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .contact-list a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* hero */
-.hero{position:relative;background:#E50914;overflow:hidden;line-height:0}
+.hero{position:relative;background:#E50914;overflow:hidden;line-height:0;min-height:320px}
 .hero-img{display:block;width:100%;height:auto}
 
 /* rails */
@@ -468,7 +468,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       <!-- About Us -->
       <div class="menu-panel" id="panel-about">
         <div class="about">
-          <div class="about-photo" style="background-image:url('img/ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
+          <div class="about-photo" style="background-image:url('ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
           <div class="about-text">
             <h2>Meet Ronak Patiyat</h2>
             <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
@@ -505,7 +505,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
 <!-- ==================== HERO ==================== -->
 <div class="hero">
-  <img class="hero-img" src="img/hero-bg.jpg" alt="The 8th Note — passionate for music, with Ronak Patiyat" fetchpriority="high">
+  <img class="hero-img" src="hero-bg.jpg" alt="The 8th Note — passionate for music, with Ronak Patiyat" fetchpriority="high" onerror="this.style.display='none'">
 </div>
 
 <div class="rule"></div>
@@ -845,12 +845,12 @@ $("#reviews").innerHTML=revCards+revCards;
 
 /* Instagram reels — horizontal marquee of same-size cards (click opens the reel) */
 const REELS=[
-  {u:"https://www.instagram.com/reel/Db0B3YIRxsh/",img:"img/reel-1.jpg"},
-  {u:"https://www.instagram.com/reel/DZ2EhTNRK2G/",img:"img/reel-2.jpg"},
-  {u:"https://www.instagram.com/reel/DaAHHK7xH38/",img:"img/reel-3.jpg"},
-  {u:"https://www.instagram.com/reel/DdBmXtOvD70/",img:"img/reel-4.jpg"},
-  {u:"https://www.instagram.com/reel/DdJB2hHvnQ1/",img:"img/reel-5.jpg"},
-  {u:"https://www.instagram.com/reel/DbAi297xdad/",img:"img/reel-6.jpg"}
+  {u:"https://www.instagram.com/reel/Db0B3YIRxsh/",img:"reel-1.jpg"},
+  {u:"https://www.instagram.com/reel/DZ2EhTNRK2G/",img:"reel-2.jpg"},
+  {u:"https://www.instagram.com/reel/DaAHHK7xH38/",img:"reel-3.jpg"},
+  {u:"https://www.instagram.com/reel/DdBmXtOvD70/",img:"reel-4.jpg"},
+  {u:"https://www.instagram.com/reel/DdJB2hHvnQ1/",img:"reel-5.jpg"},
+  {u:"https://www.instagram.com/reel/DbAi297xdad/",img:"reel-6.jpg"}
 ];
 const reelCards=REELS.map(r=>`<a class="reel-card" style="background-image:url('${r.img}')" href="${r.u}" target="_blank" rel="noopener" aria-label="Watch reel on Instagram"><span class="reel-play"></span></a>`).join("");
 $("#reel-track").innerHTML=reelCards+reelCards;
