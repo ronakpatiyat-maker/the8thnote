@@ -147,11 +147,7 @@ We hit the `logo.png` → **`logo.png.jpeg`** double-extension bug once. Rules:
 **Resolved so far:** ✅ harmonium ✅ age 10+ ✅ real class list ✅ About Ronak ✅ online 1-on-1 ✅ Instagram links ✅ WhatsApp/Call buttons (context-aware) ✅ scroll-up ✅ YouTube marquee (right-to-left) ✅ 5 FAQs ✅ floating WhatsApp ✅ launch countdown ✅ social-share meta tags ✅ testimonials section ✅ Instagram section ✅ removed fake teachers / Trinity-ABRSM / fake price / fake hours.
 
 Still open:
-- [ ] **Upload images to the REPO ROOT** (no `img/` folder — simpler to upload, matches the logo/video). All lowercase, single extension:
-  - `hero-bg.jpg` — the hero banner ("PASSIONATE for music")
-  - `ronak-piano.jpg` — About-panel photo
-  - `reel-1.jpg` … `reel-6.jpg` — Instagram reel covers (9:16 portrait)
-  - `og-image.jpg` — 1200×630 social-share image
+- [ ] **Upload `img/hero-bg.jpg`** — the hero background image (poster-collage style). Hero is already wired for it; until uploaded, the gradient mosaic shows behind.
 - [ ] **PERF (biggest win): compress `logo-anim.mp4`** — 3 MB is ~95% of page weight. Re-encode to <~800 KB, 720p, ~2–3s (HandBrake or an online compressor), re-upload same name.
 - [ ] **PERF: resize/compress `logo.png.jpeg`** — it displays at 60px but is likely a full-size export. Export at ~180px tall, compressed.
 - [ ] **SECURITY: confirm "Enforce HTTPS"** in repo Settings → Pages (should already be on for *.github.io).
@@ -200,8 +196,6 @@ Still open:
 26. Moved the **"Launching this November"** teaser off the main page into a **popup**, opened by a pulsing **bell/notification button** (`#notifBtn`) sitting just above the floating WhatsApp button. The popup (`#notifPop`) holds the announcement + live countdown (`#countdown`) + a "Follow for updates" link; closes on ×, outside-click, or Esc.
 27. Removed the two hero **microcopy** lines (phone/WhatsApp + location/links). That info already lives in the footer; added a **"Courses"** link to the footer nav so the YouTube-courses link still has a home. Hero is now just headline + value line + gradient "Book a class".
 28. **"What students say"** is now a **5-card infinite marquee** (same right-to-left auto-scroll, pauses on hover). Filled with **sample** testimonials — Indian names, ages 10/15/28/37/50, varied instruments + online. Still placeholder content (`REVIEWS` array) — replace with real quotes when available.
-29. **Hero replaced** with the user's full-width banner image (`<img class="hero-img" src="hero-bg.jpg">` — the "PASSIONATE for music" design). Removed the old hero text/button, mosaic, overlay, and `#mosaic` JS. Nav kept as-is (floats on top). Added `min-height:320px` + `onerror` hide so a missing image shows a clean red band. Note: landscape 16:9, so small on phones — a portrait/mobile version via `<picture>` could be added later.
-30. **Switched all image paths to the repo ROOT** (no `img/` folder): `hero-bg.jpg`, `ronak-piano.jpg`, `reel-1.jpg`…`reel-6.jpg`. Easier uploads (matches logo/video) and avoids the folder-path friction on GitHub web.
 
 ---
 

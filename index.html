@@ -157,8 +157,21 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .contact-list a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* hero */
-.hero{position:relative;background:#E50914;overflow:hidden;line-height:0;aspect-ratio:16/9}
-.hero-img{display:block;width:100%;height:100%;object-fit:cover}
+.hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;text-align:center;
+  padding:150px 24px 90px;overflow:hidden;background:#0A0A0A}
+.mosaic{position:absolute;inset:-14% -10%;z-index:0;display:grid;grid-template-columns:repeat(9,1fr);gap:10px;
+  transform:perspective(1400px) rotateX(11deg) rotateZ(-3deg) scale(1.16);transform-origin:center 30%}
+.mosaic i{display:block;aspect-ratio:2/3;border-radius:5px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('img/hero-bg.jpg') center/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(58% 48% at 50% 52%, rgba(0,0,0,.58) 0%, rgba(0,0,0,.85) 62%, #000 100%),
+             linear-gradient(180deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.30) 26%, rgba(0,0,0,.34) 62%, #000 100%)}
+.hero-in{position:relative;z-index:2;max-width:860px}
+.hero h1{text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.hero .price{margin-top:18px;font-size:clamp(18px,1.8vw,22px);font-weight:500}
+.hero .price b{color:var(--accent-text);font-weight:700}
+.microcopy{margin-top:16px;font-size:14px;color:var(--text-3)}
+.microcopy a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* rails */
 section{padding:72px 0}
@@ -468,7 +481,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       <!-- About Us -->
       <div class="menu-panel" id="panel-about">
         <div class="about">
-          <div class="about-photo" style="background-image:url('ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
+          <div class="about-photo" style="background-image:url('img/ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
           <div class="about-text">
             <h2>Meet Ronak Patiyat</h2>
             <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
@@ -505,7 +518,17 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
 <!-- ==================== HERO ==================== -->
 <div class="hero">
-  <img class="hero-img" src="hero-bg.jpg" alt="The 8th Note — passionate for music, with Ronak Patiyat" fetchpriority="high" onerror="this.style.display='none'">
+  <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-in">
+    <h1>Piano, harmonium &amp; vocals — with Ronak Patiyat.</h1>
+    <p class="price">Personalised <b>one-on-one</b> training for passionate learners. Students 10 and above.</p>
+    <div class="cta-row" id="book">
+      <button class="btn btn-lg btn-grad" data-open="find">Book a class
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="rule"></div>
@@ -817,7 +840,7 @@ const art=k=>ART[k];
 
 document.querySelectorAll("[data-wa]").forEach(el=>{ el.href=wa(el.dataset.wa); });
 
-/* hero is now a single banner image (img/hero-bg.jpg) */
+$("#mosaic").innerHTML=Array.from({length:45},(_,i)=>{const c=COURSES[i%COURSES.length];const dim=0.40+((i*7)%5)*0.09;return `<i style="background:${art(c.a)};opacity:${dim.toFixed(2)}"></i>`;}).join("");
 
 $("#rail").innerHTML=COURSES.map((c,i)=>`
   <article class="tile" tabindex="0" aria-label="${c.i}: ${c.t}. ${c.l}">
@@ -845,12 +868,12 @@ $("#reviews").innerHTML=revCards+revCards;
 
 /* Instagram reels — horizontal marquee of same-size cards (click opens the reel) */
 const REELS=[
-  {u:"https://www.instagram.com/reel/Db0B3YIRxsh/",img:"reel-1.jpg"},
-  {u:"https://www.instagram.com/reel/DZ2EhTNRK2G/",img:"reel-2.jpg"},
-  {u:"https://www.instagram.com/reel/DaAHHK7xH38/",img:"reel-3.jpg"},
-  {u:"https://www.instagram.com/reel/DdBmXtOvD70/",img:"reel-4.jpg"},
-  {u:"https://www.instagram.com/reel/DdJB2hHvnQ1/",img:"reel-5.jpg"},
-  {u:"https://www.instagram.com/reel/DbAi297xdad/",img:"reel-6.jpg"}
+  {u:"https://www.instagram.com/reel/Db0B3YIRxsh/",img:"img/reel-1.jpg"},
+  {u:"https://www.instagram.com/reel/DZ2EhTNRK2G/",img:"img/reel-2.jpg"},
+  {u:"https://www.instagram.com/reel/DaAHHK7xH38/",img:"img/reel-3.jpg"},
+  {u:"https://www.instagram.com/reel/DdBmXtOvD70/",img:"img/reel-4.jpg"},
+  {u:"https://www.instagram.com/reel/DdJB2hHvnQ1/",img:"img/reel-5.jpg"},
+  {u:"https://www.instagram.com/reel/DbAi297xdad/",img:"img/reel-6.jpg"}
 ];
 const reelCards=REELS.map(r=>`<a class="reel-card" style="background-image:url('${r.img}')" href="${r.u}" target="_blank" rel="noopener" aria-label="Watch reel on Instagram"><span class="reel-play"></span></a>`).join("");
 $("#reel-track").innerHTML=reelCards+reelCards;
