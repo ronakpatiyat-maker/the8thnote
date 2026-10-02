@@ -3,13 +3,36 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ===== SECURITY ===== -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>The 8th Note — Piano, Harmonium &amp; Vocal Classes with Ronak Patiyat | Bengaluru &amp; Online</title>
-<meta name="description" content="Learn piano, harmonium and vocals one-on-one with Ronak Patiyat — in Bengaluru or live online. 100+ Jain songs & stavans, Bollywood piano, classical vocals (sur & taal). Plus devotional singing for Jain and spiritual events." />
+<meta name="description" content="Piano, harmonium & vocal classes one-on-one with Ronak Patiyat — in VV Puram, Bengaluru or live online. Jain songs & stavans, Bollywood & classical vocals." />
+<link rel="canonical" href="https://ronakpatiyat-maker.github.io/the8thnote/">
+
+<!-- social share preview (Open Graph + Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The 8th Note">
+<meta property="og:title" content="The 8th Note — Piano, Harmonium & Vocal Classes with Ronak Patiyat">
+<meta property="og:description" content="Personalised one-on-one piano, harmonium and vocal classes in Bengaluru and online. 100+ Jain songs & stavans, Bollywood piano, classical vocals. Plus devotional singing for events.">
+<meta property="og:url" content="https://ronakpatiyat-maker.github.io/the8thnote/">
+<meta property="og:image" content="https://ronakpatiyat-maker.github.io/the8thnote/og-image.jpg">
+<meta property="og:image" content="https://ronakpatiyat-maker.github.io/the8thnote/logo.png.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The 8th Note — Piano, Harmonium & Vocal Classes with Ronak Patiyat">
+<meta name="twitter:description" content="Personalised music classes in Bengaluru & online, and devotional singing for events.">
+<meta name="twitter:image" content="https://ronakpatiyat-maker.github.io/the8thnote/og-image.jpg">
+
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="logo.png.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap"></noscript>
 <style>
 :root{
   --bg:#000000;
@@ -48,7 +71,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 :focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
 
-/* intro splash — plays the logo animation once on load, then reveals the page */
+/* intro splash */
 #intro{position:fixed;inset:0;z-index:1000;background:#000;display:grid;place-items:center;
   transition:opacity .6s ease}
 #intro.hide{opacity:0;pointer-events:none}
@@ -81,6 +104,13 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
 .cta-row{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* floating WhatsApp */
+.wa-float{position:fixed;left:18px;bottom:24px;z-index:60;width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.45);
+  transition:transform .2s}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:32px;height:32px;color:#fff}
 
 /* scroll-to-top */
 #scrolltop{position:fixed;right:16px;bottom:28px;z-index:60;display:flex;flex-direction:column;
@@ -128,7 +158,6 @@ section{padding:72px 0}
 .rail{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;
   padding:34px 0 34px 62px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
-.rail.plain{padding-left:0}
 
 .tile{position:relative;flex:0 0 205px;scroll-snap-align:start;cursor:pointer;
   transition:transform .3s var(--tr);transform-origin:center bottom}
@@ -155,13 +184,19 @@ section{padding:72px 0}
 .rarrow.l{left:0;border-radius:0 5px 5px 0}
 .rarrow.r{right:0;border-radius:5px 0 0 5px}
 
-/* ================= launch teaser ================= */
+/* ================= launch teaser + countdown ================= */
 .launch{text-align:center}
 .launch .eyebrow{font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
   color:var(--accent-text)}
 .launch h2{margin-top:12px;font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:-.02em}
 .launch h2 span{color:var(--accent-text)}
 .launch p{margin-top:12px;color:var(--text-2);font-size:17px}
+.countdown{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.cd{min-width:80px;background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:16px 12px}
+.cd .n{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1}
+.cd .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-text);margin-top:7px}
+.cd-done{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent-text);margin-top:26px}
 
 /* ================= about Ronak ================= */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;margin-top:8px}
@@ -206,14 +241,14 @@ section{padding:72px 0}
 .event .cta{flex:none}
 .perform-cta{text-align:center;margin-top:30px}
 
-/* ================= youtube courses ================= */
+/* ================= youtube marquee ================= */
 .yt-top{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .yt-marquee{margin-top:28px;overflow:hidden;
   -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
           mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .yt-track{display:flex;gap:16px;width:max-content;animation:ytscroll 42s linear infinite}
 .yt-marquee:hover .yt-track{animation-play-state:paused}
-@keyframes ytscroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes ytscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .yt{flex:0 0 320px;background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;overflow:hidden;
   display:flex;flex-direction:column;transition:border-color .25s,transform .25s var(--tr)}
 .yt:hover{border-color:var(--accent);transform:translateY(-4px)}
@@ -293,6 +328,16 @@ section{padding:72px 0}
   background:radial-gradient(circle at 36% 32%,#FF9BD2,#E50914 58%,#6E2BC4);
   box-shadow:0 0 38px rgba(229,9,20,.42);display:grid;place-items:center}
 
+/* ================= testimonials ================= */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.review{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:26px 24px;
+  display:flex;flex-direction:column}
+.review .stars{color:var(--accent-text);font-size:14px;letter-spacing:2px;margin-bottom:12px}
+.review p{color:var(--text);font-size:15px;line-height:1.6;flex:1}
+.review .who{margin-top:18px}
+.review .who b{display:block;color:#fff;font-size:14px}
+.review .who span{color:var(--text-3);font-size:13px}
+
 /* ================= fees ================= */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
 .plan{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:28px;
@@ -317,6 +362,14 @@ section{padding:72px 0}
 .batch{background:#101010;border:1px solid #2A2A2A;border-radius:999px;padding:9px 16px;
   font-size:14px;color:var(--text-2)}
 .batch b{color:#fff;font-weight:600}
+
+/* ================= instagram ================= */
+.ig-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.iggrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:26px}
+.igt{aspect-ratio:1;border-radius:10px;position:relative;display:grid;place-items:center;overflow:hidden}
+.igt svg{width:30px;height:30px;color:rgba(255,255,255,.9)}
+.igt::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);opacity:0;transition:opacity .2s}
+.igt:hover::after{opacity:1}
 
 /* ================= faq ================= */
 .faqs{margin-top:26px;max-width:920px;margin-inline:auto}
@@ -353,11 +406,11 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 .rv.in{opacity:1;transform:none}
 
 @media(max-width:1000px){
-  .stories,.plans{grid-template-columns:1fr}
+  .stories,.plans,.reviews{grid-template-columns:1fr}
   .svcs{grid-template-columns:1fr 1fr}
-  .ytgrid{grid-template-columns:1fr 1fr}
   .about{grid-template-columns:1fr}
   .about-photo{min-height:260px}
+  .iggrid{grid-template-columns:repeat(3,1fr)}
   .pgrid{grid-template-columns:repeat(4,1fr)}
   .fcols{grid-template-columns:1fr 1fr}
 }
@@ -373,11 +426,13 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
   .tile .rank{font-size:92px;left:-40px}
   .tile .name{font-size:15px}
   .svcs{grid-template-columns:1fr}
-  .ytgrid{grid-template-columns:1fr}
+  .iggrid{grid-template-columns:repeat(2,1fr)}
   .pgrid{grid-template-columns:repeat(3,1fr)}
   .rarrow{display:none}
   .fcols{grid-template-columns:1fr}
   section{padding:54px 0}
+  .wa-float{width:52px;height:52px}
+  .wa-float svg{width:28px;height:28px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
@@ -399,13 +454,15 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 
 <div class="top">
   <div class="top-in">
-    <a href="#" class="logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note"></a>
+    <a href="#" class="logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async" fetchpriority="high"></a>
     <div class="top-r">
       <a href="#perform" class="btn btn-sm btn-ghost">Book for events</a>
       <a href="#book" class="btn btn-sm">Book a class</a>
     </div>
   </div>
 </div>
+
+<main id="content">
 
 <!-- ==================== HERO ==================== -->
 <div class="hero">
@@ -431,12 +488,13 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 
 <div class="rule"></div>
 
-<!-- ==================== LAUNCH TEASER ==================== -->
+<!-- ==================== LAUNCH TEASER + COUNTDOWN ==================== -->
 <section class="launch">
   <div class="wrap rv">
     <p class="eyebrow">Something big is coming</p>
     <h2>Launching <span>this November</span></h2>
     <p>A new chapter for The 8th Note is on the way. Follow along to be first to know.</p>
+    <div class="countdown" id="countdown" aria-live="polite"></div>
   </div>
 </section>
 
@@ -570,6 +628,17 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 
 <div class="rule"></div>
 
+<!-- ==================== TESTIMONIALS ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv" style="text-align:center">What students say</h2>
+    <p class="sub rv" style="text-align:center">A few words from people learning with The 8th Note.</p>
+    <div class="reviews rv" id="reviews"></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
 <!-- ==================== FEES ==================== -->
 <section>
   <div class="wrap">
@@ -589,6 +658,24 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
     <div class="faqs rv" id="faqs"></div>
   </div>
 </section>
+
+<div class="rule"></div>
+
+<!-- ==================== INSTAGRAM ==================== -->
+<section id="instagram">
+  <div class="wrap">
+    <div class="ig-head rv">
+      <div>
+        <h2>Follow along on Instagram</h2>
+        <p class="sub">Classes, performances and behind the scenes — @the8thnote__</p>
+      </div>
+      <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener" class="btn btn-sm">Follow @the8thnote__</a>
+    </div>
+    <div class="iggrid rv" id="iggrid"></div>
+  </div>
+</section>
+
+<div class="rule"></div>
 
 <!-- ==================== CLOSING ==================== -->
 <div class="closing">
@@ -610,6 +697,8 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 
 <div class="rule"></div>
 
+</main>
+
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="wrap">
@@ -623,6 +712,10 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
     <p class="fmark">© 2026 The 8th Note, Bengaluru.</p>
   </div>
 </footer>
+
+<a class="wa-float" data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm4.5 10.3c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.4c.1.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.4-.2z"/></svg>
+</a>
 
 <button id="scrolltop" aria-label="Scroll to top">
   <span class="arr" aria-hidden="true">↑</span>
@@ -640,6 +733,20 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
   "areaServed":"Bengaluru",
   "founder":{"@type":"Person","name":"Ronak Patiyat"},
   "sameAs":["https://instagram.com/the8thnote__","https://instagram.com/ronakpatiyat__","https://youtube.com/@ronakpatiyat"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What do you teach?","acceptedAnswer":{"@type":"Answer","text":"Piano, harmonium and vocals — one-on-one with Ronak. On piano from absolute basics to advanced, plus 100+ Jain songs and Bollywood pieces. In voice, a classical foundation (sur and taal) and 100+ Jain stavans. Classes are for students 10 years and above."}},
+    {"@type":"Question","name":"How much do classes cost?","acceptedAnswer":{"@type":"Answer","text":"In-person and online one-on-one fees are shared on enquiry — message on WhatsApp at +91 94800 61108. For self-paced learning, the YouTube courses have free lessons and a members-only tier for 49 rupees a month."}},
+    {"@type":"Question","name":"Do you teach online, or only in person?","acceptedAnswer":{"@type":"Answer","text":"Both. Learn in person at VV Puram in Bengaluru, or join live one-on-one classes online from anywhere, with the same personalised approach."}},
+    {"@type":"Question","name":"Can I learn Jain stavans and devotional singing specifically?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can learn 100+ Jain stavans in voice and 100+ Jain songs on piano, alongside a classical foundation of sur and taal."}},
+    {"@type":"Question","name":"Can I book you to sing at my event?","acceptedAnswer":{"@type":"Answer","text":"Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message on WhatsApp at +91 94800 61108 with your date and venue."}}
+  ]
 }
 </script>
 
@@ -673,17 +780,19 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
       snd.classList.add("gone");
     });
   }
-  setTimeout(finish, 9000); /* safety: never trap the visitor */
+  setTimeout(finish, 9000);
 })();
 
 /* =====================================================================
    CONTENT MODEL — edit these lists to change the site's content.
    ===================================================================== */
 
-/* WhatsApp — one number, many pre-filled messages. wa("your message")
-   builds a link that opens WhatsApp with that message ready to send. */
+/* WhatsApp — one number, many pre-filled messages. */
 const WA = "919480061108";
 const wa = msg => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+
+/* ← SET THE REAL LAUNCH DATE (IST). Placeholder: 1 Nov 2026, midnight. */
+const LAUNCH_DATE = new Date("2026-11-01T00:00:00+05:30");
 
 const ART = {
   ivory:   "linear-gradient(160deg,#5A5246,#C9BFA6 44%,#1A1712)",
@@ -721,7 +830,7 @@ const YT = [
   {t:"100+ Jain songs series",    d:"Devotional repertoire, one lesson at a time.",         a:"violet", free:false, url:"#"}
 ];
 
-/* devotional performances — "what I bring" */
+/* devotional performances */
 const ICONS = {
   temple: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l5 4H7l5-4z"/><path d="M6 10h12v11H6z"/><path d="M10 21v-5h4v5"/></svg>',
   mic:    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/></svg>',
@@ -740,7 +849,7 @@ const EVENTS = [
   {d:"20", m:"Sep", dow:"Sunday", title:"Tapasya Bhakthi", venue:"Sri S.S. Jain Sangh, Xaviers Layout"}
 ];
 
-/* class finder — pick 3 goals, mapped to a real class */
+/* class finder */
 const WANTS = [
   {t:"Play Jain songs on piano",     inst:"Piano",     course:"Jain Songs on Piano",       a:"ember"},
   {t:"Sing Jain stavans",            inst:"Vocals",    course:"Jain Stavans",              a:"violet"},
@@ -752,6 +861,13 @@ const WANTS = [
   {t:"Accompany myself while singing",inst:"Piano",    course:"Piano — Basic to Advanced", a:"slate"},
   {t:"Learn online, 1-on-1",         inst:"Online",    course:"Online 1-on-1 Classes",     a:"jade"},
   {t:"Just getting started, age 10+",inst:"Piano",     course:"Piano — Basic to Advanced", a:"ivory"}
+];
+
+/* ← PLACEHOLDER testimonials — replace with real student quotes + names */
+const REVIEWS = [
+  {q:"Ronak makes every class fun, and he's patient. I went from zero to playing my first Jain stavan in a few weeks.", n:"[ Your student's name ]", r:"Piano student"},
+  {q:"The one-on-one attention is the real difference — he builds each class around exactly what I want to learn.", n:"[ Your student's name ]", r:"Vocals student"},
+  {q:"I take the classes online from another city and it still feels personal. Can't recommend The 8th Note enough.", n:"[ Your student's name ]", r:"Online student"}
 ];
 
 const PLANS = [
@@ -790,11 +906,13 @@ const FOOTER = [
   [["Instagram — The 8th Note","https://instagram.com/the8thnote__"],["Instagram — Ronak","https://instagram.com/ronakpatiyat__"],["About Ronak","#about"],["WhatsApp",wa("Hi Ronak, I'd like to get in touch.")]]
 ];
 
+const IG_PROFILE = "https://instagram.com/the8thnote__";
+
 /* ===================================================================== */
 const $ = s => document.querySelector(s);
 const art = k => ART[k];
 
-/* fill in every button that carries a pre-filled WhatsApp message */
+/* fill every button that carries a pre-filled WhatsApp message */
 document.querySelectorAll("[data-wa]").forEach(el => { el.href = wa(el.dataset.wa); });
 
 /* hero mosaic */
@@ -817,7 +935,7 @@ $("#rail").innerHTML = COURSES.map((c, i) => `
     </div>
   </article>`).join("");
 
-/* youtube courses */
+/* youtube marquee (cards duplicated for a seamless loop) */
 $("#yt-sub").href  = CHANNEL_URL;
 $("#yt-join").href = MEMBERSHIP_URL;
 const ytCards = YT.map(v => {
@@ -835,7 +953,6 @@ const ytCards = YT.map(v => {
     </div>
   </article>`;
 }).join("");
-/* duplicated once for a seamless infinite marquee */
 $("#ytgrid").innerHTML = ytCards + ytCards;
 
 /* devotional services */
@@ -862,6 +979,20 @@ $("#event").innerHTML = EVENTS.map(e => {
   </div>
   <div class="cta"><a href="${link}" class="btn btn-sm" target="_blank" rel="noopener">Ask about this show</a></div>`;
 }).join("");
+
+/* testimonials */
+$("#reviews").innerHTML = REVIEWS.map(r => `
+  <article class="review">
+    <div class="stars" aria-hidden="true">★★★★★</div>
+    <p>“${r.q}”</p>
+    <div class="who"><b>${r.n}</b><span>${r.r}</span></div>
+  </article>`).join("");
+
+/* instagram tiles (link to profile; swap for real posts later) */
+$("#iggrid").innerHTML = ["ember","rose","violet","indigo","brass","jade"].map(g => `
+  <a class="igt" style="background:${art(g)}" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Open Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+  </a>`).join("");
 
 /* rail arrows */
 document.querySelectorAll(".rarrow").forEach(b => {
@@ -984,13 +1115,31 @@ document.querySelectorAll(".fq").forEach(f => {
 $("#fcols").innerHTML = FOOTER.map(col =>
   `<div>${col.map(([l, h]) => `<a href="${h}"${h.indexOf("http") === 0 ? ' target="_blank" rel="noopener"' : ""}>${l}</a>`).join("")}</div>`).join("");
 
-/* ---------- reveal ---------- */
-const io = new IntersectionObserver(es => {
-  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-}, { threshold: .1 });
-document.querySelectorAll(".rv").forEach(el => io.observe(el));
+/* ---------- countdown to launch ---------- */
+(function(){
+  const box = document.getElementById("countdown");
+  if(!box) return;
+  const pad = n => String(n).padStart(2, "0");
+  let t;
+  function tick(){
+    const diff = LAUNCH_DATE - new Date();
+    if(diff <= 0){
+      box.innerHTML = '<div class="cd-done">It\'s here — The 8th Note has launched!</div>';
+      clearInterval(t);
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+    box.innerHTML = [[d,"Days"],[h,"Hours"],[m,"Mins"],[s,"Secs"]]
+      .map(([n,l]) => `<div class="cd"><div class="n">${pad(n)}</div><div class="l">${l}</div></div>`).join("");
+  }
+  t = setInterval(tick, 1000);
+  tick();
+})();
 
-/* scroll-to-top button */
+/* ---------- scroll-to-top button ---------- */
 (function(){
   const b = document.getElementById("scrolltop");
   if(!b) return;
@@ -999,6 +1148,12 @@ document.querySelectorAll(".rv").forEach(el => io.observe(el));
   onScroll();
   b.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
 })();
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
 </script>
 </body>
 </html>

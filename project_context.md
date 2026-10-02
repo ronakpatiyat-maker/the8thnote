@@ -2,7 +2,7 @@
 
 > **How to use this file:** Keep it in the repo as `PROJECT-CONTEXT.md`. When you start a new chat with Claude, upload this file first and say "here's the context." It captures the business, the hosting setup, the site structure, the file-naming rules, and everything still left to do. Keep it updated as the site grows (especially the **Asset Registry** and **To-Do** sections).
 
-> **Working agreement:** After **every** change, Claude updates **both** files in the same step — `index.html` (the website) and this `PROJECT-CONTEXT.md` (change log, to-do, asset registry) — so they always match. Only these two living files are maintained; no extra files are spun up. Claude always says exactly which file(s) to re-upload.
+> **Working agreement:** After **every** change, Claude updates **both** living files in the same step — `index.html` (the website) and this `PROJECT-CONTEXT.md` — so they always match. (SEO files `robots.txt` / `sitemap.xml` are set-once and rarely change.) Claude always says exactly which file(s) to re-upload.
 
 _Last updated: 2 Oct 2026_
 
@@ -16,11 +16,11 @@ _Last updated: 2 Oct 2026_
 - **Phone / WhatsApp:** +91 94800 61108
 - **Instagram:** business **@the8thnote__** · personal **@ronakpatiyat__**
 - **YouTube:** https://youtube.com/@ronakpatiyat (membership = `/join`)
-- **What the business does (three sides):**
-  1. **Teaching (one-on-one)** — **piano, harmonium & vocals**, basic to advanced. Includes 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano, and a classical vocal foundation (sur & taal). **Students 10 years & above.** In person (VV Puram) or **live online 1-on-1**.
-  2. **Performing** — devotional / Bhakti singing for Jain programs, Bhakthi Sandhya, poojas, paths and religious events.
-  3. **Online courses** — YouTube: some free, full courses members-only at **₹49/month**.
-- **Coming up:** "something big" launching in **November** (details TBD).
+- **Three sides:**
+  1. **Teaching (one-on-one)** — **piano, harmonium & vocals**, basic to advanced. 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano, classical vocal foundation (sur & taal). **Students 10 years & above.** In person (VV Puram) or **live online**.
+  2. **Performing** — devotional / Bhakti singing for Jain programs, Bhakthi Sandhya, poojas, paths, religious events.
+  3. **Online courses** — YouTube: free + members-only at **₹49/month**.
+- **Coming up:** launch in **November** (details TBD) — site has a live **countdown**.
 - **Brand look:** black background, one red accent (`#E50914`), white text. Font: Archivo.
 
 ---
@@ -31,11 +31,7 @@ _Last updated: 2 Oct 2026_
 - **Live site:** https://ronakpatiyat-maker.github.io/the8thnote/
 - **Host:** GitHub Pages (Settings → Pages → Deploy from a branch → `main` → `/root`).
 
-**The update loop (every change):**
-1. Claude gives you an updated `index.html` (and this file when it changes).
-2. In the repo: **Add file → Upload files →** drag it in (replaces the old one) **→ Commit changes**.
-3. Wait ~1 minute.
-4. Open the site and **hard-refresh** (Ctrl+Shift+R / Cmd+Shift+R) to clear the cache.
+**Update loop:** Claude gives updated file(s) → repo **Add file → Upload files** (replaces old) → **Commit** → wait ~1 min → open site + **hard-refresh** (Ctrl+Shift+R).
 
 ---
 
@@ -45,131 +41,126 @@ _Last updated: 2 Oct 2026_
 |---|---------|-------------|--------------|
 | 0 | Intro splash | `#intro` | Logo animation video, "Play with sound" + "Skip" |
 | 1 | Top nav | `.top` | Logo, "Book for events" (→`#perform`), "Book a class" (→`#book`) |
-| 2 | Hero | `#book` (form) | "Piano, harmonium & vocals — with Ronak Patiyat" + phone capture |
-| 3 | Launch teaser | `.launch` | "Launching this November" |
-| 4 | About Ronak | `#about` | Bio + photo + highlights + WhatsApp button |
-| 5 | Classes offered | `#classes` | Scrollable class tiles (piano, harmonium, vocals, Jain, Bollywood, online) |
-| 6 | Find your class | `#pgrid`/`#result` | Interactive "pick 3" tool → recommends a class |
-| 7 | Courses on YouTube | `#courses` | Subscribe / Join buttons, infinite left-to-right marquee of course cards `#ytgrid` |
-| 8 | Perform / events | `#perform` | Services `#svcs`, event card `#event`, WhatsApp CTA |
+| 2 | Hero | `#book` | Headline + WhatsApp / Call buttons |
+| 3 | Launch teaser | `.launch` | "Launching this November" + live **countdown** `#countdown` |
+| 4 | About Ronak | `#about` | Bio + photo + highlights + WhatsApp |
+| 5 | Classes offered | `#classes` | Class tiles (piano, harmonium, vocals, Jain, Bollywood, online) |
+| 6 | Find your class | `#pgrid`/`#result` | Interactive "pick 3" → recommends a class |
+| 7 | Courses on YouTube | `#courses` | Subscribe / Join, right-to-left marquee `#ytgrid` |
+| 8 | Perform / events | `#perform` | Services `#svcs`, event card `#event` |
 | 9 | Why learn with us | `.stories` | 4 feature cards |
-| 10 | Classes & fees | `#plans`/`#batches` | In-person / Online / YouTube membership |
-| 11 | FAQ | `#faqs` | 5 questions (accordion) |
-| 12 | Closing | `.closing` | Final "book a class" form |
-| 13 | Footer | `#fcols` | Link columns, contact, Instagram, address |
+| 10 | What students say | `#reviews` | Testimonials |
+| 11 | Classes & fees | `#plans`/`#batches` | In-person / Online / YouTube membership |
+| 12 | FAQ | `#faqs` | 5 questions (accordion) |
+| 13 | Instagram | `#instagram` | Follow CTA + tiles `#iggrid` |
+| 14 | Closing | `.closing` | WhatsApp / Call buttons |
+| 15 | Footer | `#fcols` | Links, contact, Instagram, address |
+| — | Floating WhatsApp | `.wa-float` | Bottom-left, always visible |
+| — | Scroll up | `#scrolltop` | Bottom-right, fades in on scroll |
 
 ---
 
-## 4. Files currently in the repo
+## 4. Files in the repo
 
 | File | Purpose | Notes |
 |------|---------|-------|
-| `index.html` | The whole website | The only file we edit for content/layout |
-| `logo.png.jpeg` | Nav logo image | ⚠️ double extension — HTML points here |
+| `index.html` | The whole website | The main file we edit |
+| `logo.png.jpeg` | Nav logo | ⚠️ double extension — HTML points here |
 | `favicon.svg` | Browser-tab icon | Red "8" on black |
-| `favicon.png.jpeg` | (unused) | Can be deleted; favicon runs off the SVG |
-| `logo-anim.mp4` | Intro animation (3 MB) | Plays in `#intro` splash |
+| `favicon.png.jpeg` | (unused) | Can be deleted |
+| `logo-anim.mp4` | Intro animation (3 MB) | Plays in `#intro` |
 | `PROJECT-CONTEXT.md` | This file | Keep updated |
-| `img/ronak-piano.jpg` | **To upload** | Photo for the About section (the red piano + mic shot) |
+| `robots.txt` | SEO — lets Google crawl | **To create** (set-once) |
+| `sitemap.xml` | SEO — lists the page | **To create** (set-once) |
+| `og-image.jpg` | Social share preview (1200×630) | **To upload** — falls back to logo until then |
+| `img/ronak-piano.jpg` | About-section photo | **To upload** — the red piano + mic shot |
 
 ---
 
 ## 5. Where each piece of content lives in `index.html`
 
-Most content is in **data lists (arrays)** near the top of the `<script>`. Edit the list, not the layout.
+Most content is in **data lists** near the top of the `<script>`. Edit the list, not the layout.
 
 | Content | Where to edit |
 |---------|---------------|
-| Nav logo image | `<img src="...">` inside `.top` |
+| Social share preview | `<meta property="og:...">` tags in `<head>` + `og-image.jpg` |
+| Launch date (countdown) | `LAUNCH_DATE` constant |
+| Nav logo image | `<img src="...">` in `.top` |
 | Intro video | `<video src="logo-anim.mp4">` + `#intro` CSS/JS |
-| Hero headline / subline | HTML inside `.hero` |
-| Launch teaser text | HTML inside `.launch` |
-| About Ronak (bio, photo, bullets) | HTML inside `#about` (photo = `img/ronak-piano.jpg`) |
+| Hero / About / Closing copy | HTML in those sections |
+| About photo | `img/ronak-piano.jpg` in `#about` |
 | Classes offered (tiles) | `COURSES` array |
 | "Find your class" options | `WANTS` array |
-| YouTube Subscribe / Join links | `CHANNEL_URL`, `MEMBERSHIP_URL` |
-| YouTube course cards | `YT` array (`free: true/false`, each `url`) |
-| Services ("What I bring") | `SERVICES` array |
+| YouTube links | `CHANNEL_URL`, `MEMBERSHIP_URL`; cards in `YT` array |
+| Services | `SERVICES` array |
 | Event card(s) | `EVENTS` array |
+| Testimonials | `REVIEWS` array |
 | Fees / plans | `PLANS` array; chips in `BATCHES` |
 | FAQ | `FAQS` array |
-| Footer link columns | `FOOTER` array — each item is `["label","url"]` |
-| Phone / address / Instagram | Footer HTML **and** the JSON-LD block (keep in sync) |
+| Footer links | `FOOTER` array (`["label","url"]`) |
+| Instagram | `IG_PROFILE` + `#iggrid` tiles |
+| WhatsApp messages | any element with `data-wa="…message…"` (auto-linked) |
+| Phone / address | Footer HTML + JSON-LD (keep in sync) |
 
 ---
 
 ## 6. File-naming convention (READ before uploading media)
 
-We hit the `logo.png` → **`logo.png.jpeg`** double-extension bug once. To avoid it forever:
+We hit the `logo.png` → **`logo.png.jpeg`** double-extension bug once. Rules:
+- **all lowercase**, **hyphens** not spaces, **exactly ONE extension** (check it isn't `.png.jpeg`).
+- descriptive + zero-padded numbers: `section-topic-NN.ext`.
+- images `.jpg`/`.png`/`.webp`, video `.mp4`.
 
-- **all lowercase**
-- **hyphens** between words, **never spaces**
-- **exactly ONE extension** — check it isn't `.png.jpeg` or `.mp4.mp4` before committing
-- **descriptive + numbered:** `section-topic-NN.ext` with zero-padded numbers (`01`, `02`, …)
-- images: `.jpg` / `.png` / `.webp` · video: `.mp4`
-
-**Folders going forward:**
-```
-/        → index.html, favicon.svg, logo files, this .md
-/img/    → all images   (e.g. img/gallery-01.jpg)
-/vid/    → all videos   (e.g. vid/performance-01.mp4)
-```
-
-**Examples:** `img/ronak-piano.jpg` · `img/event-tapasya-01.jpg` · `img/gallery-01.jpg` · `vid/performance-01.mp4`
+**Folders:** `/img/` images, `/vid/` videos; root keeps `index.html`, favicon, logo, `.md`, SEO files, `og-image.jpg`.
 
 ---
 
 ## 7. How to add a new image or video
 
-1. **Name the file** per §6 (lowercase, hyphens, one extension).
-2. **Upload** to `img/` or `vid/` → Commit.
-3. **Confirm the exact name** in the repo (watch for double extensions).
-4. **Tell Claude:** which section + exact path + caption.
-5. Claude updates `index.html` + this file; you re-upload them and hard-refresh.
-
-> Many sections are data-driven, so adding one item = **one new line + one uploaded file**.
+1. Name per §6. 2. Upload to `img/` or `vid/` → commit. 3. Confirm the exact name in the repo. 4. Tell Claude the section + exact path + caption. 5. Claude updates `index.html` + this file; re-upload and hard-refresh.
 
 ---
 
-## 8. Asset Registry (keep this updated)
+## 8. Asset Registry
 
-| Filename | Type | Used in | Caption / notes |
-|----------|------|---------|-----------------|
+| Filename | Type | Used in | Notes |
+|----------|------|---------|-------|
 | `logo.png.jpeg` | image | Nav logo | Brand logo |
-| `favicon.svg` | image | Browser tab | Red "8" on black |
-| `logo-anim.mp4` | video | Intro splash | 3 MB, plays on load |
-| `img/ronak-piano.jpg` | image | About section | **To upload** — the red piano + mic photo |
+| `favicon.svg` | image | Browser tab | Red "8" |
+| `logo-anim.mp4` | video | Intro splash | 3 MB |
+| `img/ronak-piano.jpg` | image | About | **To upload** |
+| `og-image.jpg` | image | Social share | **To upload** (1200×630) |
 | _add new rows below_ | | | |
 
 ---
 
 ## 9. Current content — real vs placeholder
 
-**Confirmed real (from posters & messages):**
-- Name, person (Ronak Patiyat), trained at a leading Mumbai institute.
-- Phone/WhatsApp +91 94800 61108; VV Puram, Bengaluru; Instagram @the8thnote__ and @ronakpatiyat__; YouTube @ronakpatiyat.
-- Teaches **piano, harmonium, vocals**, one-on-one, **age 10+**, in person **and** online.
-- Repertoire: 100+ Jain songs (piano), 100+ Jain stavans (voice), Bollywood piano, classical vocals (sur & taal).
-- YouTube membership: ₹49/month.
-- Devotional services + event: Tapasya Bhakthi, Sri S.S. Jain Sangh, Xaviers Layout.
-- Launch: something new in November.
+**Real:** name, Ronak (trained in Mumbai), phone, VV Puram, Instagram handles, YouTube; teaches piano/harmonium/vocals one-on-one, age 10+, in person + online; 100+ Jain songs/stavans, Bollywood, classical vocals; ₹49/mo membership; devotional services; Tapasya Bhakthi event; Nov launch.
 
-**Still to confirm / fill in:** see To-Do.
+**Placeholder (replace):** testimonials (`REVIEWS` — names are "[ Your student's name ]"), fees ("On enquiry"), launch date (1 Nov placeholder), YouTube course cards, Instagram tiles (link to profile, not live posts).
 
 ---
 
 ## 10. To-Do / open questions
 
-**Resolved this round:** ✅ added harmonium ✅ age set to 10+ ✅ real class list ✅ Ronak bio/About section ✅ online 1-on-1 ✅ Instagram links ✅ removed fake teachers, Trinity/ABRSM exams, invented ₹2,400 price & "free first class", fake hours ✅ forms replaced with WhatsApp/Call buttons (context-aware messages) ✅ scroll-up button added.
+**Resolved so far:** ✅ harmonium ✅ age 10+ ✅ real class list ✅ About Ronak ✅ online 1-on-1 ✅ Instagram links ✅ WhatsApp/Call buttons (context-aware) ✅ scroll-up ✅ YouTube marquee (right-to-left) ✅ 5 FAQs ✅ floating WhatsApp ✅ launch countdown ✅ social-share meta tags ✅ testimonials section ✅ Instagram section ✅ removed fake teachers / Trinity-ABRSM / fake price / fake hours.
 
 Still open:
-- [ ] **Fees** — shown as "On enquiry" (no real numbers given). Send actual in-person & online fees to display them, or keep "on enquiry."
-- [ ] **Upload** `img/ronak-piano.jpg` so the About photo appears (section already wired for it).
-- [ ] **Event date** — Tapasya Bhakthi (Sept 20) is in the past. Replace with the next event, make it a list, or remove.
-- [ ] **November launch** — replace the vague teaser with the real announcement when ready.
-- [ ] **YouTube course cards** — 6 sample titles; links fall back to channel/join until real video links are added. Send real titles + links + Free/Members.
-- [ ] **Hours** — currently "by appointment." Set specific hours if you want them shown.
-- [ ] **Optional:** upload the posters (classes / online / launch) as images if you want them shown as graphics too.
+- [ ] **PERF (biggest win): compress `logo-anim.mp4`** — 3 MB is ~95% of page weight. Re-encode to <~800 KB, 720p, ~2–3s (HandBrake or an online compressor), re-upload same name.
+- [ ] **PERF: resize/compress `logo.png.jpeg`** — it displays at 60px but is likely a full-size export. Export at ~180px tall, compressed.
+- [ ] **SECURITY: confirm "Enforce HTTPS"** in repo Settings → Pages (should already be on for *.github.io).
+- [ ] **SECURITY (needs custom domain + Cloudflare): send real HTTP security headers** — `X-Frame-Options: DENY` (clickjacking), `X-Content-Type-Options: nosniff`, `Strict-Transport-Security` (HSTS), and the CSP as a header. GitHub Pages can't send these; Cloudflare free tier can.
+- [ ] **SECURITY: add honeypot + submit-timing** only if/when a real contact form is added (none exists now).
+- [ ] **Set the real `LAUNCH_DATE`** (currently 1 Nov 2026 placeholder).
+- [ ] **Replace placeholder testimonials** in `REVIEWS` with real student quotes + names.
+- [ ] **Upload `og-image.jpg`** (1200×630) for a sharp link preview.
+- [ ] **Upload `img/ronak-piano.jpg`** for the About photo.
+- [ ] **Create `robots.txt` + `sitemap.xml`** (code provided) for Google.
+- [ ] **Instagram live feed** — send 3–6 post links to embed, or set up a free widget (SnapWidget/LightWidget) and send the embed code.
+- [ ] **Real fees** (currently "On enquiry").
+- [ ] **Event** — Tapasya Bhakthi (Sept 20) is past; replace/remove.
+- [ ] **YouTube course cards** — real titles + links + Free/Members.
 - [ ] `favicon.png.jpeg` — unused; delete whenever.
 
 ---
@@ -177,27 +168,32 @@ Still open:
 ## 11. Change log
 
 1. Started from a dark-theme template ("Saptak School of Music").
-2. Nav text → **logo image**; added **SVG favicon**.
-3. Renamed business to **The 8th Note** everywhere.
-4. Real **contact** (Ronak, +91 94800 61108) and **address** (VV Puram).
-5. Added the **devotional/performance** side (services, event, WhatsApp).
-6. Added **"Launching this November"** teaser.
-7. Added **Courses on YouTube** (free + ₹49 members), wired to the real channel.
-8. Added FAQs.
+2. Nav → logo image; SVG favicon.
+3. Renamed to **The 8th Note** everywhere.
+4. Real contact + address.
+5. Added devotional/performance side.
+6. "Launching this November" teaser.
+7. Courses on YouTube (free + ₹49 members).
+8. FAQs.
 9. Delivered `favicon.svg`, `logo-anim.html`, optional `logo.svg`.
-10. Fixed the double-extension logo bug (`logo.png` → `logo.png.jpeg`).
-11. Added the **intro splash** playing `logo-anim.mp4`, with "Play with sound" + "Skip".
+10. Fixed double-extension logo bug.
+11. Intro splash + "Play with sound".
 12. Wrote this context file.
-13. Agreed the **working routine**: both files updated together after every change.
-14. **Big content pass from the real posters:** added **harmonium**; replaced fake teachers with an **About Ronak** section; replaced the course catalogue with the **real class list** (Jain songs/stavans, Bollywood piano, classical vocals, online 1-on-1); set **age 10+**; added **Instagram** links; reworked **fees** to in-person / online / YouTube membership; refreshed **FAQ** (now 10); removed Trinity/ABRSM, the invented ₹2,400 price, "free first class" and fake hours.
-15. **Contact + polish:** replaced the dead lead-capture forms with **Message on WhatsApp / Call now** buttons; every "reach out" button now opens WhatsApp with a **context-specific pre-filled message** (book a class, ask about a specific class, fees for a specific plan, book for an event, ask about the Tapasya Bhakthi show). Added a **"Scroll up"** button (vertical text + arrow, right edge, fades in on scroll).
-16. Trimmed **FAQ to the 5 best**; made **Courses on YouTube** an **infinite left-to-right marquee** (single line, pauses on hover, cards duplicated for a seamless loop).
+13. Agreed the both-files-together working routine.
+14. Big content pass from posters: harmonium, About Ronak, real class list, age 10+, Instagram, reworked fees, removed template fiction.
+15. WhatsApp/Call buttons with context-aware pre-filled messages; scroll-up button.
+16. FAQ → 5 best; YouTube → right-to-left infinite marquee.
+17. **Added:** floating WhatsApp button, **launch countdown**, social-share meta tags (+ `og-image.jpg` slot), **testimonials** section (placeholder), **Instagram** section, and SEO files `robots.txt` + `sitemap.xml`.
+18. **Performance pass (no visual/behaviour change):** made Google Fonts non-render-blocking (preload + async swap + `<noscript>`); added `decoding="async"` + `fetchpriority="high"` on the logo; removed one dead CSS rule. Confirmed the site is already lean — no JS libraries/frameworks, inline CSS/JS (already "bundled"), JS non-blocking at end of body, gradients instead of content images. **The dominant remaining weight is `logo-anim.mp4` (3 MB) — must be compressed (asset step), see To-Do.**
+19. **Security hardening (code):** added a **Content-Security-Policy** meta tag (allows self + fonts.googleapis.com + fonts.gstatic.com only; keeps `'unsafe-inline'` because JS/CSS/JSON-LD are inline) and a **referrer policy** meta (`strict-origin-when-cross-origin`). Confirmed `rel="noopener"` is already on all external links. Note: clickjacking (`X-Frame-Options`/`frame-ancestors`), `X-Content-Type-Options`, and HSTS are **header-only** — they need Cloudflare (host step). No form exists, so honeypot/anti-spam is N/A until a real form is added.
+20. **SEO pass (code):** tightened meta description to ~150 chars; added **FAQPage** JSON-LD (mirrors the 5 visible FAQs — keep in sync if FAQ text changes); wrapped content in a `<main>` landmark. Confirmed title, canonical, OG/Twitter, `MusicSchool`+Person JSON-LD, `lang`, alt/aria were already in place. **Did NOT split #-anchors into separate pages** (they're scroll anchors, not routes — splitting = thin content). `robots.txt` note: ignored on a `/the8thnote/` subpath; works properly only on a custom domain at root.
 
 ---
 
-## 12. Handy facts for future chats
+## 12. Handy facts
 
-- The site is **one file** (`index.html`).
-- Browsers **mute** auto-playing video; sound needs a click. Not fixable.
-- GitHub is **case-sensitive** and keeps whatever extension the upload has — verify names after uploading.
-- After any upload, **hard-refresh** to beat the cache.
+- The site is **one file** (`index.html`); `robots.txt`/`sitemap.xml` are set-once.
+- Browsers **mute** auto-playing video; sound needs a click.
+- A **live Instagram feed** needs post links or a third-party widget — a static page can't pull it alone.
+- GitHub is **case-sensitive** and keeps whatever extension you upload — verify names.
+- After any upload, **hard-refresh**.
