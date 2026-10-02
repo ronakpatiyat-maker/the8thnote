@@ -157,21 +157,8 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .contact-list a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* hero */
-.hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;text-align:center;
-  padding:150px 24px 90px;overflow:hidden;background:#0A0A0A}
-.mosaic{position:absolute;inset:-14% -10%;z-index:0;display:grid;grid-template-columns:repeat(9,1fr);gap:10px;
-  transform:perspective(1400px) rotateX(11deg) rotateZ(-3deg) scale(1.16);transform-origin:center 30%}
-.mosaic i{display:block;aspect-ratio:2/3;border-radius:5px}
-.hero-bg{position:absolute;inset:0;z-index:0;background:url('img/hero-bg.jpg') center/cover no-repeat}
-.hero::before{content:'';position:absolute;inset:0;z-index:1;
-  background:radial-gradient(58% 48% at 50% 52%, rgba(0,0,0,.58) 0%, rgba(0,0,0,.85) 62%, #000 100%),
-             linear-gradient(180deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.30) 26%, rgba(0,0,0,.34) 62%, #000 100%)}
-.hero-in{position:relative;z-index:2;max-width:860px}
-.hero h1{text-shadow:0 2px 18px rgba(0,0,0,.6)}
-.hero .price{margin-top:18px;font-size:clamp(18px,1.8vw,22px);font-weight:500}
-.hero .price b{color:var(--accent-text);font-weight:700}
-.microcopy{margin-top:16px;font-size:14px;color:var(--text-3)}
-.microcopy a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+.hero{position:relative;background:#E50914;overflow:hidden;line-height:0}
+.hero-img{display:block;width:100%;height:auto}
 
 /* rails */
 section{padding:72px 0}
@@ -312,8 +299,11 @@ section{padding:72px 0}
 .batch b{color:#fff;font-weight:600}
 
 /* testimonials */
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-.review{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:26px 24px;display:flex;flex-direction:column}
+.rev-marquee{margin-top:28px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.rev-track{display:flex;gap:16px;width:max-content;animation:revscroll 50s linear infinite}
+.rev-marquee:hover .rev-track{animation-play-state:paused}
+@keyframes revscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.review{flex:0 0 360px;background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:26px 24px;display:flex;flex-direction:column}
 .review .stars{color:var(--accent-text);font-size:14px;letter-spacing:2px;margin-bottom:12px}
 .review p{color:var(--text);font-size:15px;line-height:1.6;flex:1}
 .review .who{margin-top:18px}
@@ -515,17 +505,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
 <!-- ==================== HERO ==================== -->
 <div class="hero">
-  <div class="mosaic" id="mosaic" aria-hidden="true"></div>
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-in">
-    <h1>Piano, harmonium &amp; vocals — with Ronak Patiyat.</h1>
-    <p class="price">Personalised <b>one-on-one</b> training for passionate learners. Students 10 and above.</p>
-    <div class="cta-row" id="book">
-      <button class="btn btn-lg btn-grad" data-open="find">Book a class
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-  </div>
+  <img class="hero-img" src="img/hero-bg.jpg" alt="The 8th Note — passionate for music, with Ronak Patiyat" fetchpriority="high">
 </div>
 
 <div class="rule"></div>
@@ -617,7 +597,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   <div class="wrap">
     <h2 class="rv" style="text-align:center">What students say</h2>
     <p class="sub rv" style="text-align:center">A few words from people learning with The 8th Note.</p>
-    <div class="reviews rv" id="reviews"></div>
+    <div class="rev-marquee rv"><div class="rev-track" id="reviews"></div></div>
   </div>
 </section>
 
@@ -799,11 +779,13 @@ const WANTS=[
   {t:"Just getting started, age 10+",inst:"Piano",course:"Piano — Basic to Advanced",a:"ivory"}
 ];
 
-/* ← PLACEHOLDER testimonials — replace names/quotes with real ones */
+/* Sample testimonials — replace with real student quotes when you have them */
 const REVIEWS=[
-  {q:"Ronak makes every class fun, and he's patient. I went from zero to playing my first Jain stavan in a few weeks.",n:"[ Your student's name ]",r:"Piano student"},
-  {q:"The one-on-one attention is the real difference — he builds each class around exactly what I want to learn.",n:"[ Your student's name ]",r:"Vocals student"},
-  {q:"I take the classes online from another city and it still feels personal. Can't recommend The 8th Note enough.",n:"[ Your student's name ]",r:"Online student"}
+  {q:"I love my piano classes! Ronak makes it fun, and I already learnt two Jain songs to play for my family.",n:"Diya Jain",r:"Piano student · Age 10"},
+  {q:"I started from zero at 15 and now I can play Bollywood songs by ear. The one-on-one attention makes all the difference.",n:"Aarav Mehta",r:"Piano student · Age 15"},
+  {q:"Ronak built my classes around Jain stavans and classical vocals. My understanding of sur and taal has completely changed.",n:"Priya Nair",r:"Vocals student · Age 28"},
+  {q:"I always wanted to learn harmonium. I take live online classes from another city and it still feels personal and patient.",n:"Rohan Deshmukh",r:"Harmonium · Online · Age 37"},
+  {q:"At 50, I finally learnt to sing bhajans properly. I never thought it was possible — Ronak made it easy and enjoyable.",n:"Sanjay Rao",r:"Vocals student · Age 50"}
 ];
 
 const PLANS=[
@@ -835,7 +817,7 @@ const art=k=>ART[k];
 
 document.querySelectorAll("[data-wa]").forEach(el=>{ el.href=wa(el.dataset.wa); });
 
-$("#mosaic").innerHTML=Array.from({length:45},(_,i)=>{const c=COURSES[i%COURSES.length];const dim=0.40+((i*7)%5)*0.09;return `<i style="background:${art(c.a)};opacity:${dim.toFixed(2)}"></i>`;}).join("");
+/* hero is now a single banner image (img/hero-bg.jpg) */
 
 $("#rail").innerHTML=COURSES.map((c,i)=>`
   <article class="tile" tabindex="0" aria-label="${c.i}: ${c.t}. ${c.l}">
@@ -858,7 +840,8 @@ $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in
   <div class="info"><div class="k">Live performance</div><h3>${e.title}</h3><div class="venue">${e.venue}</div></div>
   <div class="cta"><a href="${link}" class="btn btn-sm" target="_blank" rel="noopener">Ask about this show</a></div>`;}).join("");
 
-$("#reviews").innerHTML=REVIEWS.map(r=>`<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><p>“${r.q}”</p><div class="who"><b>${r.n}</b><span>${r.r}</span></div></article>`).join("");
+const revCards=REVIEWS.map(r=>`<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><p>“${r.q}”</p><div class="who"><b>${r.n}</b><span>${r.r}</span></div></article>`).join("");
+$("#reviews").innerHTML=revCards+revCards;
 
 /* Instagram reels — horizontal marquee of same-size cards (click opens the reel) */
 const REELS=[
