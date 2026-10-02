@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- ===== SECURITY ===== -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.instagram.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.cdninstagram.com https://*.fbcdn.net; media-src 'self' https://*.cdninstagram.com; frame-src https://www.instagram.com; connect-src 'self' https://www.instagram.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>The 8th Note — Piano, Harmonium &amp; Vocal Classes with Ronak Patiyat | Bengaluru &amp; Online</title>
@@ -325,18 +325,12 @@ section{padding:72px 0}
 
 /* instagram */
 .ig-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.reel-marquee{margin-top:28px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.reel-track{display:flex;gap:16px;width:max-content;animation:reelscroll 44s linear infinite}
-.reel-marquee:hover .reel-track{animation-play-state:paused}
-@keyframes reelscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.reel-card{flex:0 0 232px;aspect-ratio:9/16;border-radius:14px;position:relative;overflow:hidden;display:block;
-  background:#121228 center/cover no-repeat;box-shadow:0 8px 26px rgba(0,0,0,.5);transition:transform .3s var(--tr)}
-.reel-card:hover{transform:scale(1.04)}
-.reel-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45))}
-.reel-play{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.45);
-  border:1.5px solid rgba(255,255,255,.75);display:grid;place-items:center;z-index:2;transition:background .2s var(--tr),transform .2s var(--tr)}
-.reel-card:hover .reel-play{background:var(--accent);border-color:var(--accent);transform:scale(1.1)}
-.reel-play::after{content:'';border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.reel-rail{padding:10px 2px 18px}
+.reel-card{flex:0 0 232px;width:232px;height:460px;border-radius:14px;overflow:hidden;position:relative;
+  background:#fff;box-shadow:0 8px 26px rgba(0,0,0,.5);scroll-snap-align:start}
+.reel-embed-wrap{position:absolute;top:0;left:0;width:332px;transform:scale(.699);transform-origin:top left}
+.reel-embed-wrap iframe{display:block!important}
+.reel-fallback{display:block;padding:18px 16px;color:var(--accent);font-weight:700;font-size:14px;text-align:center}
 
 /* faq */
 .faqs{margin-top:26px;max-width:920px;margin-inline:auto}
@@ -380,7 +374,6 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .plans,.reviews{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
   .about-photo{min-height:240px}
-  .iggrid{grid-template-columns:repeat(3,1fr)}
   .pgrid{grid-template-columns:repeat(4,1fr)}
   .fcols{grid-template-columns:1fr 1fr}
 }
@@ -402,7 +395,6 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .tile .rank{font-size:92px;left:-40px}
   .tile .name{font-size:15px}
   .stories{grid-template-columns:1fr}
-  .iggrid{grid-template-columns:repeat(2,1fr)}
   .pgrid{grid-template-columns:repeat(3,1fr)}
   .rarrow{display:none}
   .fcols{grid-template-columns:1fr}
@@ -646,7 +638,11 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       </div>
       <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener" class="btn btn-sm">Follow @the8thnote__</a>
     </div>
-    <div class="reel-marquee rv"><div class="reel-track" id="reel-track"></div></div>
+    <div class="rail-wrap rv">
+      <button class="rarrow l" data-rail="reel-track" data-dir="-1" aria-label="Scroll left"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="rail reel-rail" id="reel-track"></div>
+      <button class="rarrow r" data-rail="reel-track" data-dir="1" aria-label="Scroll right"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
   </div>
 </section>
 
@@ -826,14 +822,6 @@ const FAQS=[
   ["Can I book you to sing at my event?","Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message us on WhatsApp at +91 94800 61108 with your date and venue."]
 ];
 
-const FOOTER=[
-  [["Find your class","menu:find"],["Services","menu:services"],["Courses on YouTube","#courses"],["About Ronak","menu:about"]],
-  [["Jain songs & stavans","menu:services"],["Bollywood piano","menu:services"],["Online 1-on-1 classes","menu:services"],["Members · ₹49/month","https://youtube.com/@ronakpatiyat/join"]],
-  [["Book for events","menu:services"],["Bhakthi Sandhya","menu:services"],["Contact Us","menu:contact"]],
-  [["Instagram — The 8th Note","https://instagram.com/the8thnote__"],["Instagram — Ronak","https://instagram.com/ronakpatiyat__"],["WhatsApp",wa("Hi Ronak, I'd like to get in touch.")]]
-];
-const IG_PROFILE="https://instagram.com/the8thnote__";
-
 /* ===== render ===== */
 const $=s=>document.querySelector(s);
 const art=k=>ART[k];
@@ -866,17 +854,32 @@ $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in
 const revCards=REVIEWS.map(r=>`<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><p>“${r.q}”</p><div class="who"><b>${r.n}</b><span>${r.r}</span></div></article>`).join("");
 $("#reviews").innerHTML=revCards+revCards;
 
-/* Instagram reels — horizontal marquee of same-size cards (click opens the reel) */
+/* ===== Instagram — real Instagram-post embeds, scaled to fit the card ===== */
 const REELS=[
-  {u:"https://www.instagram.com/reel/Db0B3YIRxsh/",img:"img/reel-1.jpg"},
-  {u:"https://www.instagram.com/reel/DZ2EhTNRK2G/",img:"img/reel-2.jpg"},
-  {u:"https://www.instagram.com/reel/DaAHHK7xH38/",img:"img/reel-3.jpg"},
-  {u:"https://www.instagram.com/reel/DdBmXtOvD70/",img:"img/reel-4.jpg"},
-  {u:"https://www.instagram.com/reel/DdJB2hHvnQ1/",img:"img/reel-5.jpg"},
-  {u:"https://www.instagram.com/reel/DbAi297xdad/",img:"img/reel-6.jpg"}
+  "https://www.instagram.com/reel/Db0B3YIRxsh/",
+  "https://www.instagram.com/reel/DZ2EhTNRK2G/",
+  "https://www.instagram.com/reel/DaAHHK7xH38/",
+  "https://www.instagram.com/reel/DdBmXtOvD70/",
+  "https://www.instagram.com/reel/DdJB2hHvnQ1/",
+  "https://www.instagram.com/reel/DbAi297xdad/"
 ];
-const reelCards=REELS.map(r=>`<a class="reel-card" style="background-image:url('${r.img}')" href="${r.u}" target="_blank" rel="noopener" aria-label="Watch reel on Instagram"><span class="reel-play"></span></a>`).join("");
-$("#reel-track").innerHTML=reelCards+reelCards;
+$("#reel-track").innerHTML=REELS.map(u=>`
+  <div class="reel-card">
+    <div class="reel-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="${u}" data-instgrm-version="14" style="margin:0">
+        <a class="reel-fallback" href="${u}" target="_blank" rel="noopener">View on Instagram ↗</a>
+      </blockquote>
+    </div>
+  </div>`).join("");
+
+/* loads Instagram's own embed script once, then asks it to turn the blockquotes above into real post cards */
+(function(){
+  function process(){ if(window.instgrm) window.instgrm.Embeds.process(); }
+  if(window.instgrm){ process(); return; }
+  const s=document.createElement("script");
+  s.async=true; s.src="https://www.instagram.com/embed.js"; s.onload=process;
+  document.body.appendChild(s);
+})();
 
 document.querySelectorAll(".rarrow").forEach(b=>{ b.onclick=()=>document.getElementById(b.dataset.rail).scrollBy({left:213*3*+b.dataset.dir,behavior:"smooth"}); });
 
@@ -912,8 +915,6 @@ $("#batches").innerHTML=BATCHES.map(([n,t])=>`<span class="batch"><b>${n}</b> �
 /* faq */
 $("#faqs").innerHTML=FAQS.map(([q,a])=>`<div class="fq"><button aria-expanded="false">${q}<span class="pm"></span></button><div class="ans"><p>${a}</p></div></div>`).join("");
 document.querySelectorAll(".fq").forEach(f=>{const btn=f.querySelector("button"),ans=f.querySelector(".ans");btn.onclick=()=>{const open=f.classList.toggle("open");btn.setAttribute("aria-expanded",open);ans.style.maxHeight=open?ans.scrollHeight+"px":0;};});
-
-/* footer links are static in the HTML now (data-open opens the menu) */
 
 /* ===== menu overlay ===== */
 const menu=document.getElementById("menu");
