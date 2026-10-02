@@ -61,6 +61,16 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 :focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
 
+/* intro splash — plays the logo animation once on load, then reveals the page */
+#intro{position:fixed;inset:0;z-index:1000;background:#000;display:grid;place-items:center;
+  transition:opacity .6s ease}
+#intro.hide{opacity:0;pointer-events:none}
+#intro video{max-width:min(92vw,900px);max-height:80vh;width:auto;height:auto;display:block}
+#intro .skip{position:absolute;bottom:24px;right:24px;color:var(--text-2);font-size:13px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);
+  padding:8px 16px;border-radius:999px;cursor:pointer}
+#intro .skip:hover{color:#fff}
+
 h1{font-size:clamp(32px,4.6vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.022em}
 h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .rule{height:6px;background:var(--rule)}
@@ -379,6 +389,12 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 </head>
 <body>
 
+<!-- ==================== INTRO LOGO ANIMATION ==================== -->
+<div id="intro" aria-hidden="true">
+  <video id="introVid" src="logo-anim.mp4" autoplay muted playsinline preload="auto"></video>
+  <button class="skip" id="introSkip">Skip ›</button>
+</div>
+
 <div class="top">
   <div class="top-in">
     <a href="#" class="logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note"></a>
@@ -606,6 +622,29 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 </script>
 
 <script>
+/* intro splash — play the logo animation once, then reveal the page */
+(function(){
+  const intro = document.getElementById("intro");
+  if(!intro) return;
+  const vid = document.getElementById("introVid");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let done = false;
+  function finish(){
+    if(done) return; done = true;
+    intro.classList.add("hide");
+    document.body.style.overflow = "";
+    setTimeout(function(){ intro.remove(); }, 700);
+  }
+  if(reduce){ finish(); return; }
+  document.body.style.overflow = "hidden";
+  if(vid){
+    vid.addEventListener("ended", finish);
+    vid.addEventListener("error", finish);
+  }
+  document.getElementById("introSkip").addEventListener("click", finish);
+  setTimeout(finish, 9000); /* safety: never trap the visitor */
+})();
+
 /* =====================================================================
    CONTENT MODEL — fictional but domain-true.
    A catalogue archetype's layout IS its content, so the schema comes
