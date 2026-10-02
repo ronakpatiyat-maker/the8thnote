@@ -48,8 +48,8 @@
 html{scroll-behavior:smooth}
 body{font-family:'Archivo',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);
   font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
 :focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
 
@@ -177,8 +177,9 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 section{padding:72px 0}
 .sub{color:var(--text-2);font-size:17px;margin-top:8px}
 .rail-wrap{position:relative;margin-top:26px}
-.rail{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:34px 0;scrollbar-width:none}
+.rail{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:34px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .rail::-webkit-scrollbar{display:none}
+#rail{padding-left:60px}
 .tile{position:relative;flex:0 0 205px;scroll-snap-align:start;cursor:pointer;transition:transform .3s var(--tr);transform-origin:center bottom}
 .tile:hover,.tile:focus-visible{transform:scale(1.09)}
 .tile .art{position:relative;aspect-ratio:2/3;border-radius:6px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.7)}
@@ -371,36 +372,128 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
 @media(max-width:1000px){
   .stories{grid-template-columns:repeat(2,1fr)}
-  .plans,.reviews{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
   .about-photo{min-height:240px}
   .pgrid{grid-template-columns:repeat(4,1fr)}
-  .fcols{grid-template-columns:1fr 1fr}
 }
 @media(max-width:800px){
   .menu-body{grid-template-columns:1fr}
-  .menu-nav{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid #1E1E1E;padding:14px 18px;gap:8px}
+  .menu-nav{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid #1E1E1E;padding:14px 18px;gap:8px;-webkit-overflow-scrolling:touch}
   .menu-item{white-space:nowrap;padding:10px 14px;font-size:16px}
   .svcs{grid-template-columns:1fr}
 }
 @media(max-width:680px){
-  :root{--gutter:20px}
-  .top-in{height:70px}
-  .logo img{height:56px}
-  .hero{padding:118px 18px 70px;min-height:84vh}
-  .btn-lg{height:56px;font-size:18px}
-  .cta-row{flex-direction:column;align-items:stretch}
-  .rail{padding-left:2px}
-  .tile{flex:0 0 152px}
-  .tile .rank{font-size:92px;left:-40px}
-  .tile .name{font-size:15px}
-  .stories{grid-template-columns:1fr}
-  .pgrid{grid-template-columns:repeat(3,1fr)}
+  :root{--gutter:18px}
+
+  /* header */
+  .top-in{height:64px}
+  .logo img{height:46px}
+  .hamb{width:44px;height:44px}
+  .top-r{gap:8px}
+  .top-r .btn{padding:9px 14px;font-size:13.5px}
+
+  /* hero */
+  .hero{padding:96px 18px 52px;min-height:520px}
+  .hero h1{font-size:clamp(28px,8vw,42px)}
+  .hero .price{font-size:15px;margin-top:14px}
+  .cta-row{flex-direction:column;align-items:stretch;gap:10px;margin-top:22px}
+  .btn-lg{height:54px;font-size:17px}
+
+  /* hamburger menu */
+  .menu-head{padding:16px var(--gutter)}
+  .menu-logo{height:42px}
+  .menu-panels{padding:20px var(--gutter) 40px}
+  .menu-item{font-size:14.5px;padding:9px 12px}
+
+  /* sections generally */
+  section{padding:46px 0}
+  .closing{padding:50px 0 60px}
+  footer{padding:40px 0 36px}
+  .rule{height:4px}
+  h2{font-size:clamp(21px,5.5vw,26px)}
+  .sub{font-size:15px}
+
+  /* class rail */
+  #rail{padding-left:44px}
+  .rail{padding:26px 0}
+  .tile{flex:0 0 148px}
+  .tile .rank{font-size:84px;left:-34px}
+  .tile .name{font-size:14.5px}
+  .tile .lvl{font-size:12px}
   .rarrow{display:none}
-  .fcols{grid-template-columns:1fr}
-  section{padding:54px 0}
-  .wa-float{width:52px;height:52px}
-  .wa-float svg{width:28px;height:28px}
+
+  /* find your class */
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pick .name{font-size:12px;padding:0 7px 8px}
+  .card-out{padding:18px}
+  .facts{gap:8px}
+  .fact{padding:7px 12px;font-size:13px}
+
+  /* services / perform */
+  .svcs{gap:12px}
+  .svc{padding:18px}
+  .svc .ic{width:42px;height:42px;margin-bottom:10px}
+  .event{padding:18px 16px;gap:14px}
+  .event .date{width:86px;padding:10px 8px}
+  .event .date .d{font-size:24px}
+
+  /* why learn with us */
+  .story{padding:24px 20px 96px;min-height:280px}
+  .story .gfx svg{width:50px;height:50px}
+
+  /* about */
+  .about-photo{min-height:200px}
+
+  /* fees */
+  .plans{gap:12px}
+  .plan{padding:20px}
+  .plan .pp{font-size:28px}
+  .batches{gap:8px}
+  .batch{padding:7px 12px;font-size:13px}
+
+  /* testimonials */
+  .review{flex:0 0 290px;padding:20px 18px}
+
+  /* youtube */
+  .yt{flex:0 0 250px}
+
+  /* faq */
+  .fq>button{padding:18px 16px}
+  .fq .ans p{padding:18px 16px}
+
+  /* instagram */
+  .reel-card{width:212px;height:420px}
+  .reel-embed-wrap{transform:scale(.639)}
+
+  /* floating buttons (with iPhone safe-area clearance) */
+  .countdown{gap:10px}
+  .cd{min-width:72px;padding:14px 10px}
+  .wa-float{width:50px;height:50px;left:16px;bottom:calc(20px + env(safe-area-inset-bottom))}
+  .wa-float svg{width:26px;height:26px}
+  .notif-btn{width:50px;height:50px;left:16px;bottom:calc(80px + env(safe-area-inset-bottom))}
+  .notif-btn svg{width:24px;height:24px}
+  .notif-card{padding:30px 22px}
+  #scrolltop{right:14px;bottom:calc(22px + env(safe-area-inset-bottom));gap:5px}
+  #scrolltop .arr{font-size:17px}
+  #scrolltop .txt{font-size:11px}
+
+  /* footer */
+  .foot-top{flex-direction:column;align-items:flex-start;gap:18px}
+  .foot-nav{gap:10px 18px}
+  .foot-contact{text-align:left}
+  .foot-bottom{flex-direction:column;align-items:flex-start;gap:6px}
+}
+@media(max-width:400px){
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .pick .name{font-size:13px}
+  .tile{flex:0 0 130px}
+  .tile .rank{font-size:70px;left:-28px}
+  #rail{padding-left:36px}
+  .cd{min-width:64px;padding:12px 8px}
+  .cd .n{font-size:22px}
+  .reel-card{width:188px;height:372px}
+  .reel-embed-wrap{transform:scale(.566)}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
