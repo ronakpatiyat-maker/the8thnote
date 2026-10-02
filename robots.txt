@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ronakpatiyat-maker.github.io/the8thnote/sitemap.xml
