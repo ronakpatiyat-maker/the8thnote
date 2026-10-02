@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Saptak — Piano &amp; Voice Classes in Bengaluru | First Class Free</title>
+<meta name="description" content="Learn piano and singing with working musicians. Group and one-to-one classes, Trinity and ABRSM exam prep, weekday evening and weekend batches. From ₹2,400/month. First class free." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ===== DARK SURFACE archetype =====
+     PALETTE IS LOCKED TO THE EXTRACTION. Do not re-hue it for the target
+     business — the palette is the extracted asset, and it carries the
+     register the client chose. Only the *content* is transposed. */
+  --bg:#000000;
+  --surface:#2D2D2D;        /* FAQ rows — the only raised neutral */
+  --chip:#1A1A1A;           /* elevation ladder: 000 → 1A → 2D */
+  --input:#161616;
+  --input-line:#6E6E6E;
+
+  --text:#FFFFFF;
+  --text-2:#B3B3B3;
+  --text-3:#808080;
+
+  /* the one saturated accent — extracted, unchanged */
+  --accent:#E50914;
+  --accent-hi:#F6121D;
+  --accent-lo:#B20710;
+  --on-accent:#FFFFFF;      /* red carries white text */
+
+  /* Same hue, lightened, for SMALL text on black.
+     #E50914 on #000 is 3.9:1 — fine for a filled button, and it FAILS
+     for 11–13px labels. Retaining a palette never means ignoring
+     contrast: you stay in the hue and move up the ramp. */
+  --accent-text:#F5564E;    /* 6.2:1 on black */
+
+  /* the only chromatic surface — extracted */
+  --story:linear-gradient(150deg,#1E2445 0%,#2A1A2E 62%,#14101A 100%);
+  --story-line:rgba(255,255,255,.10);
+
+  /* section rule — extracted */
+  --rule:linear-gradient(90deg,#E50914,#B02A9E 34%,#5A3FC0 66%,#1F3A93);
+
+  --r:5px;
+  --tr:cubic-bezier(.2,.6,.3,1);
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Archivo',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
+
+h1{font-size:clamp(32px,4.6vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.022em}
+h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
+.rule{height:6px;background:var(--rule)}
+
+/* ================= buttons ================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--accent);color:var(--on-accent);font-weight:700;border-radius:var(--r);
+  transition:background .15s,transform .1s}
+.btn:hover{background:var(--accent-hi)}
+.btn:active{background:var(--accent-lo);transform:translateY(1px)}
+.btn-sm{padding:8px 18px;font-size:15px}
+.btn-lg{padding:0 26px;height:60px;font-size:20px}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+/* ================= top bar ================= */
+.top{position:absolute;top:0;left:0;right:0;z-index:20}
+.top-in{display:flex;align-items:center;justify-content:space-between;height:92px;
+  max-width:1500px;margin:0 auto;padding:0 44px}
+.logo{display:flex;align-items:baseline;gap:9px;font-weight:900;font-size:30px;
+  letter-spacing:.03em;color:var(--accent);text-transform:uppercase}
+.logo em{font-style:normal;font-size:13px;font-weight:600;letter-spacing:.22em;
+  color:var(--text-3);text-transform:uppercase}
+.top-r{display:flex;align-items:center;gap:12px}
+
+/* ================= hero ================= */
+.hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;
+  text-align:center;padding:150px 24px 90px;overflow:hidden;background:#0A0A0A}
+.mosaic{position:absolute;inset:-14% -10%;z-index:0;display:grid;
+  grid-template-columns:repeat(9,1fr);gap:10px;
+  transform:perspective(1400px) rotateX(11deg) rotateZ(-3deg) scale(1.16);
+  transform-origin:center 30%}
+.mosaic i{display:block;aspect-ratio:2/3;border-radius:5px}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(58% 48% at 50% 52%, rgba(0,0,0,.60) 0%, rgba(0,0,0,.86) 62%, #000 100%),
+    linear-gradient(180deg, rgba(0,0,0,.86) 0%, rgba(0,0,0,.30) 26%, rgba(0,0,0,.32) 62%, #000 100%)}
+.hero-in{position:relative;z-index:2;max-width:790px}
+.hero h1{text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.hero .price{margin-top:16px;font-size:clamp(18px,1.8vw,22px);font-weight:500}
+.hero .price b{color:var(--accent-text);font-weight:700}
+.hero .ask{margin-top:26px;font-size:clamp(16px,1.5vw,19px);font-weight:500}
+
+.capture{margin-top:18px;display:flex;gap:8px;justify-content:center}
+.field{position:relative;flex:1;max-width:440px}
+.field input{width:100%;height:60px;padding:22px 14px 6px;background:rgba(22,22,22,.75);
+  border:1px solid var(--input-line);border-radius:var(--r);color:#fff;font:inherit;font-size:17px}
+.field input:focus{outline:none;border-color:var(--accent)}
+.field label{position:absolute;left:15px;top:19px;color:#B0B0B0;font-size:17px;
+  pointer-events:none;transition:.15s var(--tr)}
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label{top:8px;font-size:12px}
+.microcopy{margin-top:12px;font-size:14px;color:var(--text-3)}
+
+/* ================= rails ================= */
+section{padding:72px 0}
+.sub{color:var(--text-2);font-size:17px;margin-top:8px}
+.rail-wrap{position:relative;margin-top:26px}
+.rail{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;
+  padding:34px 0 34px 62px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail.plain{padding-left:0}
+
+/* ranked course tile — the streaming rail, doing a school's job */
+.tile{position:relative;flex:0 0 205px;scroll-snap-align:start;cursor:pointer;
+  transition:transform .3s var(--tr);transform-origin:center bottom}
+.tile:hover,.tile:focus-visible{transform:scale(1.09)}
+.tile .art{position:relative;aspect-ratio:2/3;border-radius:6px;overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,.7)}
+.tile .art::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(80% 60% at 50% 20%, rgba(255,255,255,.16), transparent 70%),
+             linear-gradient(180deg,transparent 40%,rgba(0,0,0,.88) 100%)}
+.tile .meta{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 12px 13px}
+.tile .inst{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-text);margin-bottom:3px}
+.tile .name{font-weight:800;font-size:17px;line-height:1.14;
+  text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.tile .lvl{margin-top:4px;font-size:12.5px;color:#CFCFCF}
+.tile .rank{position:absolute;z-index:1;left:-58px;bottom:-14px;font-size:128px;font-weight:900;
+  line-height:.8;color:transparent;-webkit-text-stroke:3px #737373;letter-spacing:-.06em;
+  pointer-events:none;transition:-webkit-text-stroke-color .3s}
+.tile:hover .rank{-webkit-text-stroke-color:var(--accent)}
+
+.rarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:118px;
+  background:rgba(20,20,20,.72);display:grid;place-items:center;color:#fff;transition:background .2s}
+.rarrow:hover{background:rgba(20,20,20,.95)}
+.rarrow.l{left:0;border-radius:0 5px 5px 0}
+.rarrow.r{right:0;border-radius:5px 0 0 5px}
+
+/* ================= starting-note finder (the earned original) ================= */
+.pgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:28px}
+.pick{position:relative;cursor:pointer;border-radius:6px;overflow:hidden;
+  transition:transform .25s var(--tr)}
+.pick:hover,.pick.on{transform:translateY(-4px)}
+.pick .art{aspect-ratio:2/3;position:relative}
+.pick .art::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.88) 100%)}
+.pick .name{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 9px 10px;
+  font-weight:700;font-size:13.5px;line-height:1.16}
+.pick .ck{position:absolute;z-index:3;inset:0;border:3px solid var(--accent);border-radius:6px;
+  opacity:0;transition:opacity .2s}
+.pick .ck::after{content:'';position:absolute;top:8px;right:8px;width:24px;height:24px;
+  border-radius:50%;background:var(--accent)}
+.pick .ck::before{content:'';position:absolute;top:15px;right:15px;width:6px;height:11px;z-index:2;
+  border-right:2.5px solid var(--on-accent);border-bottom:2.5px solid var(--on-accent);
+  transform:rotate(45deg)}
+.pick.on .ck{opacity:1}
+
+.result{margin-top:30px;min-height:70px}
+.hint{color:var(--text-3);font-size:16px}
+.card-out{background:var(--chip);border:1px solid #2E2E2E;border-radius:12px;padding:26px 28px}
+.card-out .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent-text);margin-bottom:10px}
+.card-out h3{font-size:clamp(20px,2.1vw,26px);font-weight:800;letter-spacing:-.01em}
+.card-out .lede{color:var(--text-2);margin-top:8px;font-size:16px}
+.facts{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.fact{background:#101010;border:1px solid #2E2E2E;border-radius:999px;padding:8px 15px;
+  font-size:14px;font-weight:600}
+.fact b{color:var(--accent-text)}
+.card-out .foot{display:flex;gap:14px;align-items:center;margin-top:22px;flex-wrap:wrap}
+.reset{color:var(--text-2);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.reset:hover{color:#fff}
+
+/* ================= teachers (slot the source never had) ================= */
+.tcard{flex:0 0 250px;scroll-snap-align:start;background:var(--chip);border:1px solid #2A2A2A;
+  border-radius:12px;padding:24px;transition:border-color .25s,transform .25s var(--tr)}
+.tcard:hover{border-color:var(--accent);transform:translateY(-4px)}
+.tcard .av{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:21px;color:var(--on-accent);margin-bottom:18px}
+.tcard h3{font-size:19px;font-weight:700}
+.tcard .role{color:var(--accent-text);font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;margin-top:4px}
+.tcard .cred{color:var(--text-2);font-size:14.5px;margin-top:12px;line-height:1.5}
+.tcard .yrs{margin-top:14px;font-size:13px;color:var(--text-3)}
+
+/* ================= story cards ================= */
+.stories{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.story{position:relative;background:var(--story);border:1px solid var(--story-line);
+  border-radius:12px;padding:34px 34px 128px;overflow:hidden;min-height:262px}
+.story h3{font-size:clamp(19px,1.8vw,23px);font-weight:700;margin-bottom:10px}
+.story p{font-size:16px;color:var(--text-2);max-width:88%}
+.story .gfx{position:absolute;right:28px;bottom:26px}
+/* piano keys glyph */
+.keys{display:flex;gap:2px;align-items:flex-start}
+.keys i{display:block;width:15px;height:74px;border-radius:0 0 3px 3px;
+  background:linear-gradient(180deg,#F6F1E4,#CBC3B0);position:relative}
+.keys i.b{width:10px;height:46px;background:linear-gradient(180deg,#2A2622,#0E0C0A);
+  margin:0 -6px;z-index:2;box-shadow:0 0 16px rgba(229,9,20,.45)}
+/* waveform glyph */
+.wave{display:flex;align-items:center;gap:4px;height:74px}
+.wave i{display:block;width:5px;border-radius:3px;
+  background:linear-gradient(180deg,#F6121D,#B02A9E)}
+/* metronome glyph */
+.metro{width:0;height:0;border-left:38px solid transparent;border-right:38px solid transparent;
+  border-bottom:74px solid;border-bottom-color:#2A2632;position:relative}
+.metro::after{content:'';position:absolute;left:-2px;bottom:-74px;width:4px;height:62px;
+  background:var(--accent);transform-origin:bottom center;border-radius:2px;
+  animation:tick 1.4s ease-in-out infinite alternate;box-shadow:0 0 14px rgba(229,9,20,.65)}
+@keyframes tick{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+/* certificate glyph */
+.cert{width:74px;height:74px;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 36% 32%,#FF9BD2,#E50914 58%,#6E2BC4);
+  box-shadow:0 0 38px rgba(229,9,20,.42);display:grid;place-items:center}
+
+/* ================= fees (slot the source never had) ================= */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.plan{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:28px;
+  display:flex;flex-direction:column;position:relative}
+.plan.best{border:2px solid var(--accent)}
+.plan .flag{position:absolute;top:-13px;left:26px;background:var(--accent);color:var(--on-accent);
+  font-size:11.5px;font-weight:800;letter-spacing:.06em;padding:5px 13px;border-radius:999px;
+  text-transform:uppercase}
+.plan .pn{font-size:20px;font-weight:800}
+.plan .pd{color:var(--text-3);font-size:14px;margin-top:3px;min-height:40px}
+.plan .pp{margin:16px 0 4px;font-size:34px;font-weight:800;letter-spacing:-.02em}
+.plan .pp span{font-size:15px;font-weight:500;color:var(--text-3)}
+.plan .btn{margin:22px 0 22px}
+.plan ul{list-style:none;display:grid;gap:11px;margin-top:auto}
+.plan li{display:flex;gap:10px;font-size:14.5px;color:var(--text-2);align-items:flex-start}
+.tk{width:17px;height:17px;flex:none;margin-top:3px;border-radius:50%;background:var(--accent);
+  position:relative}
+.tk::after{content:'';position:absolute;left:6px;top:4px;width:4px;height:8px;
+  border-right:2px solid var(--on-accent);border-bottom:2px solid var(--on-accent);
+  transform:rotate(45deg)}
+.batches{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.batch{background:#101010;border:1px solid #2A2A2A;border-radius:999px;padding:9px 16px;
+  font-size:14px;color:var(--text-2)}
+.batch b{color:#fff;font-weight:600}
+
+/* ================= faq ================= */
+.faqs{margin-top:26px;max-width:920px;margin-inline:auto}
+.fq{margin-bottom:8px}
+.fq>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;
+  background:var(--surface);padding:22px 24px;text-align:left;
+  font-size:clamp(17px,1.7vw,21px);font-weight:600;transition:background .15s}
+.fq>button:hover{background:#3A3A3A}
+.pm{position:relative;width:26px;height:26px;flex:none}
+.pm::before,.pm::after{content:'';position:absolute;background:#fff;transition:transform .25s var(--tr)}
+.pm::before{left:0;top:12px;width:26px;height:2px}
+.pm::after{left:12px;top:0;width:2px;height:26px}
+.fq.open .pm::after{transform:rotate(90deg)}
+.fq.open .pm::before{background:var(--accent)}
+.fq .ans{max-height:0;overflow:hidden;background:var(--surface);transition:max-height .3s var(--tr)}
+.fq.open .ans{margin-top:1px}
+.fq .ans p{padding:24px;font-size:clamp(15.5px,1.5vw,18px);line-height:1.5}
+
+/* ================= closing + footer ================= */
+.closing{padding:76px 0 84px;text-align:center}
+.closing .ask{font-size:clamp(17px,1.6vw,20px);font-weight:600;margin-bottom:6px}
+.closing .sub{margin-bottom:18px}
+.closing .capture{max-width:760px;margin:0 auto}
+
+footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
+.callus{margin-bottom:16px}
+.callus a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.addr{margin-bottom:34px;line-height:1.7;max-width:420px}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 24px}
+.fcols a{display:block;padding:7px 0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.fcols a:hover{color:#fff}
+.fmark{margin-top:36px;font-size:14px}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--tr),transform .6s var(--tr)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:1000px){
+  .stories,.plans{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:repeat(4,1fr)}
+  .fcols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .top-in{height:70px;padding:0 18px}
+  .logo{font-size:23px}.logo em{display:none}
+  .top-r .btn-ghost{display:none}
+  .hero{padding:118px 18px 70px;min-height:84vh}
+  .capture{flex-direction:column;align-items:stretch}
+  .field{max-width:none}
+  .btn-lg{height:54px;font-size:18px}
+  .rail{padding-left:24px}
+  .tile{flex:0 0 152px}
+  .tile .rank{font-size:92px;left:-40px}
+  .tile .name{font-size:15px}
+  .pgrid{grid-template-columns:repeat(3,1fr)}
+  .rarrow{display:none}
+  .fcols{grid-template-columns:1fr}
+  section{padding:54px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <a href="#" class="logo">Saptak <em>School of Music</em></a>
+    <div class="top-r">
+      <a href="#" class="btn btn-sm btn-ghost">Student login</a>
+      <a href="#book" class="btn btn-sm">Book a free class</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="mosaic" id="mosaic" aria-hidden="true"></div>
+  <div class="hero-in">
+    <h1>Learn piano and voice. Properly.</h1>
+    <p class="price">From <b>₹2,400 a month</b>. Your first class is free.</p>
+    <p class="ask">Leave your number and we'll find you a batch that fits your week.</p>
+    <form class="capture" id="book" onsubmit="return false">
+      <span class="field">
+        <input type="tel" id="p1" placeholder=" " autocomplete="tel">
+        <label for="p1">Phone number</label>
+      </span>
+      <button class="btn btn-lg">Book a free class
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+    <p class="microcopy">Indiranagar &amp; Koramangala · Weekday evenings and weekend mornings · Ages 5 to 75</p>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<!-- ==================== MOST-BOOKED (the ranked rail, re-tasked) ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv">Most booked this term</h2>
+    <p class="sub rv">What people in Bengaluru are actually signing up for.</p>
+  </div>
+  <div class="rail-wrap rv">
+    <button class="rarrow l" data-rail="rail" data-dir="-1" aria-label="Scroll left">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="rail" id="rail"></div>
+    <button class="rarrow r" data-rail="rail" data-dir="1" aria-label="Scroll right">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ==================== STARTING NOTE — the earned original ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv">Find your starting note</h2>
+    <p class="sub rv">Pick three things you'd love to be able to play or sing. We'll tell you where you'd start — no form, no call.</p>
+
+    <div class="pgrid rv" id="pgrid"></div>
+
+    <div class="result" id="result" aria-live="polite">
+      <p class="hint">Pick three to see your starting point.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ==================== TEACHERS — a slot the source never had ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv">Who'll actually be teaching you</h2>
+    <p class="sub rv">Working musicians, not a rota of part-timers. You keep the same teacher.</p>
+  </div>
+  <div class="rail-wrap rv">
+    <div class="rail plain" id="teachers" style="padding-left:32px"></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ==================== REASONS ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv">More reasons to start</h2>
+    <div class="stories rv">
+      <article class="story">
+        <h3>A real acoustic, not a keyboard</h3>
+        <p>Grand and upright pianos in every room, tuned quarterly. Practise on the instrument you'll be examined on.</p>
+        <span class="gfx"><span class="keys"><i></i><i class="b"></i><i></i><i class="b"></i><i></i><i></i><i class="b"></i><i></i></span></span>
+      </article>
+      <article class="story">
+        <h3>Take the practice track home</h3>
+        <p>Every class ends with a backing track and a recording of your own take, so the week between lessons isn't guesswork.</p>
+        <span class="gfx"><span class="wave" id="wave"></span></span>
+      </article>
+      <article class="story">
+        <h3>Ages five to seventy-five</h3>
+        <p>Separate batches for children, teens and adults. Nobody is the odd one out, and nobody is held back.</p>
+        <span class="gfx"><span class="metro"></span></span>
+      </article>
+      <article class="story">
+        <h3>Trinity and ABRSM, if you want them</h3>
+        <p>Graded exam prep with mock panels, plus two student recitals a year on a real stage. Entirely optional.</p>
+        <span class="gfx"><span class="cert">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="9" r="5.4"/><path d="M8.4 13.4L7 22l5-2.6L17 22l-1.4-8.6"/>
+          </svg>
+        </span></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ==================== FEES — a slot the source never had ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv" style="text-align:center">Fees, stated plainly</h2>
+    <p class="sub rv" style="text-align:center">No registration fee. No annual charge. Pay month to month, stop whenever.</p>
+    <div class="plans rv" id="plans"></div>
+    <div class="batches rv" id="batches"></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ==================== FAQ ==================== -->
+<section>
+  <div class="wrap">
+    <h2 class="rv" style="text-align:center">Questions people ask us</h2>
+    <div class="faqs rv" id="faqs"></div>
+  </div>
+</section>
+
+<!-- ==================== CLOSING ==================== -->
+<div class="closing">
+  <div class="wrap">
+    <p class="ask">Still deciding? Come and sit at the piano.</p>
+    <p class="sub">The first class is free and there's nothing to cancel afterwards.</p>
+    <form class="capture" onsubmit="return false">
+      <span class="field">
+        <input type="tel" id="p2" placeholder=" " autocomplete="tel">
+        <label for="p2">Phone number</label>
+      </span>
+      <button class="btn btn-lg">Book a free class
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="wrap">
+    <p class="callus">Questions? Call <a href="tel:+919876543210">+91 98765 43210</a> or <a href="https://wa.me/919876543210">message us on WhatsApp</a></p>
+    <p class="addr">
+      <b style="color:#fff">Saptak School of Music</b><br>
+      2nd Floor, 12th Main, Indiranagar, Bengaluru 560038<br>
+      Mon–Fri 4–9pm · Sat–Sun 9am–1pm
+    </p>
+    <div class="fcols" id="fcols"></div>
+    <p class="fmark">© 2026 Saptak School of Music, Bengaluru.</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MusicSchool",
+  "name":"Saptak School of Music",
+  "description":"Piano and voice classes in Bengaluru. Group and one-to-one, Trinity and ABRSM exam preparation.",
+  "address":{"@type":"PostalAddress","streetAddress":"2nd Floor, 12th Main, Indiranagar","addressLocality":"Bengaluru","postalCode":"560038","addressCountry":"IN"},
+  "telephone":"+91-98765-43210",
+  "openingHours":["Mo-Fr 16:00-21:00","Sa-Su 09:00-13:00"],
+  "priceRange":"₹₹"
+}
+</script>
+
+<script>
+/* =====================================================================
+   CONTENT MODEL — fictional but domain-true.
+   A catalogue archetype's layout IS its content, so the schema comes
+   first and the layout follows it. Swap these arrays for real data.
+   ===================================================================== */
+const ART = {
+  ivory:   "linear-gradient(160deg,#5A5246,#C9BFA6 44%,#1A1712)",
+  brass:   "linear-gradient(160deg,#6B4A08,#E8A33D 45%,#241802)",
+  rose:    "linear-gradient(160deg,#5C1436,#C43B78 45%,#1E0713)",
+  indigo:  "linear-gradient(160deg,#16234A,#3D5CA8 45%,#070C1C)",
+  jade:    "linear-gradient(160deg,#0C3A2E,#1E8A63 45%,#04150F)",
+  violet:  "linear-gradient(160deg,#3A1454,#8A3BC4 45%,#160822)",
+  ember:   "linear-gradient(160deg,#7A3410,#E0742A 46%,#2A1206)",
+  slate:   "linear-gradient(160deg,#2A2E33,#6E767F 46%,#0E1013)"
+};
+
+/* the ranked rail — courses, not shows */
+const COURSES = [
+  {i:"Piano", t:"Foundation",              l:"Absolute beginners · 60 min", a:"ivory"},
+  {i:"Voice", t:"Western Contemporary",    l:"Beginner to intermediate",    a:"rose"},
+  {i:"Piano", t:"Grades 1–3",              l:"Trinity / ABRSM track",       a:"brass"},
+  {i:"Voice", t:"Hindustani Foundation",   l:"Sur, alankar, basic raag",    a:"ember"},
+  {i:"Piano", t:"Adult Beginners",         l:"Evenings · no prior training",a:"slate"},
+  {i:"Voice", t:"Studio & Playback",       l:"Mic technique, pitch, takes", a:"violet"},
+  {i:"Piano", t:"Jazz & Blues Basics",     l:"Chords, voicings, comping",   a:"indigo"},
+  {i:"Both",  t:"Theory & Ear Training",   l:"Runs alongside any course",   a:"jade"},
+  {i:"Piano", t:"Grades 4–5 Exam Prep",    l:"Mock panels included",        a:"brass"},
+  {i:"Voice", t:"Choir & Harmony",         l:"Sunday ensemble · all levels", a:"jade"}
+];
+
+/* the picker — "what do you want to be able to do?" mapped to a real path */
+const WANTS = [
+  {t:"Play film songs by ear",        inst:"Piano", track:"Contemporary", a:"ember"},
+  {t:"Sing playback-style",           inst:"Voice", track:"Contemporary", a:"rose"},
+  {t:"Western classical repertoire",  inst:"Piano", track:"Classical",    a:"ivory"},
+  {t:"Hindustani vocal",              inst:"Voice", track:"Classical",    a:"ember"},
+  {t:"Jazz standards & improvising",  inst:"Piano", track:"Contemporary", a:"indigo"},
+  {t:"Sing pop covers confidently",   inst:"Voice", track:"Contemporary", a:"violet"},
+  {t:"Pass Trinity / ABRSM grades",   inst:"Piano", track:"Exam",         a:"brass"},
+  {t:"Sing in a choir",               inst:"Voice", track:"Classical",    a:"jade"},
+  {t:"Accompany myself while singing",inst:"Piano", track:"Contemporary", a:"slate"},
+  {t:"Read sheet music fluently",     inst:"Piano", track:"Exam",         a:"indigo"},
+  {t:"Write my own songs",            inst:"Voice", track:"Contemporary", a:"violet"},
+  {t:"Finally start, at 40+",         inst:"Piano", track:"Contemporary", a:"slate"}
+];
+
+const TEACHERS = [
+  {n:"Ananya Rao",       r:"Piano",  c:"Trinity ATCL. Teaches classical and exam-track students.",         y:"12 years teaching", g:"brass"},
+  {n:"Meera Iyer",       r:"Voice",  c:"Sangeet Visharad. Hindustani vocal, and the Sunday choir.",         y:"15 years teaching", g:"ember"},
+  {n:"Joshua Fernandes", r:"Piano",  c:"Session pianist. Jazz, blues, and playing by ear.",                 y:"8 years teaching",  g:"indigo"},
+  {n:"Kavya Menon",      r:"Voice",  c:"Western contemporary and studio technique. Works in playback.",     y:"9 years teaching",  g:"rose"},
+  {n:"Rohan Dsouza",     r:"Theory", c:"Ear training, sight-reading and harmony. Runs the mock panels.",    y:"6 years teaching",  g:"jade"}
+];
+
+const PLANS = [
+  {n:"Group", d:"Four to a batch. The way most people start.", p:"₹2,400", u:"/month · 4 classes", best:false, cta:"Book a free class",
+   f:["60-minute weekly class","Maximum 4 students","Take-home practice track","Same teacher every week","Two recitals a year"]},
+  {n:"One-to-one", d:"Your pace, your repertoire, your schedule.", p:"₹4,800", u:"/month · 4 classes", best:true, cta:"Book a free class",
+   f:["45-minute private class","Repertoire chosen with you","Reschedule twice a month","Recording of every session","Priority on exam slots"]},
+  {n:"Exam intensive", d:"Trinity or ABRSM, with a date on the calendar.", p:"₹6,500", u:"/month · 6 classes", best:false, cta:"Talk to us",
+   f:["Six classes a month","Two mock panels per grade","Aural and sight-reading drills","Entry paperwork handled","Theory bundled free"]}
+];
+
+const BATCHES = [
+  ["Weekday evenings","Mon–Fri · 4–9pm"],
+  ["Weekend mornings","Sat–Sun · 9am–1pm"],
+  ["Adults only","Tue &amp; Thu · 7–9pm"],
+  ["Children (5–12)","Sat · 9–11am"]
+];
+
+const FAQS = [
+  ["I've never touched a piano. Am I too late?",
+   "No. Our largest single group is adult beginners, most of them between 30 and 55, and the Adult Beginners batch exists precisely so that nobody is sitting next to a nine-year-old who has been playing for three years. You'll be reading simple notation within about six weeks."],
+  ["Do I need a piano at home to start?",
+   "Not for the first two months. After that you'll want something to practise on — a weighted 88-key digital piano is fine and starts around ₹28,000. We'll tell you honestly what to buy and what to avoid, and we don't take a commission from anyone."],
+  ["How much does it cost, really?",
+   "Group classes are ₹2,400 a month for four 60-minute classes. One-to-one is ₹4,800 for four 45-minute classes. Exam intensive is ₹6,500. There is no registration fee, no annual charge, and no material cost. The first class is free and you're not asked for a card to take it."],
+  ["What if I want to stop?",
+   "Tell us before the month ends and that's it. We don't run annual contracts, we don't lock fees in advance, and we don't charge a cancellation fee. If a teacher isn't the right fit, ask for a different one — that's a normal request, not an awkward one."],
+  ["Can I do exams, and do I have to?",
+   "You can, and you don't. We prepare students for Trinity and ABRSM grades with mock panels and handle the entry paperwork. Plenty of students never sit a single exam and simply learn to play. Both are entirely legitimate."],
+  ["Do you teach singing and piano together?",
+   "Yes, and a lot of people do both — accompanying yourself is the single most common thing our students say they want. Theory and ear training runs alongside either instrument at no extra cost."]
+];
+
+const FOOTER = [
+  ["Piano classes","Voice classes","Adult beginners","Children's batches","Theory & ear training"],
+  ["Trinity exam prep","ABRSM exam prep","Student recitals","Summer workshops","Corporate sessions"],
+  ["About Saptak","Our teachers","Fees","Book a free class","Student login"],
+  ["Indiranagar studio","Koramangala studio","Contact","Careers","Privacy"]
+];
+
+/* ===================================================================== */
+const $ = s => document.querySelector(s);
+const art = k => ART[k];
+
+/* hero mosaic — deterministic, so it never flickers between paints */
+$("#mosaic").innerHTML = Array.from({length:45}, (_, i) => {
+  const c = COURSES[i % COURSES.length];
+  const dim = 0.40 + ((i * 7) % 5) * 0.09;
+  return `<i style="background:${art(c.a)};opacity:${dim.toFixed(2)}"></i>`;
+}).join("");
+
+/* ranked rail */
+$("#rail").innerHTML = COURSES.map((c, i) => `
+  <article class="tile" tabindex="0" aria-label="${c.i}: ${c.t}. ${c.l}">
+    <span class="rank" aria-hidden="true">${i + 1}</span>
+    <div class="art" style="background:${art(c.a)}">
+      <div class="meta">
+        <div class="inst">${c.i}</div>
+        <div class="name">${c.t}</div>
+        <div class="lvl">${c.l}</div>
+      </div>
+    </div>
+  </article>`).join("");
+
+/* teachers */
+$("#teachers").innerHTML = TEACHERS.map(t => `
+  <article class="tcard">
+    <span class="av" style="background:${art(t.g)}">${t.n.split(" ").map(w => w[0]).join("")}</span>
+    <h3>${t.n}</h3>
+    <div class="role">${t.r}</div>
+    <p class="cred">${t.c}</p>
+    <p class="yrs">${t.y}</p>
+  </article>`).join("");
+
+/* rail arrows */
+document.querySelectorAll(".rarrow").forEach(b => {
+  b.onclick = () => document.getElementById(b.dataset.rail)
+    .scrollBy({ left: 213 * 3 * +b.dataset.dir, behavior: "smooth" });
+});
+
+/* waveform glyph */
+$("#wave").innerHTML = [22,44,68,30,58,74,36,52,26]
+  .map(h => `<i style="height:${h}px"></i>`).join("");
+
+/* ---------- starting-note finder ---------- */
+$("#pgrid").innerHTML = WANTS.map((w, i) => `
+  <div class="pick" data-i="${i}" role="checkbox" aria-checked="false" tabindex="0" aria-label="${w.t}">
+    <div class="art" style="background:${art(w.a)}">
+      <span class="name">${w.t}</span>
+    </div>
+    <span class="ck"></span>
+  </div>`).join("");
+
+const picked = new Set();
+const mode = arr => [...arr].sort((a, b) =>
+  arr.filter(v => v === b).length - arr.filter(v => v === a).length)[0];
+
+function renderResult() {
+  const box = $("#result");
+
+  if (picked.size < 3) {
+    const left = 3 - picked.size;
+    box.innerHTML = `<p class="hint">${picked.size === 0
+      ? "Pick three to see your starting point."
+      : `${left} more to go.`}</p>`;
+    return;
+  }
+
+  const chosen  = [...picked].map(i => WANTS[i]);
+  const inst    = mode(chosen.map(c => c.inst));
+  const track   = mode(chosen.map(c => c.track));
+  const both    = new Set(chosen.map(c => c.inst)).size > 1;
+
+  const course =
+    track === "Exam"       ? (inst === "Voice" ? "Voice — Grades track" : "Piano — Grades 1–3")
+  : track === "Classical"  ? (inst === "Voice" ? "Voice — Hindustani Foundation" : "Piano — Foundation")
+  :                          (inst === "Voice" ? "Voice — Western Contemporary" : "Piano — Foundation");
+
+  const teacher = TEACHERS.find(t =>
+    t.r === (inst === "Both" ? "Piano" : inst)) || TEACHERS[0];
+
+  const plan = track === "Exam" ? "Exam intensive" : "Group";
+  const fee  = track === "Exam" ? "₹6,500" : "₹2,400";
+
+  box.innerHTML = `
+    <div class="card-out">
+      <div class="eyebrow">Your starting note</div>
+      <h3>${course}</h3>
+      <p class="lede">${both
+        ? "You picked across both instruments — a lot of people do. Start on one, and theory runs alongside for free."
+        : "Based on what you picked, this is where you'd begin. No audition, no prior training assumed."}</p>
+      <div class="facts">
+        <span class="fact">Plan: <b>${plan}</b></span>
+        <span class="fact">From <b>${fee}</b>/month</span>
+        <span class="fact">1 class a week</span>
+        <span class="fact">Likely teacher: <b>${teacher.n}</b></span>
+      </div>
+      <div class="foot">
+        <a href="#book" class="btn btn-sm">Book this as a free class</a>
+        <button class="reset" id="reset">Start over</button>
+      </div>
+    </div>`;
+  $("#reset").onclick = clearAll;
+}
+
+function clearAll() {
+  picked.clear();
+  document.querySelectorAll(".pick").forEach(p => {
+    p.classList.remove("on");
+    p.setAttribute("aria-checked", "false");
+  });
+  renderResult();
+}
+
+function toggle(el) {
+  const i = +el.dataset.i;
+  if (picked.has(i)) picked.delete(i);
+  else if (picked.size < 3) picked.add(i);
+  else return;
+  el.classList.toggle("on", picked.has(i));
+  el.setAttribute("aria-checked", String(picked.has(i)));
+  renderResult();
+}
+
+document.querySelectorAll(".pick").forEach(el => {
+  el.onclick = () => toggle(el);
+  el.onkeydown = e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(el); }
+  };
+});
+
+/* ---------- fees ---------- */
+$("#plans").innerHTML = PLANS.map(p => `
+  <div class="plan ${p.best ? "best" : ""}">
+    ${p.best ? '<span class="flag">Most chosen</span>' : ""}
+    <div class="pn">${p.n}</div>
+    <div class="pd">${p.d}</div>
+    <div class="pp">${p.p} <span>${p.u}</span></div>
+    <a href="#book" class="btn btn-sm">${p.cta}</a>
+    <ul>${p.f.map(f => `<li><i class="tk"></i>${f}</li>`).join("")}</ul>
+  </div>`).join("");
+
+$("#batches").innerHTML = BATCHES.map(([n, t]) =>
+  `<span class="batch"><b>${n}</b> — ${t}</span>`).join("");
+
+/* ---------- faq ---------- */
+$("#faqs").innerHTML = FAQS.map(([q, a]) => `
+  <div class="fq">
+    <button aria-expanded="false">${q}<span class="pm"></span></button>
+    <div class="ans"><p>${a}</p></div>
+  </div>`).join("");
+
+document.querySelectorAll(".fq").forEach(f => {
+  const btn = f.querySelector("button"), ans = f.querySelector(".ans");
+  btn.onclick = () => {
+    const open = f.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+    ans.style.maxHeight = open ? ans.scrollHeight + "px" : 0;
+  };
+});
+
+/* ---------- footer ---------- */
+$("#fcols").innerHTML = FOOTER.map(col =>
+  `<div>${col.map(l => `<a href="#">${l}</a>`).join("")}</div>`).join("");
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
