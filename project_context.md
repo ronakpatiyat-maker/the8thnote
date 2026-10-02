@@ -50,11 +50,11 @@ _Last updated: 2 Oct 2026_
 | 4 | About Ronak | `#about` | Bio + photo + highlights + WhatsApp button |
 | 5 | Classes offered | `#classes` | Scrollable class tiles (piano, harmonium, vocals, Jain, Bollywood, online) |
 | 6 | Find your class | `#pgrid`/`#result` | Interactive "pick 3" tool → recommends a class |
-| 7 | Courses on YouTube | `#courses` | Subscribe / Join buttons, course card grid `#ytgrid` |
+| 7 | Courses on YouTube | `#courses` | Subscribe / Join buttons, infinite left-to-right marquee of course cards `#ytgrid` |
 | 8 | Perform / events | `#perform` | Services `#svcs`, event card `#event`, WhatsApp CTA |
 | 9 | Why learn with us | `.stories` | 4 feature cards |
 | 10 | Classes & fees | `#plans`/`#batches` | In-person / Online / YouTube membership |
-| 11 | FAQ | `#faqs` | 10 questions (accordion) |
+| 11 | FAQ | `#faqs` | 5 questions (accordion) |
 | 12 | Closing | `.closing` | Final "book a class" form |
 | 13 | Footer | `#fcols` | Link columns, contact, Instagram, address |
 
@@ -160,7 +160,7 @@ We hit the `logo.png` → **`logo.png.jpeg`** double-extension bug once. To avoi
 
 ## 10. To-Do / open questions
 
-**Resolved this round:** ✅ added harmonium ✅ age set to 10+ ✅ real class list ✅ Ronak bio/About section ✅ online 1-on-1 ✅ Instagram links ✅ removed fake teachers, Trinity/ABRSM exams, invented ₹2,400 price & "free first class", fake hours.
+**Resolved this round:** ✅ added harmonium ✅ age set to 10+ ✅ real class list ✅ Ronak bio/About section ✅ online 1-on-1 ✅ Instagram links ✅ removed fake teachers, Trinity/ABRSM exams, invented ₹2,400 price & "free first class", fake hours ✅ forms replaced with WhatsApp/Call buttons (context-aware messages) ✅ scroll-up button added.
 
 Still open:
 - [ ] **Fees** — shown as "On enquiry" (no real numbers given). Send actual in-person & online fees to display them, or keep "on enquiry."
@@ -190,6 +190,8 @@ Still open:
 12. Wrote this context file.
 13. Agreed the **working routine**: both files updated together after every change.
 14. **Big content pass from the real posters:** added **harmonium**; replaced fake teachers with an **About Ronak** section; replaced the course catalogue with the **real class list** (Jain songs/stavans, Bollywood piano, classical vocals, online 1-on-1); set **age 10+**; added **Instagram** links; reworked **fees** to in-person / online / YouTube membership; refreshed **FAQ** (now 10); removed Trinity/ABRSM, the invented ₹2,400 price, "free first class" and fake hours.
+15. **Contact + polish:** replaced the dead lead-capture forms with **Message on WhatsApp / Call now** buttons; every "reach out" button now opens WhatsApp with a **context-specific pre-filled message** (book a class, ask about a specific class, fees for a specific plan, book for an event, ask about the Tapasya Bhakthi show). Added a **"Scroll up"** button (vertical text + arrow, right edge, fades in on scroll).
+16. Trimmed **FAQ to the 5 best**; made **Courses on YouTube** an **infinite left-to-right marquee** (single line, pauses on hover, cards duplicated for a seamless loop).
 
 ---
 

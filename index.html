@@ -80,6 +80,18 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .btn-lg{padding:0 26px;height:60px;font-size:20px}
 .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
+.cta-row{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* scroll-to-top */
+#scrolltop{position:fixed;right:16px;bottom:28px;z-index:60;display:flex;flex-direction:column;
+  align-items:center;gap:10px;color:#fff;background:none;cursor:pointer;
+  opacity:0;pointer-events:none;transform:translateY(8px);
+  transition:opacity .3s var(--tr),transform .3s var(--tr),color .2s}
+#scrolltop.show{opacity:1;pointer-events:auto;transform:none}
+#scrolltop:hover{color:var(--accent-text)}
+#scrolltop .arr{font-size:20px;line-height:1}
+#scrolltop .txt{writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:13px;font-weight:600;letter-spacing:.14em}
 
 /* ================= top bar ================= */
 .top{position:absolute;top:0;left:0;right:0;z-index:20}
@@ -106,17 +118,7 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .hero .price{margin-top:16px;font-size:clamp(18px,1.8vw,22px);font-weight:500}
 .hero .price b{color:var(--accent-text);font-weight:700}
 .hero .ask{margin-top:26px;font-size:clamp(16px,1.5vw,19px);font-weight:500}
-
-.capture{margin-top:18px;display:flex;gap:8px;justify-content:center}
-.field{position:relative;flex:1;max-width:440px}
-.field input{width:100%;height:60px;padding:22px 14px 6px;background:rgba(22,22,22,.75);
-  border:1px solid var(--input-line);border-radius:var(--r);color:#fff;font:inherit;font-size:17px}
-.field input:focus{outline:none;border-color:var(--accent)}
-.field label{position:absolute;left:15px;top:19px;color:#B0B0B0;font-size:17px;
-  pointer-events:none;transition:.15s var(--tr)}
-.field input:focus + label,
-.field input:not(:placeholder-shown) + label{top:8px;font-size:12px}
-.microcopy{margin-top:12px;font-size:14px;color:var(--text-3)}
+.microcopy{margin-top:16px;font-size:14px;color:var(--text-3)}
 .microcopy a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* ================= rails ================= */
@@ -206,8 +208,13 @@ section{padding:72px 0}
 
 /* ================= youtube courses ================= */
 .yt-top{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.ytgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-.yt{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;overflow:hidden;
+.yt-marquee{margin-top:28px;overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.yt-track{display:flex;gap:16px;width:max-content;animation:ytscroll 42s linear infinite}
+.yt-marquee:hover .yt-track{animation-play-state:paused}
+@keyframes ytscroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.yt{flex:0 0 320px;background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;overflow:hidden;
   display:flex;flex-direction:column;transition:border-color .25s,transform .25s var(--tr)}
 .yt:hover{border-color:var(--accent);transform:translateY(-4px)}
 .yt .thumb{aspect-ratio:16/9;position:relative;display:grid;place-items:center}
@@ -332,7 +339,6 @@ section{padding:72px 0}
 .closing{padding:76px 0 84px;text-align:center}
 .closing .ask{font-size:clamp(17px,1.6vw,20px);font-weight:600;margin-bottom:6px}
 .closing .sub{margin-bottom:18px}
-.closing .capture{max-width:760px;margin:0 auto}
 
 footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 .callus{margin-bottom:16px}
@@ -360,9 +366,8 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
   .logo img{height:42px}
   .top-r .btn-ghost{display:none}
   .hero{padding:118px 18px 70px;min-height:84vh}
-  .capture{flex-direction:column;align-items:stretch}
-  .field{max-width:none}
   .btn-lg{height:54px;font-size:18px}
+  .cta-row{flex-direction:column;align-items:stretch}
   .rail{padding-left:24px}
   .tile{flex:0 0 152px}
   .tile .rank{font-size:92px;left:-40px}
@@ -408,16 +413,17 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
   <div class="hero-in">
     <h1>Piano, harmonium &amp; vocals — with Ronak Patiyat.</h1>
     <p class="price">Personalised <b>one-on-one</b> training for passionate learners. Students 10 and above.</p>
-    <p class="ask">Leave your number and Ronak will call you back to set up your first class.</p>
-    <form class="capture" id="book" onsubmit="return false">
-      <span class="field">
-        <input type="tel" id="p1" placeholder=" " autocomplete="tel">
-        <label for="p1">Phone number</label>
-      </span>
-      <button class="btn btn-lg">Book a class
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
-    </form>
+    <p class="ask">Message or call Ronak to set up your first class.</p>
+    <div class="cta-row" id="book">
+      <a class="btn btn-lg" data-wa="Hi Ronak, I'd like to book a class with The 8th Note." target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm4.5 10.3c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.4c.1.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.4-.2z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="tel:+919480061108" class="btn btn-lg btn-ghost">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        Call now
+      </a>
+    </div>
     <p class="microcopy">VV Puram, Bengaluru · In person &amp; live online · Piano · Harmonium · Vocals</p>
     <p class="microcopy">Planning a Bhakti event? <a href="#perform">Book The 8th Note to perform →</a> · Learning online? <a href="#courses">Courses on YouTube →</a></p>
   </div>
@@ -451,7 +457,7 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
           <li><i></i>Bollywood piano and a classical vocal foundation (sur &amp; taal)</li>
           <li><i></i>In person at VV Puram, or live one-on-one online</li>
         </ul>
-        <a href="https://wa.me/919480061108" class="btn btn-sm">Message Ronak on WhatsApp</a>
+        <a class="btn btn-sm" data-wa="Hi Ronak, I have a question about your music classes." target="_blank" rel="noopener">Message Ronak on WhatsApp</a>
       </div>
     </div>
   </div>
@@ -503,7 +509,9 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
       <a href="#" id="yt-sub" class="btn btn-sm btn-ghost">Subscribe free</a>
       <a href="#" id="yt-join" class="btn btn-sm">Join membership · ₹49/month</a>
     </div>
-    <div class="ytgrid rv" id="ytgrid"></div>
+    <div class="yt-marquee rv">
+      <div class="yt-track" id="ytgrid"></div>
+    </div>
   </div>
 </section>
 
@@ -518,7 +526,7 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
     <p class="quoteline rv">Classical training and a <b>spiritual connection</b> to make your event <b>divine and memorable</b>.</p>
     <div class="event rv" id="event"></div>
     <div class="perform-cta rv">
-      <a href="https://wa.me/919480061108" class="btn btn-lg">Enquire on WhatsApp
+      <a class="btn btn-lg" data-wa="Hi Ronak, I'd like to book The 8th Note to perform at my event." target="_blank" rel="noopener">Enquire on WhatsApp
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -584,18 +592,19 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 
 <!-- ==================== CLOSING ==================== -->
 <div class="closing">
-  <div class="wrap">
-    <p class="ask">Ready to start? Leave your number.</p>
-    <p class="sub">Ronak will call you back and set up your first class.</p>
-    <form class="capture" onsubmit="return false">
-      <span class="field">
-        <input type="tel" id="p2" placeholder=" " autocomplete="tel">
-        <label for="p2">Phone number</label>
-      </span>
-      <button class="btn btn-lg">Book a class
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
-    </form>
+  <div class="wrap rv">
+    <p class="ask">Ready to start?</p>
+    <p class="sub">Message or call Ronak and book your first class.</p>
+    <div class="cta-row">
+      <a class="btn btn-lg" data-wa="Hi Ronak, I'm ready to start. I'd like to book a class with The 8th Note." target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm4.5 10.3c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.4c.1.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.4-.2z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="tel:+919480061108" class="btn btn-lg btn-ghost">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        Call now
+      </a>
+    </div>
   </div>
 </div>
 
@@ -604,7 +613,7 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="wrap">
-    <p class="callus">Call Ronak on <a href="tel:+919480061108">+91 94800 61108</a> · <a href="https://wa.me/919480061108">WhatsApp</a> · Instagram <a href="https://instagram.com/the8thnote__">@the8thnote__</a></p>
+    <p class="callus">Call Ronak on <a href="tel:+919480061108">+91 94800 61108</a> · <a data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">WhatsApp</a> · Instagram <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a></p>
     <p class="addr">
       <b style="color:#fff">The 8th Note</b><br>
       VV Puram, Bengaluru<br>
@@ -614,6 +623,11 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
     <p class="fmark">© 2026 The 8th Note, Bengaluru.</p>
   </div>
 </footer>
+
+<button id="scrolltop" aria-label="Scroll to top">
+  <span class="arr" aria-hidden="true">↑</span>
+  <span class="txt">Scroll up</span>
+</button>
 
 <script type="application/ld+json">
 {
@@ -665,6 +679,12 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 /* =====================================================================
    CONTENT MODEL — edit these lists to change the site's content.
    ===================================================================== */
+
+/* WhatsApp — one number, many pre-filled messages. wa("your message")
+   builds a link that opens WhatsApp with that message ready to send. */
+const WA = "919480061108";
+const wa = msg => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+
 const ART = {
   ivory:   "linear-gradient(160deg,#5A5246,#C9BFA6 44%,#1A1712)",
   brass:   "linear-gradient(160deg,#6B4A08,#E8A33D 45%,#241802)",
@@ -735,9 +755,9 @@ const WANTS = [
 ];
 
 const PLANS = [
-  {n:"In-person 1-on-1", d:"At VV Puram, Bengaluru. Piano, harmonium or vocals.", p:"On enquiry", u:"personalised", best:true, cta:"Ask on WhatsApp", ctaUrl:"https://wa.me/919480061108",
+  {n:"In-person 1-on-1", d:"At VV Puram, Bengaluru. Piano, harmonium or vocals.", p:"On enquiry", u:"personalised", best:true, cta:"Ask on WhatsApp",
    f:["One-on-one with Ronak","Piano, harmonium or vocals","Lessons built around you","Students 10 years & above","Jain songs, stavans & Bollywood"]},
-  {n:"Online 1-on-1", d:"Live classes from anywhere.", p:"On enquiry", u:"live & flexible", best:false, cta:"Ask on WhatsApp", ctaUrl:"https://wa.me/919480061108",
+  {n:"Online 1-on-1", d:"Live classes from anywhere.", p:"On enquiry", u:"live & flexible", best:false, cta:"Ask on WhatsApp",
    f:["Live one-on-one online","Flexible timings","The same personalised approach","Great if you're outside Bengaluru","Piano, harmonium or vocals"]},
   {n:"YouTube membership", d:"Learn in your own time.", p:"₹49", u:"/month", best:false, cta:"Join membership", ctaUrl:"https://youtube.com/@ronakpatiyat/join",
    f:["Full members-only courses","Plenty of free lessons too","Structured, step by step","Watch and practise anytime","Cancel any time"]}
@@ -753,36 +773,29 @@ const BATCHES = [
 const FAQS = [
   ["What do you teach?",
    "Piano, harmonium and vocals — one-on-one with Ronak. On piano that goes from absolute basics to advanced, plus 100+ Jain songs and Bollywood pieces. In voice it's a classical foundation (sur and taal) and 100+ Jain stavans. Classes are for students 10 years and above."],
-  ["Do I need any experience to start?",
-   "None at all. Lessons start from the very basics and move at your pace, all the way to advanced. Because it's one-on-one, everything is built around what you want to play or sing."],
-  ["Do you teach online, or only in person?",
-   "Both. You can learn in person at VV Puram in Bengaluru, or join live one-on-one classes online from anywhere. The online classes use the same personalised approach — fun, interactive and creative."],
   ["How much do classes cost?",
    "In-person and online one-on-one fees are shared on enquiry — message us on WhatsApp at +91 94800 61108 and we'll tell you. If you'd rather learn in your own time, the YouTube courses have plenty of free lessons and a members-only tier for ₹49 a month."],
-  ["What's the difference between the free videos and the ₹49 membership?",
-   "The free videos are standalone lessons — great for getting started. The ₹49-a-month membership unlocks the full, in-order courses: structured, lesson-by-lesson paths, kept members-only. Watch plenty for free first, join when you're ready, and cancel any time from YouTube."],
-  ["Do I need a piano or harmonium at home?",
-   "Not to begin with, but you'll want something to practise on soon after. We'll tell you honestly what to buy for your budget and what to avoid — and we don't take any commission."],
-  ["Can I book you to sing at my event?",
-   "Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message us on WhatsApp at +91 94800 61108 with your date and venue."],
-  ["Do you perform at events outside Bengaluru?",
-   "Bengaluru is home base, but travel for devotional events elsewhere can usually be arranged. Message us with your date, location and the kind of programme you have in mind, and we'll tell you honestly whether it works."],
+  ["Do you teach online, or only in person?",
+   "Both. You can learn in person at VV Puram in Bengaluru, or join live one-on-one classes online from anywhere. The online classes use the same personalised approach — fun, interactive and creative."],
   ["Can I learn Jain stavans and devotional singing specifically?",
    "Yes — it's a big part of what Ronak teaches. You can learn 100+ Jain stavans in voice and 100+ Jain songs on piano, alongside a proper classical foundation of sur and taal."],
-  ["What's launching in November?",
-   "Something new from The 8th Note — details coming soon. The quickest way to hear it first is to follow on Instagram (@the8thnote__) or subscribe on YouTube (@ronakpatiyat), and we'll let you know the moment it's live."]
+  ["Can I book you to sing at my event?",
+   "Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message us on WhatsApp at +91 94800 61108 with your date and venue."]
 ];
 
 const FOOTER = [
   [["Piano — basic to advanced","#classes"],["Harmonium","#classes"],["Classical vocals","#classes"],["Jain songs on piano","#classes"],["Jain stavans","#classes"],["Bollywood piano","#classes"]],
   [["Online 1-on-1 classes","#classes"],["Courses on YouTube","#courses"],["Free lessons","https://youtube.com/@ronakpatiyat"],["Members · ₹49/month","https://youtube.com/@ronakpatiyat/join"]],
   [["Book for events","#perform"],["Bhakthi Sandhya","#perform"],["Jain & spiritual programs","#perform"],["Pooja & path","#perform"]],
-  [["Instagram — The 8th Note","https://instagram.com/the8thnote__"],["Instagram — Ronak","https://instagram.com/ronakpatiyat__"],["About Ronak","#about"],["WhatsApp","https://wa.me/919480061108"]]
+  [["Instagram — The 8th Note","https://instagram.com/the8thnote__"],["Instagram — Ronak","https://instagram.com/ronakpatiyat__"],["About Ronak","#about"],["WhatsApp",wa("Hi Ronak, I'd like to get in touch.")]]
 ];
 
 /* ===================================================================== */
 const $ = s => document.querySelector(s);
 const art = k => ART[k];
+
+/* fill in every button that carries a pre-filled WhatsApp message */
+document.querySelectorAll("[data-wa]").forEach(el => { el.href = wa(el.dataset.wa); });
 
 /* hero mosaic */
 $("#mosaic").innerHTML = Array.from({length:45}, (_, i) => {
@@ -807,7 +820,7 @@ $("#rail").innerHTML = COURSES.map((c, i) => `
 /* youtube courses */
 $("#yt-sub").href  = CHANNEL_URL;
 $("#yt-join").href = MEMBERSHIP_URL;
-$("#ytgrid").innerHTML = YT.map(v => {
+const ytCards = YT.map(v => {
   const link = v.url === "#" ? (v.free ? CHANNEL_URL : MEMBERSHIP_URL) : v.url;
   return `
   <article class="yt">
@@ -822,6 +835,8 @@ $("#ytgrid").innerHTML = YT.map(v => {
     </div>
   </article>`;
 }).join("");
+/* duplicated once for a seamless infinite marquee */
+$("#ytgrid").innerHTML = ytCards + ytCards;
 
 /* devotional services */
 $("#svcs").innerHTML = SERVICES.map(s => `
@@ -832,7 +847,9 @@ $("#svcs").innerHTML = SERVICES.map(s => `
   </article>`).join("");
 
 /* upcoming / featured performance */
-$("#event").innerHTML = EVENTS.map(e => `
+$("#event").innerHTML = EVENTS.map(e => {
+  const link = wa('Hi Ronak, I\'m interested in "' + e.title + '" (' + e.m + ' ' + e.d + '). Could you share the details?');
+  return `
   <div class="date">
     <div class="d">${e.d}</div>
     <div class="m">${e.m}</div>
@@ -843,8 +860,8 @@ $("#event").innerHTML = EVENTS.map(e => `
     <h3>${e.title}</h3>
     <div class="venue">${e.venue}</div>
   </div>
-  <div class="cta"><a href="https://wa.me/919480061108" class="btn btn-sm">Ask about this show</a></div>
-`).join("");
+  <div class="cta"><a href="${link}" class="btn btn-sm" target="_blank" rel="noopener">Ask about this show</a></div>`;
+}).join("");
 
 /* rail arrows */
 document.querySelectorAll(".rarrow").forEach(b => {
@@ -883,6 +900,7 @@ function renderResult() {
   const chosen = [...picked].map(i => WANTS[i]);
   const course = mode(chosen.map(c => c.course));
   const inst   = mode(chosen.map(c => c.inst));
+  const link   = wa("Hi Ronak, I'd like to learn more about the " + course + " class.");
 
   box.innerHTML = `
     <div class="card-out">
@@ -896,7 +914,7 @@ function renderResult() {
         <span class="fact">In person or online</span>
       </div>
       <div class="foot">
-        <a href="https://wa.me/919480061108" class="btn btn-sm">Ask about this class</a>
+        <a href="${link}" class="btn btn-sm" target="_blank" rel="noopener">Ask about this class</a>
         <button class="reset" id="reset">Start over</button>
       </div>
     </div>`;
@@ -930,15 +948,18 @@ document.querySelectorAll(".pick").forEach(el => {
 });
 
 /* ---------- fees ---------- */
-$("#plans").innerHTML = PLANS.map(p => `
+$("#plans").innerHTML = PLANS.map(p => {
+  const href = p.ctaUrl || wa("Hi Ronak, I'd like to know the fees for " + p.n + ".");
+  return `
   <div class="plan ${p.best ? "best" : ""}">
     ${p.best ? '<span class="flag">Most popular</span>' : ""}
     <div class="pn">${p.n}</div>
     <div class="pd">${p.d}</div>
     <div class="pp">${p.p} <span>${p.u}</span></div>
-    <a href="${p.ctaUrl}" class="btn btn-sm" target="_blank" rel="noopener">${p.cta}</a>
+    <a href="${href}" class="btn btn-sm" target="_blank" rel="noopener">${p.cta}</a>
     <ul>${p.f.map(f => `<li><i class="tk"></i>${f}</li>`).join("")}</ul>
-  </div>`).join("");
+  </div>`;
+}).join("");
 
 $("#batches").innerHTML = BATCHES.map(([n, t]) =>
   `<span class="batch"><b>${n}</b> — ${t}</span>`).join("");
@@ -968,6 +989,16 @@ const io = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
 }, { threshold: .1 });
 document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+/* scroll-to-top button */
+(function(){
+  const b = document.getElementById("scrolltop");
+  if(!b) return;
+  const onScroll = () => b.classList.toggle("show", window.scrollY > 500);
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+  b.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
+})();
 </script>
 </body>
 </html>
