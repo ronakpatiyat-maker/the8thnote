@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- ===== SECURITY ===== -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.instagram.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.cdninstagram.com https://*.fbcdn.net https://www.instagram.com; media-src 'self'; connect-src 'self' https://www.instagram.com https://graph.instagram.com; frame-src https://www.instagram.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>The 8th Note — Piano, Harmonium &amp; Vocal Classes with Ronak Patiyat | Bengaluru &amp; Online</title>
@@ -304,11 +304,8 @@ section{padding:72px 0}
 
 /* instagram */
 .ig-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.iggrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:26px}
-.igt{aspect-ratio:1;border-radius:10px;position:relative;display:grid;place-items:center;overflow:hidden}
-.igt svg{width:30px;height:30px;color:rgba(255,255,255,.9)}
-.igt::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);opacity:0;transition:opacity .2s}
-.igt:hover::after{opacity:1}
+.reels{display:flex;flex-wrap:wrap;gap:16px;margin-top:26px;justify-content:center}
+.reels .instagram-media{margin:0!important;min-width:280px;max-width:328px;flex:0 1 328px}
 
 /* faq */
 .faqs{margin-top:26px;max-width:920px;margin-inline:auto}
@@ -329,14 +326,20 @@ section{padding:72px 0}
 .closing{padding:76px 0 84px;text-align:center}
 .closing .ask{font-size:clamp(17px,1.6vw,20px);font-weight:600;margin-bottom:6px}
 .closing .sub{margin-bottom:18px}
-footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
-.callus{margin-bottom:16px}
-.callus a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.addr{margin-bottom:34px;line-height:1.7;max-width:420px}
-.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 24px}
-.fcols a{display:block;padding:7px 0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
-.fcols a:hover{color:#fff}
-.fmark{margin-top:36px;font-size:14px}
+footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
+.foot-top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot-social{display:flex;gap:12px}
+.foot-social a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#fff;transition:background .2s,border-color .2s}
+.foot-social a:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.foot-social svg{width:20px;height:20px}
+.foot-nav{display:flex;gap:28px;flex-wrap:wrap}
+.foot-nav a{color:#fff;font-size:15px;font-weight:500}
+.foot-nav a:hover{color:var(--accent-text)}
+.foot-contact{display:flex;flex-direction:column;gap:2px;text-align:right;font-size:14px;color:var(--text-2)}
+.foot-contact a{color:#fff}
+.foot-contact a:hover{color:var(--accent-text)}
+.foot-divider{height:1px;background:rgba(255,255,255,.12);margin:28px 0}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--text-3)}
 
 .rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--tr),transform .6s var(--tr)}
 .rv.in{opacity:1;transform:none}
@@ -626,7 +629,14 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
       </div>
       <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener" class="btn btn-sm">Follow @the8thnote__</a>
     </div>
-    <div class="iggrid rv" id="iggrid"></div>
+    <div class="reels rv">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Db0B3YIRxsh/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZ2EhTNRK2G/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DaAHHK7xH38/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DdBmXtOvD70/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DdJB2hHvnQ1/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbAi297xdad/" data-instgrm-version="14"></blockquote>
+    </div>
   </div>
 </section>
 
@@ -654,14 +664,28 @@ footer{padding:70px 0 60px;color:var(--text-3);font-size:15px}
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="wrap">
-    <p class="callus">Call Ronak on <a href="tel:+919480061108">+91 94800 61108</a> · <a data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">WhatsApp</a> · Instagram <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a></p>
-    <p class="addr">
-      <b style="color:#fff">The 8th Note</b><br>
-      VV Puram, Bengaluru<br>
-      Classes by appointment · In person &amp; online
-    </p>
-    <div class="fcols" id="fcols"></div>
-    <p class="fmark">© 2026 The 8th Note, Bengaluru.</p>
+    <div class="foot-top">
+      <div class="foot-social">
+        <a href="https://instagram.com/the8thnote__" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://youtube.com/@ronakpatiyat" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.9-.5-5.6a2.9 2.9 0 0 0-2-2C18.8 4 12 4 12 4s-6.8 0-8.5.4a2.9 2.9 0 0 0-2 2C1 8.1 1 12 1 12s0 3.9.5 5.6a2.9 2.9 0 0 0 2 2C5.2 20 12 20 12 20s6.8 0 8.5-.4a2.9 2.9 0 0 0 2-2C23 15.9 23 12 23 12zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg></a>
+        <a data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm4.5 10.3c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.4c.1.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.4-.2z"/></svg></a>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="#">Home</a>
+        <a href="#" data-open="services">Services</a>
+        <a href="#" data-open="about">About Us</a>
+        <a href="#" data-open="contact">Contact Us</a>
+      </nav>
+      <div class="foot-contact">
+        <a href="tel:+919480061108">+91 94800 61108</a>
+        <span>VV Puram, Bengaluru</span>
+      </div>
+    </div>
+    <div class="foot-divider"></div>
+    <div class="foot-bottom">
+      <span>Bengaluru · In person &amp; live online</span>
+      <span>© 2026 The 8th Note</span>
+    </div>
   </div>
 </footer>
 
@@ -812,7 +836,7 @@ $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in
 
 $("#reviews").innerHTML=REVIEWS.map(r=>`<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><p>“${r.q}”</p><div class="who"><b>${r.n}</b><span>${r.r}</span></div></article>`).join("");
 
-$("#iggrid").innerHTML=["ember","rose","violet","indigo","brass","jade"].map(g=>`<a class="igt" style="background:${art(g)}" href="${IG_PROFILE}" target="_blank" rel="noopener" aria-label="Open Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg></a>`).join("");
+/* Instagram reels are embedded statically; embed.js renders them */
 
 document.querySelectorAll(".rarrow").forEach(b=>{ b.onclick=()=>document.getElementById(b.dataset.rail).scrollBy({left:213*3*+b.dataset.dir,behavior:"smooth"}); });
 
@@ -849,8 +873,7 @@ $("#batches").innerHTML=BATCHES.map(([n,t])=>`<span class="batch"><b>${n}</b> �
 $("#faqs").innerHTML=FAQS.map(([q,a])=>`<div class="fq"><button aria-expanded="false">${q}<span class="pm"></span></button><div class="ans"><p>${a}</p></div></div>`).join("");
 document.querySelectorAll(".fq").forEach(f=>{const btn=f.querySelector("button"),ans=f.querySelector(".ans");btn.onclick=()=>{const open=f.classList.toggle("open");btn.setAttribute("aria-expanded",open);ans.style.maxHeight=open?ans.scrollHeight+"px":0;};});
 
-/* footer */
-$("#fcols").innerHTML=FOOTER.map(col=>`<div>${col.map(([l,h])=>{if(h.indexOf("menu:")===0)return `<a href="#" data-open="${h.slice(5)}">${l}</a>`;const ext=h.indexOf("http")===0;return `<a href="${h}"${ext?' target="_blank" rel="noopener"':''}>${l}</a>`;}).join("")}</div>`).join("");
+/* footer links are static in the HTML now (data-open opens the menu) */
 
 /* ===== menu overlay ===== */
 const menu=document.getElementById("menu");
@@ -888,5 +911,6 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&menu.classList.con
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 </script>
+<script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
