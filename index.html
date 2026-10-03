@@ -117,10 +117,16 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .notif-card .countdown{margin-top:24px}
 
 /* top bar */
-.top{position:absolute;top:0;left:0;right:0;z-index:20}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s var(--tr),backdrop-filter .3s var(--tr),box-shadow .3s var(--tr)}
+.top.scrolled{background:rgba(10,10,10,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.07),0 6px 24px rgba(0,0,0,.4)}
 .top-in{display:flex;align-items:center;justify-content:space-between;height:92px;max-width:1500px;margin:0 auto;padding:0 var(--gutter)}
-.logo{display:flex;align-items:center}
+.logo,.menu-logo{position:relative;display:inline-flex;align-items:center;overflow:hidden;isolation:isolate;border-radius:4px}
 .logo img{height:84px;width:auto;display:block;mix-blend-mode:lighten}
+/* periodic shine sweep across the logo (every 5s) */
+.logo::after,.menu-logo::after{content:"";position:absolute;top:0;bottom:0;left:0;width:48%;z-index:2;pointer-events:none;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 68%,transparent 100%);
+  transform:translateX(-170%) skewX(-18deg);animation:logoshine 5s ease-in-out infinite}
+@keyframes logoshine{0%{transform:translateX(-170%) skewX(-18deg)}12%{transform:translateX(330%) skewX(-18deg)}100%{transform:translateX(330%) skewX(-18deg)}}
 .top-r{display:flex;align-items:center;gap:12px}
 .hamb{width:46px;height:46px;display:grid;place-items:center;border-radius:8px}
 .hamb:hover{background:rgba(255,255,255,.12)}
@@ -134,7 +140,7 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
   opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .3s var(--tr),transform .3s var(--tr)}
 .menu.open{opacity:1;pointer-events:auto;transform:none}
 .menu-head{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gutter);border-bottom:1px solid #1E1E1E}
-.menu-logo{height:52px;width:auto;display:block;mix-blend-mode:lighten}
+.menu-logo img{height:52px;width:auto;display:block;mix-blend-mode:lighten}
 .menu-close{width:46px;height:46px;border-radius:8px;font-size:30px;line-height:1;color:#fff}
 .menu-close:hover{background:rgba(255,255,255,.12)}
 .menu-body{flex:1;overflow:hidden;display:grid;grid-template-columns:280px 1fr;max-width:1340px;margin:0 auto;width:100%}
@@ -209,6 +215,27 @@ section{padding:72px 0}
 .cd .n{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1}
 .cd .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-top:7px}
 .cd-done{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent-text);margin-top:26px}
+
+/* about hero (story / vision) */
+.about-hero{margin-bottom:52px}
+.about-hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-text)}
+.about-hero h2{margin-top:10px;font-size:clamp(34px,5.5vw,58px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
+.about-lead{margin-top:22px;max-width:720px}
+.about-lead p{font-size:clamp(19px,2.2vw,25px);font-weight:700;line-height:1.35;color:#fff}
+.about-body{margin-top:16px;max-width:680px;color:var(--text-2);font-size:16px;line-height:1.65}
+
+.pillars{display:flex;gap:30px;flex-wrap:wrap;margin-top:44px}
+.pillar{display:flex;align-items:center;gap:14px}
+.pillar .badge{width:72px;height:72px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.pillar .badge svg{width:26px;height:26px}
+.pillar span{font-size:16px;font-weight:700;line-height:1.25;max-width:130px}
+
+.journey{position:relative;margin-top:54px}
+.journey svg{display:block;width:100%;height:auto}
+.journey-tag{text-align:center;margin-top:14px}
+.journey-tag p{font-size:clamp(19px,2.6vw,28px);line-height:1.3}
+.journey-tag p:first-child{color:var(--text-2);font-weight:600}
+.journey-tag p:last-child{color:var(--accent-text);font-weight:900;margin-top:2px}
 
 /* about (used inside menu) */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
@@ -402,7 +429,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
   /* hamburger menu */
   .menu-head{padding:16px var(--gutter)}
-  .menu-logo{height:42px}
+  .menu-logo img{height:42px}
   .menu-panels{padding:20px var(--gutter) 40px}
   .menu-item{font-size:14.5px;padding:9px 12px}
 
@@ -429,6 +456,16 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .card-out{padding:18px}
   .facts{gap:8px}
   .fact{padding:7px 12px;font-size:13px}
+
+  /* about hero */
+  .about-hero{margin-bottom:36px}
+  .about-lead p{font-size:19px}
+  .about-body{font-size:15px}
+  .pillars{gap:18px;margin-top:32px}
+  .pillar .badge{width:56px;height:56px}
+  .pillar .badge svg{width:20px;height:20px}
+  .pillar span{font-size:13.5px;max-width:100px}
+  .journey{margin-top:38px}
 
   /* services / perform */
   .svcs{gap:12px}
@@ -526,7 +563,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 <!-- ==================== MENU OVERLAY ==================== -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-head">
-    <img class="menu-logo" src="logo.png.jpeg" alt="The 8th Note" decoding="async">
+    <a href="#" class="menu-logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async"></a>
     <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
   </div>
   <div class="menu-body">
@@ -565,6 +602,82 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
       <!-- About Us -->
       <div class="menu-panel" id="panel-about">
+
+        <div class="about-hero">
+          <p class="eyebrow">About us</p>
+          <h2>Our Story</h2>
+          <div class="about-lead">
+            <p>Every idea deserves the right note.</p>
+            <p>THE8THNOTE is where it begins.</p>
+          </div>
+          <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
+          <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
+
+          <div class="pillars" id="pillars"></div>
+
+          <div class="journey">
+            <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="jgrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#7C2FB8"/>
+                  <stop offset="48%" stop-color="#C1298E"/>
+                  <stop offset="100%" stop-color="#E50914"/>
+                </linearGradient>
+                <radialGradient id="jglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#F5564E" stop-opacity=".55"/>
+                  <stop offset="100%" stop-color="#F5564E" stop-opacity="0"/>
+                </radialGradient>
+                <g id="jray"><line x1="0" y1="10" x2="0" y2="27" stroke="rgba(255,255,255,.28)" stroke-width="1.4"/></g>
+              </defs>
+
+              <path id="jpath" d="M30,130 C160,20 320,20 460,120 C600,220 740,220 870,110 C910,80 940,60 970,45" fill="none" stroke="url(#jgrad)" stroke-width="3" stroke-linecap="round"/>
+
+              <g transform="translate(60,150)">
+                <circle r="70" fill="url(#jglow)"/>
+                <g opacity=".55">
+                  <use href="#jray" transform="rotate(0)"/><use href="#jray" transform="rotate(22.5)"/><use href="#jray" transform="rotate(45)"/><use href="#jray" transform="rotate(67.5)"/>
+                  <use href="#jray" transform="rotate(90)"/><use href="#jray" transform="rotate(112.5)"/><use href="#jray" transform="rotate(135)"/><use href="#jray" transform="rotate(157.5)"/>
+                  <use href="#jray" transform="rotate(180)"/><use href="#jray" transform="rotate(202.5)"/><use href="#jray" transform="rotate(225)"/><use href="#jray" transform="rotate(247.5)"/>
+                  <use href="#jray" transform="rotate(270)"/><use href="#jray" transform="rotate(292.5)"/><use href="#jray" transform="rotate(315)"/><use href="#jray" transform="rotate(337.5)"/>
+                </g>
+                <circle r="7" fill="#fff"/>
+              </g>
+
+              <g transform="translate(940,60)">
+                <circle r="70" fill="url(#jglow)"/>
+                <g opacity=".55">
+                  <use href="#jray" transform="rotate(0)"/><use href="#jray" transform="rotate(22.5)"/><use href="#jray" transform="rotate(45)"/><use href="#jray" transform="rotate(67.5)"/>
+                  <use href="#jray" transform="rotate(90)"/><use href="#jray" transform="rotate(112.5)"/><use href="#jray" transform="rotate(135)"/><use href="#jray" transform="rotate(157.5)"/>
+                  <use href="#jray" transform="rotate(180)"/><use href="#jray" transform="rotate(202.5)"/><use href="#jray" transform="rotate(225)"/><use href="#jray" transform="rotate(247.5)"/>
+                  <use href="#jray" transform="rotate(270)"/><use href="#jray" transform="rotate(292.5)"/><use href="#jray" transform="rotate(315)"/><use href="#jray" transform="rotate(337.5)"/>
+                </g>
+                <circle r="7" fill="#fff"/>
+              </g>
+
+              <circle cx="330" cy="38" r="8" fill="#C1298E"/>
+              <circle cx="650" cy="205" r="8" fill="#7C2FB8"/>
+
+              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
+                <textPath href="#jpath" startOffset="5%">LEARN</textPath>
+              </text>
+              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
+                <textPath href="#jpath" startOffset="30%">EXPRESS</textPath>
+              </text>
+              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
+                <textPath href="#jpath" startOffset="58%">EXPLORE</textPath>
+              </text>
+              <text font-size="16" font-weight="700" letter-spacing="3" fill="#F5564E">
+                <textPath href="#jpath" startOffset="84%">YOUR NOTE</textPath>
+              </text>
+            </svg>
+
+            <div class="journey-tag">
+              <p>Seven notes make music.</p>
+              <p>The eighth makes it yours.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="about">
           <div class="about-photo" style="background-image:url('img/ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
           <div class="about-text">
@@ -891,6 +1004,20 @@ const WANTS=[
   {t:"Just getting started, age 10+",inst:"Piano",course:"Piano — Basic to Advanced",a:"ivory"}
 ];
 
+/* About Us — the 4 teaching pillars shown as badges next to the journey graphic */
+const PILLARS=[
+  {shape:"triangle",t:"Piano &amp; Keys",a:"ember"},
+  {shape:"diamond",t:"Harmonium",a:"violet"},
+  {shape:"square",t:"Classical Vocals",a:"rose"},
+  {shape:"circle",t:"Bhakti &amp; Devotional",a:"indigo"}
+];
+const SHAPES={
+  triangle:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3 L21 19 H3 Z"/></svg>',
+  diamond:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>',
+  square:'<svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>',
+  circle:'<svg viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="8"/></svg>'
+};
+
 /* Sample testimonials — replace with real student quotes when you have them */
 const REVIEWS=[
   {q:"I love my piano classes! Ronak makes it fun, and I already learnt two Jain songs to play for my family.",n:"Diya Jain",r:"Piano student · Age 10"},
@@ -938,6 +1065,8 @@ const ytCards=YT.map(v=>{const link=v.url==="#"?(v.free?CHANNEL_URL:MEMBERSHIP_U
 $("#ytgrid").innerHTML=ytCards+ytCards;
 
 $("#svcs").innerHTML=SERVICES.map(s=>`<article class="svc"><span class="ic">${ICONS[s.ic]}</span><h3>${s.t}</h3><p>${s.d}</p></article>`).join("");
+
+$("#pillars").innerHTML=PILLARS.map(p=>`<div class="pillar"><span class="badge" style="background:${art(p.a)}">${SHAPES[p.shape]}</span><span>${p.t}</span></div>`).join("");
 
 $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in "'+e.title+'" ('+e.m+' '+e.d+'). Could you share the details?');return `
   <div class="date"><div class="d">${e.d}</div><div class="m">${e.m}</div><div class="dow">${e.dow}</div></div>
@@ -1020,6 +1149,10 @@ document.querySelectorAll(".menu-item").forEach(b=>b.addEventListener("click",()
 document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openMenu(b.dataset.open);}));
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&menu.classList.contains("open")) closeMenu(); });
 
+/* logo = home: close menu if open, scroll to top, don't leave a dangling #hash */
+function goHome(e){ e.preventDefault(); if(menu.classList.contains("open")) closeMenu(); window.scrollTo({top:0,behavior:"smooth"}); if(history.replaceState) history.replaceState(null,"",location.pathname+location.search); }
+document.querySelectorAll(".logo,.menu-logo").forEach(l=>l.addEventListener("click",goHome));
+
 /* countdown */
 (function(){
   const box=document.getElementById("countdown"); if(!box) return;
@@ -1036,7 +1169,8 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&menu.classList.con
 /* scroll-to-top */
 (function(){
   const b=document.getElementById("scrolltop"); if(!b) return;
-  const onScroll=()=>b.classList.toggle("show",window.scrollY>500);
+  const top=document.querySelector(".top");
+  const onScroll=()=>{ b.classList.toggle("show",window.scrollY>500); if(top) top.classList.toggle("scrolled",window.scrollY>40); };
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
   b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
 })();
