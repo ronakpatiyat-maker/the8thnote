@@ -33,7 +33,9 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap"></noscript>
+<script>try{if(sessionStorage.getItem("introSeen")==="1")document.documentElement.classList.add("intro-seen")}catch(e){}</script>
 <style>
+html.intro-seen #intro{display:none}
 :root{
   --bg:#000000;--surface:#2D2D2D;--chip:#1A1A1A;--input:#161616;--input-line:#6E6E6E;
   --text:#FFFFFF;--text-2:#B3B3B3;--text-3:#808080;
@@ -977,14 +979,19 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 /* intro splash */
 (function(){
   const intro=document.getElementById("intro"); if(!intro) return;
+  /* already watched (or skipped) in this browser session, e.g. page refresh → no intro */
+  try{ if(sessionStorage.getItem("introSeen")==="1"){ intro.remove(); return; } }catch(e){}
   const vid=document.getElementById("introVid");
   const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let done=false;
-  function finish(){ if(done)return; done=true; intro.classList.add("hide"); document.body.style.overflow=""; setTimeout(()=>intro.remove(),700); }
+  function finish(){ if(done)return; done=true; try{ sessionStorage.setItem("introSeen","1"); }catch(e){} document.removeEventListener("keydown",onKey); intro.classList.add("hide"); document.body.style.overflow=""; setTimeout(()=>intro.remove(),700); }
+  /* Enter skips the animation (unless focus is on "Play with sound", where Enter should play it) */
+  function onKey(e){ if(e.key==="Enter" && e.target.id!=="introSound"){ e.preventDefault(); finish(); } }
   if(reduce){ finish(); return; }
   document.body.style.overflow="hidden";
   if(vid){ vid.addEventListener("ended",finish); vid.addEventListener("error",finish); }
   document.getElementById("introSkip").addEventListener("click",finish);
+  document.addEventListener("keydown",onKey);
   var snd=document.getElementById("introSound");
   if(snd&&vid){ snd.addEventListener("click",()=>{ vid.muted=false; vid.currentTime=0; vid.play(); snd.classList.add("gone"); }); }
   setTimeout(finish,9000);
