@@ -167,10 +167,14 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .tab.on{display:block;animation:fadein .3s var(--tr)}
 
 /* Music (placeholder) */
-.soon{display:grid;justify-items:center;text-align:center;padding:clamp(20px,6vh,70px) 0}
+.soon{display:grid;justify-items:center;text-align:center;padding:clamp(6px,3vh,40px) 0}
 .soon .mini{margin-top:0}
-.soon h2{margin:10px 0 30px;font-size:clamp(44px,8vw,88px);font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
-.soon .sub{max-width:480px;margin:26px 0 4px}
+.soon h2{margin:6px 0 clamp(14px,3vh,28px);font-size:clamp(40px,min(8vw,9vh),88px);font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
+.soon-when{margin-top:clamp(14px,3vh,26px);font-size:clamp(20px,2.6vw,28px);font-weight:800}
+.soon-when span{color:var(--accent-text)}
+.soon .countdown{margin:clamp(12px,2.4vh,22px) 0 0}
+.soon .sub{max-width:480px;margin:clamp(14px,2.6vh,24px) 0 0}
+.soon .cta-row{margin-top:clamp(14px,2.6vh,22px)}
 
 /* hero */
 .hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;text-align:center;
@@ -231,15 +235,22 @@ section{padding:72px 0}
 .cd-done{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent-text);margin-top:26px}
 
 /* about: story, what you can learn, journey */
-.about-hero{margin-bottom:52px}
-.about-hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-text)}
-.about-hero h2{margin-top:10px;font-size:clamp(34px,5.5vw,58px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
-.about-lead{margin-top:22px;max-width:720px}
-.about-lead p{font-size:clamp(19px,2.2vw,25px);font-weight:700;line-height:1.35;color:#fff}
-.about-body{margin-top:16px;max-width:680px;color:var(--text-2);font-size:16px;line-height:1.65}
-
-.mini{margin-top:46px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text)}
-.about-hero .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.ab-sec{margin-top:64px;padding-top:56px;border-top:1px solid #1E1E1E}
+.ab-sec .mini{margin:0 0 20px}
+.mini{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text)}
+.ab-story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:start}
+.about-lead p{font-size:clamp(24px,3.4vw,40px);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:#fff}
+.about-lead p+p{margin-top:6px;color:var(--accent-text)}
+.about-body{color:var(--text-2);font-size:16px;line-height:1.7}
+.about-body+.about-body{margin-top:16px}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ab-sec .steps{margin-top:0}
+.ab-final{text-align:center}
+.ab-final .eight{margin-top:0}
+.ab-final .cta-row{margin-top:30px}
+@media(max-width:1000px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){.ab-story{grid-template-columns:1fr;gap:20px}.ab-sec{margin-top:44px;padding-top:40px}}
+@media(max-width:400px){.pillars{grid-template-columns:1fr}}
 .pil{background:var(--chip);border:1px solid #2A2A2A;border-radius:16px;padding:20px 18px 22px;transition:border-color .25s,transform .25s var(--tr)}
 .pil:hover{border-color:var(--accent);transform:translateY(-4px)}
 .pil .pi{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
@@ -279,9 +290,10 @@ section{padding:72px 0}
 @media(max-width:400px){.about-hero .pillars{grid-template-columns:1fr}}
 
 /* about: Meet Ronak */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
-.about-photo{border-radius:14px;aspect-ratio:4/5;align-self:start;background:#161616 center/cover no-repeat;border:1px solid #2A2A2A}
-.about-text h2{margin-bottom:12px}
+.about{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(28px,4.4vw,52px);align-items:center}
+.about-photo{border-radius:16px;aspect-ratio:4/5;align-self:center;background:#161616 center/cover no-repeat;border:1px solid #2A2A2A;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.about-text .mini{margin:0 0 8px}
+.about-text h2{margin:0 0 14px;font-size:clamp(32px,4.2vw,50px);font-weight:900;letter-spacing:-.025em;line-height:1.05}
 .about-text p{color:var(--text-2);font-size:16px;line-height:1.6}
 .about-text ul{list-style:none;display:grid;gap:11px;margin:20px 0 24px}
 .about-text li{display:flex;gap:10px;font-size:15px;color:var(--text);align-items:flex-start}
@@ -667,6 +679,8 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
         <div class="scale" aria-hidden="true">
           <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
         </div>
+        <p class="soon-when" data-when>Launching <span>this November</span></p>
+        <div class="countdown" aria-live="polite"></div>
         <p class="sub">Ronak's music is on its way. Follow along to hear it first.</p>
         <div class="cta-row">
           <a class="btn btn-sm" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">Follow on Instagram</a>
@@ -720,35 +734,11 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
     <!-- About -->
     <div class="menu-panel" id="panel-about">
 
-      <div class="about-hero">
-        <p class="eyebrow">About</p>
-        <h2>Our Story</h2>
-        <div class="about-lead">
-          <p>Every idea deserves the right note.</p>
-          <p>THE8THNOTE is where it begins.</p>
-        </div>
-        <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
-        <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
-
-        <p class="mini">What you can learn</p>
-        <div class="pillars" id="pillars"></div>
-
-        <p class="mini">Your journey with The 8th Note</p>
-        <div class="journey">
-          <ol class="steps" id="steps"></ol>
-          <div class="eight">
-            <div class="scale" aria-hidden="true">
-              <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
-            </div>
-            <p class="t1">Seven notes make music.</p>
-            <p class="t2">The eighth makes it yours.</p>
-          </div>
-        </div>
-      </div>
-
+      <!-- 1 · Meet Ronak — photo first -->
       <div class="about">
         <div class="about-photo" style="background-image:url('about-ronak-01.jpeg')" role="img" aria-label="Ronak Patiyat singing devotional music with a microphone at Tapasya Bhakthi"></div>
         <div class="about-text">
+          <p class="mini">About</p>
           <h2>Meet Ronak Patiyat</h2>
           <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
           <ul>
@@ -759,6 +749,48 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
             <li><i></i>In person at VV Puram, or live one-on-one online</li>
           </ul>
           <a class="btn btn-grad btn-sm" data-wa="Hi Ronak, I have a question about your music classes." target="_blank" rel="noopener">Message Ronak on WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- 2 · Our story -->
+      <div class="ab-sec">
+        <p class="mini">Our story</p>
+        <div class="ab-story">
+          <div class="about-lead">
+            <p>Every idea deserves the right note.</p>
+            <p>THE8THNOTE is where it begins.</p>
+          </div>
+          <div class="ab-story-body">
+            <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
+            <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · What you can learn -->
+      <div class="ab-sec">
+        <p class="mini">What you can learn</p>
+        <div class="pillars" id="pillars"></div>
+      </div>
+
+      <!-- 4 · Your journey -->
+      <div class="ab-sec">
+        <p class="mini">Your journey with The 8th Note</p>
+        <ol class="steps" id="steps"></ol>
+      </div>
+
+      <!-- 5 · The eighth note + next step -->
+      <div class="ab-sec ab-final">
+        <div class="eight">
+          <div class="scale" aria-hidden="true">
+            <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
+          </div>
+          <p class="t1">Seven notes make music.</p>
+          <p class="t2">The eighth makes it yours.</p>
+        </div>
+        <div class="cta-row">
+          <button class="btn btn-sm" data-open="find">Book a class →</button>
+          <button class="btn btn-sm btn-ghost" data-open="contact">Contact</button>
         </div>
       </div>
     </div>
@@ -979,11 +1011,14 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 <div class="notif-pop" id="notifPop" role="dialog" aria-modal="true" aria-label="Launch announcement" aria-hidden="true">
   <div class="notif-card">
     <button class="notif-close" id="notifClose" aria-label="Close">×</button>
-    <p class="eyebrow">Something big is coming</p>
+    <p class="eyebrow">New music is coming</p>
     <h2>Launching <span>this November</span></h2>
-    <p class="np">A new chapter for The 8th Note is on the way. Follow along to be first to know.</p>
-    <div class="countdown" id="countdown" aria-live="polite"></div>
-    <a class="btn btn-grad btn-sm" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener" style="margin-top:22px">Follow for updates</a>
+    <p class="np">Ronak's music is on its way. Count down with us — and be the first to hear it.</p>
+    <div class="countdown" aria-live="polite"></div>
+    <div class="cta-row" style="margin-top:22px">
+      <a class="btn btn-grad btn-sm" href="#" data-open="music">Go to Music →</a>
+      <a class="btn btn-sm btn-ghost" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">Follow for updates</a>
+    </div>
   </div>
 </div>
 
@@ -1270,18 +1305,21 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&menu.classList.con
 function goHome(e){ e.preventDefault(); if(menu.classList.contains("open")) closeMenu(); window.scrollTo({top:0,behavior:"smooth"}); if(history.replaceState) history.replaceState(null,"",location.pathname+location.search); }
 document.querySelectorAll(".logo,.menu-logo").forEach(l=>l.addEventListener("click",goHome));
 
-/* countdown */
+/* countdown — one clock, shown in the Music panel and in the bell popup */
 (function(){
-  const box=document.getElementById("countdown"); if(!box) return;
+  const boxes=document.querySelectorAll(".countdown"); if(!boxes.length) return;
   const pad=n=>String(n).padStart(2,"0"); let t;
+  function show(html){ boxes.forEach(b=>{b.innerHTML=html;}); }
   function tick(){
     const diff=LAUNCH_DATE-new Date();
-    if(diff<=0){box.innerHTML='<div class="cd-done">It\'s here — The 8th Note has launched!</div>';clearInterval(t);return;}
+    if(diff<=0){show('<div class="cd-done">It\'s here — the music has launched!</div>');clearInterval(t);return;}
     const d=Math.floor(diff/86400000),h=Math.floor(diff/3600000)%24,m=Math.floor(diff/60000)%60,s=Math.floor(diff/1000)%60;
-    box.innerHTML=[[d,"Days"],[h,"Hours"],[m,"Mins"],[s,"Secs"]].map(([n,l])=>`<div class="cd"><div class="n">${pad(n)}</div><div class="l">${l}</div></div>`).join("");
+    show([[d,"Days"],[h,"Hours"],[m,"Mins"],[s,"Secs"]].map(([n,l])=>`<div class="cd"><div class="n">${pad(n)}</div><div class="l">${l}</div></div>`).join(""));
   }
   t=setInterval(tick,1000); tick();
 })();
+/* "Go to Music" in the bell popup: close the popup as the Music panel opens */
+document.querySelectorAll("#notifPop [data-open]").forEach(b=>b.addEventListener("click",()=>document.getElementById("notifPop").classList.remove("open")));
 
 /* scroll-to-top + nav bar background */
 (function(){
