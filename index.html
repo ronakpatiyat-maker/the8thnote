@@ -141,14 +141,6 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .top.scrolled .nv{height:calc(var(--logo-h)*.72 + 20px)}
 .top.scrolled .logo img{height:calc(var(--logo-h)*.72)}
 
-/* sparkle on the "8" in the logo: two small stars twinkle in turn */
-.logo::before,.logo::after,.menu-logo::before,.menu-logo::after{content:"";position:absolute;z-index:2;pointer-events:none;height:26%;aspect-ratio:1;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z' fill='white'/%3E%3C/svg%3E") center/contain no-repeat;
-  filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px rgba(255,120,110,.9));
-  transform:translate(-50%,-50%) scale(0);opacity:0;animation:sparkle 2.8s ease-in-out infinite}
-.logo::before,.menu-logo::before{left:46%;top:28%}
-.logo::after,.menu-logo::after{left:53%;top:66%;height:20%;animation-delay:1.4s}
-@keyframes sparkle{0%{transform:translate(-50%,-50%) scale(0) rotate(0);opacity:0}18%{transform:translate(-50%,-50%) scale(1) rotate(45deg);opacity:1}38%,100%{transform:translate(-50%,-50%) scale(0) rotate(90deg);opacity:0}}
 
 /* ===== menu overlay: same nav bar on top, the chosen panel below ===== */
 .menu{position:fixed;inset:0;z-index:900;background:#0A0A0A;display:flex;flex-direction:column;
@@ -201,19 +193,30 @@ section{padding:72px 0}
 .rail-wrap{position:relative;margin-top:26px}
 .rail{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:34px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .rail::-webkit-scrollbar{display:none}
-#rail{padding-left:60px}
-.tile{position:relative;flex:0 0 205px;scroll-snap-align:start;cursor:pointer;transition:transform .3s var(--tr);transform-origin:center bottom}
-.tile:hover,.tile:focus-visible{transform:scale(1.09)}
-.tile .art{position:relative;aspect-ratio:2/3;border-radius:6px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.7)}
-.tile .art::after{content:'';position:absolute;inset:0;
-  background:radial-gradient(80% 60% at 50% 20%, rgba(255,255,255,.16), transparent 70%),linear-gradient(180deg,transparent 40%,rgba(0,0,0,.88) 100%)}
-.tile .meta{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 12px 13px}
-.tile .inst{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-bottom:3px}
-.tile .name{font-weight:800;font-size:17px;line-height:1.14;text-shadow:0 2px 10px rgba(0,0,0,.8)}
-.tile .lvl{margin-top:4px;font-size:12.5px;color:#CFCFCF}
-.tile .rank{position:absolute;z-index:1;left:-58px;bottom:-14px;font-size:128px;font-weight:900;line-height:.8;color:transparent;
-  -webkit-text-stroke:3px #737373;letter-spacing:-.06em;pointer-events:none;transition:-webkit-text-stroke-color .3s}
-.tile:hover .rank{-webkit-text-stroke-color:var(--accent)}
+/* "Classes offered" — ranked row in the Netflix "Trending Now" style:
+   separate portrait posters with wide gaps, big outlined number over each poster's bottom-left corner */
+.trend{--cw:clamp(132px,min(19vw,30vh),220px);--gap:clamp(28px,4.2vw,60px);--pad:calc(var(--cw)*.16);position:relative;margin-top:24px}
+.trend-row{display:flex;gap:var(--gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);
+  padding:14px 6px 20px var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.trend-row::-webkit-scrollbar{display:none}
+.tcard{position:relative;flex:0 0 var(--cw);scroll-snap-align:start;outline:0}
+.tcard .poster{position:relative;aspect-ratio:5/7;border-radius:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.6);transition:transform .3s var(--tr),box-shadow .3s var(--tr)}
+.tcard:hover .poster{transform:scale(1.04);box-shadow:0 14px 34px rgba(0,0,0,.8)}
+.tcard:focus-visible .poster{outline:2px solid #fff;outline-offset:3px}
+.tcard .ph{position:absolute;inset:0;padding:14px 14px 0;background:radial-gradient(80% 55% at 50% 30%,rgba(255,255,255,.14),transparent 70%),linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 40%)}
+.tcard .inst{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:.85}
+.tcard .name{margin-top:4px;font-weight:800;font-size:clamp(14px,calc(var(--cw)*.082),18px);line-height:1.15;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.tcard .lvl{margin-top:4px;font-size:12px;color:rgba(255,255,255,.8)}
+.tcard .num{position:absolute;z-index:2;left:calc(var(--cw)*-.1);bottom:calc(var(--cw)*.09);font-size:calc(var(--cw)*.62);font-weight:900;line-height:.72;letter-spacing:-.04em;
+  color:#000;-webkit-text-stroke:calc(var(--cw)*.012 + 1.5px) #fff;pointer-events:none;transition:transform .3s var(--tr)}
+.tcard:hover .num{transform:translateX(calc(var(--cw)*-.03))}
+.tr-arrow{position:absolute;z-index:5;top:calc(14px + var(--cw)*.7);transform:translateY(-50%);width:36px;height:calc(var(--cw)*.68);border-radius:8px;
+  background:rgba(40,40,40,.92);color:#fff;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:background .2s}
+.tr-arrow:hover{background:#4a4a4a}
+.tr-arrow.l{left:-10px}
+.tr-arrow.r{right:-10px}
+.tr-arrow[hidden]{display:none}
+@media(max-width:680px){.tr-arrow{display:none}}
 .rarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:118px;background:rgba(20,20,20,.72);
   display:grid;place-items:center;color:#fff;transition:background .2s}
 .rarrow:hover{background:rgba(20,20,20,.95)}
@@ -684,10 +687,10 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       <div class="tab on" data-tab="classes">
         <h2>Classes offered</h2>
         <p class="sub">Personalised one-on-one with Ronak — piano, harmonium and vocals, basic to advanced. For students 10 and above.</p>
-        <div class="rail-wrap">
-          <button class="rarrow l" data-rail="rail" data-dir="-1" aria-label="Scroll left"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <div class="rail" id="rail"></div>
-          <button class="rarrow r" data-rail="rail" data-dir="1" aria-label="Scroll right"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="trend">
+          <button class="tr-arrow l" id="trL" aria-label="Previous classes" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <div class="trend-row" id="trendRow"></div>
+          <button class="tr-arrow r" id="trR" aria-label="More classes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
 
@@ -1137,11 +1140,20 @@ document.querySelectorAll("[data-wa]").forEach(el=>{ el.href=wa(el.dataset.wa); 
 
 $("#mosaic").innerHTML=Array.from({length:45},(_,i)=>{const c=COURSES[i%COURSES.length];const dim=0.40+((i*7)%5)*0.09;return `<i style="background:${art(c.a)};opacity:${dim.toFixed(2)}"></i>`;}).join("");
 
-$("#rail").innerHTML=COURSES.map((c,i)=>`
-  <article class="tile" tabindex="0" aria-label="${c.i}: ${c.t}. ${c.l}">
-    <span class="rank" aria-hidden="true">${i+1}</span>
-    <div class="art" style="background:${art(c.a)}"><div class="meta"><div class="inst">${c.i}</div><div class="name">${c.t}</div><div class="lvl">${c.l}</div></div></div>
-  </article>`).join("");
+/* Classes offered — ranked poster row. To show a poster, add img:"img/class-01.jpg" (etc.) to that item in COURSES;
+   until then the coloured placeholder with the class name is shown. Each card opens WhatsApp about that class. */
+$("#trendRow").innerHTML=COURSES.map((c,i)=>`
+  <a class="tcard" href="${wa("Hi Ronak, I'd like to know about the "+c.t+" class.")}" target="_blank" rel="noopener" aria-label="${i+1}. ${c.t} — ${c.l}">
+    <div class="poster" style="background:${c.img?`url('${c.img}') center/cover no-repeat`:art(c.a)}">${c.img?"":`<div class="ph"><div class="inst">${c.i}</div><div class="name">${c.t}</div><div class="lvl">${c.l}</div></div>`}</div>
+    <span class="num" aria-hidden="true">${i+1}</span>
+  </a>`).join("");
+/* arrows: left appears once you've scrolled, right hides at the end */
+function trendUpd(){const r=$("#trendRow");if(!r||!r.clientWidth)return;$("#trL").hidden=r.scrollLeft<8;$("#trR").hidden=r.scrollLeft+r.clientWidth>=r.scrollWidth-8;}
+(function(){const r=$("#trendRow");
+  $("#trL").onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"});
+  $("#trR").onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"});
+  r.addEventListener("scroll",trendUpd,{passive:true}); window.addEventListener("resize",trendUpd);
+})();
 
 $("#yt-sub").href=CHANNEL_URL; $("#yt-join").href=MEMBERSHIP_URL;
 const ytCards=YT.map(v=>{const link=v.url==="#"?(v.free?CHANNEL_URL:MEMBERSHIP_URL):v.url;return `
@@ -1238,11 +1250,13 @@ function setPanel(p){
   document.querySelectorAll("#menu .nv-i").forEach(x=>{const on=x.dataset.panel===p;x.classList.toggle("on",on);if(on)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current");});
   document.querySelectorAll(".menu-panel").forEach(x=>x.classList.toggle("on",x.id==="panel-"+p));
   panelsBox.scrollTop=0;
+  requestAnimationFrame(trendUpd);
 }
 function setTab(t){
   document.querySelectorAll(".seg-i").forEach(x=>{const on=x.dataset.tab===t;x.classList.toggle("on",on);x.setAttribute("aria-selected",on);});
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x.dataset.tab===t));
   panelsBox.scrollTop=0;
+  requestAnimationFrame(trendUpd);
 }
 function openMenu(k){ const m=MAP[k]||MAP.services; setPanel(m[0]); if(m[1]) setTab(m[1]); menu.classList.add("open"); document.body.style.overflow="hidden"; }
 function closeMenu(){ menu.classList.remove("open"); document.body.style.overflow=""; }
