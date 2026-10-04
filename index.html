@@ -736,7 +736,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 
       <!-- 1 · Meet Ronak — photo first -->
       <div class="about">
-        <div class="about-photo" style="background-image:url('about-ronak-01.jpeg')" role="img" aria-label="Ronak Patiyat singing devotional music with a microphone at Tapasya Bhakthi"></div>
+        <div class="about-photo" style="background-image:url('img/about-ronak-02.jpeg')" role="img" aria-label="Ronak Patiyat teaching a vocal riyaaz lesson"></div>
         <div class="about-text">
           <p class="mini">About</p>
           <h2>Meet Ronak Patiyat</h2>
@@ -773,21 +773,8 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
         <div class="pillars" id="pillars"></div>
       </div>
 
-      <!-- 4 · Your journey -->
-      <div class="ab-sec">
-        <p class="mini">Your journey with The 8th Note</p>
-        <ol class="steps" id="steps"></ol>
-      </div>
-
-      <!-- 5 · The eighth note + next step -->
+      <!-- 4 · Next step -->
       <div class="ab-sec ab-final">
-        <div class="eight">
-          <div class="scale" aria-hidden="true">
-            <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
-          </div>
-          <p class="t1">Seven notes make music.</p>
-          <p class="t2">The eighth makes it yours.</p>
-        </div>
         <div class="cta-row">
           <button class="btn btn-sm" data-open="find">Book a class →</button>
           <button class="btn btn-sm btn-ghost" data-open="contact">Contact</button>
@@ -1061,14 +1048,14 @@ const LAUNCH_DATE=new Date("2026-11-01T00:00:00+05:30"); /* ← set real launch 
 const ART={ivory:"linear-gradient(160deg,#5A5246,#C9BFA6 44%,#1A1712)",brass:"linear-gradient(160deg,#6B4A08,#E8A33D 45%,#241802)",rose:"linear-gradient(160deg,#5C1436,#C43B78 45%,#1E0713)",indigo:"linear-gradient(160deg,#16234A,#3D5CA8 45%,#070C1C)",jade:"linear-gradient(160deg,#0C3A2E,#1E8A63 45%,#04150F)",violet:"linear-gradient(160deg,#3A1454,#8A3BC4 45%,#160822)",ember:"linear-gradient(160deg,#7A3410,#E0742A 46%,#2A1206)",slate:"linear-gradient(160deg,#2A2E33,#6E767F 46%,#0E1013)"};
 
 const COURSES=[
-  {i:"Piano",t:"Piano — Basic to Advanced",l:"Personalised, one-on-one",a:"ivory"},
-  {i:"Harmonium",t:"Harmonium",l:"Build a strong foundation",a:"brass"},
-  {i:"Vocals",t:"Classical Vocals",l:"Sur, taal & voice basics",a:"rose"},
-  {i:"Piano",t:"Jain Songs on Piano",l:"Learn 100+ Jain songs",a:"ember"},
-  {i:"Vocals",t:"Jain Stavans",l:"Learn 100+ Jain stavans",a:"violet"},
-  {i:"Piano",t:"Bollywood Piano",l:"Play the songs you love",a:"indigo"},
-  {i:"Online",t:"Online 1-on-1 Classes",l:"Live, from anywhere",a:"jade"},
-  {i:"Piano",t:"For Students 10 & Above",l:"Beginners welcome",a:"slate"}
+  {i:"Piano",t:"Piano — Basic to Advanced",l:"Personalised, one-on-one",a:"ivory",img:"img/class-01.jpeg"},
+  {i:"Harmonium",t:"Harmonium",l:"Build a strong foundation",a:"brass",img:"img/class-02.jpeg"},
+  {i:"Vocals",t:"Classical Vocals",l:"Sur, taal & voice basics",a:"rose",img:"img/class-03.jpeg"},
+  {i:"Piano",t:"Jain Songs on Piano",l:"Learn 100+ Jain songs",a:"ember",img:"img/class-04.jpeg"},
+  {i:"Vocals",t:"Jain Stavans",l:"Learn 100+ Jain stavans",a:"violet",img:"img/class-05.jpeg"},
+  {i:"Piano",t:"Bollywood Piano",l:"Play the songs you love",a:"indigo",img:"img/class-06.jpeg"},
+  {i:"Online",t:"Online 1-on-1 Classes",l:"Live, from anywhere",a:"jade",img:"img/class-07.jpeg"},
+  {i:"Piano",t:"For Students 10 & Above",l:"Beginners welcome",a:"slate",img:"img/class-08.jpeg"}
 ];
 
 const CHANNEL_URL="https://youtube.com/@ronakpatiyat";
@@ -1201,7 +1188,6 @@ $("#ytgrid").innerHTML=ytCards+ytCards;
 $("#svcs").innerHTML=SERVICES.map(s=>`<article class="svc"><span class="ic">${ICONS[s.ic]}</span><h3>${s.t}</h3><p>${s.d}</p></article>`).join("");
 
 $("#pillars").innerHTML=PILLARS.map(p=>`<article class="pil"><span class="pi" style="background:${art(p.a)}">${WICON[p.ic]}</span><h3>${p.t}</h3><p>${p.d}</p></article>`).join("");
-$("#steps").innerHTML=STEPS.map((s,i)=>`<li style="--a:${s.a};--b:${s.b}"><span class="sn">${i+1}</span><h3>${s.t}</h3><p>${s.d}</p></li>`).join("");
 
 $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in "'+e.title+'" ('+e.m+' '+e.d+'). Could you share the details?');return `
   <div class="date"><div class="d">${e.d}</div><div class="m">${e.m}</div><div class="dow">${e.dow}</div></div>
