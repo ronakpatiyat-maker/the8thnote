@@ -251,22 +251,50 @@ section{padding:72px 0}
 .about-lead p{font-size:clamp(19px,2.2vw,25px);font-weight:700;line-height:1.35;color:#fff}
 .about-body{margin-top:16px;max-width:680px;color:var(--text-2);font-size:16px;line-height:1.65}
 
-.pillars{display:flex;gap:30px;flex-wrap:wrap;margin-top:44px}
-.pillar{display:flex;align-items:center;gap:14px}
-.pillar .badge{width:72px;height:72px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.5)}
-.pillar .badge svg{width:26px;height:26px}
-.pillar span{font-size:16px;font-weight:700;line-height:1.25;max-width:130px}
+.mini{margin-top:46px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-text)}
+.about-hero .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.pil{background:var(--chip);border:1px solid #2A2A2A;border-radius:16px;padding:20px 18px 22px;transition:border-color .25s,transform .25s var(--tr)}
+.pil:hover{border-color:var(--accent);transform:translateY(-4px)}
+.pil .pi{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.pil .pi svg{width:30px;height:30px;stroke-width:3.2}
+.pil h3{font-size:16px;font-weight:800;line-height:1.2}
+.pil p{margin-top:6px;font-size:13.5px;line-height:1.5;color:var(--text-2)}
 
-.journey{position:relative;margin-top:54px}
-.journey svg{display:block;width:100%;height:auto}
-.journey-tag{text-align:center;margin-top:14px}
-.journey-tag p{font-size:clamp(19px,2.6vw,28px);line-height:1.3}
-.journey-tag p:first-child{color:var(--text-2);font-weight:600}
-.journey-tag p:last-child{color:var(--accent-text);font-weight:900;margin-top:2px}
+/* journey: 4 steps + the "seven notes, the eighth is yours" scale */
+.about-hero .journey{margin-top:8px}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+.steps li{position:relative}
+.steps li:not(:last-child)::before{content:'';position:absolute;top:21px;left:44px;right:-18px;height:2px;background:linear-gradient(90deg,var(--a),var(--b))}
+.steps .sn{position:relative;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;background:var(--a);box-shadow:0 0 0 6px rgba(255,255,255,.04),0 6px 18px rgba(0,0,0,.5)}
+.steps li:last-child .sn{background:var(--grad);box-shadow:0 0 0 6px rgba(229,9,20,.18),0 0 28px rgba(229,9,20,.55)}
+.steps h3{margin-top:14px;font-size:18px;font-weight:800}
+.steps li:last-child h3{color:var(--accent-text)}
+.steps p{margin-top:6px;font-size:14px;line-height:1.5;color:var(--text-2);max-width:240px}
+.eight{margin-top:48px;text-align:center}
+.scale{display:flex;align-items:flex-end;justify-content:center;gap:8px;height:80px}
+.scale i{width:12px;border-radius:6px;background:linear-gradient(180deg,#52525F,#2A2A33);transform-origin:bottom}
+.scale i.e{width:14px;background:var(--grad);box-shadow:0 0 26px rgba(229,9,20,.6)}
+.menu-panel.on .scale i{animation:rise .6s var(--tr) both;animation-delay:calc(var(--i)*70ms)}
+@keyframes rise{from{transform:scaleY(.15);opacity:0}to{transform:none;opacity:1}}
+.eight .t1{margin-top:18px;font-size:clamp(19px,2.6vw,28px);font-weight:600;color:var(--text-2);line-height:1.3}
+.eight .t2{font-size:clamp(19px,2.6vw,28px);font-weight:900;color:var(--accent-text);line-height:1.3;margin-top:2px}
+@media(max-width:1000px){.about-hero .pillars{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){
+  .mini{margin-top:34px}
+  .steps{grid-template-columns:1fr;gap:0}
+  .steps li{padding:0 0 26px 62px;min-height:44px}
+  .steps li:last-child{padding-bottom:0}
+  .steps .sn{position:absolute;left:0;top:0}
+  .steps li:not(:last-child)::before{left:21px;right:auto;top:44px;bottom:0;width:2px;height:auto;background:linear-gradient(180deg,var(--a),var(--b))}
+  .steps h3{margin-top:0;padding-top:10px}
+  .steps p{max-width:none}
+  .pil{padding:16px 14px 18px}
+}
+@media(max-width:400px){.about-hero .pillars{grid-template-columns:1fr}}
 
 /* about (used inside menu) */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
-.about-photo{border-radius:14px;min-height:340px;background:#161616 center/cover no-repeat;border:1px solid #2A2A2A}
+.about-photo{border-radius:14px;aspect-ratio:4/5;align-self:start;background:#161616 center/cover no-repeat;border:1px solid #2A2A2A}
 .about-text h2{margin-bottom:12px}
 .about-text p{color:var(--text-2);font-size:16px;line-height:1.6}
 .about-text ul{list-style:none;display:grid;gap:11px;margin:20px 0 24px}
@@ -406,6 +434,9 @@ section{padding:72px 0}
 .fq .ans{max-height:0;overflow:hidden;background:var(--surface);transition:max-height .3s var(--tr)}
 .fq.open .ans{margin-top:1px}
 .fq .ans p{padding:24px;font-size:clamp(15.5px,1.5vw,18px);line-height:1.5}
+.fq .ans .act{padding:0 24px 24px;margin-top:-6px}
+.fq:not(.open) .ans .act{visibility:hidden}
+@media(max-width:680px){.fq .ans .act{padding:0 16px 18px}}
 
 /* closing + footer */
 .closing{padding:76px 0 84px;text-align:center}
@@ -454,7 +485,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .stories{grid-template-columns:repeat(2,1fr)}
   .plans{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
-  .about-photo{min-height:240px}
+  .about-photo{max-width:440px;width:100%;margin-inline:auto}
   .pgrid{grid-template-columns:repeat(4,1fr)}
 }
 @media(max-width:800px){
@@ -675,73 +706,24 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
           <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
           <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
 
+          <p class="mini">What you can learn</p>
           <div class="pillars" id="pillars"></div>
 
+          <p class="mini">Your journey with The 8th Note</p>
           <div class="journey">
-            <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="jgrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#7C2FB8"/>
-                  <stop offset="48%" stop-color="#C1298E"/>
-                  <stop offset="100%" stop-color="#E50914"/>
-                </linearGradient>
-                <radialGradient id="jglow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0" stop-color="#F5564E" stop-opacity=".55"/>
-                  <stop offset="100%" stop-color="#F5564E" stop-opacity="0"/>
-                </radialGradient>
-                <g id="jray"><line x1="0" y1="10" x2="0" y2="27" stroke="rgba(255,255,255,.28)" stroke-width="1.4"/></g>
-              </defs>
-
-              <path id="jpath" d="M30,130 C160,20 320,20 460,120 C600,220 740,220 870,110 C910,80 940,60 970,45" fill="none" stroke="url(#jgrad)" stroke-width="3" stroke-linecap="round"/>
-
-              <g transform="translate(60,150)">
-                <circle r="70" fill="url(#jglow)"/>
-                <g opacity=".55">
-                  <use href="#jray" transform="rotate(0)"/><use href="#jray" transform="rotate(22.5)"/><use href="#jray" transform="rotate(45)"/><use href="#jray" transform="rotate(67.5)"/>
-                  <use href="#jray" transform="rotate(90)"/><use href="#jray" transform="rotate(112.5)"/><use href="#jray" transform="rotate(135)"/><use href="#jray" transform="rotate(157.5)"/>
-                  <use href="#jray" transform="rotate(180)"/><use href="#jray" transform="rotate(202.5)"/><use href="#jray" transform="rotate(225)"/><use href="#jray" transform="rotate(247.5)"/>
-                  <use href="#jray" transform="rotate(270)"/><use href="#jray" transform="rotate(292.5)"/><use href="#jray" transform="rotate(315)"/><use href="#jray" transform="rotate(337.5)"/>
-                </g>
-                <circle r="7" fill="#fff"/>
-              </g>
-
-              <g transform="translate(940,60)">
-                <circle r="70" fill="url(#jglow)"/>
-                <g opacity=".55">
-                  <use href="#jray" transform="rotate(0)"/><use href="#jray" transform="rotate(22.5)"/><use href="#jray" transform="rotate(45)"/><use href="#jray" transform="rotate(67.5)"/>
-                  <use href="#jray" transform="rotate(90)"/><use href="#jray" transform="rotate(112.5)"/><use href="#jray" transform="rotate(135)"/><use href="#jray" transform="rotate(157.5)"/>
-                  <use href="#jray" transform="rotate(180)"/><use href="#jray" transform="rotate(202.5)"/><use href="#jray" transform="rotate(225)"/><use href="#jray" transform="rotate(247.5)"/>
-                  <use href="#jray" transform="rotate(270)"/><use href="#jray" transform="rotate(292.5)"/><use href="#jray" transform="rotate(315)"/><use href="#jray" transform="rotate(337.5)"/>
-                </g>
-                <circle r="7" fill="#fff"/>
-              </g>
-
-              <circle cx="330" cy="38" r="8" fill="#C1298E"/>
-              <circle cx="650" cy="205" r="8" fill="#7C2FB8"/>
-
-              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
-                <textPath href="#jpath" startOffset="5%">LEARN</textPath>
-              </text>
-              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
-                <textPath href="#jpath" startOffset="30%">EXPRESS</textPath>
-              </text>
-              <text font-size="16" font-weight="700" letter-spacing="3" fill="#8A8A9A">
-                <textPath href="#jpath" startOffset="58%">EXPLORE</textPath>
-              </text>
-              <text font-size="16" font-weight="700" letter-spacing="3" fill="#F5564E">
-                <textPath href="#jpath" startOffset="84%">YOUR NOTE</textPath>
-              </text>
-            </svg>
-
-            <div class="journey-tag">
-              <p>Seven notes make music.</p>
-              <p>The eighth makes it yours.</p>
+            <ol class="steps" id="steps"></ol>
+            <div class="eight">
+              <div class="scale" aria-hidden="true">
+                <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
+              </div>
+              <p class="t1">Seven notes make music.</p>
+              <p class="t2">The eighth makes it yours.</p>
             </div>
           </div>
         </div>
 
         <div class="about">
-          <div class="about-photo" style="background-image:url('img/ronak-piano.jpg')" role="img" aria-label="Ronak Patiyat performing"></div>
+          <div class="about-photo" style="background-image:url('img/about-ronak-01.jpg')" role="img" aria-label="Ronak Patiyat singing devotional music with a microphone at Tapasya Bhakthi"></div>
           <div class="about-text">
             <h2>Meet Ronak Patiyat</h2>
             <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
@@ -988,7 +970,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 {"@context":"https://schema.org","@type":"MusicSchool","name":"The 8th Note","description":"Personalised one-on-one piano, harmonium and vocal classes by Ronak Patiyat in Bengaluru and online, plus devotional (Bhakti) singing for Jain, spiritual and religious events.","address":{"@type":"PostalAddress","streetAddress":"VV Puram","addressLocality":"Bengaluru","addressCountry":"IN"},"telephone":"+91-94800-61108","areaServed":"Bengaluru","founder":{"@type":"Person","name":"Ronak Patiyat"},"sameAs":["https://instagram.com/the8thnote__","https://instagram.com/ronakpatiyat__","https://youtube.com/@ronakpatiyat"]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do you teach?","acceptedAnswer":{"@type":"Answer","text":"Piano, harmonium and vocals — one-on-one with Ronak. On piano from absolute basics to advanced, plus 100+ Jain songs and Bollywood pieces. In voice, a classical foundation (sur and taal) and 100+ Jain stavans. Classes are for students 10 years and above."}},{"@type":"Question","name":"How much do classes cost?","acceptedAnswer":{"@type":"Answer","text":"In-person and online one-on-one fees are shared on enquiry — message on WhatsApp at +91 94800 61108. For self-paced learning, the YouTube courses have free lessons and a members-only tier for 49 rupees a month."}},{"@type":"Question","name":"Do you teach online, or only in person?","acceptedAnswer":{"@type":"Answer","text":"Both. Learn in person at VV Puram in Bengaluru, or join live one-on-one classes online from anywhere, with the same personalised approach."}},{"@type":"Question","name":"Can I learn Jain stavans and devotional singing specifically?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can learn 100+ Jain stavans in voice and 100+ Jain songs on piano, alongside a classical foundation of sur and taal."}},{"@type":"Question","name":"Can I book you to sing at my event?","acceptedAnswer":{"@type":"Answer","text":"Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message on WhatsApp at +91 94800 61108 with your date and venue."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"I'm a beginner — which class should I start with?","acceptedAnswer":{"@type":"Answer","text":"Beginners are very welcome, from age 10 and above. Pick three things you'd love to play or sing and we'll point you to the right class — one-on-one, at your own pace, with no audition and no experience needed."}},{"@type":"Question","name":"What do you teach, and can I book Ronak to sing at my event?","acceptedAnswer":{"@type":"Answer","text":"Piano, harmonium and vocals, one-on-one — from absolute basics to advanced, with 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano and a classical foundation of sur and taal. Ronak also performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas and paths."}},{"@type":"Question","name":"How much do classes cost?","acceptedAnswer":{"@type":"Answer","text":"One-on-one fees, in person or online, are shared on enquiry — just message us on WhatsApp. If you'd rather learn in your own time, the YouTube courses have plenty of free lessons and a members-only tier for ₹49 a month."}},{"@type":"Question","name":"Who will I be learning with?","acceptedAnswer":{"@type":"Answer","text":"Ronak Patiyat — a keyboardist and singer trained at one of Mumbai's leading music institutes. Every class is personalised, fun and built around what you actually want to play."}},{"@type":"Question","name":"Where are classes held, and how do I book one?","acceptedAnswer":{"@type":"Answer","text":"In person at VV Puram, Bengaluru, or live one-on-one online from anywhere, with the same personalised approach. Call or message Ronak on WhatsApp at +91 94800 61108 and he'll get back to you."}}]}
 </script>
 
 <script>
@@ -1079,19 +1061,19 @@ const WANTS=[
   {t:"Just getting started, age 10+",inst:"Piano",course:"Piano — Basic to Advanced",a:"ivory",ic:"ten"}
 ];
 
-/* About Us — the 4 teaching pillars shown as badges next to the journey graphic */
+/* About Us — the 4 things taught (icons come from WICON) and the 4-step journey */
 const PILLARS=[
-  {shape:"triangle",t:"Piano &amp; Keys",a:"ember"},
-  {shape:"diamond",t:"Harmonium",a:"violet"},
-  {shape:"square",t:"Classical Vocals",a:"rose"},
-  {shape:"circle",t:"Bhakti &amp; Devotional",a:"indigo"}
+  {ic:"piano",t:"Piano &amp; Keys",d:"Bollywood hits and 100+ Jain songs, from basic to advanced.",a:"ember"},
+  {ic:"harmonium",t:"Harmonium",d:"Build a strong foundation, one-on-one — beginners welcome.",a:"brass"},
+  {ic:"mic",t:"Classical Vocals",d:"Sur, taal and voice basics, plus 100+ Jain stavans.",a:"rose"},
+  {ic:"lotus",t:"Bhakti &amp; Devotional",d:"Live singing for Jain programs, poojas and Bhakthi Sandhya.",a:"violet"}
 ];
-const SHAPES={
-  triangle:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3 L21 19 H3 Z"/></svg>',
-  diamond:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2 L22 12 L12 22 L2 12 Z"/></svg>',
-  square:'<svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>',
-  circle:'<svg viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="8"/></svg>'
-};
+const STEPS=[
+  {t:"Learn",d:"One-on-one classes in piano, harmonium or vocals — at VV Puram or live online.",a:"#7C2FB8",b:"#A02AA3"},
+  {t:"Express",d:"Play and sing the songs you love — Bollywood, Jain songs, bhajans and stavans.",a:"#A02AA3",b:"#C1298E"},
+  {t:"Explore",d:"Go further with free and members-only YouTube courses, from ₹49 a month.",a:"#C1298E",b:"#E50914"},
+  {t:"Your note",d:"Find the sound that is yours — in your voice, your keys, your devotion.",a:"#E50914",b:"#E50914"}
+];
 
 /* Sample testimonials — replace with real student quotes when you have them */
 const REVIEWS=[
@@ -1109,12 +1091,13 @@ const PLANS=[
 ];
 const BATCHES=[["In-person","VV Puram, Bengaluru"],["Online","Live, one-on-one"],["Students","10 years &amp; above"],["Instruments","Piano · Harmonium · Vocals"]];
 
+/* FAQ: [question, answer, menu panel to open, button label] — each answer jumps to a navigation-pane section */
 const FAQS=[
-  ["What do you teach?","Piano, harmonium and vocals — one-on-one with Ronak. On piano that goes from absolute basics to advanced, plus 100+ Jain songs and Bollywood pieces. In voice it's a classical foundation (sur and taal) and 100+ Jain stavans. Classes are for students 10 years and above."],
-  ["How much do classes cost?","In-person and online one-on-one fees are shared on enquiry — message us on WhatsApp at +91 94800 61108 and we'll tell you. If you'd rather learn in your own time, the YouTube courses have plenty of free lessons and a members-only tier for ₹49 a month."],
-  ["Do you teach online, or only in person?","Both. You can learn in person at VV Puram in Bengaluru, or join live one-on-one classes online from anywhere. The online classes use the same personalised approach — fun, interactive and creative."],
-  ["Can I learn Jain stavans and devotional singing specifically?","Yes — it's a big part of what Ronak teaches. You can learn 100+ Jain stavans in voice and 100+ Jain songs on piano, alongside a proper classical foundation of sur and taal."],
-  ["Can I book you to sing at my event?","Yes. Ronak performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas, paths and other devotional occasions. Message us on WhatsApp at +91 94800 61108 with your date and venue."]
+  ["I'm a beginner — which class should I start with?","Beginners are very welcome, from age 10 and above. Pick three things you'd love to play or sing and we'll point you to the right class — one-on-one, at your own pace, with no audition and no experience needed.","find","Find your class"],
+  ["What do you teach, and can I book Ronak to sing at my event?","Piano, harmonium and vocals, one-on-one — from absolute basics to advanced, with 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano and a classical foundation of sur and taal. Ronak also performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas and paths.","services","See classes &amp; events"],
+  ["How much do classes cost?","One-on-one fees, in person or online, are shared on enquiry — just message us on WhatsApp. If you'd rather learn in your own time, the YouTube courses have plenty of free lessons and a members-only tier for ₹49 a month.","fees","See classes &amp; fees"],
+  ["Who will I be learning with?","Ronak Patiyat — a keyboardist and singer trained at one of Mumbai's leading music institutes. Every class is personalised, fun and built around what you actually want to play.","about","Meet Ronak"],
+  ["Where are classes held, and how do I book one?","In person at VV Puram, Bengaluru, or live one-on-one online from anywhere, with the same personalised approach. Call or message Ronak on WhatsApp at +91 94800 61108 and he'll get back to you.","contact","Contact us"]
 ];
 
 /* ===== render ===== */
@@ -1141,7 +1124,8 @@ $("#ytgrid").innerHTML=ytCards+ytCards;
 
 $("#svcs").innerHTML=SERVICES.map(s=>`<article class="svc"><span class="ic">${ICONS[s.ic]}</span><h3>${s.t}</h3><p>${s.d}</p></article>`).join("");
 
-$("#pillars").innerHTML=PILLARS.map(p=>`<div class="pillar"><span class="badge" style="background:${art(p.a)}">${SHAPES[p.shape]}</span><span>${p.t}</span></div>`).join("");
+$("#pillars").innerHTML=PILLARS.map(p=>`<article class="pil"><span class="pi" style="background:${art(p.a)}">${WICON[p.ic]}</span><h3>${p.t}</h3><p>${p.d}</p></article>`).join("");
+$("#steps").innerHTML=STEPS.map((s,i)=>`<li style="--a:${s.a};--b:${s.b}"><span class="sn">${i+1}</span><h3>${s.t}</h3><p>${s.d}</p></li>`).join("");
 
 $("#event").innerHTML=EVENTS.map(e=>{const link=wa('Hi Ronak, I\'m interested in "'+e.title+'" ('+e.m+' '+e.d+'). Could you share the details?');return `
   <div class="date"><div class="d">${e.d}</div><div class="m">${e.m}</div><div class="dow">${e.dow}</div></div>
@@ -1210,7 +1194,7 @@ $("#plans").innerHTML=PLANS.map(p=>{const href=p.ctaUrl||wa("Hi Ronak, I'd like 
 $("#batches").innerHTML=BATCHES.map(([n,t])=>`<span class="batch"><b>${n}</b> — ${t}</span>`).join("");
 
 /* faq */
-$("#faqs").innerHTML=FAQS.map(([q,a])=>`<div class="fq"><button aria-expanded="false">${q}<span class="pm"></span></button><div class="ans"><p>${a}</p></div></div>`).join("");
+$("#faqs").innerHTML=FAQS.map(([q,a,panel,label])=>`<div class="fq"><button aria-expanded="false">${q}<span class="pm"></span></button><div class="ans"><p>${a}</p><div class="act"><a href="#" class="btn btn-sm btn-grad" data-open="${panel}">${label} →</a></div></div></div>`).join("");
 document.querySelectorAll(".fq").forEach(f=>{const btn=f.querySelector("button"),ans=f.querySelector(".ans");btn.onclick=()=>{const open=f.classList.toggle("open");btn.setAttribute("aria-expanded",open);ans.style.maxHeight=open?ans.scrollHeight+"px":0;};});
 
 /* ===== menu overlay ===== */
