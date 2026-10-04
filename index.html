@@ -1016,6 +1016,22 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   <span class="notif-dot"></span>
 </button>
 
+<!-- ==================== CLASS DETAIL POPUP ==================== -->
+<div class="cpop" id="classPop" role="dialog" aria-modal="true" aria-label="Class details" aria-hidden="true">
+  <div class="cpop-card">
+    <div class="cpop-hero"><div class="cpop-img" id="cpImg"></div><button class="cpop-close" id="cpClose" aria-label="Close">×</button></div>
+    <div class="cpop-body">
+      <div class="cpop-eyebrow" id="cpInst"></div>
+      <h3 class="cpop-title" id="cpTitle"></h3>
+      <div class="cpop-tags" id="cpTags"></div>
+      <p class="cpop-desc" id="cpDesc"></p>
+      <a class="btn" id="cpCta" target="_blank" rel="noopener">Get started
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <div class="notif-pop" id="notifPop" role="dialog" aria-modal="true" aria-label="Launch announcement" aria-hidden="true">
   <div class="notif-card">
     <button class="notif-close" id="notifClose" aria-label="Close">×</button>
@@ -1136,9 +1152,9 @@ const WZ_OPTS=[
   {
     piano:[{k:"jain",t:"Jain songs",ic:"lotus",a:"violet"},{k:"bollywood",t:"Bollywood songs",ic:"clap",a:"indigo"},{k:"basics",t:"Piano from the basics",ic:"sprout",a:"ivory"}],
     harmonium:[{k:"devotional",t:"Devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Start from the basics",ic:"sprout",a:"ivory"}],
-    vocals:[{k:"stavans",t:"Jain stavans",ic:"lotus",a:"violet"},{k:"classical",t:"Classical — sur &amp; taal",ic:"metronome",a:"rose"},{k:"accompany",t:"Sing while playing keys",ic:"singkeys",a:"slate"}],
+    vocals:[{k:"stavans",t:"Jain stavans",ic:"lotus",a:"violet"},{k:"classical",t:"Classical — sur &amp; taal",ic:"metronome",a:"rose"},    {k:"accompany",t:"Sing while playing keys",ic:"singkeys",a:"slate"}],
     unsure:[{k:"bollywood",t:"Songs I love (Bollywood)",ic:"clap",a:"indigo"},{k:"devotional",t:"Jain devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Just start from scratch",ic:"sprout",a:"ivory"}]
-  },
+  },},
   [{k:"person",t:"In person at VV Puram",ic:"pin",a:"ember"},{k:"online",t:"Live online",ic:"laptop",a:"jade"},{k:"either",t:"Either is fine",ic:"star",a:"indigo"}]
 ];
 const WZ_COURSE={"piano:jain":"Jain Songs on Piano","piano:bollywood":"Bollywood Piano","piano:basics":"Piano — Basic to Advanced","harmonium:devotional":"Harmonium","harmonium:basics":"Harmonium","vocals:stavans":"Jain Stavans","vocals:classical":"Classical Vocals","vocals:accompany":"Piano — Basic to Advanced","unsure:bollywood":"Bollywood Piano","unsure:devotional":"Jain Songs on Piano","unsure:basics":"Piano — Basic to Advanced"};
@@ -1198,32 +1214,32 @@ $("#trendRow").innerHTML=COURSES.map((c,i)=>`
     <div class="poster" style="background:${c.img?`url('${c.img}') center/cover no-repeat`:art(c.a)}">${c.img?"":`<div class="ph"><div class="inst">${c.i}</div><div class="name">${c.t}</div><div class="lvl">${c.l}</div></div>`}</div>
     <span class="num" aria-hidden="true">${i+1}</span>
   </button>`).join("");
-/* arrows: left appears once you've scrolled, right hides at the end */
-function trendUpd(){const r=$("#trendRow");if(!r||!r.clientWidth)return;$("#trL").hidden=r.scrollLeft<8;$("#trR").hidden=r.scrollLeft+r.clientWidth>=r.scrollWidth-8;}
-(function(){const r=$("#trendRow");
-  $("#trL").onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"});
-  $("#trR").onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"});
-  r.addEventListener("scroll",trendUpd,{passive:true}); window.addEventListener("resize",trendUpd);
-})();
-
-/* class detail popup — opens when a class card is tapped */
+/* class row arrows + detail popup (guarded so a missing node can't halt the script) */
+function trendUpd(){const r=$("#trendRow");if(!r||!r.clientWidth)return;const l=$("#trL"),rr=$("#trR");if(l)l.hidden=r.scrollLeft<8;if(rr)rr.hidden=r.scrollLeft+r.clientWidth>=r.scrollWidth-8;}
 (function(){
-  const pop=$("#classPop"),card=pop.querySelector(".cpop-card");
-  function open(i){
-    const c=COURSES[i];
-    $("#cpImg").style.background=c.img?`url('${c.img}') center/cover no-repeat`:art(c.a);
-    $("#cpInst").textContent=c.i;
-    $("#cpTitle").textContent=c.t;
-    $("#cpTags").innerHTML=(c.tags||[]).map(t=>`<span>${t}</span>`).join("");
-    $("#cpDesc").textContent=c.desc||c.l;
-    $("#cpCta").href=wa("Hi Ronak, I'd like to start the "+c.t+" class. Could you share the details?");
-    pop.classList.add("open"); pop.setAttribute("aria-hidden","false"); card.scrollTop=0;
+  const r=$("#trendRow"); if(!r) return;
+  const l=$("#trL"),rr=$("#trR");
+  if(l)l.onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"});
+  if(rr)rr.onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"});
+  r.addEventListener("scroll",trendUpd,{passive:true}); window.addEventListener("resize",trendUpd);
+
+  const pop=$("#classPop"); if(!pop) return;
+  const card=pop.querySelector(".cpop-card");
+  function openClass(i){
+    const c=COURSES[i]; if(!c) return;
+    const img=$("#cpImg"); if(img) img.style.background=c.img?`url('${c.img}') center/cover no-repeat`:art(c.a);
+    const inst=$("#cpInst"); if(inst) inst.textContent=c.i;
+    const ti=$("#cpTitle"); if(ti) ti.textContent=c.t;
+    const tg=$("#cpTags"); if(tg) tg.innerHTML=(c.tags||[]).map(t=>`<span>${t}</span>`).join("");
+    const de=$("#cpDesc"); if(de) de.textContent=c.desc||c.l;
+    const cta=$("#cpCta"); if(cta) cta.href=wa("Hi Ronak, I'd like to start the "+c.t+" class. Could you share the details?");
+    pop.classList.add("open"); pop.setAttribute("aria-hidden","false"); if(card) card.scrollTop=0;
   }
-  function close(){ pop.classList.remove("open"); pop.setAttribute("aria-hidden","true"); }
-  $("#trendRow").querySelectorAll(".tcard").forEach(b=>b.onclick=()=>open(+b.dataset.ci));
-  $("#cpClose").onclick=close;
-  pop.addEventListener("click",e=>{ if(e.target===pop) close(); });
-  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&pop.classList.contains("open")) close(); });
+  function closeClass(){ pop.classList.remove("open"); pop.setAttribute("aria-hidden","true"); }
+  r.querySelectorAll(".tcard").forEach(b=>b.addEventListener("click",()=>openClass(+b.dataset.ci)));
+  const cl=$("#cpClose"); if(cl) cl.onclick=closeClass;
+  pop.addEventListener("click",e=>{ if(e.target===pop) closeClass(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&pop.classList.contains("open")) closeClass(); });
 })();
 
 $("#yt-sub").href=CHANNEL_URL; $("#yt-join").href=MEMBERSHIP_URL;
