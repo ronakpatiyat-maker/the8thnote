@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- ===== SECURITY ===== -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.instagram.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.cdninstagram.com https://*.fbcdn.net; media-src 'self' https://*.cdninstagram.com; frame-src https://www.instagram.com; connect-src 'self' https://www.instagram.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.instagram.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.cdninstagram.com https://*.fbcdn.net; media-src 'self' https://*.cdninstagram.com; frame-src https://www.instagram.com https://www.google.com; connect-src 'self' https://www.instagram.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>The 8th Note — Piano, Harmonium &amp; Vocal Classes with Ronak Patiyat | Bengaluru &amp; Online</title>
@@ -177,6 +177,17 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 a.c-pill:hover{transform:translateY(-3px);filter:brightness(1.18)}
 .c-pill.u{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:680px){.c-tag{padding:12px 30px;font-size:15px}.menu-panel .c-title{margin:26px 0 30px}.c-list{gap:12px}.c-pill{min-height:58px}}
+/* contact map card (Google Maps embed, greyscale) */
+.c-main{display:flex;flex-direction:column;align-items:center;width:100%}
+.c-map{position:relative;width:100%;max-width:460px;height:clamp(150px,24vh,220px);margin-top:clamp(14px,2.6vh,24px);border-radius:28px;overflow:hidden;background:#161616;border:1px solid #2A2A2A;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.c-map iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+@media(min-width:1001px){
+  /* wide screens: details on the left, map on the right, so the panel still fits one screen */
+  .contact{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:36px;align-items:center;padding:0}
+  .contact .c-title{font-size:clamp(40px,min(6.2vw,9vh),66px)}
+  .c-map{max-width:none;height:clamp(320px,62vh,500px);margin-top:0;border-radius:36px}
+}
+@media(max-width:680px){.c-pill.addr{display:none}.c-map{border-radius:22px}}
 
 /* hero */
 .hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;text-align:center;
@@ -749,13 +760,19 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       <!-- Contact Us -->
       <div class="menu-panel" id="panel-contact">
         <div class="contact">
-          <span class="c-tag">Ronak Patiyat</span>
-          <h2 class="c-title"><span class="c1">Get in Touch</span><span class="c2">With Us</span></h2>
-          <div class="c-list">
-            <a class="c-pill" href="tel:+919480061108">+91 94800 61108</a>
-            <a class="c-pill u" data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">Chat on WhatsApp</a>
-            <a class="c-pill" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a>
-            <div class="c-pill">VV Puram, Bengaluru</div>
+          <div class="c-main">
+            <span class="c-tag">Ronak Patiyat</span>
+            <h2 class="c-title"><span class="c1">Get in Touch</span><span class="c2">With Us</span></h2>
+            <div class="c-list">
+              <a class="c-pill" href="tel:+919480061108">+91 94800 61108</a>
+              <a class="c-pill u" data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">Chat on WhatsApp</a>
+              <a class="c-pill" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a>
+              <a class="c-pill addr" href="https://maps.app.goo.gl/uG5pUJ9QffNESMP1A" target="_blank" rel="noopener">VV Puram, Bengaluru</a>
+            </div>
+          </div>
+          <div class="c-map">
+            <iframe title="Map: The 8th Note location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              src="https://www.google.com/maps?q=RIOO+HORIZONS+First+Floor+1st+Main+Road+T+Nanjundappa+Rd+Sampangi+Rama+Nagara+Bengaluru+560027&output=embed"></iframe>
           </div>
         </div>
       </div>
