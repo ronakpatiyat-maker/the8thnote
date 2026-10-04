@@ -221,24 +221,6 @@ section{padding:72px 0}
 .tr-arrow.r{right:-10px}
 .tr-arrow[hidden]{display:none}
 @media(max-width:680px){.tr-arrow{display:none}}
-
-/* class detail popup (Netflix-style) */
-.cpop{position:fixed;inset:0;z-index:950;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
-.cpop.open{opacity:1;pointer-events:auto}
-.cpop-card{position:relative;width:100%;max-width:720px;max-height:92vh;overflow:auto;border-radius:16px;background:#141414;border:1px solid #262626;box-shadow:0 30px 80px rgba(0,0,0,.7);transform:translateY(12px) scale(.98);transition:transform .25s var(--tr);scrollbar-width:thin}
-.cpop.open .cpop-card{transform:none}
-.cpop-hero{position:relative;aspect-ratio:16/9;background:#0A0A0A}
-.cpop-img{position:absolute;inset:0;background:#161616 center/cover no-repeat}
-.cpop-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,0) 40%,#141414 100%)}
-.cpop-close{position:absolute;z-index:2;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:24px;line-height:1;display:grid;place-items:center}
-.cpop-close:hover{background:rgba(0,0,0,.85)}
-.cpop-body{position:relative;z-index:2;margin-top:-54px;padding:0 clamp(22px,4vw,40px) clamp(26px,4vw,38px)}
-.cpop-eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-text)}
-.cpop-title{margin-top:8px;font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-.02em;line-height:1.08}
-.cpop-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.cpop-tags span{background:#262626;border:1px solid #333;border-radius:6px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--text-2)}
-.cpop-desc{margin-top:18px;font-size:clamp(15px,1.7vw,17px);line-height:1.6;color:#E6E6E6;max-width:600px}
-.cpop-body .btn{margin-top:26px;padding:13px 26px;font-size:17px}
 .rarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:118px;background:rgba(20,20,20,.72);
   display:grid;place-items:center;color:#fff;transition:background .2s}
 .rarrow:hover{background:rgba(20,20,20,.95)}
@@ -1016,22 +998,6 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   <span class="notif-dot"></span>
 </button>
 
-<!-- ==================== CLASS DETAIL POPUP ==================== -->
-<div class="cpop" id="classPop" role="dialog" aria-modal="true" aria-label="Class details" aria-hidden="true">
-  <div class="cpop-card">
-    <div class="cpop-hero"><div class="cpop-img" id="cpImg"></div><button class="cpop-close" id="cpClose" aria-label="Close">×</button></div>
-    <div class="cpop-body">
-      <div class="cpop-eyebrow" id="cpInst"></div>
-      <h3 class="cpop-title" id="cpTitle"></h3>
-      <div class="cpop-tags" id="cpTags"></div>
-      <p class="cpop-desc" id="cpDesc"></p>
-      <a class="btn" id="cpCta" target="_blank" rel="noopener">Get started
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
-
 <div class="notif-pop" id="notifPop" role="dialog" aria-modal="true" aria-label="Launch announcement" aria-hidden="true">
   <div class="notif-card">
     <button class="notif-close" id="notifClose" aria-label="Close">×</button>
@@ -1085,22 +1051,14 @@ const LAUNCH_DATE=new Date("2026-11-01T00:00:00+05:30"); /* ← set real launch 
 const ART={ivory:"linear-gradient(160deg,#5A5246,#C9BFA6 44%,#1A1712)",brass:"linear-gradient(160deg,#6B4A08,#E8A33D 45%,#241802)",rose:"linear-gradient(160deg,#5C1436,#C43B78 45%,#1E0713)",indigo:"linear-gradient(160deg,#16234A,#3D5CA8 45%,#070C1C)",jade:"linear-gradient(160deg,#0C3A2E,#1E8A63 45%,#04150F)",violet:"linear-gradient(160deg,#3A1454,#8A3BC4 45%,#160822)",ember:"linear-gradient(160deg,#7A3410,#E0742A 46%,#2A1206)",slate:"linear-gradient(160deg,#2A2E33,#6E767F 46%,#0E1013)"};
 
 const COURSES=[
-  {i:"Piano",t:"Piano — Basic to Advanced",l:"Personalised, one-on-one",a:"ivory",img:"img/class-01.jpeg",
-    tags:["All levels","One-on-one","Age 10+"],desc:"Start from your very first notes and go as far as you like. Posture, reading, both hands, chords and the songs you actually want to play — all at your own pace, built around you."},
-  {i:"Harmonium",t:"Harmonium",l:"Build a strong foundation",a:"brass",img:"img/class-02.jpeg",
-    tags:["Beginner friendly","One-on-one","Age 10+"],desc:"Learn the harmonium from the ground up — hand position, scales and devotional pieces — with a patient, personalised approach that suits complete beginners."},
-  {i:"Vocals",t:"Classical Vocals",l:"Sur, taal & voice basics",a:"rose",img:"img/class-03.jpeg",
-    tags:["Foundation","One-on-one","Age 10+"],desc:"A proper classical foundation: sur, taal and voice basics that strengthen everything you sing — from bhajans and stavans to film songs."},
-  {i:"Piano",t:"Jain Songs on Piano",l:"Learn 100+ Jain songs",a:"ember",img:"img/class-04.jpeg",
-    tags:["Devotional","100+ songs","One-on-one"],desc:"Play a huge devotional repertoire on the piano — more than 100 Jain songs — learnt step by step so you can play for your family and at gatherings."},
-  {i:"Vocals",t:"Jain Stavans",l:"Learn 100+ Jain stavans",a:"violet",img:"img/class-05.jpeg",
-    tags:["Devotional","100+ stavans","One-on-one"],desc:"Learn to sing 100+ Jain stavans with correct sur and bhaav, on a classical foundation — perfect for devotional singing at home and in the sangh."},
-  {i:"Piano",t:"Bollywood Piano",l:"Play the songs you love",a:"indigo",img:"img/class-06.jpeg",
-    tags:["Popular songs","One-on-one","Age 10+"],desc:"Play the Bollywood songs you love, step by step — melody, chords and feel — so you can sit down and play the tunes that got you into music."},
-  {i:"Online",t:"Online 1-on-1 Classes",l:"Live, from anywhere",a:"jade",img:"img/class-07.jpeg",
-    tags:["Live online","Flexible timings","Anywhere"],desc:"The same personalised one-on-one class, live online from wherever you are — ideal if you're outside Bengaluru. Piano, harmonium or vocals, your choice."},
-  {i:"Piano",t:"For Students 10 & Above",l:"Beginners welcome",a:"slate",img:"img/class-08.jpeg",
-    tags:["Age 10+","Beginners welcome","No audition"],desc:"New to music? You're welcome here from age 10 and up. No audition and no experience needed — just a wish to learn. We'll start you in the right place."}
+  {i:"Piano",t:"Piano — Basic to Advanced",l:"Personalised, one-on-one",a:"ivory",img:"img/class-01.jpeg"},
+  {i:"Harmonium",t:"Harmonium",l:"Build a strong foundation",a:"brass",img:"img/class-02.jpeg"},
+  {i:"Vocals",t:"Classical Vocals",l:"Sur, taal & voice basics",a:"rose",img:"img/class-03.jpeg"},
+  {i:"Piano",t:"Jain Songs on Piano",l:"Learn 100+ Jain songs",a:"ember",img:"img/class-04.jpeg"},
+  {i:"Vocals",t:"Jain Stavans",l:"Learn 100+ Jain stavans",a:"violet",img:"img/class-05.jpeg"},
+  {i:"Piano",t:"Bollywood Piano",l:"Play the songs you love",a:"indigo",img:"img/class-06.jpeg"},
+  {i:"Online",t:"Online 1-on-1 Classes",l:"Live, from anywhere",a:"jade",img:"img/class-07.jpeg"},
+  {i:"Piano",t:"For Students 10 & Above",l:"Beginners welcome",a:"slate",img:"img/class-08.jpeg"}
 ];
 
 const CHANNEL_URL="https://youtube.com/@ronakpatiyat";
@@ -1152,9 +1110,9 @@ const WZ_OPTS=[
   {
     piano:[{k:"jain",t:"Jain songs",ic:"lotus",a:"violet"},{k:"bollywood",t:"Bollywood songs",ic:"clap",a:"indigo"},{k:"basics",t:"Piano from the basics",ic:"sprout",a:"ivory"}],
     harmonium:[{k:"devotional",t:"Devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Start from the basics",ic:"sprout",a:"ivory"}],
-    vocals:[{k:"stavans",t:"Jain stavans",ic:"lotus",a:"violet"},{k:"classical",t:"Classical — sur &amp; taal",ic:"metronome",a:"rose"},    {k:"accompany",t:"Sing while playing keys",ic:"singkeys",a:"slate"}],
+    vocals:[{k:"stavans",t:"Jain stavans",ic:"lotus",a:"violet"},{k:"classical",t:"Classical — sur &amp; taal",ic:"metronome",a:"rose"},{k:"accompany",t:"Sing while playing keys",ic:"singkeys",a:"slate"}],
     unsure:[{k:"bollywood",t:"Songs I love (Bollywood)",ic:"clap",a:"indigo"},{k:"devotional",t:"Jain devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Just start from scratch",ic:"sprout",a:"ivory"}]
-  },},
+  },
   [{k:"person",t:"In person at VV Puram",ic:"pin",a:"ember"},{k:"online",t:"Live online",ic:"laptop",a:"jade"},{k:"either",t:"Either is fine",ic:"star",a:"indigo"}]
 ];
 const WZ_COURSE={"piano:jain":"Jain Songs on Piano","piano:bollywood":"Bollywood Piano","piano:basics":"Piano — Basic to Advanced","harmonium:devotional":"Harmonium","harmonium:basics":"Harmonium","vocals:stavans":"Jain Stavans","vocals:classical":"Classical Vocals","vocals:accompany":"Piano — Basic to Advanced","unsure:bollywood":"Bollywood Piano","unsure:devotional":"Jain Songs on Piano","unsure:basics":"Piano — Basic to Advanced"};
@@ -1210,36 +1168,16 @@ $("#mosaic").innerHTML=Array.from({length:45},(_,i)=>{const c=COURSES[i%COURSES.
 /* Classes offered — ranked poster row. To show a poster, add img:"img/class-01.jpg" (etc.) to that item in COURSES;
    until then the coloured placeholder with the class name is shown. Each card opens WhatsApp about that class. */
 $("#trendRow").innerHTML=COURSES.map((c,i)=>`
-  <button class="tcard" data-ci="${i}" aria-label="${i+1}. ${c.t} — ${c.l}. View details">
+  <a class="tcard" href="${wa("Hi Ronak, I'd like to know about the "+c.t+" class.")}" target="_blank" rel="noopener" aria-label="${i+1}. ${c.t} — ${c.l}">
     <div class="poster" style="background:${c.img?`url('${c.img}') center/cover no-repeat`:art(c.a)}">${c.img?"":`<div class="ph"><div class="inst">${c.i}</div><div class="name">${c.t}</div><div class="lvl">${c.l}</div></div>`}</div>
     <span class="num" aria-hidden="true">${i+1}</span>
-  </button>`).join("");
-/* class row arrows + detail popup (guarded so a missing node can't halt the script) */
-function trendUpd(){const r=$("#trendRow");if(!r||!r.clientWidth)return;const l=$("#trL"),rr=$("#trR");if(l)l.hidden=r.scrollLeft<8;if(rr)rr.hidden=r.scrollLeft+r.clientWidth>=r.scrollWidth-8;}
-(function(){
-  const r=$("#trendRow"); if(!r) return;
-  const l=$("#trL"),rr=$("#trR");
-  if(l)l.onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"});
-  if(rr)rr.onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"});
+  </a>`).join("");
+/* arrows: left appears once you've scrolled, right hides at the end */
+function trendUpd(){const r=$("#trendRow");if(!r||!r.clientWidth)return;$("#trL").hidden=r.scrollLeft<8;$("#trR").hidden=r.scrollLeft+r.clientWidth>=r.scrollWidth-8;}
+(function(){const r=$("#trendRow");
+  $("#trL").onclick=()=>r.scrollBy({left:-r.clientWidth*.8,behavior:"smooth"});
+  $("#trR").onclick=()=>r.scrollBy({left:r.clientWidth*.8,behavior:"smooth"});
   r.addEventListener("scroll",trendUpd,{passive:true}); window.addEventListener("resize",trendUpd);
-
-  const pop=$("#classPop"); if(!pop) return;
-  const card=pop.querySelector(".cpop-card");
-  function openClass(i){
-    const c=COURSES[i]; if(!c) return;
-    const img=$("#cpImg"); if(img) img.style.background=c.img?`url('${c.img}') center/cover no-repeat`:art(c.a);
-    const inst=$("#cpInst"); if(inst) inst.textContent=c.i;
-    const ti=$("#cpTitle"); if(ti) ti.textContent=c.t;
-    const tg=$("#cpTags"); if(tg) tg.innerHTML=(c.tags||[]).map(t=>`<span>${t}</span>`).join("");
-    const de=$("#cpDesc"); if(de) de.textContent=c.desc||c.l;
-    const cta=$("#cpCta"); if(cta) cta.href=wa("Hi Ronak, I'd like to start the "+c.t+" class. Could you share the details?");
-    pop.classList.add("open"); pop.setAttribute("aria-hidden","false"); if(card) card.scrollTop=0;
-  }
-  function closeClass(){ pop.classList.remove("open"); pop.setAttribute("aria-hidden","true"); }
-  r.querySelectorAll(".tcard").forEach(b=>b.addEventListener("click",()=>openClass(+b.dataset.ci)));
-  const cl=$("#cpClose"); if(cl) cl.onclick=closeClass;
-  pop.addEventListener("click",e=>{ if(e.target===pop) closeClass(); });
-  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&pop.classList.contains("open")) closeClass(); });
 })();
 
 $("#yt-sub").href=CHANNEL_URL; $("#yt-join").href=MEMBERSHIP_URL;
