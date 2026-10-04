@@ -47,13 +47,19 @@ html.intro-seen #intro{display:none}
   --r:5px;--tr:cubic-bezier(.2,.6,.3,1);--maxw:1180px;--gutter:48px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#B02A9E #0A0A0A}
 body{font-family:'Archivo',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);
   font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
 button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
 :focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
+
+/* scrollbars — page, menu panels and any other scroller */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#0A0A0A}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#7C2FB8,#E50914);border-radius:10px;border:2px solid #0A0A0A}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#9A45D6,#F6121D)}
 
 /* intro splash */
 #intro{position:fixed;inset:0;z-index:1000;background:#000;display:grid;place-items:center;transition:opacity .6s ease}
@@ -118,82 +124,65 @@ h2{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.012em}
 .notif-card .np{margin-top:10px;color:var(--text-2);font-size:15px;line-height:1.5}
 .notif-card .countdown{margin-top:24px}
 
-/* top bar */
-.top{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s var(--tr),backdrop-filter .3s var(--tr),box-shadow .3s var(--tr)}
-.top.scrolled{background:rgba(10,10,10,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.07),0 6px 24px rgba(0,0,0,.4)}
-.top-in{display:flex;align-items:center;justify-content:space-between;height:92px;max-width:1500px;margin:0 auto;padding:0 var(--gutter)}
+/* ===== top navigation:  [Music · Services]   LOGO   [About · Contact]  ===== */
+.top{position:fixed;top:0;left:0;right:0;z-index:20;background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,0));transition:background .3s var(--tr),box-shadow .3s var(--tr)}
+.top.scrolled{background:rgba(0,0,0,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.16)}
+.nv{--logo-h:clamp(58px,7.2vw,92px);--nv-gap:clamp(26px,4vw,64px);--nv-logo:clamp(22px,4.4vw,84px);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;max-width:1500px;margin:0 auto;padding:0 var(--gutter);
+  height:calc(var(--logo-h) + 24px);transition:height .3s var(--tr)}
+.nv-l,.nv-r{display:flex;align-items:center;gap:var(--nv-gap)}
+.nv-l{justify-self:end;margin-right:var(--nv-logo)}
+.nv-r{justify-self:start;margin-left:var(--nv-logo)}
+.nv-i{position:relative;padding:10px 0;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nv-i::after{content:'';position:absolute;left:0;right:.1em;bottom:4px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--tr)}
+.nv-i:hover::after,.nv-i.on::after{transform:scaleX(1)}
 .logo,.menu-logo{position:relative;display:inline-flex;align-items:center;overflow:hidden;isolation:isolate;border-radius:4px}
-.logo img{height:84px;width:auto;display:block;mix-blend-mode:lighten}
-/* periodic shine sweep across the logo (every 5s) */
-.logo::after,.menu-logo::after{content:"";position:absolute;top:0;bottom:0;left:0;width:48%;z-index:2;pointer-events:none;
-  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 68%,transparent 100%);
-  transform:translateX(-170%) skewX(-18deg);animation:logoshine 5s ease-in-out infinite}
-@keyframes logoshine{0%{transform:translateX(-170%) skewX(-18deg)}12%{transform:translateX(330%) skewX(-18deg)}100%{transform:translateX(330%) skewX(-18deg)}}
-.top-r{display:flex;align-items:center;gap:12px}
-.hamb{width:46px;height:46px;display:grid;place-items:center;border-radius:8px}
-.hamb:hover{background:rgba(255,255,255,.12)}
-.hamb span,.hamb span::before,.hamb span::after{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
-.hamb span{position:relative}
-.hamb span::before,.hamb span::after{content:'';position:absolute;left:0}
-.hamb span::before{top:-7px}.hamb span::after{top:7px}
+.logo img,.menu-logo img{height:var(--logo-h);width:auto;display:block;mix-blend-mode:lighten;transition:height .3s var(--tr)}
+.top.scrolled .nv{height:calc(var(--logo-h)*.72 + 20px)}
+.top.scrolled .logo img{height:calc(var(--logo-h)*.72)}
 
-/* ===== hamburger menu overlay ===== */
+/* sparkle on the "8" in the logo: two small stars twinkle in turn */
+.logo::before,.logo::after,.menu-logo::before,.menu-logo::after{content:"";position:absolute;z-index:2;pointer-events:none;height:26%;aspect-ratio:1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.8 7 17 11.2 24 12C17 12.8 12.8 17 12 24C11.2 17 7 12.8 0 12C7 11.2 11.2 7 12 0Z' fill='white'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px rgba(255,120,110,.9));
+  transform:translate(-50%,-50%) scale(0);opacity:0;animation:sparkle 2.8s ease-in-out infinite}
+.logo::before,.menu-logo::before{left:46%;top:28%}
+.logo::after,.menu-logo::after{left:53%;top:66%;height:20%;animation-delay:1.4s}
+@keyframes sparkle{0%{transform:translate(-50%,-50%) scale(0) rotate(0);opacity:0}18%{transform:translate(-50%,-50%) scale(1) rotate(45deg);opacity:1}38%,100%{transform:translate(-50%,-50%) scale(0) rotate(90deg);opacity:0}}
+
+/* ===== menu overlay: same nav bar on top, the chosen panel below ===== */
 .menu{position:fixed;inset:0;z-index:900;background:#0A0A0A;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .3s var(--tr),transform .3s var(--tr)}
 .menu.open{opacity:1;pointer-events:auto;transform:none}
-.menu-head{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gutter);border-bottom:1px solid #1E1E1E}
-.menu-logo img{height:52px;width:auto;display:block;mix-blend-mode:lighten}
-.menu-close{width:46px;height:46px;border-radius:8px;font-size:30px;line-height:1;color:#fff}
+.menu-head{position:relative;flex:none;background:#000;border-bottom:1px solid rgba(255,255,255,.16)}
+.menu-head .nv{--logo-h:clamp(52px,6vw,76px);padding:0 calc(var(--gutter) + 58px)}
+.menu-close{position:absolute;right:var(--gutter);top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:8px;font-size:30px;line-height:1;color:#fff}
 .menu-close:hover{background:rgba(255,255,255,.12)}
-.menu-body{flex:1;overflow:hidden;display:grid;grid-template-columns:280px 1fr;max-width:1340px;margin:0 auto;width:100%}
-.menu-nav{display:flex;flex-direction:column;gap:4px;padding:30px 22px;border-right:1px solid #1E1E1E}
-.menu-item{text-align:left;padding:14px 18px;border-radius:9px;font-size:18px;font-weight:600;color:var(--text-2)}
-.menu-item:hover{background:#171717;color:#fff}
-.menu-item.on{background:#171717;color:#fff}
-.menu-panels{padding:34px var(--gutter);overflow:auto}
-.menu-panel{display:none;max-width:980px}
+.menu-panels{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:36px var(--gutter) 56px;scrollbar-width:thin;scrollbar-color:#B02A9E #0A0A0A}
+.menu-panel{display:none;max-width:1040px;margin:0 auto}
 .menu-panel.on{display:block;animation:fadein .3s var(--tr)}
 @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .menu-panel h2{margin-bottom:10px}
 .menu-panel .sub{margin-bottom:8px}
-.svc-list,.contact-list{list-style:none;display:grid;gap:12px;margin:20px 0 24px}
-.svc-list li,.contact-list li{display:flex;gap:10px;font-size:15.5px;color:var(--text-2);align-items:flex-start;line-height:1.5}
-.svc-list li b,.contact-list li b{color:#fff}
-.svc-list li i,.contact-list li i{width:16px;height:16px;flex:none;margin-top:4px;border-radius:50%;background:var(--accent);position:relative}
-.svc-list li i::after,.contact-list li i::after{content:'';position:absolute;left:5.5px;top:3.5px;width:4px;height:8px;
-  border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
-.contact-list a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
-/* contact panel (menu) */
-.contact{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 0 30px}
-.c-tag{padding:14px 44px;border-radius:999px;font-size:17px;font-weight:500;color:#F3E9D6;border:1px solid transparent;
-  background:linear-gradient(90deg,#141414,#2A1913) padding-box,linear-gradient(90deg,rgba(255,255,255,.18),#E0742A) border-box}
-.menu-panel .c-title{margin:clamp(14px,3.2vh,34px) 0 clamp(16px,3.6vh,40px);font-weight:800;letter-spacing:-.045em;line-height:.92;font-size:clamp(40px,min(11vw,10vh),96px)}
-.c-title span{display:block;width:fit-content;margin-inline:auto;-webkit-background-clip:text;background-clip:text;color:transparent}
-.c-title .c1{background-image:linear-gradient(90deg,#8E8A82 0%,#F7F0E0 38%,#F7F0E0 62%,#8E8A82 100%)}
-.c-title .c2{margin-top:-.04em;background-image:linear-gradient(180deg,rgba(255,42,42,.25) 0%,#FF2A2A 38%,#C4161C 100%)}
-.c-list{display:grid;gap:clamp(9px,1.6vh,14px);width:100%;max-width:460px}
-.c-pill{display:flex;align-items:center;justify-content:center;min-height:clamp(46px,7vh,64px);padding:10px 20px;border-radius:18px;font-size:clamp(17px,2.4vw,22px);color:#F3E9D6;
-  border:1px solid transparent;transition:transform .2s var(--tr),filter .2s;
-  background:linear-gradient(90deg,#121212 0%,#2A1913 55%,#3E1A10 100%) padding-box,linear-gradient(90deg,rgba(255,255,255,.22),#E0742A) border-box}
-a.c-pill:hover{transform:translateY(-3px);filter:brightness(1.18)}
-.c-pill.u{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:680px){.c-tag{padding:12px 30px;font-size:15px}.menu-panel .c-title{margin:26px 0 30px}.c-list{gap:12px}.c-pill{min-height:58px}}
-/* contact map card (Google Maps embed, greyscale) */
-.c-main{display:flex;flex-direction:column;align-items:center;width:100%}
-.c-map{position:relative;width:100%;max-width:460px;height:clamp(150px,24vh,220px);margin-top:clamp(14px,2.6vh,24px);border-radius:28px;overflow:hidden;background:#161616;border:1px solid #2A2A2A;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-.c-map iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
-@media(min-width:1001px){
-  /* wide screens: details on the left, map on the right, so the panel still fits one screen */
-  .contact{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:36px;align-items:center;padding:0}
-  .contact .c-title{font-size:clamp(40px,min(6.2vw,9vh),66px)}
-  .c-map{max-width:none;height:clamp(320px,62vh,500px);margin-top:0;border-radius:36px}
-}
-@media(max-width:680px){.c-pill.addr{display:none}.c-map{border-radius:22px}}
+/* Services: sub-tabs (segmented control) */
+.seg{display:flex;gap:6px;padding:5px;border-radius:999px;background:#141414;border:1px solid #242424;width:fit-content;max-width:100%;margin:0 0 28px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg-i{flex:none;padding:10px 20px;border-radius:999px;font-size:14.5px;font-weight:700;color:var(--text-2);white-space:nowrap;transition:background .2s,color .2s}
+.seg-i:hover{color:#fff}
+.seg-i.on{background:var(--accent);color:#fff}
+.tab{display:none}
+.tab.on{display:block;animation:fadein .3s var(--tr)}
+
+/* Music (placeholder) */
+.soon{display:grid;justify-items:center;text-align:center;padding:clamp(20px,6vh,70px) 0}
+.soon .mini{margin-top:0}
+.soon h2{margin:10px 0 30px;font-size:clamp(44px,8vw,88px);font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
+.soon .sub{max-width:480px;margin:26px 0 4px}
 
 /* hero */
 .hero{position:relative;min-height:min(92vh,880px);display:grid;place-items:center;text-align:center;
-  padding:150px 24px 90px;overflow:hidden;background:#0A0A0A}
+  padding:190px 24px 90px;overflow:hidden;background:#0A0A0A}
 .mosaic{position:absolute;inset:-14% -10%;z-index:0;display:grid;grid-template-columns:repeat(9,1fr);gap:10px;
   transform:perspective(1400px) rotateX(11deg) rotateZ(-3deg) scale(1.16);transform-origin:center 30%}
 .mosaic i{display:block;aspect-ratio:2/3;border-radius:5px}
@@ -205,8 +194,6 @@ a.c-pill:hover{transform:translateY(-3px);filter:brightness(1.18)}
 .hero h1{text-shadow:0 2px 18px rgba(0,0,0,.6)}
 .hero .price{margin-top:18px;font-size:clamp(18px,1.8vw,22px);font-weight:500}
 .hero .price b{color:var(--accent-text);font-weight:700}
-.microcopy{margin-top:16px;font-size:14px;color:var(--text-3)}
-.microcopy a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
 
 /* rails */
 section{padding:72px 0}
@@ -233,19 +220,14 @@ section{padding:72px 0}
 .rarrow.l{left:-10px;border-radius:0 5px 5px 0}
 .rarrow.r{right:-10px;border-radius:5px 0 0 5px}
 
-/* launch + countdown */
-.launch{text-align:center}
-.launch .eyebrow{font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-text)}
-.launch h2{margin-top:12px;font-size:clamp(30px,5vw,54px);font-weight:900;letter-spacing:-.02em}
-.launch h2 span{color:var(--accent-text)}
-.launch p{margin-top:12px;color:var(--text-2);font-size:17px}
+/* countdown (inside the launch popup) */
 .countdown{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
 .cd{min-width:80px;background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:16px 12px}
 .cd .n{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1}
 .cd .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin-top:7px}
 .cd-done{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent-text);margin-top:26px}
 
-/* about hero (story / vision) */
+/* about: story, what you can learn, journey */
 .about-hero{margin-bottom:52px}
 .about-hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-text)}
 .about-hero h2{margin-top:10px;font-size:clamp(34px,5.5vw,58px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
@@ -262,7 +244,6 @@ section{padding:72px 0}
 .pil h3{font-size:16px;font-weight:800;line-height:1.2}
 .pil p{margin-top:6px;font-size:13.5px;line-height:1.5;color:var(--text-2)}
 
-/* journey: 4 steps + the "seven notes, the eighth is yours" scale */
 .about-hero .journey{margin-top:8px}
 .steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
 .steps li{position:relative}
@@ -294,7 +275,7 @@ section{padding:72px 0}
 }
 @media(max-width:400px){.about-hero .pillars{grid-template-columns:1fr}}
 
-/* about (used inside menu) */
+/* about: Meet Ronak */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
 .about-photo{border-radius:14px;aspect-ratio:4/5;align-self:start;background:#161616 center/cover no-repeat;border:1px solid #2A2A2A}
 .about-text h2{margin-bottom:12px}
@@ -304,7 +285,7 @@ section{padding:72px 0}
 .about-text li i{width:17px;height:17px;flex:none;margin-top:3px;border-radius:50%;background:var(--accent);position:relative}
 .about-text li i::after{content:'';position:absolute;left:6px;top:4px;width:4px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
 
-/* services (inside menu) */
+/* services: events */
 .svcs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
 .svc{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:22px;transition:border-color .25s,transform .25s var(--tr)}
 .svc:hover{border-color:var(--accent);transform:translateY(-4px)}
@@ -345,24 +326,23 @@ section{padding:72px 0}
 .yt .go{margin-top:14px;font-size:14px;font-weight:700;color:var(--accent-text)}
 .yt:hover .go{color:#fff}
 
-/* class finder (inside menu) */
-.pgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px}
-.pick{position:relative;cursor:pointer;border-radius:6px;overflow:hidden;transition:transform .25s var(--tr)}
-.pick:hover,.pick.on{transform:translateY(-4px)}
-.pick .art{aspect-ratio:2/3;position:relative}
-.pick .art::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.88) 100%)}
-.pick .name{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 9px 10px;font-weight:700;font-size:13px;line-height:1.16}
-.pick .ck{position:absolute;z-index:3;inset:0;border:3px solid var(--accent);border-radius:6px;opacity:0;transition:opacity .2s}
-.pick .ck::after{content:'';position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--accent)}
-.pick .ck::before{content:'';position:absolute;top:15px;right:15px;width:6px;height:11px;z-index:2;border-right:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(45deg)}
-.pick.on .ck{opacity:1}
-.pick .ico{position:absolute;inset:0 0 33% 0;display:grid;place-items:center;z-index:1;pointer-events:none}
-.pick .ico::before{content:'';position:absolute;width:min(80%,170px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),rgba(255,255,255,0) 68%)}
-.pick .ico svg{position:relative;width:min(56%,128px);height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.4));transition:transform .3s var(--tr)}
-.pick:hover .ico svg,.pick.on .ico svg{transform:translateY(-4px) scale(1.07)}
-.result{margin-top:26px;min-height:60px}
-.hint{color:var(--text-3);font-size:16px}
-.card-out{background:var(--chip);border:1px solid #2E2E2E;border-radius:12px;padding:24px 26px}
+/* find your class: 3-step wizard */
+.wz-top{display:flex;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap}
+.wz-prog{display:flex;gap:6px;width:150px}
+.wz-prog i{flex:1;height:5px;border-radius:3px;background:#2A2A2A}
+.wz-prog i.on{background:var(--grad)}
+.wz-step{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.wz-top .reset{margin-left:auto}
+.wz-q{margin-top:18px;font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.01em;outline:0}
+.wz-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
+.opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:150px;padding:18px 14px;border-radius:16px;background:var(--chip);border:1px solid #2A2A2A;text-align:center;transition:border-color .2s,transform .2s var(--tr),background .2s}
+.opt:hover{border-color:var(--accent);transform:translateY(-3px)}
+.opt.on{border-color:var(--accent);background:#2A1010;transform:scale(.98)}
+.opt .oi{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.opt .oi svg{width:34px;height:34px;stroke-width:3}
+.opt .ot{font-size:17px;font-weight:700;line-height:1.25}
+@media(max-width:680px){.wz-opts{grid-template-columns:1fr 1fr;gap:10px}.opt{min-height:118px;padding:14px 10px;gap:10px}.opt .oi{width:50px;height:50px}.opt .oi svg{width:28px;height:28px}.opt .ot{font-size:15px}}
+.card-out{background:var(--chip);border:1px solid #2E2E2E;border-radius:12px;padding:24px 26px;margin-top:22px}
 .card-out .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text);margin-bottom:10px}
 .card-out h3{font-size:clamp(20px,2.1vw,26px);font-weight:800;letter-spacing:-.01em}
 .card-out .lede{color:var(--text-2);margin-top:8px;font-size:16px}
@@ -382,7 +362,7 @@ section{padding:72px 0}
 .story .gfx{position:absolute;right:26px;bottom:24px}
 .story .gfx svg{display:block;filter:drop-shadow(0 8px 22px rgba(229,9,20,.5))}
 
-/* fees (now inside the menu) */
+/* fees (a tab inside Services) */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
 .plan{background:var(--chip);border:1px solid #2A2A2A;border-radius:12px;padding:28px;display:flex;flex-direction:column;position:relative}
 .plan.best{border:2px solid var(--accent)}
@@ -396,10 +376,30 @@ section{padding:72px 0}
 .plan li{display:flex;gap:10px;font-size:14.5px;color:var(--text-2);align-items:flex-start}
 .tk{width:17px;height:17px;flex:none;margin-top:3px;border-radius:50%;background:var(--accent);position:relative}
 .tk::after{content:'';position:absolute;left:6px;top:4px;width:4px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
-.batches{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.menu-panel .batches{justify-content:flex-start}
+.batches{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-start}
 .batch{background:#101010;border:1px solid #2A2A2A;border-radius:999px;padding:9px 16px;font-size:14px;color:var(--text-2)}
 .batch b{color:#fff;font-weight:600}
+/* compact so the fees tab fits one screen (no scrolling) */
+#panel-fees .sub{font-size:15px;margin:2px 0 0}
+#panel-fees .plans{gap:14px;margin-top:22px;grid-template-columns:repeat(3,1fr)}
+#panel-fees .plan{padding:18px 20px}
+#panel-fees .plan .flag{top:-12px;left:20px;font-size:10.5px;padding:4px 11px}
+#panel-fees .plan .pn{font-size:18px}
+#panel-fees .plan .pd{font-size:13px;margin-top:2px;min-height:36px}
+#panel-fees .plan .pp{font-size:26px;margin:10px 0 0}
+#panel-fees .plan .pp span{font-size:13px}
+#panel-fees .plan .btn{margin:14px 0;padding:9px 16px;font-size:14px}
+#panel-fees .plan ul{gap:7px}
+#panel-fees .plan li{font-size:13.5px;gap:9px}
+#panel-fees .batches{margin-top:18px;gap:8px}
+#panel-fees .batch{padding:6px 13px;font-size:13px}
+@media(max-width:1000px){
+  /* narrow screens: plans become a sideways-swipe row so the page still doesn't scroll down */
+  #panel-fees .plans{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:16px 2px 6px;margin-top:6px;scrollbar-width:none}
+  #panel-fees .plans::-webkit-scrollbar{display:none}
+  #panel-fees .plan{flex:0 0 min(300px,82%);scroll-snap-align:start}
+}
+@media(max-width:680px){#panel-fees .batches{display:none}}
 
 /* testimonials */
 .rev-marquee{margin-top:28px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
@@ -440,6 +440,32 @@ section{padding:72px 0}
 .fq:not(.open) .ans .act{visibility:hidden}
 @media(max-width:680px){.fq .ans .act{padding:0 16px 18px}}
 
+/* contact (menu panel) */
+.contact{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 0 30px}
+.c-tag{padding:14px 44px;border-radius:999px;font-size:17px;font-weight:500;color:#F3E9D6;border:1px solid transparent;
+  background:linear-gradient(90deg,#141414,#2A1913) padding-box,linear-gradient(90deg,rgba(255,255,255,.18),#E0742A) border-box}
+.menu-panel .c-title{margin:clamp(14px,3.2vh,34px) 0 clamp(16px,3.6vh,40px);font-weight:800;letter-spacing:-.045em;line-height:.92;font-size:clamp(40px,min(11vw,10vh),96px)}
+.c-title span{display:block;width:fit-content;margin-inline:auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.c-title .c1{background-image:linear-gradient(90deg,#8E8A82 0%,#F7F0E0 38%,#F7F0E0 62%,#8E8A82 100%)}
+.c-title .c2{margin-top:-.04em;background-image:linear-gradient(180deg,rgba(255,42,42,.25) 0%,#FF2A2A 38%,#C4161C 100%)}
+.c-list{display:grid;gap:clamp(9px,1.6vh,14px);width:100%;max-width:460px}
+.c-pill{display:flex;align-items:center;justify-content:center;min-height:clamp(46px,7vh,64px);padding:10px 20px;border-radius:18px;font-size:clamp(17px,2.4vw,22px);color:#F3E9D6;
+  border:1px solid transparent;transition:transform .2s var(--tr),filter .2s;
+  background:linear-gradient(90deg,#121212 0%,#2A1913 55%,#3E1A10 100%) padding-box,linear-gradient(90deg,rgba(255,255,255,.22),#E0742A) border-box}
+a.c-pill:hover{transform:translateY(-3px);filter:brightness(1.18)}
+.c-pill.u{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:680px){.c-tag{padding:12px 30px;font-size:15px}.menu-panel .c-title{margin:26px 0 30px}.c-list{gap:12px}.c-pill{min-height:58px}}
+.c-main{display:flex;flex-direction:column;align-items:center;width:100%}
+.c-map{position:relative;width:100%;max-width:460px;height:clamp(150px,24vh,220px);margin-top:clamp(14px,2.6vh,24px);border-radius:28px;overflow:hidden;background:#161616;border:1px solid #2A2A2A;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.c-map iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+@media(min-width:1001px){
+  /* wide screens: details on the left, map on the right, so the panel still fits one screen */
+  .contact{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:36px;align-items:center;padding:0}
+  .contact .c-title{font-size:clamp(40px,min(6.2vw,9vh),66px)}
+  .c-map{max-width:none;height:clamp(320px,62vh,500px);margin-top:0;border-radius:36px}
+}
+@media(max-width:680px){.c-pill.addr{display:none}.c-map{border-radius:22px}}
+
 /* closing + footer */
 .closing{padding:76px 0 84px;text-align:center}
 .closing .ask{font-size:clamp(17px,1.6vw,20px);font-weight:600;margin-bottom:6px}
@@ -462,62 +488,42 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--tr),transform .6s var(--tr)}
 .rv.in{opacity:1;transform:none}
 
-/* fees panel — compact so it fits one screen (no scrolling) */
-#panel-fees .sub{font-size:15px;margin:2px 0 0}
-#panel-fees .plans{gap:14px;margin-top:22px;grid-template-columns:repeat(3,1fr)}
-#panel-fees .plan{padding:18px 20px}
-#panel-fees .plan .flag{top:-12px;left:20px;font-size:10.5px;padding:4px 11px}
-#panel-fees .plan .pn{font-size:18px}
-#panel-fees .plan .pd{font-size:13px;margin-top:2px;min-height:36px}
-#panel-fees .plan .pp{font-size:26px;margin:10px 0 0}
-#panel-fees .plan .pp span{font-size:13px}
-#panel-fees .plan .btn{margin:14px 0;padding:9px 16px;font-size:14px}
-#panel-fees .plan ul{gap:7px}
-#panel-fees .plan li{font-size:13.5px;gap:9px}
-#panel-fees .batches{margin-top:18px;gap:8px}
-#panel-fees .batch{padding:6px 13px;font-size:13px}
-@media(max-width:1000px){
-  /* narrow screens: plans become a sideways-swipe row so the page still doesn't scroll down */
-  #panel-fees .plans{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:16px 2px 6px;margin-top:6px;scrollbar-width:none}
-  #panel-fees .plans::-webkit-scrollbar{display:none}
-  #panel-fees .plan{flex:0 0 min(300px,82%);scroll-snap-align:start}
-}
-@media(max-width:680px){#panel-fees .batches{display:none}}
 @media(max-width:1000px){
   .stories{grid-template-columns:repeat(2,1fr)}
-  .plans{grid-template-columns:1fr}
   .about{grid-template-columns:1fr}
   .about-photo{max-width:440px;width:100%;margin-inline:auto}
-  .pgrid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:900px){
+  .nv-i{font-size:13.5px;letter-spacing:.08em}
 }
 @media(max-width:800px){
-  .menu-body{grid-template-columns:1fr}
-  .menu-nav{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid #1E1E1E;padding:14px 18px;gap:8px;-webkit-overflow-scrolling:touch}
-  .menu-item{white-space:nowrap;padding:10px 14px;font-size:16px}
   .svcs{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  /* navigation becomes two rows: logo on top, the four links underneath */
+  .nv{--logo-h:50px;--nv-gap:22px;grid-template-columns:1fr 1fr;grid-template-areas:"logo logo" "l r";height:auto;padding:10px var(--gutter) 4px}
+  .nv .logo,.nv .menu-logo{grid-area:logo;justify-self:center}
+  .nv-l{grid-area:l;justify-self:center;margin:0}
+  .nv-r{grid-area:r;justify-self:center;margin:0}
+  .nv-i{font-size:12.5px;letter-spacing:.08em;padding:8px 0}
+  .top.scrolled .nv{height:auto}
+  .top.scrolled .logo img{height:38px}
+  .menu-head .nv{--logo-h:44px;padding-left:var(--gutter);padding-right:var(--gutter)}
+  .menu-close{top:10px;right:10px;transform:none;width:40px;height:40px;font-size:26px}
 }
 @media(max-width:680px){
   :root{--gutter:18px}
 
-  /* header */
-  .top-in{height:64px}
-  .logo img{height:46px}
-  .hamb{width:44px;height:44px}
-  .top-r{gap:8px}
-  .top-r .btn{padding:9px 14px;font-size:13.5px}
-
   /* hero */
-  .hero{padding:96px 18px 52px;min-height:520px}
+  .hero{padding:150px 18px 52px;min-height:520px}
   .hero h1{font-size:clamp(28px,8vw,42px)}
   .hero .price{font-size:15px;margin-top:14px}
   .cta-row{flex-direction:column;align-items:stretch;gap:10px;margin-top:22px}
   .btn-lg{height:54px;font-size:17px}
 
-  /* hamburger menu */
-  .menu-head{padding:16px var(--gutter)}
-  .menu-logo img{height:42px}
-  .menu-panels{padding:20px var(--gutter) 40px}
-  .menu-item{font-size:14.5px;padding:9px 12px}
+  /* menu panels */
+  .menu-panels{padding:22px var(--gutter) 44px}
+  .seg-i{padding:9px 16px;font-size:14px}
 
   /* sections generally */
   section{padding:46px 0}
@@ -536,24 +542,17 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .tile .lvl{font-size:12px}
   .rarrow{display:none}
 
-  /* find your class */
-  .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
-  .pick .name{font-size:12px;padding:0 7px 8px}
+  /* find your class result */
   .card-out{padding:18px}
   .facts{gap:8px}
   .fact{padding:7px 12px;font-size:13px}
 
-  /* about hero */
+  /* about */
   .about-hero{margin-bottom:36px}
   .about-lead p{font-size:19px}
   .about-body{font-size:15px}
-  .pillars{gap:18px;margin-top:32px}
-  .pillar .badge{width:56px;height:56px}
-  .pillar .badge svg{width:20px;height:20px}
-  .pillar span{font-size:13.5px;max-width:100px}
-  .journey{margin-top:38px}
 
-  /* services / perform */
+  /* events */
   .svcs{gap:12px}
   .svc{padding:18px}
   .svc .ic{width:42px;height:42px;margin-bottom:10px}
@@ -564,16 +563,6 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   /* why learn with us */
   .story{padding:24px 20px 96px;min-height:280px}
   .story .gfx svg{width:50px;height:50px}
-
-  /* about */
-  .about-photo{min-height:200px}
-
-  /* fees */
-  .plans{gap:12px}
-  .plan{padding:20px}
-  .plan .pp{font-size:28px}
-  .batches{gap:8px}
-  .batch{padding:7px 12px;font-size:13px}
 
   /* testimonials */
   .review{flex:0 0 290px;padding:20px 18px}
@@ -608,8 +597,6 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   .foot-bottom{flex-direction:column;align-items:flex-start;gap:6px}
 }
 @media(max-width:400px){
-  .pgrid{grid-template-columns:repeat(2,1fr);gap:8px}
-  .pick .name{font-size:13px}
   .tile{flex:0 0 130px}
   .tile .rank{font-size:70px;left:-28px}
   #rail{padding-left:36px}
@@ -636,42 +623,65 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
   <button class="skip" id="introSkip">Skip ›</button>
 </div>
 
-<div class="top">
-  <div class="top-in">
-    <a href="#" class="logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async" fetchpriority="high"></a>
-    <div class="top-r">
-      <button class="hamb" id="hamb" aria-label="Open menu" aria-controls="menu"><span></span></button>
-      <button class="btn btn-sm btn-grad" data-open="find">Book a class</button>
+<!-- ==================== TOP NAVIGATION ==================== -->
+<header class="top">
+  <nav class="nv" aria-label="Main">
+    <div class="nv-l">
+      <button class="nv-i" data-open="music">Music</button>
+      <button class="nv-i" data-open="services">Services</button>
     </div>
-  </div>
-</div>
+    <a href="#" class="logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async" fetchpriority="high"></a>
+    <div class="nv-r">
+      <button class="nv-i" data-open="about">About</button>
+      <button class="nv-i" data-open="contact">Contact</button>
+    </div>
+  </nav>
+</header>
 
-<!-- ==================== MENU OVERLAY ==================== -->
+<!-- ==================== MENU OVERLAY (panels) ==================== -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-head">
-    <a href="#" class="menu-logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async"></a>
+    <nav class="nv" aria-label="Sections">
+      <div class="nv-l">
+        <button class="nv-i" data-panel="music">Music</button>
+        <button class="nv-i" data-panel="services">Services</button>
+      </div>
+      <a href="#" class="menu-logo" aria-label="The 8th Note, home"><img src="logo.png.jpeg" alt="The 8th Note" decoding="async"></a>
+      <div class="nv-r">
+        <button class="nv-i" data-panel="about">About</button>
+        <button class="nv-i" data-panel="contact">Contact</button>
+      </div>
+    </nav>
     <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
   </div>
-  <div class="menu-body">
-    <nav class="menu-nav" aria-label="Sections">
-      <button class="menu-item on" data-panel="find">Find your class</button>
-      <button class="menu-item" data-panel="services">Services</button>
-      <button class="menu-item" data-panel="fees">Classes &amp; fees</button>
-      <button class="menu-item" data-panel="about">About Us</button>
-      <button class="menu-item" data-panel="contact">Contact Us</button>
-    </nav>
-    <div class="menu-panels">
+  <div class="menu-panels" id="menuPanels">
 
-      <!-- Find your class -->
-      <div class="menu-panel on" id="panel-find">
-        <h2>Find your class</h2>
-        <p class="sub">Pick three things you'd love to play or sing. We'll point you to the right class.</p>
-        <div class="pgrid" id="pgrid"></div>
-        <div class="result" id="result" aria-live="polite"><p class="hint">Pick three to see the right class for you.</p></div>
+    <!-- Music (coming soon) -->
+    <div class="menu-panel" id="panel-music">
+      <div class="soon">
+        <p class="mini">Coming soon</p>
+        <h2>Music</h2>
+        <div class="scale" aria-hidden="true">
+          <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
+        </div>
+        <p class="sub">Ronak's music is on its way. Follow along to hear it first.</p>
+        <div class="cta-row">
+          <a class="btn btn-sm" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">Follow on Instagram</a>
+          <a class="btn btn-sm btn-ghost" href="https://youtube.com/@ronakpatiyat" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services: classes · find your class · fees · events -->
+    <div class="menu-panel" id="panel-services">
+      <div class="seg" role="tablist" aria-label="Services">
+        <button class="seg-i on" role="tab" data-tab="classes">Classes</button>
+        <button class="seg-i" role="tab" data-tab="find">Find your class</button>
+        <button class="seg-i" role="tab" data-tab="fees">Fees</button>
+        <button class="seg-i" role="tab" data-tab="events">For events</button>
       </div>
 
-      <!-- Services -->
-      <div class="menu-panel" id="panel-services">
+      <div class="tab on" data-tab="classes">
         <h2>Classes offered</h2>
         <p class="sub">Personalised one-on-one with Ronak — piano, harmonium and vocals, basic to advanced. For students 10 and above.</p>
         <div class="rail-wrap">
@@ -679,89 +689,97 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
           <div class="rail" id="rail"></div>
           <button class="rarrow r" data-rail="rail" data-dir="1" aria-label="Scroll right"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <h2 style="margin-top:40px">Book The 8th Note for your event</h2>
-        <p class="sub">Ronak Patiyat — devotional singer. A voice with classical training and a real spiritual connection, brought to your occasion.</p>
-        <div class="svcs" id="svcs"></div>
-        <p class="quoteline">Classical training and a <b>spiritual connection</b> to make your event <b>divine and memorable</b>.</p>
-        <div class="event" id="event"></div>
-        <div class="perform-cta"><a class="btn btn-grad btn-sm" data-wa="Hi Ronak, I'd like to book The 8th Note to perform at my event." target="_blank" rel="noopener">Enquire on WhatsApp</a></div>
       </div>
 
-      <!-- Classes & fees -->
-      <div class="menu-panel" id="panel-fees">
+      <div class="tab" data-tab="find">
+        <h2>Find your class</h2>
+        <p class="sub">Answer 3 quick questions — just tap one answer each time — and we'll point you to the right class.</p>
+        <div id="wizard" aria-live="polite"></div>
+      </div>
+
+      <div class="tab" data-tab="fees" id="panel-fees">
         <h2>Classes &amp; fees</h2>
         <p class="sub">Personalised one-on-one, in person or online. Message for current fees — or start learning on YouTube from ₹49 a month.</p>
         <div class="plans" id="plans"></div>
         <div class="batches" id="batches"></div>
       </div>
 
-      <!-- About Us -->
-      <div class="menu-panel" id="panel-about">
-
-        <div class="about-hero">
-          <p class="eyebrow">About us</p>
-          <h2>Our Story</h2>
-          <div class="about-lead">
-            <p>Every idea deserves the right note.</p>
-            <p>THE8THNOTE is where it begins.</p>
-          </div>
-          <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
-          <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
-
-          <p class="mini">What you can learn</p>
-          <div class="pillars" id="pillars"></div>
-
-          <p class="mini">Your journey with The 8th Note</p>
-          <div class="journey">
-            <ol class="steps" id="steps"></ol>
-            <div class="eight">
-              <div class="scale" aria-hidden="true">
-                <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
-              </div>
-              <p class="t1">Seven notes make music.</p>
-              <p class="t2">The eighth makes it yours.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="about">
-          <div class="about-photo" style="background-image:url('about-ronak-01.jpeg')" role="img" aria-label="Ronak Patiyat singing devotional music with a microphone at Tapasya Bhakthi"></div>
-          <div class="about-text">
-            <h2>Meet Ronak Patiyat</h2>
-            <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
-            <ul>
-              <li><i></i>Trained at a leading Mumbai music institute</li>
-              <li><i></i>Piano, harmonium &amp; vocals — basic to advanced</li>
-              <li><i></i>100+ Jain songs on piano &amp; 100+ Jain stavans in voice</li>
-              <li><i></i>Bollywood piano and a classical vocal foundation (sur &amp; taal)</li>
-              <li><i></i>In person at VV Puram, or live one-on-one online</li>
-            </ul>
-            <a class="btn btn-grad btn-sm" data-wa="Hi Ronak, I have a question about your music classes." target="_blank" rel="noopener">Message Ronak on WhatsApp</a>
-          </div>
-        </div>
+      <div class="tab" data-tab="events">
+        <h2>Book The 8th Note for your event</h2>
+        <p class="sub">Ronak Patiyat — devotional singer. A voice with classical training and a real spiritual connection, brought to your occasion.</p>
+        <div class="svcs" id="svcs"></div>
+        <p class="quoteline">Classical training and a <b>spiritual connection</b> to make your event <b>divine and memorable</b>.</p>
+        <div class="event" id="event"></div>
+        <div class="perform-cta"><a class="btn btn-grad btn-sm" data-wa="Hi Ronak, I'd like to book The 8th Note to perform at my event." target="_blank" rel="noopener">Enquire on WhatsApp</a></div>
       </div>
-
-      <!-- Contact Us -->
-      <div class="menu-panel" id="panel-contact">
-        <div class="contact">
-          <div class="c-main">
-            <span class="c-tag">Ronak Patiyat</span>
-            <h2 class="c-title"><span class="c1">Get in Touch</span><span class="c2">With Us</span></h2>
-            <div class="c-list">
-              <a class="c-pill" href="tel:+919480061108">+91 94800 61108</a>
-              <a class="c-pill u" data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">Chat on WhatsApp</a>
-              <a class="c-pill" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a>
-              <a class="c-pill addr" href="https://maps.app.goo.gl/uG5pUJ9QffNESMP1A" target="_blank" rel="noopener">VV Puram, Bengaluru</a>
-            </div>
-          </div>
-          <div class="c-map">
-            <iframe title="Map: The 8th Note location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-              src="https://www.google.com/maps?q=Aagam+Esturi@12.9486845,77.5702652&z=17&output=embed"></iframe>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- About -->
+    <div class="menu-panel" id="panel-about">
+
+      <div class="about-hero">
+        <p class="eyebrow">About</p>
+        <h2>Our Story</h2>
+        <div class="about-lead">
+          <p>Every idea deserves the right note.</p>
+          <p>THE8THNOTE is where it begins.</p>
+        </div>
+        <p class="about-body">What started with a journey to Mumbai to learn, explore and express through music grew into a space where different sides of music could come together. From singing and piano to spiritual and bhakti music, THE8THNOTE is about discovering the many ways music can become a part of who we are.</p>
+        <p class="about-body">Today, the vision is to build a musical community that goes beyond a page — a space where people can learn, express, explore and find their own note.</p>
+
+        <p class="mini">What you can learn</p>
+        <div class="pillars" id="pillars"></div>
+
+        <p class="mini">Your journey with The 8th Note</p>
+        <div class="journey">
+          <ol class="steps" id="steps"></ol>
+          <div class="eight">
+            <div class="scale" aria-hidden="true">
+              <i style="--i:0;height:18px"></i><i style="--i:1;height:27px"></i><i style="--i:2;height:36px"></i><i style="--i:3;height:45px"></i><i style="--i:4;height:54px"></i><i style="--i:5;height:63px"></i><i style="--i:6;height:72px"></i><i class="e" style="--i:7;height:80px"></i>
+            </div>
+            <p class="t1">Seven notes make music.</p>
+            <p class="t2">The eighth makes it yours.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about">
+        <div class="about-photo" style="background-image:url('about-ronak-01.jpeg')" role="img" aria-label="Ronak Patiyat singing devotional music with a microphone at Tapasya Bhakthi"></div>
+        <div class="about-text">
+          <h2>Meet Ronak Patiyat</h2>
+          <p>Hi, I'm Ronak — a keyboardist and singer trained at one of Mumbai's leading music institutes. The 8th Note is my personalised, one-on-one way of teaching piano, harmonium and vocals: fun, interactive and creative, and built around what you actually want to play. I teach students 10 and above, in person in Bengaluru or live online — and I also perform devotional music at Jain and spiritual events.</p>
+          <ul>
+            <li><i></i>Trained at a leading Mumbai music institute</li>
+            <li><i></i>Piano, harmonium &amp; vocals — basic to advanced</li>
+            <li><i></i>100+ Jain songs on piano &amp; 100+ Jain stavans in voice</li>
+            <li><i></i>Bollywood piano and a classical vocal foundation (sur &amp; taal)</li>
+            <li><i></i>In person at VV Puram, or live one-on-one online</li>
+          </ul>
+          <a class="btn btn-grad btn-sm" data-wa="Hi Ronak, I have a question about your music classes." target="_blank" rel="noopener">Message Ronak on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="menu-panel" id="panel-contact">
+      <div class="contact">
+        <div class="c-main">
+          <span class="c-tag">Ronak Patiyat</span>
+          <h2 class="c-title"><span class="c1">Get in Touch</span><span class="c2">With Us</span></h2>
+          <div class="c-list">
+            <a class="c-pill" href="tel:+919480061108">+91 94800 61108</a>
+            <a class="c-pill u" data-wa="Hi Ronak, I'd like to get in touch." target="_blank" rel="noopener">Chat on WhatsApp</a>
+            <a class="c-pill" href="https://instagram.com/the8thnote__" target="_blank" rel="noopener">@the8thnote__</a>
+            <a class="c-pill addr" href="https://maps.app.goo.gl/uG5pUJ9QffNESMP1A" target="_blank" rel="noopener">VV Puram, Bengaluru</a>
+          </div>
+        </div>
+        <div class="c-map">
+          <iframe title="Map: The 8th Note location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+            src="https://www.google.com/maps?q=Aagam+Esturi@12.9486845,77.5702652&z=17&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -775,7 +793,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
     <h1>Piano, harmonium &amp; vocals — with Ronak Patiyat.</h1>
     <p class="price">Personalised <b>one-on-one</b> training for passionate learners. Students 10 and above.</p>
     <div class="cta-row" id="book">
-      <button class="btn btn-lg btn-grad" data-open="find">Book a class
+      <button class="btn btn-lg" data-open="find">Book a class
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
@@ -901,7 +919,7 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
     <p class="ask">Ready to start?</p>
     <p class="sub">Book a class, or message Ronak on WhatsApp.</p>
     <div class="cta-row">
-      <button class="btn btn-lg btn-grad" data-open="find">Book a class
+      <button class="btn btn-lg" data-open="find">Book a class
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </button>
       <a href="tel:+919480061108" class="btn btn-lg btn-ghost">
@@ -927,11 +945,11 @@ footer{padding:56px 0 48px;color:var(--text-3);font-size:15px}
       </div>
       <nav class="foot-nav" aria-label="Footer">
         <a href="#">Home</a>
+        <a href="#" data-open="music">Music</a>
         <a href="#" data-open="services">Services</a>
-        <a href="#" data-open="fees">Classes &amp; fees</a>
         <a href="#courses">Courses</a>
-        <a href="#" data-open="about">About Us</a>
-        <a href="#" data-open="contact">Contact Us</a>
+        <a href="#" data-open="about">About</a>
+        <a href="#" data-open="contact">Contact</a>
       </nav>
       <div class="foot-contact">
         <a href="tel:+919480061108">+91 94800 61108</a>
@@ -1040,7 +1058,7 @@ const SERVICES=[
 ];
 const EVENTS=[{d:"20",m:"Sep",dow:"Sunday",title:"Tapasya Bhakthi",venue:"Sri S.S. Jain Sangh, Xaviers Layout"}];
 
-/* icons for the "Find your class" cards — white line-art on a 64×64 grid */
+/* icons used by the "Find your class" wizard and the About cards — white line-art on a 64×64 grid */
 const SV=b=>`<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${b}</svg>`;
 const FL='fill="rgba(255,255,255,.2)"', WH='fill="#fff" stroke="none"';
 const WICON={
@@ -1053,22 +1071,26 @@ const WICON={
   metronome:SV(`<path d="M22 55L28 9H36L42 55Z" ${FL}/><path d="M16 55H48"/><path d="M27 22h3M26 30h3M25 38h3"/><path d="M32 49L40 17"/><circle cx="38" cy="26" r="3.4" ${WH}/>`),
   singkeys:SV(`<rect x="25" y="5" width="14" height="22" rx="7" ${FL}/><path d="M25 13h14M25 19h14"/><path d="M19 21C19 31 25 36 32 36S45 31 45 21"/><path d="M32 36v4"/><rect x="6" y="40" width="52" height="18" rx="4" ${FL}/><path d="M19 40v18M32 40v18M45 40v18"/><rect x="16" y="40" width="6" height="10" rx="1.5" ${WH}/><rect x="29" y="40" width="6" height="10" rx="1.5" ${WH}/><rect x="42" y="40" width="6" height="10" rx="1.5" ${WH}/>`),
   laptop:SV(`<rect x="10" y="10" width="44" height="32" rx="4" ${FL}/><circle cx="24" cy="22" r="4.2" ${WH}/><path d="M16 36C16 29 32 29 32 36"/><circle cx="40" cy="22" r="4.2" ${WH}/><path d="M32 36C32 29 48 29 48 36"/><path d="M5 47H59L56 54H8Z" ${FL}/>`),
-  ten:SV(`<circle cx="32" cy="35" r="22" ${FL}/><text x="32" y="42" text-anchor="middle" font-size="21" font-weight="800" fill="#fff" stroke="none" style="font-family:inherit">10+</text><path d="M52 6l1.8 4.2L58 12l-4.2 1.8L52 18l-1.8-4.2L46 12l4.2-1.8Z" ${WH}/><path d="M12 6l1.2 2.8L16 10l-2.8 1.2L12 14l-1.2-2.8L8 10l2.8-1.2Z" ${WH}/>`)
+  pin:SV(`<path d="M32 58C21 45 14 36 14 26a18 18 0 0 1 36 0c0 10-7 19-18 32Z" ${FL}/><circle cx="32" cy="26" r="7" ${WH}/>`),
+  star:SV(`<path d="M32 6l6 17 17 6-17 6-6 17-6-17-17-6 17-6Z" ${FL}/><path d="M50 8v8M46 12h8"/>`)
 };
-const WANTS=[
-  {t:"Play Jain songs on piano",inst:"Piano",course:"Jain Songs on Piano",a:"ember",ic:"piano"},
-  {t:"Sing Jain stavans",inst:"Vocals",course:"Jain Stavans",a:"violet",ic:"lotus"},
-  {t:"Learn classical vocals",inst:"Vocals",course:"Classical Vocals",a:"rose",ic:"mic"},
-  {t:"Play Bollywood songs",inst:"Piano",course:"Bollywood Piano",a:"indigo",ic:"clap"},
-  {t:"Learn harmonium",inst:"Harmonium",course:"Harmonium",a:"brass",ic:"harmonium"},
-  {t:"Start piano from scratch",inst:"Piano",course:"Piano — Basic to Advanced",a:"ivory",ic:"sprout"},
-  {t:"Understand sur & taal",inst:"Vocals",course:"Classical Vocals",a:"rose",ic:"metronome"},
-  {t:"Accompany myself while singing",inst:"Piano",course:"Piano — Basic to Advanced",a:"slate",ic:"singkeys"},
-  {t:"Learn online, 1-on-1",inst:"Online",course:"Online 1-on-1 Classes",a:"jade",ic:"laptop"},
-  {t:"Just getting started, age 10+",inst:"Piano",course:"Piano — Basic to Advanced",a:"ivory",ic:"ten"}
-];
 
-/* About Us — the 4 things taught (icons come from WICON) and the 4-step journey */
+/* "Find your class" wizard — 3 one-tap questions → a class. Edit the wording / mapping here. */
+const WZ_Q=["What would you like to learn?","What do you most want to play or sing?","How would you like to learn?"];
+const WZ_OPTS=[
+  [{k:"piano",t:"Piano / keyboard",ic:"piano",a:"ember"},{k:"harmonium",t:"Harmonium",ic:"harmonium",a:"brass"},{k:"vocals",t:"Singing",ic:"mic",a:"rose"},{k:"unsure",t:"Not sure yet",ic:"sprout",a:"slate"}],
+  {
+    piano:[{k:"jain",t:"Jain songs",ic:"lotus",a:"violet"},{k:"bollywood",t:"Bollywood songs",ic:"clap",a:"indigo"},{k:"basics",t:"Piano from the basics",ic:"sprout",a:"ivory"}],
+    harmonium:[{k:"devotional",t:"Devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Start from the basics",ic:"sprout",a:"ivory"}],
+    vocals:[{k:"stavans",t:"Jain stavans",ic:"lotus",a:"violet"},{k:"classical",t:"Classical — sur &amp; taal",ic:"metronome",a:"rose"},{k:"accompany",t:"Sing while playing keys",ic:"singkeys",a:"slate"}],
+    unsure:[{k:"bollywood",t:"Songs I love (Bollywood)",ic:"clap",a:"indigo"},{k:"devotional",t:"Jain devotional songs",ic:"lotus",a:"violet"},{k:"basics",t:"Just start from scratch",ic:"sprout",a:"ivory"}]
+  },
+  [{k:"person",t:"In person at VV Puram",ic:"pin",a:"ember"},{k:"online",t:"Live online",ic:"laptop",a:"jade"},{k:"either",t:"Either is fine",ic:"star",a:"indigo"}]
+];
+const WZ_COURSE={"piano:jain":"Jain Songs on Piano","piano:bollywood":"Bollywood Piano","piano:basics":"Piano — Basic to Advanced","harmonium:devotional":"Harmonium","harmonium:basics":"Harmonium","vocals:stavans":"Jain Stavans","vocals:classical":"Classical Vocals","vocals:accompany":"Piano — Basic to Advanced","unsure:bollywood":"Bollywood Piano","unsure:devotional":"Jain Songs on Piano","unsure:basics":"Piano — Basic to Advanced"};
+const WZ_FMT={person:"In person at VV Puram",online:"Live online",either:"In person or online"};
+
+/* About — the 4 things taught (icons come from WICON) and the 4-step journey */
 const PILLARS=[
   {ic:"piano",t:"Piano &amp; Keys",d:"Bollywood hits and 100+ Jain songs, from basic to advanced.",a:"ember"},
   {ic:"harmonium",t:"Harmonium",d:"Build a strong foundation, one-on-one — beginners welcome.",a:"brass"},
@@ -1098,7 +1120,7 @@ const PLANS=[
 ];
 const BATCHES=[["In-person","VV Puram, Bengaluru"],["Online","Live, one-on-one"],["Students","10 years &amp; above"],["Instruments","Piano · Harmonium · Vocals"]];
 
-/* FAQ: [question, answer, menu panel to open, button label] — each answer jumps to a navigation-pane section */
+/* FAQ: [question, answer, menu panel to open, button label] — each answer jumps to a navigation section */
 const FAQS=[
   ["I'm a beginner — which class should I start with?","Beginners are very welcome, from age 10 and above. Pick three things you'd love to play or sing and we'll point you to the right class — one-on-one, at your own pace, with no audition and no experience needed.","find","Find your class"],
   ["What do you teach, and can I book Ronak to sing at my event?","Piano, harmonium and vocals, one-on-one — from absolute basics to advanced, with 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano and a classical foundation of sur and taal. Ronak also performs at Jain and spiritual programs, Bhakthi Sandhya evenings, poojas and paths.","services","See classes &amp; events"],
@@ -1171,28 +1193,32 @@ $("#reel-track").innerHTML=REELS.map(u=>`
 
 document.querySelectorAll(".rarrow").forEach(b=>{ b.onclick=()=>document.getElementById(b.dataset.rail).scrollBy({left:213*3*+b.dataset.dir,behavior:"smooth"}); });
 
-/* class finder */
-$("#pgrid").innerHTML=WANTS.map((w,i)=>`<div class="pick" data-i="${i}" role="checkbox" aria-checked="false" tabindex="0" aria-label="${w.t}"><div class="art" style="background:${art(w.a)}"><span class="ico">${WICON[w.ic]}</span><span class="name">${w.t}</span></div><span class="ck"></span></div>`).join("");
-const picked=new Set();
-const mode=arr=>[...arr].sort((a,b)=>arr.filter(v=>v===b).length-arr.filter(v=>v===a).length)[0];
-function renderResult(){
-  const box=$("#result");
-  if(picked.size<3){const left=3-picked.size;box.innerHTML=`<p class="hint">${picked.size===0?"Pick three to see the right class for you.":`${left} more to go.`}</p>`;return;}
-  const chosen=[...picked].map(i=>WANTS[i]);
-  const course=mode(chosen.map(c=>c.course));
-  const inst=mode(chosen.map(c=>c.inst));
-  const link=wa("Hi Ronak, I'd like to learn more about the "+course+" class.");
-  box.innerHTML=`<div class="card-out"><div class="eyebrow">Your class</div><h3>${course}</h3>
-    <p class="lede">Based on what you picked, this is where Ronak would start you — one-on-one, at your pace. No audition, no experience needed.</p>
-    <div class="facts"><span class="fact">Focus: <b>${inst}</b></span><span class="fact">One-on-one</span><span class="fact">Age 10 &amp; above</span><span class="fact">In person or online</span></div>
-    <div class="foot"><a href="${link}" class="btn btn-grad btn-sm" target="_blank" rel="noopener">Ask about this class</a><button class="reset" id="reset">Start over</button></div></div>`;
-  $("#reset").onclick=clearAll;
+/* class finder wizard: one question at a time, one tap per answer, then the recommended class */
+let wz={i:0,a:[]};
+function wizDraw(){
+  const box=$("#wizard"), i=wz.i;
+  if(i>=3){
+    const course=WZ_COURSE[wz.a[0]+":"+wz.a[1]], fmt=WZ_FMT[wz.a[2]];
+    const inst=/Vocal|Stavan/.test(course)?"Vocals":/Harmonium/.test(course)?"Harmonium":"Piano";
+    const link=wa("Hi Ronak, I'd like to start the "+course+" class ("+fmt+"). Could you share the details?");
+    box.innerHTML=`<div class="card-out"><div class="eyebrow">Your class</div><h3>${course}</h3>
+      <p class="lede">Based on your answers, this is where Ronak would start you — one-on-one, at your own pace. No audition, no experience needed.</p>
+      <div class="facts"><span class="fact">Focus: <b>${inst}</b></span><span class="fact">One-on-one</span><span class="fact">Age 10 &amp; above</span><span class="fact">${fmt}</span></div>
+      <div class="foot"><a href="${link}" class="btn btn-grad btn-sm" target="_blank" rel="noopener">Ask about this class</a><button class="reset" id="wzReset">Start over</button></div></div>`;
+    $("#wzReset").onclick=()=>{wz={i:0,a:[]};wizDraw();};
+    return;
+  }
+  const opts=i===1?WZ_OPTS[1][wz.a[0]]:WZ_OPTS[i];
+  box.innerHTML=`<div class="wz-top"><div class="wz-prog" aria-hidden="true">${[0,1,2].map(n=>`<i class="${n<=i?"on":""}"></i>`).join("")}</div><span class="wz-step">Step ${i+1} of 3</span>${i>0?'<button class="reset" id="wzBack">‹ Back</button>':""}</div>
+    <h3 class="wz-q" tabindex="-1">${WZ_Q[i]}</h3>
+    <div class="wz-opts">${opts.map(o=>`<button class="opt" data-k="${o.k}"><span class="oi" style="background:${art(o.a)}">${WICON[o.ic]}</span><span class="ot">${o.t}</span></button>`).join("")}</div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{b.classList.add("on");setTimeout(()=>{wz.a[i]=b.dataset.k;wz.i=i+1;wizDraw();},200);});
+  const back=$("#wzBack"); if(back) back.onclick=()=>{wz.i=i-1;wz.a.length=i-1;wizDraw();};
+  if(i>0) box.querySelector(".wz-q").focus({preventScroll:true});
 }
-function clearAll(){picked.clear();document.querySelectorAll(".pick").forEach(p=>{p.classList.remove("on");p.setAttribute("aria-checked","false");});renderResult();}
-function toggle(el){const i=+el.dataset.i;if(picked.has(i))picked.delete(i);else if(picked.size<3)picked.add(i);else return;el.classList.toggle("on",picked.has(i));el.setAttribute("aria-checked",String(picked.has(i)));renderResult();}
-document.querySelectorAll(".pick").forEach(el=>{el.onclick=()=>toggle(el);el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle(el);}};});
+wizDraw();
 
-/* fees (rendered into the menu's "Classes & fees" panel) */
+/* fees (rendered into the Services → Fees tab) */
 $("#plans").innerHTML=PLANS.map(p=>{const href=p.ctaUrl||wa("Hi Ronak, I'd like to know the fees for "+p.n+".");return `
   <div class="plan ${p.best?"best":""}">${p.best?'<span class="flag">Most popular</span>':""}
     <div class="pn">${p.n}</div><div class="pd">${p.d}</div><div class="pp">${p.p} <span>${p.u}</span></div>
@@ -1204,14 +1230,25 @@ $("#batches").innerHTML=BATCHES.map(([n,t])=>`<span class="batch"><b>${n}</b> �
 $("#faqs").innerHTML=FAQS.map(([q,a,panel,label])=>`<div class="fq"><button aria-expanded="false">${q}<span class="pm"></span></button><div class="ans"><p>${a}</p><div class="act"><a href="#" class="btn btn-sm btn-grad" data-open="${panel}">${label} →</a></div></div></div>`).join("");
 document.querySelectorAll(".fq").forEach(f=>{const btn=f.querySelector("button"),ans=f.querySelector(".ans");btn.onclick=()=>{const open=f.classList.toggle("open");btn.setAttribute("aria-expanded",open);ans.style.maxHeight=open?ans.scrollHeight+"px":0;};});
 
-/* ===== menu overlay ===== */
-const menu=document.getElementById("menu");
-function setPanel(p){document.querySelectorAll(".menu-item").forEach(x=>x.classList.toggle("on",x.dataset.panel===p));document.querySelectorAll(".menu-panel").forEach(x=>x.classList.toggle("on",x.id==="panel-"+p));}
-function openMenu(p){ if(p) setPanel(p); menu.classList.add("open"); document.body.style.overflow="hidden"; }
+/* ===== menu overlay =====
+   Top-bar links and every data-open="…" button open a panel. Panels: music · services (tabs: classes / find / fees / events) · about · contact */
+const menu=document.getElementById("menu"), panelsBox=document.getElementById("menuPanels");
+const MAP={music:["music"],services:["services","classes"],classes:["services","classes"],find:["services","find"],fees:["services","fees"],events:["services","events"],about:["about"],contact:["contact"]};
+function setPanel(p){
+  document.querySelectorAll("#menu .nv-i").forEach(x=>{const on=x.dataset.panel===p;x.classList.toggle("on",on);if(on)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current");});
+  document.querySelectorAll(".menu-panel").forEach(x=>x.classList.toggle("on",x.id==="panel-"+p));
+  panelsBox.scrollTop=0;
+}
+function setTab(t){
+  document.querySelectorAll(".seg-i").forEach(x=>{const on=x.dataset.tab===t;x.classList.toggle("on",on);x.setAttribute("aria-selected",on);});
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x.dataset.tab===t));
+  panelsBox.scrollTop=0;
+}
+function openMenu(k){ const m=MAP[k]||MAP.services; setPanel(m[0]); if(m[1]) setTab(m[1]); menu.classList.add("open"); document.body.style.overflow="hidden"; }
 function closeMenu(){ menu.classList.remove("open"); document.body.style.overflow=""; }
-document.getElementById("hamb").addEventListener("click",()=>openMenu());
 document.getElementById("menuClose").addEventListener("click",closeMenu);
-document.querySelectorAll(".menu-item").forEach(b=>b.addEventListener("click",()=>setPanel(b.dataset.panel)));
+document.querySelectorAll("#menu .nv-i").forEach(b=>b.addEventListener("click",()=>setPanel(b.dataset.panel)));
+document.querySelectorAll(".seg-i").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
 document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();openMenu(b.dataset.open);}));
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&menu.classList.contains("open")) closeMenu(); });
 
@@ -1232,7 +1269,7 @@ document.querySelectorAll(".logo,.menu-logo").forEach(l=>l.addEventListener("cli
   t=setInterval(tick,1000); tick();
 })();
 
-/* scroll-to-top */
+/* scroll-to-top + nav bar background */
 (function(){
   const b=document.getElementById("scrolltop"); if(!b) return;
   const top=document.querySelector(".top");
