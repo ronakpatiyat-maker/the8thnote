@@ -604,6 +604,12 @@ body:has(.st.dragging){user-select:none;-webkit-user-select:none}
 .an-hl{color:#FFC46B;font-weight:800}
 .an-vh{font-size:13px;font-weight:800;letter-spacing:.06em;color:#FFC46B;margin-bottom:6px}
 @media(max-width:700px){.an-c{padding:12px}.an-t p{font-size:calc(18px * var(--fs,1))}}
+
+/* context numbers (C1, C2 …) */
+.cp-no{flex:none;min-width:30px;font-size:11.5px;font-weight:800;color:#8C8C8C;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.cp-i.on .cp-no{color:#FFC46B}
+.cp-no.in{min-width:0;margin-left:6px;vertical-align:1px}
+.cx-no{font-size:.8em;font-weight:800;color:#FFC46B;margin-right:2px}
 </style>
 </head>
 <body class="locked">
@@ -1005,7 +1011,8 @@ const SONGS = [
   { no:191, id:"r192", title:"फूल (शांति सूरीजी)", titleEn:"Phool (Shanti Suriji)", lang:[], scale:[], notes:"Full name to confirm.", source:"Ronak's context lists — lyrics to come" },
   { no:192, id:"a192", title:"जय जय आरती", titleEn:"Jay Jay Aarti (Aadi Jinanda)", lang:["Gujarati"], scale:[], notes:"Aarti.", source:"Traditional aarti — text from Ronak (30 Oct)", lyrics:"> जय जय आरति आदि जिणंदा, नाभिराया मरुदेवी को नंदा ।।१।।\n\nपहेली आरति पूजा कीजे, नरभव पामीने लाहो लीजे ।।२।।\n\nदुसरी आरति दीन दयाला, धुळेवा मंडपमां जग अजवाळा ।।३।।\n\nतीसरी आरति त्रिभुवन देवा, सुरनर इन्द्र करे तोरी सेवा ।।४।।\n\nचोथी आरति चउगति चुरे, मनवांछित फल शिवसुख पुरे ।।५।।\n\nपंचमी आरति पुन्य उपाया, मूळचन्दे ऋषभ गुण गाया ।।६।।\n\n> जय जय आरति आदि जिणंदा, नाभिराया मरुदेवी को नंदा ।।" },
   { no:193, id:"a193", title:"मंगल दीवो", titleEn:"Mangal Divo (Divo re divo)", lang:["Gujarati"], scale:[], notes:"Aarti.", source:"Traditional aarti — text from Ronak (30 Oct)", lyrics:"> दीवो रे दीवो प्रभु मंगलिक दीवो ।\n> आरती उतारण बहु चिरंजीवो ॥१॥\n\nसोहामणुं घेर पर्व दिवाळी ।\nअंबर खेले अमराबाळी ॥२॥\n> ॥ दीवो रे दीवो प्रभु मंगलिक दीवो ॥\n\nदीपाळ भणे एणे कुळ अजुवाळी ।\nभावे भगते विघन निवारी ॥३॥\n> ॥ दीवो रे दीवो प्रभु मंगलिक दीवो ॥\n\nदीपाळ भणे एणे ए कलिकाळे ।\nआरती उतारी राजा कुमारपाळे ॥४॥\n> ॥ दीवो रे दीवो प्रभु मंगलिक दीवो ॥\n\nअम घेर मंगलिक, तुम घेर मंगलिक ।\nमंगलिक चतुर्विध संघने होजो ॥५॥\n> ॥ दीवो रे दीवो प्रभु मंगलिक दीवो ॥" },
-  { no:194, id:"a194", title:"गुरुदेव आरती", titleEn:"Gurudev Aarti", lang:[], scale:[], notes:"Aarti.", source:"Ronak's context lists — lyrics to come" }
+  { no:194, id:"a194", title:"गुरुदेव आरती", titleEn:"Gurudev Aarti", lang:[], scale:[], notes:"Aarti.", source:"Ronak's context lists — lyrics to come" },
+  { no:195, id:"r195", title:"सुणो चंदाजी सीमंधर परमातम पासे", titleEn:"Suno Chandaji Simandhar parmatam pase", aka:"Simandhar swami, Simandar, Seemandhar", lang:["Gujarati"], scale:[], source:"Ronak (6 Nov) — lyrics to come" }
 ];
 
 /* Ready-made setlists (ordered) — song serial numbers, from Ronak's own lists and chart groupings. */
@@ -1040,7 +1047,8 @@ const SETS = [
    - songs = Ronak's own list, shown in HIS order.
    - suggest = Claude's earlier suggestions for that context, shown after his list under "Suggested — to review".
    No other contexts exist — add only if Ronak asks.
-   after:"X" = always placed right after context X (Mashup after Adinath Bhagwan).
+   no = the context's number (C1, C2 …). The panel is in this order: Navkar (no number, pinned first),
+        then C1, C2 … , Aarti last. A new context gets the next free number (before Aarti).
    pin:"first" = right after Stuti, at the top (Navkar).
    pin:"last" = always at the bottom of the list (Aarti). Stuti is always first in the panel (it opens the stuti list).
    ===================================================================== */
@@ -1053,82 +1061,82 @@ const CONTEXTS = [
   { group:"ctx", name:"Navkar", pin:"first", reviewed:false, source:"Claude: Navkar songs — to review",
     songs:[],
     suggest:[1] },
-  { group:"ctx", name:"Adinath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[10,18,5,11,20,23,13,26,29,37,42,65,69,39,99,36,35,143,145,117,140,94,47,22,54],
+  { group:"ctx", no:3, name:"Adinath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[10,18,5,11,20,23,13,26,29,37,42,65,69,39,99,36,35,143,145,117,140,94,47,22,54,93],
     suggest:[4,8,9,38,71,85,120,151] },
-  { group:"ctx", name:"Mashup", after:"Adinath Bhagwan", reviewed:false, source:"Claude: songs that are mashups / medleys — to review",
+  { group:"ctx", no:2, name:"Slow Mashup", reviewed:false, source:"Claude: songs that are mashups / medleys — to review",
     songs:[],
     suggest:[7,8,165,166,85,3,4,6,9,53] },
-  { group:"ctx", name:"All Pooja", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[21,182],
+  { group:"ctx", no:10, name:"All Pooja", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[21,182,180,99],
     suggest:[47] },
-  { group:"ctx", name:"Bhaav Bhakthi", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[132,9,152,143,178,19,10],
+  { group:"ctx", no:6, name:"Bhaav Bhakthi", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[132,9,152,143,178,19,10,99,93,36],
     exclude:[6] },
-  { group:"ctx", name:"Chetya Vandan Stavan", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[120,26,29,102,179,48] },
-  { group:"ctx", name:"Classical Songs", reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:11, name:"Chetya Vandan Stavan", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[120,26,29,102,179,48,96] },
+  { group:"ctx", no:12, name:"Classical Songs", reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[42,19,44] },
-  { group:"ctx", name:"Dance Number", reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:5, name:"Fast Dance Number", reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[62,63,54,64,66,65],
     suggest:[50,51,69,74,75,76,84] },
-  { group:"ctx", name:"Diksha", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:13, name:"Diksha", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[130,176,52,177,162,31,19],
     suggest:[17,119,122,123,128,134,135,136] },
-  { group:"ctx", name:"General Bhakthi", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[6,14,92,4,39,5,18,54,19,10],
+  { group:"ctx", no:1, name:"General Bhakthi", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[6,14,92,4,39,5,18,54,19,10,180,99,93,96,36],
     suggest:[1,7,12,24,32,34,40,41,43,46,49,53,55,56,57,58,59,61,72,76,79,84,87,88,89,90,94,156] },
-  { group:"ctx", name:"Girnar", reviewed:false, source:"Claude's suggestion — to review",
-    songs:[6,8,16,17,25,35,39,62,63,121,129,148,150] },
-  { group:"ctx", name:"Grah Pravesh", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[15,66,54,10],
+  { group:"ctx", no:14, name:"Girnar", reviewed:false, source:"Claude's suggestion — to review",
+    songs:[6,8,16,17,25,35,39,62,63,121,129,148,150,99,93,10,36] },
+  { group:"ctx", no:15, name:"Grah Pravesh", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[15,66,54,10,180,99,96],
     suggest:[58,109] },
-  { group:"ctx", name:"Gujarati Songs", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[93,36,117,31,19] },
-  { group:"ctx", name:"Mahaveer Swamy Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[3,168,169,81,170,54],
+  { group:"ctx", no:8, name:"Gujarati Songs", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[93,36,117,31,19,99,10,5] },
+  { group:"ctx", no:16, name:"Mahaveer Swamy Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[3,168,169,81,170,54,99],
     suggest:[4,8,28,80,107,108,124] },
-  { group:"ctx", name:"Marvadi Songs", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[69,67,68,74,75] },
-  { group:"ctx", name:"Nakoda Bherav", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[188,189,70] },
-  { group:"ctx", name:"Neminath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[62,121,16,167,63],
+  { group:"ctx", no:9, name:"Marvadi Songs", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[69,67,68,74,75,180] },
+  { group:"ctx", no:17, name:"Nakoda Bherav", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[188,189,70,180,99] },
+  { group:"ctx", no:4, name:"Neminath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[62,121,16,167,63,10],
     suggest:[6,8,17,25,35,39,129,148,150] },
-  { group:"ctx", name:"Palitana", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[120,91,18,5,9,13,20,23,26,42,65,10],
+  { group:"ctx", no:18, name:"Palitana", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[120,91,18,5,9,13,20,23,26,42,65,10,99,93,36],
     suggest:[4,8,71,85,140,151] },
-  { group:"ctx", name:"Palitana 5 Chaityavandan", reviewed:false, source:"Waiting for Ronak's list",
-    songs:[] },
-  { group:"ctx", name:"Parshwanath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[30,149,96,4,47,188],
+  { group:"ctx", no:20, name:"Parshwanath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[30,149,96,4,47,188,180,99,93,10,36],
     suggest:[2,3,27,60,97,101,114,125,147,154,157] },
-  { group:"ctx", name:"Prachin Stavan", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[54],
+  { group:"ctx", no:21, name:"Prachin Stavan", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[54,99,93,36,5],
     suggest:[26,27,96,97,98] },
-  { group:"ctx", name:"Pratishta / Dhwaja", reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:22, name:"Pratishta / Dhwaja", reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[47,33,15,78,54],
     suggest:[45,46,117] },
-  { group:"ctx", name:"Rajendra Suriji", reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:23, name:"Rajendra Suriji", reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[138,6,92,95,24,86,39,180,54] },
-  { group:"ctx", name:"Rishto ki Dor", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:24, name:"Rishto ki Dor", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[183,184,185,186,187] },
-  { group:"ctx", name:"Sahebji", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[178,9,77,22,180,19] },
-  { group:"ctx", name:"Sangh", reviewed:false, source:"Waiting for Ronak's list",
+  { group:"ctx", no:25, name:"Sahebji", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[178,9,77,22,180,19,99,93,36] },
+  { group:"ctx", no:26, name:"Sangh", reviewed:false, source:"Waiting for Ronak's list",
     songs:[] },
-  { group:"ctx", name:"Sankeshwar", reviewed:false, source:"Claude's suggestion — to review",
-    songs:[2,3,30,96,97,101,125,154] },
-  { group:"ctx", name:"Shanti Suriji", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[190,191] },
-  { group:"ctx", name:"Shantinath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[181,98] },
-  { group:"ctx", name:"Tapasya Bhakthi", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
-    songs:[171,172,173,174,175,82,83,54] },
-  { group:"ctx", name:"Utsah Songs", reviewed:true, source:"Ronak's list (27 Oct)",
+  { group:"ctx", no:27, name:"Sankeshwar", reviewed:false, source:"Claude's suggestion — to review",
+    songs:[2,3,30,96,97,101,125,154,99,93,10,36] },
+  { group:"ctx", no:28, name:"Shanti Suriji", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[190,191,180] },
+  { group:"ctx", no:29, name:"Shantinath Bhagwan", reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[181,98,180,99,93,10,36] },
+  { group:"ctx", no:7, name:"Tapasya Bhakthi", noGeneral:true, reviewed:true, source:"Ronak's list (27 Oct)",
+    songs:[171,172,173,174,175,82,83,54,180,99,96] },
+  { group:"ctx", no:30, name:"Utsah Songs", reviewed:true, source:"Ronak's list (27 Oct)",
     songs:[42,68,73,54],
     suggest:[8,15,50,51,62,63,64,65,66,67,69,70,71,72,74,75,76,77,78,85,104,108,163] },
-  { group:"ctx", name:"Aarti", pin:"last", reviewed:true, source:"Ronak (30 Oct) — the 3 aartis, lyrics to come",
+  { group:"ctx", no:31, name:"Simandhar Swamy Bhagwan", reviewed:true, source:"Ronak (6 Nov)",
+    songs:[195,99,93,36] },
+  { group:"ctx", no:32, name:"Aarti", pin:"last", reviewed:true, source:"Ronak (30 Oct) — the 3 aartis, lyrics to come",
     songs:[192,193,194] }
 ];
 </script>
@@ -1412,9 +1420,8 @@ let openDD=null;
 /* ---------- context order: A–Z · "after" moves a context right behind another · pin:"last" at the end ---------- */
 function ctxOrder(names){
   const rec=v=>CX_.find(x=>x.group==="ctx"&&x.name===v)||{};
-  let list=names.filter(v=>!rec(v).pin&&!rec(v).after).sort((a,b)=>a.localeCompare(b,"en",{sensitivity:"base"}));
-  names.filter(v=>rec(v).after&&!rec(v).pin).forEach(v=>{const i=list.indexOf(rec(v).after);if(i<0)list.push(v);else list.splice(i+1,0,v);});
-  return names.filter(v=>rec(v).pin==="first").concat(list,names.filter(v=>rec(v).pin==="last"));
+  const mid=names.filter(v=>!rec(v).pin).sort((a,b)=>((rec(a).no||999)-(rec(b).no||999))||a.localeCompare(b,"en",{sensitivity:"base"}));
+  return names.filter(v=>rec(v).pin==="first").concat(mid,names.filter(v=>rec(v).pin==="last"));
 }
 /* ---------- left panel: contexts A–Z, one at a time ---------- */
 const CTXF=FACETS.find(f=>f.key==="ctx");
@@ -1429,7 +1436,7 @@ function renderPanel(){
     const c=CX_.find(x=>x.group==="ctx"&&x.name===v)||{songs:[]};
     let n=0;SONGS_.forEach((s,i)=>{if(matches(i,"ctx")&&vals(s,"ctx").includes(v))n++;});
     const empty=!c.songs.length&&!(c.suggest||[]).length;
-    return item(v,v,empty?"—":n,inSongs&&cur===v,(empty?" cp-empty":"")+(c.pin?" pin":"")+(c.pin==="first"?" top":""),c.pin==="last"?ICON.aarti:c.pin==="first"?ICON.navkar:"");
+    return item(v,v,empty?"—":n,inSongs&&cur===v,(empty?" cp-empty":"")+(c.pin?" pin":"")+(c.pin==="first"?" top":""),c.pin==="last"?ICON.aarti:c.pin==="first"?ICON.navkar:"").replace(/<span class="cp-n">([^<]*)<\/span>/,(m,nm)=>!c.no?m:c.pin?`<span class="cp-n">${nm} <span class="cp-no in">C${c.no}</span></span>`:`<span class="cp-no">C${c.no}</span><span class="cp-n">${nm}</span>`);
   };
   const pinned=v=>(CX_.find(x=>x.group==="ctx"&&x.name===v)||{}).pin==="last";
   /* one list: All songs, then Stuti · Navkar · Anchoring, then the contexts — no separate block */
@@ -1527,7 +1534,8 @@ function renderList(){
   shown=exact.concat(sugg,gen);
   const curCx=[...sel.ctx][0];
   const nS=(n,w)=>n?`${n} song${n===1?"":"s"}`:(w?"no list yet":"0 songs");
-  $("#count").innerHTML=(curCx?`<b class="cx-name">${esc(curCx)}</b> · `:"")+(genOn&&(gen.length||sugg.length)?`${nS(exact.length,curCx)} <span>${sugg.length?`+ ${sugg.length} suggested `:""}${gen.length?`+ ${gen.length} General Bhakthi`:""}</span>`:nS(shown.length,curCx));
+  const cxNo=(CX_.find(x=>x.group==="ctx"&&x.name===curCx)||{}).no;
+  $("#count").innerHTML=(curCx?`<b class="cx-name">${cxNo?`<span class="cx-no">C${cxNo}</span> `:""}${esc(curCx)}</b> · `:"")+(genOn&&(gen.length||sugg.length)?`${nS(exact.length,curCx)} <span>${sugg.length?`+ ${sugg.length} suggested `:""}${gen.length?`+ ${gen.length} General Bhakthi`:""}</span>`:nS(shown.length,curCx));
   if(!total){$("#list").innerHTML=`<div class="empty"><b>No songs yet</b>Songs are added in songs.js.</div>`;return;}
   if(!shown.length){$("#list").innerHTML=`<div class="empty"><b>No songs match all of these</b>Remove a filter${incGen?"":", or turn on “Include general songs”"}.</div>`;return;}
   const card=id=>{const s=byId(id),inS=setlist.includes(id),ly=hasLyr(s);return `
@@ -1803,7 +1811,7 @@ function renderIndex(){
     const inList=new Set(list.map(s=>s.no));let html2="",ord=[];
     ctxOrder(CX_.filter(c=>c.group==="ctx").map(c=>c.name)).map(n=>CX_.find(c=>c.group==="ctx"&&c.name===n)).forEach(c=>{
       const mine=(c.songs||[]).filter(n=>inList.has(n)),sug=(c.suggest||[]).filter(n=>inList.has(n));
-      html2+=`<li class="ix-letter ix-ctx">${esc(c.name)} <span>${mine.length}${c.reviewed?"":" · suggested"}${sug.length?` + ${sug.length} suggested`:""}</span></li>`;
+      html2+=`<li class="ix-letter ix-ctx">${c.no?`C${c.no} · `:""}${esc(c.name)} <span>${mine.length}${c.reviewed?"":" · suggested"}${sug.length?` + ${sug.length} suggested`:""}</span></li>`;
       if(!mine.length&&!sug.length)html2+=`<li class="ix-none">No songs yet</li>`;
       mine.forEach(n=>{html2+=row(byNo[n]);ord.push(byNo[n].id);});
       if(sug.length){html2+=`<li class="ix-sub">Suggested — to review</li>`;sug.forEach(n=>{html2+=row(byNo[n]);ord.push(byNo[n].id);});}

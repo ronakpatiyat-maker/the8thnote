@@ -1,12 +1,65 @@
 # The 8th Note — Website Project Context
 
-> **How to use this file:** Keep it in the repo as `project_context.md`. When you start a new chat with Claude, upload this file + `index.html` (or share the repo link) and say "here's the context." It captures the business, hosting, site structure, file-naming rules, and everything still left to do.
+> **What this file is for:** (1) the full project record for Claude — upload it with `music.html` (and `index.html` if the main site is changing) at the start of any new chat and say "here's the context"; (2) Ronak's own reference — §0 lists every section that has been built and where to find it.
 
-> **Ronak's rule (27 Oct):** keep everything in the HTML file. No zip files, no separate .js files. Claude delivers `music.html` (and `index.html` when the main site changes) as single files to upload. All songs, contexts, sets, stutis **and the lyric page pictures** are inside `music.html`.
+> **Ronak's rule (27 Oct):** keep everything in the HTML file. No zip files, no separate .js files. Claude delivers `music.html` (and `index.html` when the main site changes) as single files to upload. All songs, contexts, sets, stutis, anchoring lines **and the lyric images** are inside `music.html`.
 
-> **Working agreement:** After **every** change, Claude updates **both** living files in the same step — `index.html` and this `project_context.md` — so they always match. Claude always says exactly which file(s) to upload and which to delete.
+> **Nothing gets lost:** `music.html` is the master copy of the songbook — every song, context, stuti, anchoring line and lyric image is inside it. Keep the latest one on GitHub and a copy on your phone/laptop. In a new chat, give Claude that `music.html` + this file; Claude takes everything back out of it before making changes.
 
-_Last updated: 27 Oct 2026 — music section is now ONE file: `music.html`_
+> **Working agreement:** After **every** change, Claude updates the changed file (`music.html` and/or `index.html`) **and** this `project_context.md` in the same step, so they always match. Claude always says exactly which file(s) to upload and which to delete.
+
+_Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–C32, no C19) · 18 stutis · 2 anchoring topics · 8 lyrics images · PIN 2006_
+
+---
+
+## 0. Quick reference — what has been built (for Ronak)
+
+**Main website — `index.html`** · https://ronakpatiyat-maker.github.io/the8thnote/
+| Part | What it does |
+|---|---|
+| Intro splash | Logo animation once per visit, with sound button |
+| Top menu | Music · Services · logo · About · Contact — each opens a full-screen panel |
+| Music panel | Starts with the **Songbook** card: type PIN 2006 → opens the songbook. Below: "Coming soon" + countdown, Instagram / YouTube buttons |
+| Services panel | Classes (posters), Find your class (3-question wizard), Fees, For events |
+| About / Contact panels | Bio and photo; phone, WhatsApp, Instagram, address + map |
+| Home page | Hero, YouTube courses, Why learn with us, Instagram reels, testimonials (sample), FAQ, footer |
+| Floating buttons | WhatsApp, launch bell, scroll-to-top |
+
+**Songbook — `music.html`** · https://ronakpatiyat-maker.github.io/the8thnote/music.html · **PIN 2006** · reached from the website's Music panel (PIN) or this link
+| Part | Where | What it does | Now |
+|---|---|---|---|
+| PIN screen | opens first | 4-digit keypad; 🔒 in the top bar locks again | PIN 2006 |
+| Context panel | left side; 📖 book button bottom-left opens/closes it | One list: All songs · Stuti · Navkar · Anchoring (+ topics) · then C1 General Bhakthi → C32 Aarti in number order (table below) | 32 contexts |
+| All songs | panel, first item | Every song by serial number | 195 songs |
+| Stuti | panel | 18 boxes, drag or ↑/↓ to set your order, tick *Sing*, ▶ Start = full screen white on black | 16 with text, 2 waiting |
+| Navkar | panel | Navkar songs | no list yet (1 suggested) |
+| Anchoring | panel | Your lines to speak between songs; topics show as titles, tap to open. A topic linked to a song also shows on top of that song | Aadi sparsh, Tirth Raksha |
+| Contexts | panel | Your list in your order → *Suggested — to review* → *General Bhakthi — also fits* | see §12 |
+| Aarti | panel, last | Jay Jay Aarti, Mangal Divo (text), Gurudev Aarti (waiting) | 3 |
+| Songs tab | top bar | Song list, search, Scale filter, + General Bhakthi switch | — |
+| Index tab | top bar | All songs 1–9, A–Z or by context, with each song's contexts | — |
+| Song view | tap a song | Your lyrics image (or typed text), key/tempo/notes, A−/A+ zoom, swipe to next, screen stays on | 8 images, 6 typed |
+| Setlist | top-right button | Add songs, reorder, name the event, 13 ready-made sets, share on WhatsApp, *Begin with stuti* | saved on that device |
+| Direct links | — | `music.html?song=12` opens song 12 · `?tab=stuti` · `?tab=anchor` · `?tab=index` | — |
+
+**Context numbers** — use these instead of typing the name (e.g. "add 180 to C23"). Set by Ronak on 7 Nov; the panel shows the contexts in this order. Navkar has no number (it sits with Stuti and Anchoring at the top). C19 is empty (Palitana 5 Chaityavandan was removed on 7 Nov) — the other numbers did not move. A new context gets the next number (C33 …), placed before Aarti.
+| | | | | | | | |
+|---|---|---|---|---|---|---|---|
+| C1 General Bhakthi | C2 Slow Mashup | C3 Adinath Bhagwan | C4 Neminath Bhagwan | C5 Fast Dance Number | C6 Bhaav Bhakthi | C7 Tapasya Bhakthi | C8 Gujarati Songs |
+| C9 Marvadi Songs | C10 All Pooja | C11 Chetya Vandan Stavan | C12 Classical Songs | C13 Diksha | C14 Girnar | C15 Grah Pravesh | C16 Mahaveer Swamy Bhagwan |
+| C17 Nakoda Bherav | C18 Palitana | C19 — (removed 7 Nov) | C20 Parshwanath Bhagwan | C21 Prachin Stavan | C22 Pratishta / Dhwaja | C23 Rajendra Suriji | C24 Rishto ki Dor |
+| C25 Sahebji | C26 Sangh | C27 Sankeshwar | C28 Shanti Suriji | C29 Shantinath Bhagwan | C30 Utsah Songs | C31 Simandhar Swamy Bhagwan | C32 Aarti |
+
+> Change-log entries 90–97 (6–7 Nov) use the **old** numbers (old C1 = Navkar, C2 = Adinath … C33 = Simandhar). The lists themselves are correct; only the labels changed.
+
+**Rules that apply everywhere in the songbook**
+- **Ronak's rule (7 Nov):** whenever a song is added to any context, Claude also adds it to **C1 General Bhakthi** — unless Ronak says that song should not go there.
+- Song numbers never change; new songs get the next number (next = 196).
+- General Bhakthi (#4, #5, #6, #10, #14, #18, #19, #36, #39, #54, #92, #93, #96, #99, #180) shows under every context **except** Navkar, Chetya Vandan Stavan, Diksha, Grah Pravesh, Prachin Stavan, Rishto ki Dor, Sahebji, Tapasya Bhakthi, Aarti. #6 never shows under Bhaav Bhakthi.
+- Lyrics come only as your images (white-on-black template, one per song, with the song number). Typed text only for old stavans, stutis, aartis and anchoring.
+- Things saved only on one device: setlist, stuti order and ticks, zoom size, last tab. Everything else is inside `music.html`.
+
+**Last check (3 Nov; repo reviewed 5 Nov):** 194 songs, numbers 1–194 with no gaps or repeats; all 32 contexts point only to real songs; all 13 sets valid; all 8 lyrics images built in; 18 stutis; 2 anchoring topics; PIN 2006. Nothing missing.
 
 ---
 
@@ -46,7 +99,7 @@ _Last updated: 27 Oct 2026 — music section is now ONE file: `music.html`_
 ### Menu overlay (`#menu`) — 4 panels
 | Panel | ID | Contents |
 |-------|----|----------|
-| Music | `#panel-music` | "Coming soon", 8-bar scale graphic, countdown, Instagram/YouTube buttons (no link to the songbook — it is private) |
+| Music | `#panel-music` | **Songbook card first** (PIN box → opens `music.html` already unlocked), then "Coming soon", 8-bar scale graphic, countdown, Instagram/YouTube buttons |
 | Services | `#panel-services` | Sub-tabs: **Classes** (ranked poster row `#trendRow`), **Find your class** (3-step wizard `#wizard`), **Fees** (`#plans`, `#batches`), **For events** (photo, services `#svcs`, event card `#event`) |
 | About | `#panel-about` | Meet Ronak (photo + bio + highlights), Our story, What you can learn (`#pillars`), Book/Contact buttons |
 | Contact | `#panel-contact` | Phone, WhatsApp, Instagram, address pills + Google Map |
@@ -54,24 +107,25 @@ _Last updated: 27 Oct 2026 — music section is now ONE file: `music.html`_
 Any element with `data-open="music|services|classes|find|fees|events|about|contact"` opens that panel/tab.
 
 ### Songbook page (`music.html` — one self-contained file)
-Ronak's **personal page for events**, locked with **PIN 2006** (change it in the `PIN` line near the top of `music.html`; stays unlocked until the tab closes or 🔒 is tapped). No explanatory text. Not indexed by Google (`noindex`), not in the sitemap, not linked from the homepage. Anyone with the link who reads the page source can see the PIN and the lyric images — it keeps casual visitors out, it is not real privacy.
+Ronak's **personal page for events**, locked with **PIN 2006** (change it in the `PIN` line near the top of `music.html`; stays unlocked until the tab closes or 🔒 is tapped). No explanatory text. Not indexed by Google (`noindex`), not in the sitemap. Opened from the website's **Music panel** (Songbook card asks for the PIN, then opens it unlocked) or by its link. Anyone with the link who reads the page source can see the PIN and the lyric images — it keeps casual visitors out, it is not real privacy.
 
-**One file:** songs, contexts, stutis, lyric images, logo and icon are all built into `music.html`. Upload only that file (next to `index.html`). Opens at `ronakpatiyat-maker.github.io/the8thnote/music.html`. Claude edits `songs.js` / `contexts.js` / `stuti.js` and builds them in.
+**One file:** songs, contexts, stutis, lyric images, logo and icon are all built into `music.html`. Upload only that file (next to `index.html`). Opens at `ronakpatiyat-maker.github.io/the8thnote/music.html`. Claude edits `songs.js` / `contexts.js` / `stuti.js` / `anchor.js` and builds them in (one build script; `music.html` is what you upload).
 
 **How the data is organised:**
-1. Every song has a permanent **serial number** (1–194). New songs get the next number; numbers never change.
+1. Every song has a permanent **serial number** (1–195). New songs get the next number; numbers never change.
 2. **Scale (Sa)** is the first filter (`scale`, e.g. `["F","E"]`; Ronak's exact chart note in `key`). Few songs have one yet.
-3. **Contexts** = lists of serial numbers (CONTEXTS block). A song can be in many. `songs` = Ronak's list, in his order; `suggest` = Claude's suggestions, shown under *Suggested — to review*; `exclude` = never show this song here; `noGeneral` = don't show General Bhakthi here; `pin:"first"/"last"` and `after:"X"` set the panel position. Full list in §12.
-4. **General Bhakthi** = Ronak's 5 songs (#6, #14, #92, #4, #39). They show under every context as *General Bhakthi — also fits* (switch *+ General Bhakthi*), except in the contexts listed in §12.
+3. **Contexts** = lists of serial numbers (CONTEXTS block). Each has a number **C1–C32** (`no`, Navkar has none), shown in the panel next to its name and in the list header; the panel is sorted by it. A song can be in many. `songs` = Ronak's list, in his order; `suggest` = Claude's suggestions, shown under *Suggested — to review*; `exclude` = never show this song here; `noGeneral` = don't show General Bhakthi here; `pin:"first"/"last"` and `after:"X"` set the panel position. Full list in §12.
+4. **General Bhakthi** = Ronak's 15 songs (#6, #14, #92, #4, #39, #5, #18, #54, #19, #10, #180, #99, #93, #96, #36). They show under every context as *General Bhakthi — also fits* (switch *+ General Bhakthi*), except in the contexts listed in §12.
 5. **Lyrics** come only as Ronak's images (white-on-black template, one per song, shown as-is, `img/songs/song-NNN.jpg` built in). Typed text only for old stavans (#27, #96, #97, #98) and aartis (#192, #193).
 6. Titles are in Devanagari with the English name underneath; search works in both. Bhagwan names are one (Aadinath = Rushabhdev / Rushabhji / Aadeshwar / Dada etc., `ALIASES` in `music.html`).
 
 **Screen:**
-- **Left context panel**, always there on every tab: ॐ Stuti · नमो Navkar · All songs · Adinath Bhagwan · Mashup · other contexts A–Z · Aarti (diya icon). Round **book button** bottom-left opens / closes it; on phones it is a drawer.
+- **Left context panel**, always there on every tab, one continuous list: All songs · ॐ Stuti · नमो Navkar · 🎤 Anchoring (+ its topics) · C1 General Bhakthi · C2 Slow Mashup · C3 Adinath Bhagwan … C31 Simandhar Swamy Bhagwan · C32 Aarti (diya icon).
 - **Songs** tab: one song per line (number · title · English name · scale · +). Filter row: Scale · + General Bhakthi · Clear. Search.
 - **Index** tab: by number, A–Z or by context; each song shows its contexts. Every song has its own link: `music.html?song=12`.
 - **Song view**: lyrics image or typed text (refrain lines in red), key / tempo / notes, zoom A−/A+, previous / next, swipe, keeps the screen awake.
 - **Setlist** (saved on that device): add, reorder, name the event, ready-made sets, send on WhatsApp, *Begin with stuti*.
+- **Anchoring** (🎤, in the panel after Navkar; data in the ANCHOR block, `anchor.js` when building): Ronak's own lines to speak between songs. Topics are listed by title only (also as sub-items under *Anchoring* in the panel); tap a topic to open its lines, tap again to close. A line can name the song it leads into (`song: 12`) — then it also shows in an orange box on top of that song, and its box has a button to open the song. Link: `music.html?tab=anchor`.
 - **Stuti**: 18 boxes in one column, drag ⠿ or ↑/↓ to reorder (saved on that device; *Reset order*). *Start* plays them full-screen, white on black. 2 still *Text to come* (Jain gunona sindhuna, Pal pal mere har rom mein) and are skipped.
 
 ### Main page (top to bottom)
@@ -102,18 +156,18 @@ Ronak's **personal page for events**, locked with **PIN 2006** (change it in the
 | `favicon.svg` | Browser-tab icon | Red "8" |
 | `logo-anim.mp4` | Intro animation | Compressed 27 Oct: 2.8 MB → 0.24 MB |
 | `og-image.jpg` | Link preview (1200×630) | Made 27 Oct from the hero poster |
-| `music.html` | **The whole songbook in one file** — page + songs + contexts + sets + stutis + Ronak's lyrics images (~1.8 MB) | Re-uploaded after every songbook change |
+| `music.html` | **The whole songbook in one file** — page + songs + contexts + sets + stutis + anchoring + Ronak's lyrics images (~1.8 MB) | Re-uploaded after every songbook change |
 | `robots.txt`, `sitemap.xml` | SEO | Set-once |
 | `img/hero-bg.jpg` | Hero background | Made 27 Oct from `hero-bg.png` |
 | `img/about-ronak-01.jpeg` | Events tab photo | Tapasya Bhakthi poster |
 | `img/about-ronak-02.jpeg` | About photo | |
 | `img/class-01 … 08.jpeg` | Class posters | In `COURSES` order |
 
-**To delete from the repo (unused / duplicates):** if they were uploaded — `songs.js`, `contexts.js`, `stuti.js`, the `img/songs/` folder and the `img/stuti/` folder (all now inside `music.html`); root `about-ronak-01.jpeg`, root `about-ronak-02.jpeg`, root `class-01.jpeg`, `class-02.jpeg`, `class-03.jpeg`, root `hero-bg.png`, `img/about-ronak-02` (empty, no extension), `favicon.png.jpeg`.
+**To delete from the repo (checked 5 Nov — unused duplicates, nothing points to them):** root `about-ronak-01.jpeg`, root `about-ronak-02.jpeg`, root `class-01.jpeg`, root `class-02.jpeg`, root `class-03.jpeg`, root `hero-bg.png`, `favicon.png.jpeg`, and `img/about-ronak-02` (empty file, no extension). Never upload `songs.js`, `contexts.js`, `stuti.js`, `anchor.js` or `img/songs/` — they are inside `music.html`.
 
 ---
 
-## 5. Where each piece of content lives in `index.html`
+## 5. Where each piece of content lives (`index.html` and `music.html`)
 
 Most content is in **data lists** near the top of the main `<script>`. Edit the list, not the layout.
 
@@ -140,7 +194,10 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 | **Songs** | `music.html` → block *SONG LIBRARY + SETS* (`SONGS`, `SETS`) |
 | **Contexts** | `music.html` → block *CONTEXTS* (`CONTEXT_GROUPS`, `CONTEXTS`) |
 | **Stuti** | `music.html` → block *STUTI* (`STUTI_GROUPS`, `STUTI`) |
+| **Anchoring** | `music.html` → block *ANCHORING LINES* (`ANCHOR`: `id`, `title`, optional `song`, `text`; a line starting `> ` is highlighted) |
 | Lyric pictures | `music.html` → block *LYRIC PAGE PICTURES* (`IMGS`, built in — Claude rebuilds it) |
+| Context position | `music.html` → CONTEXTS: `no` sets the order (C1, C2 …); `pin:"first"` = Navkar at the top, `pin:"last"` = Aarti at the bottom |
+| Songbook PIN | **two places, change both together:** `music.html` → `var PIN="2006"` and `index.html` → `var PIN="2006"` in the *Songbook entry* script at the bottom |
 | Songbook filter groups / chip order | `music.html` → `FACETS` |
 
 ---
@@ -165,7 +222,7 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 **Real:** name, Ronak's bio, phone, VV Puram + map, Instagram handles + 6 reel links, YouTube links, class list + posters, ₹49/mo membership, devotional services, hero poster, Nov launch.
 
-**Songbook status:** 37 songs have lyric pages; 59 are names from Ronak's lists with no lyrics yet. Tags are Claude's best reading of each song — Ronak to confirm. Only typed lyrics are kept (old stavans #27, #96–#98 and the stutis). All lyric pictures were removed on 27 Oct; new lyrics come from Ronak as images in a template.
+**Songbook status (6 Nov):** 195 songs. Lyrics images: 8 (#9, 19, 34, 35, 43, 92, 94, 99). Typed text: 6 (#27, 96, 97, 98 old stavans; #192, 193 aartis). 27 placeholder songs (names only, ⏳ in §13). Scale set for 7 songs (#1, 3, 4, 6, 24, 39, 44). 26 contexts hold Ronak's own lists; Navkar, Slow Mashup, Girnar, Sankeshwar and Sangh are still waiting for his list.
 
 **Placeholder (replace):** testimonials (sample names/quotes), fees ("On enquiry"), `LAUNCH_DATE` (1 Nov 2026), YouTube course cards (titles invented, links go to channel/join), event card (Tapasya Bhakthi, 20 Sept — already past).
 
@@ -174,16 +231,18 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 ## 9. To-Do / open questions
 
 **Urgent**
-- [ ] **Confirm the launch date** — countdown hits zero **1 Nov 2026**. What launches, and on which platform (YouTube / Spotify / Instagram)? After launch, the Music panel should show the release instead of "Coming soon".
+- [ ] **Confirm the launch date** — countdown passed zero on **1 Nov 2026**; the Music panel now shows both "Coming soon / Launching this November" and "It's here — the music has launched!". What launches, and on which platform (YouTube / Spotify / Instagram)? After launch, the Music panel should show the release instead of "Coming soon".
 - [ ] **Event card** — Tapasya Bhakthi (20 Sept) is past. Replace with the next event, or switch to "Past performances".
 
 **Songbook**
 - [ ] Lyrics images from Ronak (white-on-black template, with the song number). 8 done: #9, 19, 34, 35, 43, 92, 94, 99.
 - [ ] **Scale for every song** — Ronak sends serial number → scale (e.g. `12 – F`, `13 – E / D#`).
-- [ ] Lists still to come: Navkar, Mashup, Girnar, Sankeshwar, Sangh, Palitana 5 Chaityavandan.
+- [ ] Lists still to come: Navkar, Slow Mashup, Girnar, Sankeshwar, Sangh.
+- [ ] Link anchoring topics to songs, if any should show on top of a song.
 - [ ] Review the remaining suggestions in each context.
+- [ ] More anchoring lines from Ronak (title + text, and the song number each leads into, if any).
 - [ ] Gurudev Aarti (#194) text; stuti text for *Jain gunona sindhuna* and *Pal pal mere har rom mein*.
-- [ ] 26 placeholder songs (⏳ in §13) need lyrics images.
+- [ ] 27 placeholder songs (⏳ in §13) need lyrics images.
 - [ ] Decide if `music.html` should stay on public GitHub (PIN only hides the screen) or be kept on Ronak's devices only.
 
 **Content**
@@ -316,6 +375,62 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 73. **Notes brought up to date:** §3 songbook description, §9 songbook to-dos, §12–13 regenerated from the data.
 
+74. **Phone layout tidied (30 Oct):** song list rows denser (smaller text and tags, *No lyrics* tag hidden on phones — about twice as many songs per screen); Index tab the same; smaller filter buttons; book button hides while the context drawer is open (it was covering the last contexts); song view shows the lyrics image almost edge to edge, without the tag chips; *Source* line removed from the song view (all screens); PIN keys are now round.
+
+75. **One header line per list:** removed the repeated context heading above Ronak's songs and the *of 194* count (Songs and Index). The line now reads e.g. *Bhaav Bhakthi · 5 songs + 4 General Bhakthi*; an empty context reads *no list yet*. *Suggested* and *General Bhakthi — also fits* headings stay as dividers.
+
+76. **Anchoring added:** new item *Anchoring* (🎤) in the context panel, right after Navkar. Holds Ronak's anchoring lines as boxes (title + text); a line linked to a song number also shows on top of that song. Empty for now — lines to come from Ronak. New data block ANCHOR (`anchor.js`, built into music.html).
+
+77. **Anchoring — Aadi sparsh** (from Ronak): first anchoring box, 5 short paragraphs ending with the sankalp line *"मेरा कर्तव्य, मेरी धरोहर।"* highlighted in gold (lines starting `> ` in the ANCHOR text are highlighted). Not linked to a song.
+
+78. **Anchoring shows topics only:** the Anchoring page lists topic titles (Aadi sparsh, Tirth Raksha); lines open only when the topic is tapped. Each topic is also listed under *Anchoring* in the context panel — tapping it opens that topic directly.
+
+79. **Anchoring — Tirth Raksha** (from Ronak): second topic, 12 numbered lines (Chickpet temple, Aadi-sparsh, bringing children), each on its own so they're easy to pick from on stage.
+
+80. **Panel as one list:** Stuti, Navkar and Anchoring are no longer a separate block above All songs — the list now starts with *All songs*, then Stuti, Navkar, Anchoring (with its topics), then Adinath Bhagwan and the other contexts, with no dividers between them.
+
+81. **Full check + notes rewrite (3 Nov):** checked everything inside `music.html` — nothing missing (see §0 *Last check*). Added §0 quick reference (every built section, where it is, what's in it); updated header, file list, where-to-edit table (Anchoring, PIN), songbook status.
+
+82. **Rajendra Suriji:** added #24 O Palanhare, #39 Hai yeh pawan bhoomi, #180 O guru sa (Ronak's list now 8: #138, 6, 92, 95, 24, 86, 39, 180 — #6, 92, 95, 86 were already in it).
+
+83. **3 songs into more contexts (3 Nov):** #5 Jeni kiki kali chhe and #18 Rushabhji bolave chhe → General Bhakthi (already in Palitana and Adinath Bhagwan). #54 Aaj anand ang ang jagyo → Utsah Songs (was a suggestion), Adinath Bhagwan, General Bhakthi, Grah Pravesh, Mahaveer Swamy Bhagwan, Rajendra Suriji, Tapasya Bhakthi (already in Dance Number and Pratishta / Dhwaja). General Bhakthi now 8 songs, so these 3 also show under every context that takes General Bhakthi.
+
+84. **#19 Musafari** added to Bhaav Bhakthi, Diksha, General Bhakthi, Gujarati Songs, Sahebji (already in Classical Songs). General Bhakthi now 9 songs.
+
+85. **#10 Keva pyara lage mara dada** added to Bhaav Bhakthi, General Bhakthi (was a suggestion), Grah Pravesh, Palitana (already in Adinath Bhagwan). Neminath and Parshwanath already have their own versions (#167, #149) — #10 added there too on 7 Nov (entry 94). General Bhakthi now 10 songs.
+
+86. **#188 Zamane mein kab kahan** added to Parshwanath Bhagwan (already in All songs and Nakoda Bherav). Still a placeholder — lyrics image to come.
+
+87. **Repo review (5 Nov):** on GitHub, `music.html` was the 30 Oct version and `project_context.md` the 27 Oct version. The 27 Oct fixes had never been uploaded: `img/hero-bg.jpg` was missing (hero background blank — confirmed 404), `img/about-ronak-01.jpeg` and `og-image.jpg` missing, intro video still 2.8 MB, class-06/07 posters uncompressed, a second wrong `og:image` (logo). Delivered the full upload set: `index.html` (the live one + only these fixes: wrong og:image removed, hero preload; still **no** link to the songbook), `music.html`, `project_context.md`, `sitemap.xml` (lastmod 2026-11-05), `og-image.jpg`, `logo-anim.mp4` (0.24 MB), and into `img/`: `hero-bg.jpg`, `about-ronak-01.jpeg`, `class-06.jpeg`, `class-07.jpeg`. Tested the merged site locally: no missing files.
+
+88. **Songbook connected to the website (5 Nov):** the Music panel now starts with a *Stuti & Bhakti Songbook* card with a PIN box. Correct PIN (2006) opens `music.html` straight in, already unlocked for that tab; wrong PIN shakes and says *Wrong PIN*. Everything else in the Music panel unchanged, below it. PIN now lives in both files.
+
+89. **#180 O guru sa thaaro chelo banu main** added to General Bhakthi, Shanti Suriji, Tapasya Bhakthi, Shantinath Bhagwan, Parshwanath Bhagwan, Nakoda Bherav, Marvadi Songs, Grah Pravesh, All Pooja (already in All songs, Rajendra Suriji, Sahebji). Still a placeholder — lyrics image to come. General Bhakthi now 11 songs.
+
+90. **Context numbers C1–C32:** every context has a permanent number (`no` in CONTEXTS), shown in grey before its name in the panel (after the name for Navkar and Aarti, which have icons), in gold in the list header (e.g. *C9 Diksha*), and in the Index *By context* view. Numbered in today's panel order; new contexts get the next number. Ronak can now write "add 180 to C23". Table in §0; §12–13 use the numbers.
+
+91. **New context C33 Simandhar Swamy Bhagwan** — always at the end of the list, just before Aarti (new field `place:"end"`). **New song #195** सुणो चंदाजी सीमंधर परमातम पासे — Suno Chandaji Simandhar parmatam pase (Gujarati, lyrics to come), in All songs and C33. General Bhakthi shows under C33 too (11 songs).
+
+92. **#99 Tu mane Bhagwan** (lyrics image) added to C4, C5, C10 General Bhakthi, C11, C12, C13, C14, C16, C18, C20, C21, C25, C27, C29, C30, C33 (already in C2). General Bhakthi now 12 songs.
+
+93. **#93 Rome rome hu taaro** added to C2, C5, C10 General Bhakthi, C11, C18, C20, C21, C25, C27, C29, C33 (already in C13). General Bhakthi now 13 songs.
+
+94. **#10 Keva pyara lage mara dada** added to C11, C13, C17 Neminath, C20 Parshwanath, C27, C29 Shantinath (already in C2, C5, C10, C12, C18). C17/C20/C29 also keep their own versions (#167, #149, #181).
+
+95. **#96 Chintamani mari chinta chur (Aani mann shuddh aastha)** — the stavan itself, typed text — added to C6, C10 General Bhakthi, C12, C30 (already in C20, C27). Not the mashup #3 He Trishla na jaya × Aani shuddh mann aastha. General Bhakthi now 14 songs.
+
+96. **#36 Shu karu dada** added to the same contexts as #93 Rome rome hu taaro: C5, C10 General Bhakthi, C11, C18, C20, C21, C25, C27, C29, C33 (already in C2, C13). General Bhakthi now 15 songs.
+
+97. **#5 Jeni kiki kali chhe** added to C13 Gujarati Songs, C21 Prachin Stavan (already in C2, C10, C18).
+
+98. **Contexts renumbered and reordered by Ronak (7 Nov):** C1 General Bhakthi, C2 Mashup, C3 Adinath Bhagwan, C4 Neminath Bhagwan, C5 Dance Number, C6 Bhaav Bhakthi, C7 Tapasya Bhakthi, C8 Gujarati Songs, C9 Marvadi Songs, C10 All Pooja; the rest A–Z as C11–C30, then C31 Simandhar Swamy Bhagwan, C32 Aarti (last). Navkar has no number and stays at the top with Stuti and Anchoring. The panel now follows the numbers (`after` / `place` fields removed). No song lists changed.
+
+99. **Renamed:** C2 Mashup → **Slow Mashup**, C5 Dance Number → **Fast Dance Number** (same songs).
+
+100. **C19 Palitana 5 Chaityavandan removed** (it had no songs). Other context numbers unchanged, so C19 is now unused.
+
+101. **Standing rule:** every song Ronak adds to a context from now on also goes into C1 General Bhakthi, unless he names it as an exception. (Not applied backwards to older songs unless he asks.)
+
 ---
 
 ## 11. Handy facts
@@ -328,269 +443,270 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 ## 12. Contexts — what is in each (song numbers)
 
-32 contexts + Stuti, in panel order: ॐ Stuti · Navkar · All songs · Adinath Bhagwan · Mashup · A–Z · Aarti. Ronak = his own list, in his order. *suggested* = Claude suggestion, to review. ⏳ = placeholder, lyrics to come. 🖼 = Ronak's lyrics image. Songs in Ronak's General Bhakthi list also show under every context **except**: Navkar, Chetya Vandan Stavan, Diksha, Grah Pravesh, Prachin Stavan, Rishto ki Dor, Sahebji, Tapasya Bhakthi, Aarti.
+32 contexts (Navkar + C1–C32, C19 unused) + Stuti + Anchoring, in panel order: All songs · ॐ Stuti · Navkar · 🎤 Anchoring · C1 … C32 (Aarti last). Ronak = his own list, in his order. *suggested* = Claude suggestion, to review. ⏳ = placeholder, lyrics to come. 🖼 = Ronak's lyrics image. Songs in Ronak's General Bhakthi list also show under every context **except**: Navkar, Chetya Vandan Stavan, Diksha, Grah Pravesh, Prachin Stavan, Rishto ki Dor, Sahebji, Tapasya Bhakthi, Aarti.
 
 **Navkar** (Claude suggestion, pinned right after Stuti, no General Bhakthi) — _no songs yet_ · *suggested:* #1
 
-**Adinath Bhagwan** (Ronak) — #10 Keva pyara lage mara dada · #18 Rushabhji bolave chhe · #5 Jeni kiki kali chhe · #11 Vhala Aadinath · #20 Siddhachal darbar jhajharman lage chhe · #23 Shetrunji nadi ne ghat re · #13 Siddhachal giri namo namah · #26 Siddhachal na vasi · #29 Dada Aadeshwarji · #37 Rushabhji nand dayal re, mohe lagi lagan · #42 Aangan utsav bani aavo Vrushabhji · #65 Albelo Aadeshwar · #69 Dhulewa nagri mein Kesariya viraje · #39 Hai yeh pawan bhoomi · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #36 Shu karu dada · #35 Tara mast gulabi gaal 🖼 · #143 Aavjo man mandiriye (Sundar aa dehrama) · #145 Mitha Aadinath (Mithi Paldi gam) · #117 Parmatma bani jashe maro aatma · #140 Giriraj na Aadinath · #94 Taro ne maro 🖼 · #47 Kesar tilak lagavo · #22 Hu baal tamaro chhu · *suggested:* #4, #8, #9, #38, #71, #85, #120, #151
+**C1 · General Bhakthi** (Ronak) — #6 Bhakti ki hai raat x Nemji shamaliya · #14 Uncha ambar thi · #92 Tara sharane aavyo chhu 🖼 · #4 Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta · #39 Hai yeh pawan bhoomi · #5 Jeni kiki kali chhe · #18 Rushabhji bolave chhe · #54 Aaj anand ang ang jagyo · #19 Musafari 🖼 · #10 Keva pyara lage mara dada · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · #36 Shu karu dada · *suggested:* #1, #7, #12, #24, #32, #34, #40, #41, #43, #46, #49, #53, #55, #56, #57, #58, #59, #61, #72, #76, #79, #84, #87, #88, #89, #90, #94, #156
 
-**Mashup** (Claude suggestion, placed after Adinath Bhagwan) — _no songs yet_ · *suggested:* #7, #8, #165, #166, #85, #3, #4, #6, #9, #53
+**C2 · Slow Mashup** (Claude suggestion) — _no songs yet_ · *suggested:* #7, #8, #165, #166, #85, #3, #4, #6, #9, #53
 
-**All Pooja** (Ronak) — #21 Sona rupana kalashe · #182 Merushi karnav ⏳ · *suggested:* #47
+**C3 · Adinath Bhagwan** (Ronak) — #10 Keva pyara lage mara dada · #18 Rushabhji bolave chhe · #5 Jeni kiki kali chhe · #11 Vhala Aadinath · #20 Siddhachal darbar jhajharman lage chhe · #23 Shetrunji nadi ne ghat re · #13 Siddhachal giri namo namah · #26 Siddhachal na vasi · #29 Dada Aadeshwarji · #37 Rushabhji nand dayal re, mohe lagi lagan · #42 Aangan utsav bani aavo Vrushabhji · #65 Albelo Aadeshwar · #69 Dhulewa nagri mein Kesariya viraje · #39 Hai yeh pawan bhoomi · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #36 Shu karu dada · #35 Tara mast gulabi gaal 🖼 · #143 Aavjo man mandiriye (Sundar aa dehrama) · #145 Mitha Aadinath (Mithi Paldi gam) · #117 Parmatma bani jashe maro aatma · #140 Giriraj na Aadinath · #94 Taro ne maro 🖼 · #47 Kesar tilak lagavo · #22 Hu baal tamaro chhu · #54 Aaj anand ang ang jagyo · #93 Rome rome hu · *suggested:* #4, #8, #9, #38, #71, #85, #120, #151
 
-**Bhaav Bhakthi** (Ronak) — #132 Samu juo ne · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #152 Keva shobhe mara jinraya · #143 Aavjo man mandiriye (Sundar aa dehrama) · #178 Mere saheb ne mujhko bohot kuch diya ⏳ · _never #6 Bhakti ki hai raat x Nemji shamaliya_
+**C4 · Neminath Bhagwan** (Ronak) — #62 Nemras · #121 Nemji shamaliya (Girnare shobhe dekho) · #16 Shyamla Neminath · #167 Keva pyara lage mara Neminath dada ⏳ · #63 Jay jay garvo Girnar · #10 Keva pyara lage mara dada · *suggested:* #6, #8, #17, #25, #35, #39, #129, #148, #150
 
-**Chetya Vandan Stavan** (Ronak, no General Bhakthi) — #120 Uncha uncha Shatrunjay na shikharo sohay · #26 Siddhachal na vasi · #29 Dada Aadeshwarji · #102 Aankhdi mari prabhu harkhay chhe · #179 Rishab jinand ⏳ · #48 Hu prabhu maro tune
+**C5 · Fast Dance Number** (Ronak) — #62 Nemras · #63 Jay jay garvo Girnar · #54 Aaj anand ang ang jagyo · #64 Naam hai tera taran hara · #66 Aao dada padharo dada · #65 Albelo Aadeshwar · *suggested:* #50, #51, #69, #74, #75, #76, #84
 
-**Classical Songs** (Ronak) — #42 Aangan utsav bani aavo Vrushabhji · #19 Musafari 🖼 · #44 Taro mahima aparampar
+**C6 · Bhaav Bhakthi** (Ronak) — #132 Samu juo ne · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #152 Keva shobhe mara jinraya · #143 Aavjo man mandiriye (Sundar aa dehrama) · #178 Mere saheb ne mujhko bohot kuch diya ⏳ · #19 Musafari 🖼 · #10 Keva pyara lage mara dada · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #36 Shu karu dada · _never #6 Bhakti ki hai raat x Nemji shamaliya_
 
-**Dance Number** (Ronak) — #62 Nemras · #63 Jay jay garvo Girnar · #54 Aaj anand ang ang jagyo · #64 Naam hai tera taran hara · #66 Aao dada padharo dada · #65 Albelo Aadeshwar · *suggested:* #50, #51, #69, #74, #75, #76, #84
+**C7 · Tapasya Bhakthi** (Ronak, no General Bhakthi) — #171 Khamma ghani khamma ghani ⏳ · #172 Tame utsav aaj mandavo ⏳ · #173 Kar ke tapasya tab ko tapasya ⏳ · #174 Tyaag samarpan aur saiyamta ⏳ · #175 Tapasya karta karta ho ⏳ · #82 Jay jay kar tapasvi no · #83 Ga raha sara sansar, tapasvi amar rahe · #54 Aaj anand ang ang jagyo · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #96 Chintamani mari chinta chur (Aani mann shuddh aastha)
 
-**Diksha** (Ronak, no General Bhakthi) — #130 Virtidhar no vesh · #176 Vairagi ne vandan ⏳ · #52 Rajpath par janara · #177 Jhume re jhume ⏳ · #162 Mare to levani levani chhe diksha · #31 Ant chhe anant nahi (Sarva swikar ni sanyam yatra) · *suggested:* #17, #119, #122, #123, #128, #134, #135, #136
+**C8 · Gujarati Songs** (Ronak) — #93 Rome rome hu · #36 Shu karu dada · #117 Parmatma bani jashe maro aatma · #31 Ant chhe anant nahi (Sarva swikar ni sanyam yatra) · #19 Musafari 🖼 · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #10 Keva pyara lage mara dada · #5 Jeni kiki kali chhe
 
-**General Bhakthi** (Ronak) — #6 Bhakti ki hai raat x Nemji shamaliya · #14 Uncha ambar thi · #92 Tara sharane aavyo chhu 🖼 · #4 Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta · #39 Hai yeh pawan bhoomi · *suggested:* #1, #7, #10, #12, #24, #32, #34, #40, #41, #43, #46, #49, #53, #55, #56, #57, #58, #59, #61, #72, #76, #79, #84, #87, #88, #89, #90, #94, #156
+**C9 · Marvadi Songs** (Ronak) — #69 Dhulewa nagri mein Kesariya viraje · #67 Ek baar mukhdo batao · #68 Jino jino ude re gulaal · #74 Range rame ya range · #75 Mara dada na darbare dhol · #180 O guru sa thaaro chelo banu main ⏳
 
-**Girnar** (Claude suggestion) — #6 Bhakti ki hai raat x Nemji shamaliya · #8 Fast mashup (Om Shri Neminath…) · #16 Shyamla Neminath · #17 Rajul ne Nem mali jaashe · #25 Namami Nemi · #35 Tara mast gulabi gaal 🖼 · #39 Hai yeh pawan bhoomi · #62 Nemras · #63 Jay jay garvo Girnar · #121 Nemji shamaliya (Girnare shobhe dekho) · #129 Rome rome Girnar · #148 Girnare Shri prabhu Nem chhe · #150 Man mohi lidhu Girnare
+**C10 · All Pooja** (Ronak) — #21 Sona rupana kalashe · #182 Merushi karnav ⏳ · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · *suggested:* #47
 
-**Grah Pravesh** (Ronak, no General Bhakthi) — #15 Meri jhopdi ke bhaag · #66 Aao dada padharo dada · *suggested:* #58, #109
+**C11 · Chetya Vandan Stavan** (Ronak, no General Bhakthi) — #120 Uncha uncha Shatrunjay na shikharo sohay · #26 Siddhachal na vasi · #29 Dada Aadeshwarji · #102 Aankhdi mari prabhu harkhay chhe · #179 Rishab jinand ⏳ · #48 Hu prabhu maro tune · #96 Chintamani mari chinta chur (Aani mann shuddh aastha)
 
-**Gujarati Songs** (Ronak) — #93 Rome rome hu · #36 Shu karu dada · #117 Parmatma bani jashe maro aatma · #31 Ant chhe anant nahi (Sarva swikar ni sanyam yatra)
+**C12 · Classical Songs** (Ronak) — #42 Aangan utsav bani aavo Vrushabhji · #19 Musafari 🖼 · #44 Taro mahima aparampar
 
-**Mahaveer Swamy Bhagwan** (Ronak) — #3 He Trishla na jaya x Aani shuddh mann aastha · #168 Veer mere patha ⏳ · #169 Vadhavo Veer Jinvar ne ⏳ · #81 Tu Veer se dil ko laga le · #170 Helo maro sambhalo ⏳ · *suggested:* #4, #8, #28, #80, #107, #108, #124
+**C13 · Diksha** (Ronak, no General Bhakthi) — #130 Virtidhar no vesh · #176 Vairagi ne vandan ⏳ · #52 Rajpath par janara · #177 Jhume re jhume ⏳ · #162 Mare to levani levani chhe diksha · #31 Ant chhe anant nahi (Sarva swikar ni sanyam yatra) · #19 Musafari 🖼 · *suggested:* #17, #119, #122, #123, #128, #134, #135, #136
 
-**Marvadi Songs** (Ronak) — #69 Dhulewa nagri mein Kesariya viraje · #67 Ek baar mukhdo batao · #68 Jino jino ude re gulaal · #74 Range rame ya range · #75 Mara dada na darbare dhol
+**C14 · Girnar** (Claude suggestion) — #6 Bhakti ki hai raat x Nemji shamaliya · #8 Fast mashup (Om Shri Neminath…) · #16 Shyamla Neminath · #17 Rajul ne Nem mali jaashe · #25 Namami Nemi · #35 Tara mast gulabi gaal 🖼 · #39 Hai yeh pawan bhoomi · #62 Nemras · #63 Jay jay garvo Girnar · #121 Nemji shamaliya (Girnare shobhe dekho) · #129 Rome rome Girnar · #148 Girnare Shri prabhu Nem chhe · #150 Man mohi lidhu Girnare · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #10 Keva pyara lage mara dada · #36 Shu karu dada
 
-**Nakoda Bherav** (Ronak) — #188 Zamane mein kab kahan ⏳ · #189 Mara Nakoda ra nath ⏳ · #70 Maro bhedo laga dijo paar
+**C15 · Grah Pravesh** (Ronak, no General Bhakthi) — #15 Meri jhopdi ke bhaag · #66 Aao dada padharo dada · #54 Aaj anand ang ang jagyo · #10 Keva pyara lage mara dada · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · *suggested:* #58, #109
 
-**Neminath Bhagwan** (Ronak) — #62 Nemras · #121 Nemji shamaliya (Girnare shobhe dekho) · #16 Shyamla Neminath · #167 Keva pyara lage mara Neminath dada ⏳ · #63 Jay jay garvo Girnar · *suggested:* #6, #8, #17, #25, #35, #39, #129, #148, #150
+**C16 · Mahaveer Swamy Bhagwan** (Ronak) — #3 He Trishla na jaya x Aani shuddh mann aastha · #168 Veer mere patha ⏳ · #169 Vadhavo Veer Jinvar ne ⏳ · #81 Tu Veer se dil ko laga le · #170 Helo maro sambhalo ⏳ · #54 Aaj anand ang ang jagyo · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · *suggested:* #4, #8, #28, #80, #107, #108, #124
 
-**Palitana** (Ronak) — #120 Uncha uncha Shatrunjay na shikharo sohay · #91 Chalo ji chalo · #18 Rushabhji bolave chhe · #5 Jeni kiki kali chhe · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #13 Siddhachal giri namo namah · #20 Siddhachal darbar jhajharman lage chhe · #23 Shetrunji nadi ne ghat re · #26 Siddhachal na vasi · #42 Aangan utsav bani aavo Vrushabhji · #65 Albelo Aadeshwar · *suggested:* #4, #8, #71, #85, #140, #151
+**C17 · Nakoda Bherav** (Ronak) — #188 Zamane mein kab kahan ⏳ · #189 Mara Nakoda ra nath ⏳ · #70 Maro bhedo laga dijo paar · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼
 
-**Palitana 5 Chaityavandan** (Claude suggestion) — _no songs yet_
+**C18 · Palitana** (Ronak) — #120 Uncha uncha Shatrunjay na shikharo sohay · #91 Chalo ji chalo · #18 Rushabhji bolave chhe · #5 Jeni kiki kali chhe · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #13 Siddhachal giri namo namah · #20 Siddhachal darbar jhajharman lage chhe · #23 Shetrunji nadi ne ghat re · #26 Siddhachal na vasi · #42 Aangan utsav bani aavo Vrushabhji · #65 Albelo Aadeshwar · #10 Keva pyara lage mara dada · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #36 Shu karu dada · *suggested:* #4, #8, #71, #85, #140, #151
 
-**Parshwanath Bhagwan** (Ronak) — #30 Shankheshwar ka nath hai · #149 Keva pyara lage mara Parshwanath dada · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · #4 Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta · #47 Kesar tilak lagavo · *suggested:* #2, #3, #27, #60, #97, #101, #114, #125, #147, #154, #157
+**C20 · Parshwanath Bhagwan** (Ronak) — #30 Shankheshwar ka nath hai · #149 Keva pyara lage mara Parshwanath dada · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · #4 Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta · #47 Kesar tilak lagavo · #188 Zamane mein kab kahan ⏳ · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #10 Keva pyara lage mara dada · #36 Shu karu dada · *suggested:* #2, #3, #27, #60, #97, #101, #114, #125, #147, #154, #157
 
-**Prachin Stavan** (Ronak, no General Bhakthi) — #54 Aaj anand ang ang jagyo · *suggested:* #26, #27, #96, #97, #98
+**C21 · Prachin Stavan** (Ronak, no General Bhakthi) — #54 Aaj anand ang ang jagyo · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #36 Shu karu dada · #5 Jeni kiki kali chhe · *suggested:* #26, #27, #96, #97, #98
 
-**Pratishta / Dhwaja** (Ronak) — #47 Kesar tilak lagavo · #33 Ude re dhwaja (Dada na derasar par) · #15 Meri jhopdi ke bhaag · #78 Lehra do · #54 Aaj anand ang ang jagyo · *suggested:* #45, #46, #117
+**C22 · Pratishta / Dhwaja** (Ronak) — #47 Kesar tilak lagavo · #33 Ude re dhwaja (Dada na derasar par) · #15 Meri jhopdi ke bhaag · #78 Lehra do · #54 Aaj anand ang ang jagyo · *suggested:* #45, #46, #117
 
-**Rajendra Suriji** (Ronak) — #138 Mere dono haathon mein (aisi lakeer hai) · #6 Bhakti ki hai raat x Nemji shamaliya · #86 Mere sir par rakho dada · #92 Tara sharane aavyo chhu 🖼 · #95 Duniya se main haara
+**C23 · Rajendra Suriji** (Ronak) — #138 Mere dono haathon mein (aisi lakeer hai) · #6 Bhakti ki hai raat x Nemji shamaliya · #92 Tara sharane aavyo chhu 🖼 · #95 Duniya se main haara · #24 O Palanhare · #86 Mere sir par rakho dada · #39 Hai yeh pawan bhoomi · #180 O guru sa thaaro chelo banu main ⏳ · #54 Aaj anand ang ang jagyo
 
-**Rishto ki Dor** (Ronak, no General Bhakthi) — #183 Tu kitni achhi hai ⏳ · #184 Yeh dosti hum nahi todenge ⏳ · #185 Ek dusre se karte hai pyaar hum ⏳ · #186 Chanda ne poocha taaron se ⏳ · #187 Phoolon ka taaron ka ⏳
+**C24 · Rishto ki Dor** (Ronak, no General Bhakthi) — #183 Tu kitni achhi hai ⏳ · #184 Yeh dosti hum nahi todenge ⏳ · #185 Ek dusre se karte hai pyaar hum ⏳ · #186 Chanda ne poocha taaron se ⏳ · #187 Phoolon ka taaron ka ⏳
 
-**Sahebji** (Ronak, no General Bhakthi) — #178 Mere saheb ne mujhko bohot kuch diya ⏳ · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #77 Aagman taro aagman · #22 Hu baal tamaro chhu · #180 O guru sa thaaro chelo banu main ⏳
+**C25 · Sahebji** (Ronak, no General Bhakthi) — #178 Mere saheb ne mujhko bohot kuch diya ⏳ · #9 Hu chhu tamaro x Shetrunji nadi ne ghat re 🖼 · #77 Aagman taro aagman · #22 Hu baal tamaro chhu · #180 O guru sa thaaro chelo banu main ⏳ · #19 Musafari 🖼 · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #36 Shu karu dada
 
-**Sangh** (Claude suggestion) — _no songs yet_
+**C26 · Sangh** (Claude suggestion) — _no songs yet_
 
-**Sankeshwar** (Claude suggestion) — #2 Shankheshwara tu saharo · #3 He Trishla na jaya x Aani shuddh mann aastha · #30 Shankheshwar ka nath hai · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · #97 Parshwajinanda Vamaji ke nanda · #101 Aankh mari ughade tya Shankheshwar dekhu · #125 Mari aankhoma Shankheshwar aavjo re · #154 He Shankheshwar swami
+**C27 · Sankeshwar** (Claude suggestion) — #2 Shankheshwara tu saharo · #3 He Trishla na jaya x Aani shuddh mann aastha · #30 Shankheshwar ka nath hai · #96 Chintamani mari chinta chur (Aani mann shuddh aastha) · #97 Parshwajinanda Vamaji ke nanda · #101 Aankh mari ughade tya Shankheshwar dekhu · #125 Mari aankhoma Shankheshwar aavjo re · #154 He Shankheshwar swami · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #10 Keva pyara lage mara dada · #36 Shu karu dada
 
-**Shanti Suriji** (Ronak) — #190 Aangi (Shanti Suriji) ⏳ · #191 Phool (Shanti Suriji) ⏳
+**C28 · Shanti Suriji** (Ronak) — #190 Aangi (Shanti Suriji) ⏳ · #191 Phool (Shanti Suriji) ⏳ · #180 O guru sa thaaro chelo banu main ⏳
 
-**Shantinath Bhagwan** (Ronak) — #181 Keva pyara lage mara Shantinath dada ⏳ · #98 Maro mujro lyo ne raj (Shantinath)
+**C29 · Shantinath Bhagwan** (Ronak) — #181 Keva pyara lage mara Shantinath dada ⏳ · #98 Maro mujro lyo ne raj (Shantinath) · #180 O guru sa thaaro chelo banu main ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #10 Keva pyara lage mara dada · #36 Shu karu dada
 
-**Tapasya Bhakthi** (Ronak, no General Bhakthi) — #171 Khamma ghani khamma ghani ⏳ · #172 Tame utsav aaj mandavo ⏳ · #173 Kar ke tapasya tab ko tapasya ⏳ · #174 Tyaag samarpan aur saiyamta ⏳ · #175 Tapasya karta karta ho ⏳ · #82 Jay jay kar tapasvi no · #83 Ga raha sara sansar, tapasvi amar rahe
+**C30 · Utsah Songs** (Ronak) — #42 Aangan utsav bani aavo Vrushabhji · #68 Jino jino ude re gulaal · #73 Dhol baje dhol baje · #54 Aaj anand ang ang jagyo · *suggested:* #8, #15, #50, #51, #62, #63, #64, #65, #66, #67, #69, #70, #71, #72, #74, #75, #76, #77, #78, #85, #104, #108, #163
 
-**Utsah Songs** (Ronak) — #42 Aangan utsav bani aavo Vrushabhji · #68 Jino jino ude re gulaal · #73 Dhol baje dhol baje · *suggested:* #8, #15, #50, #51, #54, #62, #63, #64, #65, #66, #67, #69, #70, #71, #72, #74, #75, #76, #77, #78, #85, #104, #108, #163
+**C31 · Simandhar Swamy Bhagwan** (Ronak) — #195 Suno Chandaji Simandhar parmatam pase ⏳ · #99 Tu mane Bhagwan ek vardan aapi de 🖼 · #93 Rome rome hu · #36 Shu karu dada
 
-**Aarti** (Ronak, pinned last, no General Bhakthi) — #192 Jay Jay Aarti (Aadi Jinanda) · #193 Mangal Divo (Divo re divo) · #194 Gurudev Aarti ⏳
+**C32 · Aarti** (Ronak, pinned last, no General Bhakthi) — #192 Jay Jay Aarti (Aadi Jinanda) · #193 Mangal Divo (Divo re divo) · #194 Gurudev Aarti ⏳
 
 ## 13. All songs — serial number, name, contexts
 
-194 songs. * after a context = suggestion only.
+195 songs. * after a context = suggestion only.
 
 | No. | Song | Typed lyrics / image | Contexts |
 |---|---|---|---|
-| 1 | नवकार — Nirvikar Navkar |  | Navkar*, General Bhakthi* |
-| 2 | शंखेश्वरा तू सहारो — Shankheshwara tu saharo |  | Parshwanath Bhagwan*, Sankeshwar |
-| 3 | हे त्रिशला ना जाया × आणि शुद्ध मन आस्था — He Trishla na jaya x Aani shuddh mann aastha |  | Mashup*, Mahaveer Swamy Bhagwan, Parshwanath Bhagwan*, Sankeshwar |
-| 4 | अखियाँ हरखण लागी × गिरिराज ना आदिनाथ × मारा घट मां बिराजता — Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta |  | Adinath Bhagwan*, Mashup*, General Bhakthi, Mahaveer Swamy Bhagwan*, Palitana*, Parshwanath Bhagwan |
-| 5 | जेनी कीकी काळी छे — Jeni kiki kali chhe |  | Adinath Bhagwan, Palitana |
-| 6 | भक्ति की है रात × नेमजी शामलीया — Bhakti ki hai raat x Nemji shamaliya |  | Mashup*, General Bhakthi, Girnar, Neminath Bhagwan*, Rajendra Suriji |
-| 7 | मैशअप (सुंदर आ देहरामां…) — Mashup (Sundar aa dehrama…) |  | Mashup*, General Bhakthi* |
-| 8 | फास्ट मैशअप (ॐ श्री नेमीनाथ…) — Fast mashup (Om Shri Neminath…) |  | Adinath Bhagwan*, Mashup*, Girnar, Mahaveer Swamy Bhagwan*, Neminath Bhagwan*, Palitana*, Utsah Songs* |
-| 9 | हूं छु तमारो × शेत्रुंजी नदीने घाट रे — Hu chhu tamaro x Shetrunji nadi ne ghat re | image | Adinath Bhagwan*, Mashup*, Bhaav Bhakthi, Palitana, Sahebji |
-| 10 | केवा प्यारा लागे — Keva pyara lage mara dada |  | Adinath Bhagwan, General Bhakthi* |
-| 11 | व्हाला आदिनाथ — Vhala Aadinath |  | Adinath Bhagwan |
-| 12 | श्वास छे तूं मारो — Shwas chhe tu maro |  | General Bhakthi* |
-| 13 | सिद्धाचल गिरी नमो नमः — Siddhachal giri namo namah |  | Adinath Bhagwan, Palitana |
-| 14 | ऊंचा अंबर थी — Uncha ambar thi |  | General Bhakthi |
-| 15 | मेरी झोपडी के भाग — Meri jhopdi ke bhaag |  | Grah Pravesh, Pratishta / Dhwaja, Utsah Songs* |
-| 16 | श्यामला नेमिनाथ — Shyamla Neminath |  | Girnar, Neminath Bhagwan |
-| 17 | राजुल ने नेम मळी जाशे — Rajul ne Nem mali jaashe |  | Diksha*, Girnar, Neminath Bhagwan* |
-| 18 | ऋषभजी बोलावे छे — Rushabhji bolave chhe |  | Adinath Bhagwan, Palitana |
-| 19 | मुसाफ़री — Musafari | image | Classical Songs |
-| 20 | सिद्धाचल दरबार — Siddhachal darbar jhajharman lage chhe |  | Adinath Bhagwan, Palitana |
-| 21 | सोना रूपाना कलशे — Sona rupana kalashe |  | All Pooja |
-| 22 | हुं बाळ तमारो छु — Hu baal tamaro chhu |  | Adinath Bhagwan, Sahebji |
-| 23 | शेत्रुंजी नदीने घाट रे — Shetrunji nadi ne ghat re |  | Adinath Bhagwan, Palitana |
-| 24 | ओ पालनहारे — O Palanhare |  | General Bhakthi* |
-| 25 | नमामि नेमि — Namami Nemi |  | Girnar, Neminath Bhagwan* |
-| 26 | सिद्धाचल ना वासी — Siddhachal na vasi |  | Adinath Bhagwan, Chetya Vandan Stavan, Palitana, Prachin Stavan* |
-| 27 | अखियाँ हरखण लागी (मूल स्तवन) — Akhiyan harkhan lagi (original stavan) | text | Parshwanath Bhagwan*, Prachin Stavan* |
-| 28 | त्रिशला नन्दनम, प्रभु परमेश्वरम — Trishla nandanam prabhu parmeshwaram |  | Mahaveer Swamy Bhagwan* |
-| 29 | दादा आदेश्वरजी — Dada Aadeshwarji |  | Adinath Bhagwan, Chetya Vandan Stavan |
-| 30 | शंखेश्वर का नाथ है — Shankheshwar ka nath hai |  | Parshwanath Bhagwan, Sankeshwar |
-| 31 | अंत छे अनंत नही — Ant chhe anant nahi (Sarva swikar ni sanyam yatra) |  | Diksha, Gujarati Songs |
-| 32 | लगनी लागी छे — Lagni lagi chhe |  | General Bhakthi* |
-| 33 | उड़े रे ध्वजा — Ude re dhwaja (Dada na derasar par) |  | Pratishta / Dhwaja |
-| 34 | तु खुब मने गमे छे, मारा व्हाला प्रभु — Tu khub mane game chhe | image | General Bhakthi* |
-| 35 | तारा मस्त गुलाबी गाल — Tara mast gulabi gaal | image | Adinath Bhagwan, Girnar, Neminath Bhagwan* |
-| 36 | शूं करू दादा — Shu karu dada |  | Adinath Bhagwan, Gujarati Songs |
-| 37 | ऋषभजी नंद दयाल रे, मोहे लागी लगन — Rushabhji nand dayal re, mohe lagi lagan |  | Adinath Bhagwan |
-| 38 | आदि स्पर्श आया — Adi sparsh aaya |  | Adinath Bhagwan* |
-| 39 | है ये पावन भूमि — Hai yeh pawan bhoomi |  | Adinath Bhagwan, General Bhakthi, Girnar, Neminath Bhagwan* |
-| 40 | मेरा एक साथी है — Mera ek saathi hai |  | General Bhakthi* |
-| 41 | जब कोई नहीं आता मेरे दादा — Jab koi nahi aata mere dada |  | General Bhakthi* |
-| 42 | आंगण उत्सव बनी आवो वृषभजी — Aangan utsav bani aavo Vrushabhji |  | Adinath Bhagwan, Classical Songs, Palitana, Utsah Songs |
-| 43 | आ मारा महाराजजी — Aa mara Maharajji | image | General Bhakthi* |
-| 44 | तारो महिमा अपरंपार — Taro mahima aparampar |  | Classical Songs |
-| 45 | थनगनता जनजनना हैये (अंजननी वेळा) — Thanganta janjanna haiye (Anjan ni vela) |  | Pratishta / Dhwaja* |
-| 46 | रंग जामशे रे भक्ति रंग जामशे — Rang jamshe re bhakti rang jamshe |  | General Bhakthi*, Pratishta / Dhwaja* |
-| 47 | केसर तिलक लगावो — Kesar tilak lagavo |  | Adinath Bhagwan, All Pooja*, Parshwanath Bhagwan, Pratishta / Dhwaja |
-| 48 | हुं प्रभु मारो तुं — Hu prabhu maro tune |  | Chetya Vandan Stavan |
-| 49 | तेरे दरवाजे पर — Tere darwaze par |  | General Bhakthi* |
-| 50 | पंखिडा ओ पंखिडा — Pankhida o pankhida |  | Dance Number*, Utsah Songs* |
-| 51 | टीलडी रे मारा प्रभुजीने — Tiladi re mara prabhuji ne |  | Dance Number*, Utsah Songs* |
-| 52 | राजपथ पर जनारा — Rajpath par janara |  | Diksha |
-| 53 | ये तूने क्या किया × दीवाना तेरा आया — Ye tune kya kiya × Deewana tera aaya |  | Mashup*, General Bhakthi* |
-| 54 | आज आनंद अंग अंग जाग्यो — Aaj anand ang ang jagyo |  | Dance Number, Prachin Stavan, Pratishta / Dhwaja, Utsah Songs* |
-| 55 | तने रात दिवस हुं याद करुं — Tane raat divas hu yaad karu |  | General Bhakthi* |
-| 56 | तूने मुझे बुलाया — Tune mujhe bulaya |  | General Bhakthi* |
-| 57 | दादा जिनको याद करे वो — Dada jinko yaad kare wo |  | General Bhakthi* |
-| 58 | सजा दो घर को गुलशन सा — Sajado ghar lo gulshan sa |  | General Bhakthi*, Grah Pravesh* |
-| 59 | दूर दूरथी — Dur dur thi |  | General Bhakthi* |
-| 60 | मेरे मन में पारसनाथ — Mere mann mein Parasnath |  | Parshwanath Bhagwan* |
-| 61 | ढूंढते रहते हैं आजकल — Dhoondhte rehte hain aajkal |  | General Bhakthi* |
-| 62 | नेमरस — Nemras |  | Dance Number, Girnar, Neminath Bhagwan, Utsah Songs* |
-| 63 | जय जय गरवो गिरनार — Jay jay garvo Girnar |  | Dance Number, Girnar, Neminath Bhagwan, Utsah Songs* |
-| 64 | नाम है तेरा तारणहारा — Naam hai tera taran hara |  | Dance Number, Utsah Songs* |
-| 65 | अलबेलो आदेश्वर — Albelo Aadeshwar |  | Adinath Bhagwan, Dance Number, Palitana, Utsah Songs* |
-| 66 | आओ दादा पधारो दादा — Aao dada padharo dada |  | Dance Number, Grah Pravesh, Utsah Songs* |
-| 67 | एक बार मुखडो बताओ — Ek baar mukhdo batao |  | Marvadi Songs, Utsah Songs* |
-| 68 | जीणो जीणो उडे रे गुलाल — Jino jino ude re gulaal |  | Marvadi Songs, Utsah Songs |
-| 69 | धुलेवा नगरी में केसरिया विराजे — Dhulewa nagri mein Kesariya viraje |  | Adinath Bhagwan, Dance Number*, Marvadi Songs, Utsah Songs* |
-| 70 | म्हारो भेरू लगा दीजो पार — Maro bhedo laga dijo paar |  | Nakoda Bherav, Utsah Songs* |
-| 71 | हे शत्रुंजय कुंडना — He Shatrunjay kundana |  | Adinath Bhagwan*, Palitana*, Utsah Songs* |
-| 72 | प्रभुजी तारा देशमां रेलगाडी आवी — Prabhuji tara desh ma rail gaadi aayi |  | General Bhakthi*, Utsah Songs* |
-| 73 | ढोल बाजे ढोल बाजे — Dhol baje dhol baje |  | Utsah Songs |
-| 74 | रंगे रमे आ रंगे — Range rame ya range |  | Dance Number*, Marvadi Songs, Utsah Songs* |
-| 75 | मारा दादाना दरबारे ढोल — Mara dada na darbare dhol |  | Dance Number*, Marvadi Songs, Utsah Songs* |
-| 76 | सनेडो सनेडो लाल लाल — Sanedo sanedo laal laal |  | Dance Number*, General Bhakthi*, Utsah Songs* |
-| 77 | आगमन तारुं आगमन — Aagman taro aagman |  | Sahebji, Utsah Songs* |
-| 78 | लहरा दो — Lehra do |  | Pratishta / Dhwaja, Utsah Songs* |
-| 79 | लेता म्हारा प्रभुजी रो नाम — Leta mara prabhuji ro naam |  | General Bhakthi* |
-| 80 | प्रभु वीर जनम्या आज — Prabhu Veer janmiya aaj |  | Mahaveer Swamy Bhagwan* |
-| 81 | तू वीर से दिल को लगा ले — Tu Veer se dil ko laga le |  | Mahaveer Swamy Bhagwan |
-| 82 | जय जयकार तपस्वीनो — Jay jay kar tapasvi no |  | Tapasya Bhakthi |
-| 83 | गा रहा सारा संसार, तपस्वी अमर रहे — Ga raha sara sansar, tapasvi amar rahe |  | Tapasya Bhakthi |
-| 84 | ढोल दी रा — Dhol di ra |  | Dance Number*, General Bhakthi* |
-| 85 | आदिनाथ मेडली — Adinath medley |  | Adinath Bhagwan*, Mashup*, Palitana*, Utsah Songs* |
-| 86 | मेरे सिर पर रखो दादा — Mere sir par rakho dada |  | Rajendra Suriji |
-| 87 | दिल में नाम तेरा है — Dil mein naam tera hai |  | General Bhakthi* |
-| 88 | दीन दुःखियानो — Din dukhiya na |  | General Bhakthi* |
-| 89 | जब जब दिल ये उदास होता है — Jab jab dil ye udaas hota hai |  | General Bhakthi* |
-| 90 | काजल टीको लगवाले — Kajal tiko lagwale |  | General Bhakthi* |
-| 91 | चालो जी चालो — Chalo ji chalo |  | Palitana |
-| 92 | तारा शरणे आव्यो छुं — Tara sharane aavyo chhu | image | General Bhakthi, Rajendra Suriji |
-| 93 | रोमे रोमे हुं तारो — Rome rome hu |  | Gujarati Songs |
-| 94 | तारो ने मारो संबंध न्यारो — Taro ne maro | image | Adinath Bhagwan, General Bhakthi* |
-| 95 | दुनिया से मैं हारा — Duniya se main haara |  | Rajendra Suriji |
-| 96 | चिंतामणि मारी चिंता चूर — Chintamani mari chinta chur (Aani mann shuddh aastha) | text | Parshwanath Bhagwan, Prachin Stavan*, Sankeshwar |
-| 97 | पार्श्वजिणंदा वामाजी के नंदा — Parshwajinanda Vamaji ke nanda | text | Parshwanath Bhagwan*, Prachin Stavan*, Sankeshwar |
-| 98 | मारो मुजरो ल्योने राज, साहिब शांति सलूणा — Maro mujro lyo ne raj (Shantinath) | text | Prachin Stavan*, Shantinath Bhagwan |
-| 99 | तूं मने भगवान — Tu mane Bhagwan ek vardan aapi de | image | Adinath Bhagwan |
+| 1 | नवकार — Nirvikar Navkar |  | Navkar*, C1 General Bhakthi* |
+| 2 | शंखेश्वरा तू सहारो — Shankheshwara tu saharo |  | C20 Parshwanath Bhagwan*, C27 Sankeshwar |
+| 3 | हे त्रिशला ना जाया × आणि शुद्ध मन आस्था — He Trishla na jaya x Aani shuddh mann aastha |  | C2 Slow Mashup*, C16 Mahaveer Swamy Bhagwan, C20 Parshwanath Bhagwan*, C27 Sankeshwar |
+| 4 | अखियाँ हरखण लागी × गिरिराज ना आदिनाथ × मारा घट मां बिराजता — Akhiyan harkhan lagi x Giriraj na Aadinath x Mara ghat ma birajta |  | C1 General Bhakthi, C2 Slow Mashup*, C3 Adinath Bhagwan*, C16 Mahaveer Swamy Bhagwan*, C18 Palitana*, C20 Parshwanath Bhagwan |
+| 5 | जेनी कीकी काळी छे — Jeni kiki kali chhe |  | C1 General Bhakthi, C3 Adinath Bhagwan, C8 Gujarati Songs, C18 Palitana, C21 Prachin Stavan |
+| 6 | भक्ति की है रात × नेमजी शामलीया — Bhakti ki hai raat x Nemji shamaliya |  | C1 General Bhakthi, C2 Slow Mashup*, C4 Neminath Bhagwan*, C14 Girnar, C23 Rajendra Suriji |
+| 7 | मैशअप (सुंदर आ देहरामां…) — Mashup (Sundar aa dehrama…) |  | C1 General Bhakthi*, C2 Slow Mashup* |
+| 8 | फास्ट मैशअप (ॐ श्री नेमीनाथ…) — Fast mashup (Om Shri Neminath…) |  | C2 Slow Mashup*, C3 Adinath Bhagwan*, C4 Neminath Bhagwan*, C14 Girnar, C16 Mahaveer Swamy Bhagwan*, C18 Palitana*, C30 Utsah Songs* |
+| 9 | हूं छु तमारो × शेत्रुंजी नदीने घाट रे — Hu chhu tamaro x Shetrunji nadi ne ghat re | image | C2 Slow Mashup*, C3 Adinath Bhagwan*, C6 Bhaav Bhakthi, C18 Palitana, C25 Sahebji |
+| 10 | केवा प्यारा लागे — Keva pyara lage mara dada |  | C1 General Bhakthi, C3 Adinath Bhagwan, C4 Neminath Bhagwan, C6 Bhaav Bhakthi, C8 Gujarati Songs, C14 Girnar, C15 Grah Pravesh, C18 Palitana, C20 Parshwanath Bhagwan, C27 Sankeshwar, C29 Shantinath Bhagwan |
+| 11 | व्हाला आदिनाथ — Vhala Aadinath |  | C3 Adinath Bhagwan |
+| 12 | श्वास छे तूं मारो — Shwas chhe tu maro |  | C1 General Bhakthi* |
+| 13 | सिद्धाचल गिरी नमो नमः — Siddhachal giri namo namah |  | C3 Adinath Bhagwan, C18 Palitana |
+| 14 | ऊंचा अंबर थी — Uncha ambar thi |  | C1 General Bhakthi |
+| 15 | मेरी झोपडी के भाग — Meri jhopdi ke bhaag |  | C15 Grah Pravesh, C22 Pratishta / Dhwaja, C30 Utsah Songs* |
+| 16 | श्यामला नेमिनाथ — Shyamla Neminath |  | C4 Neminath Bhagwan, C14 Girnar |
+| 17 | राजुल ने नेम मळी जाशे — Rajul ne Nem mali jaashe |  | C4 Neminath Bhagwan*, C13 Diksha*, C14 Girnar |
+| 18 | ऋषभजी बोलावे छे — Rushabhji bolave chhe |  | C1 General Bhakthi, C3 Adinath Bhagwan, C18 Palitana |
+| 19 | मुसाफ़री — Musafari | image | C1 General Bhakthi, C6 Bhaav Bhakthi, C8 Gujarati Songs, C12 Classical Songs, C13 Diksha, C25 Sahebji |
+| 20 | सिद्धाचल दरबार — Siddhachal darbar jhajharman lage chhe |  | C3 Adinath Bhagwan, C18 Palitana |
+| 21 | सोना रूपाना कलशे — Sona rupana kalashe |  | C10 All Pooja |
+| 22 | हुं बाळ तमारो छु — Hu baal tamaro chhu |  | C3 Adinath Bhagwan, C25 Sahebji |
+| 23 | शेत्रुंजी नदीने घाट रे — Shetrunji nadi ne ghat re |  | C3 Adinath Bhagwan, C18 Palitana |
+| 24 | ओ पालनहारे — O Palanhare |  | C1 General Bhakthi*, C23 Rajendra Suriji |
+| 25 | नमामि नेमि — Namami Nemi |  | C4 Neminath Bhagwan*, C14 Girnar |
+| 26 | सिद्धाचल ना वासी — Siddhachal na vasi |  | C3 Adinath Bhagwan, C11 Chetya Vandan Stavan, C18 Palitana, C21 Prachin Stavan* |
+| 27 | अखियाँ हरखण लागी (मूल स्तवन) — Akhiyan harkhan lagi (original stavan) | text | C20 Parshwanath Bhagwan*, C21 Prachin Stavan* |
+| 28 | त्रिशला नन्दनम, प्रभु परमेश्वरम — Trishla nandanam prabhu parmeshwaram |  | C16 Mahaveer Swamy Bhagwan* |
+| 29 | दादा आदेश्वरजी — Dada Aadeshwarji |  | C3 Adinath Bhagwan, C11 Chetya Vandan Stavan |
+| 30 | शंखेश्वर का नाथ है — Shankheshwar ka nath hai |  | C20 Parshwanath Bhagwan, C27 Sankeshwar |
+| 31 | अंत छे अनंत नही — Ant chhe anant nahi (Sarva swikar ni sanyam yatra) |  | C8 Gujarati Songs, C13 Diksha |
+| 32 | लगनी लागी छे — Lagni lagi chhe |  | C1 General Bhakthi* |
+| 33 | उड़े रे ध्वजा — Ude re dhwaja (Dada na derasar par) |  | C22 Pratishta / Dhwaja |
+| 34 | तु खुब मने गमे छे, मारा व्हाला प्रभु — Tu khub mane game chhe | image | C1 General Bhakthi* |
+| 35 | तारा मस्त गुलाबी गाल — Tara mast gulabi gaal | image | C3 Adinath Bhagwan, C4 Neminath Bhagwan*, C14 Girnar |
+| 36 | शूं करू दादा — Shu karu dada |  | C1 General Bhakthi, C3 Adinath Bhagwan, C6 Bhaav Bhakthi, C8 Gujarati Songs, C14 Girnar, C18 Palitana, C20 Parshwanath Bhagwan, C21 Prachin Stavan, C25 Sahebji, C27 Sankeshwar, C29 Shantinath Bhagwan, C31 Simandhar Swamy Bhagwan |
+| 37 | ऋषभजी नंद दयाल रे, मोहे लागी लगन — Rushabhji nand dayal re, mohe lagi lagan |  | C3 Adinath Bhagwan |
+| 38 | आदि स्पर्श आया — Adi sparsh aaya |  | C3 Adinath Bhagwan* |
+| 39 | है ये पावन भूमि — Hai yeh pawan bhoomi |  | C1 General Bhakthi, C3 Adinath Bhagwan, C4 Neminath Bhagwan*, C14 Girnar, C23 Rajendra Suriji |
+| 40 | मेरा एक साथी है — Mera ek saathi hai |  | C1 General Bhakthi* |
+| 41 | जब कोई नहीं आता मेरे दादा — Jab koi nahi aata mere dada |  | C1 General Bhakthi* |
+| 42 | आंगण उत्सव बनी आवो वृषभजी — Aangan utsav bani aavo Vrushabhji |  | C3 Adinath Bhagwan, C12 Classical Songs, C18 Palitana, C30 Utsah Songs |
+| 43 | आ मारा महाराजजी — Aa mara Maharajji | image | C1 General Bhakthi* |
+| 44 | तारो महिमा अपरंपार — Taro mahima aparampar |  | C12 Classical Songs |
+| 45 | थनगनता जनजनना हैये (अंजननी वेळा) — Thanganta janjanna haiye (Anjan ni vela) |  | C22 Pratishta / Dhwaja* |
+| 46 | रंग जामशे रे भक्ति रंग जामशे — Rang jamshe re bhakti rang jamshe |  | C1 General Bhakthi*, C22 Pratishta / Dhwaja* |
+| 47 | केसर तिलक लगावो — Kesar tilak lagavo |  | C3 Adinath Bhagwan, C10 All Pooja*, C20 Parshwanath Bhagwan, C22 Pratishta / Dhwaja |
+| 48 | हुं प्रभु मारो तुं — Hu prabhu maro tune |  | C11 Chetya Vandan Stavan |
+| 49 | तेरे दरवाजे पर — Tere darwaze par |  | C1 General Bhakthi* |
+| 50 | पंखिडा ओ पंखिडा — Pankhida o pankhida |  | C5 Fast Dance Number*, C30 Utsah Songs* |
+| 51 | टीलडी रे मारा प्रभुजीने — Tiladi re mara prabhuji ne |  | C5 Fast Dance Number*, C30 Utsah Songs* |
+| 52 | राजपथ पर जनारा — Rajpath par janara |  | C13 Diksha |
+| 53 | ये तूने क्या किया × दीवाना तेरा आया — Ye tune kya kiya × Deewana tera aaya |  | C1 General Bhakthi*, C2 Slow Mashup* |
+| 54 | आज आनंद अंग अंग जाग्यो — Aaj anand ang ang jagyo |  | C1 General Bhakthi, C3 Adinath Bhagwan, C5 Fast Dance Number, C7 Tapasya Bhakthi, C15 Grah Pravesh, C16 Mahaveer Swamy Bhagwan, C21 Prachin Stavan, C22 Pratishta / Dhwaja, C23 Rajendra Suriji, C30 Utsah Songs |
+| 55 | तने रात दिवस हुं याद करुं — Tane raat divas hu yaad karu |  | C1 General Bhakthi* |
+| 56 | तूने मुझे बुलाया — Tune mujhe bulaya |  | C1 General Bhakthi* |
+| 57 | दादा जिनको याद करे वो — Dada jinko yaad kare wo |  | C1 General Bhakthi* |
+| 58 | सजा दो घर को गुलशन सा — Sajado ghar lo gulshan sa |  | C1 General Bhakthi*, C15 Grah Pravesh* |
+| 59 | दूर दूरथी — Dur dur thi |  | C1 General Bhakthi* |
+| 60 | मेरे मन में पारसनाथ — Mere mann mein Parasnath |  | C20 Parshwanath Bhagwan* |
+| 61 | ढूंढते रहते हैं आजकल — Dhoondhte rehte hain aajkal |  | C1 General Bhakthi* |
+| 62 | नेमरस — Nemras |  | C4 Neminath Bhagwan, C5 Fast Dance Number, C14 Girnar, C30 Utsah Songs* |
+| 63 | जय जय गरवो गिरनार — Jay jay garvo Girnar |  | C4 Neminath Bhagwan, C5 Fast Dance Number, C14 Girnar, C30 Utsah Songs* |
+| 64 | नाम है तेरा तारणहारा — Naam hai tera taran hara |  | C5 Fast Dance Number, C30 Utsah Songs* |
+| 65 | अलबेलो आदेश्वर — Albelo Aadeshwar |  | C3 Adinath Bhagwan, C5 Fast Dance Number, C18 Palitana, C30 Utsah Songs* |
+| 66 | आओ दादा पधारो दादा — Aao dada padharo dada |  | C5 Fast Dance Number, C15 Grah Pravesh, C30 Utsah Songs* |
+| 67 | एक बार मुखडो बताओ — Ek baar mukhdo batao |  | C9 Marvadi Songs, C30 Utsah Songs* |
+| 68 | जीणो जीणो उडे रे गुलाल — Jino jino ude re gulaal |  | C9 Marvadi Songs, C30 Utsah Songs |
+| 69 | धुलेवा नगरी में केसरिया विराजे — Dhulewa nagri mein Kesariya viraje |  | C3 Adinath Bhagwan, C5 Fast Dance Number*, C9 Marvadi Songs, C30 Utsah Songs* |
+| 70 | म्हारो भेरू लगा दीजो पार — Maro bhedo laga dijo paar |  | C17 Nakoda Bherav, C30 Utsah Songs* |
+| 71 | हे शत्रुंजय कुंडना — He Shatrunjay kundana |  | C3 Adinath Bhagwan*, C18 Palitana*, C30 Utsah Songs* |
+| 72 | प्रभुजी तारा देशमां रेलगाडी आवी — Prabhuji tara desh ma rail gaadi aayi |  | C1 General Bhakthi*, C30 Utsah Songs* |
+| 73 | ढोल बाजे ढोल बाजे — Dhol baje dhol baje |  | C30 Utsah Songs |
+| 74 | रंगे रमे आ रंगे — Range rame ya range |  | C5 Fast Dance Number*, C9 Marvadi Songs, C30 Utsah Songs* |
+| 75 | मारा दादाना दरबारे ढोल — Mara dada na darbare dhol |  | C5 Fast Dance Number*, C9 Marvadi Songs, C30 Utsah Songs* |
+| 76 | सनेडो सनेडो लाल लाल — Sanedo sanedo laal laal |  | C1 General Bhakthi*, C5 Fast Dance Number*, C30 Utsah Songs* |
+| 77 | आगमन तारुं आगमन — Aagman taro aagman |  | C25 Sahebji, C30 Utsah Songs* |
+| 78 | लहरा दो — Lehra do |  | C22 Pratishta / Dhwaja, C30 Utsah Songs* |
+| 79 | लेता म्हारा प्रभुजी रो नाम — Leta mara prabhuji ro naam |  | C1 General Bhakthi* |
+| 80 | प्रभु वीर जनम्या आज — Prabhu Veer janmiya aaj |  | C16 Mahaveer Swamy Bhagwan* |
+| 81 | तू वीर से दिल को लगा ले — Tu Veer se dil ko laga le |  | C16 Mahaveer Swamy Bhagwan |
+| 82 | जय जयकार तपस्वीनो — Jay jay kar tapasvi no |  | C7 Tapasya Bhakthi |
+| 83 | गा रहा सारा संसार, तपस्वी अमर रहे — Ga raha sara sansar, tapasvi amar rahe |  | C7 Tapasya Bhakthi |
+| 84 | ढोल दी रा — Dhol di ra |  | C1 General Bhakthi*, C5 Fast Dance Number* |
+| 85 | आदिनाथ मेडली — Adinath medley |  | C2 Slow Mashup*, C3 Adinath Bhagwan*, C18 Palitana*, C30 Utsah Songs* |
+| 86 | मेरे सिर पर रखो दादा — Mere sir par rakho dada |  | C23 Rajendra Suriji |
+| 87 | दिल में नाम तेरा है — Dil mein naam tera hai |  | C1 General Bhakthi* |
+| 88 | दीन दुःखियानो — Din dukhiya na |  | C1 General Bhakthi* |
+| 89 | जब जब दिल ये उदास होता है — Jab jab dil ye udaas hota hai |  | C1 General Bhakthi* |
+| 90 | काजल टीको लगवाले — Kajal tiko lagwale |  | C1 General Bhakthi* |
+| 91 | चालो जी चालो — Chalo ji chalo |  | C18 Palitana |
+| 92 | तारा शरणे आव्यो छुं — Tara sharane aavyo chhu | image | C1 General Bhakthi, C23 Rajendra Suriji |
+| 93 | रोमे रोमे हुं तारो — Rome rome hu |  | C1 General Bhakthi, C3 Adinath Bhagwan, C6 Bhaav Bhakthi, C8 Gujarati Songs, C14 Girnar, C18 Palitana, C20 Parshwanath Bhagwan, C21 Prachin Stavan, C25 Sahebji, C27 Sankeshwar, C29 Shantinath Bhagwan, C31 Simandhar Swamy Bhagwan |
+| 94 | तारो ने मारो संबंध न्यारो — Taro ne maro | image | C1 General Bhakthi*, C3 Adinath Bhagwan |
+| 95 | दुनिया से मैं हारा — Duniya se main haara |  | C23 Rajendra Suriji |
+| 96 | चिंतामणि मारी चिंता चूर — Chintamani mari chinta chur (Aani mann shuddh aastha) | text | C1 General Bhakthi, C7 Tapasya Bhakthi, C11 Chetya Vandan Stavan, C15 Grah Pravesh, C20 Parshwanath Bhagwan, C21 Prachin Stavan*, C27 Sankeshwar |
+| 97 | पार्श्वजिणंदा वामाजी के नंदा — Parshwajinanda Vamaji ke nanda | text | C20 Parshwanath Bhagwan*, C21 Prachin Stavan*, C27 Sankeshwar |
+| 98 | मारो मुजरो ल्योने राज, साहिब शांति सलूणा — Maro mujro lyo ne raj (Shantinath) | text | C21 Prachin Stavan*, C29 Shantinath Bhagwan |
+| 99 | तूं मने भगवान — Tu mane Bhagwan ek vardan aapi de | image | C1 General Bhakthi, C3 Adinath Bhagwan, C6 Bhaav Bhakthi, C7 Tapasya Bhakthi, C8 Gujarati Songs, C10 All Pooja, C14 Girnar, C15 Grah Pravesh, C16 Mahaveer Swamy Bhagwan, C17 Nakoda Bherav, C18 Palitana, C20 Parshwanath Bhagwan, C21 Prachin Stavan, C25 Sahebji, C27 Sankeshwar, C29 Shantinath Bhagwan, C31 Simandhar Swamy Bhagwan |
 | 100 | अरहम अरहम — Arham arham (ajab dhun) |  |  |
-| 101 | आंख मारी उघडे त्यां शंखेश्वर देखुं — Aankh mari ughade tya Shankheshwar dekhu |  | Parshwanath Bhagwan*, Sankeshwar |
-| 102 | आंखडी मारी प्रभु हरखाय छे — Aankhdi mari prabhu harkhay chhe |  | Chetya Vandan Stavan |
+| 101 | आंख मारी उघडे त्यां शंखेश्वर देखुं — Aankh mari ughade tya Shankheshwar dekhu |  | C20 Parshwanath Bhagwan*, C27 Sankeshwar |
+| 102 | आंखडी मारी प्रभु हरखाय छे — Aankhdi mari prabhu harkhay chhe |  | C11 Chetya Vandan Stavan |
 | 103 | आज देव देवीओ रंगे रमे — Aaj dev devio range rame |  |  |
-| 104 | आज वगडावो वगडावो — Aaj vagdavo vagdavo |  | Utsah Songs* |
+| 104 | आज वगडावो वगडावो — Aaj vagdavo vagdavo |  | C30 Utsah Songs* |
 | 105 | इतनी शक्ति हमें देना दाता — Itni shakti hamein dena data |  |  |
 | 106 | ओ मारा रूपाळा भगवान — O mara rupala Bhagwan |  |  |
-| 107 | केसरियो रंग जिनशासननो आपजो — Kesariyo rang Jinshasan no aapjo |  | Mahaveer Swamy Bhagwan* |
-| 108 | गाजे रे गाजे — Gaaje re gaaje (Veer nu shasan) |  | Mahaveer Swamy Bhagwan*, Utsah Songs* |
-| 109 | चोख पुरावो — Chokh purao (aaj mere prabhu ghar aavenge) |  | Grah Pravesh* |
+| 107 | केसरियो रंग जिनशासननो आपजो — Kesariyo rang Jinshasan no aapjo |  | C16 Mahaveer Swamy Bhagwan* |
+| 108 | गाजे रे गाजे — Gaaje re gaaje (Veer nu shasan) |  | C16 Mahaveer Swamy Bhagwan*, C30 Utsah Songs* |
+| 109 | चोख पुरावो — Chokh purao (aaj mere prabhu ghar aavenge) |  | C15 Grah Pravesh* |
 | 110 | जिनवर तारुं शासन — Jinvar taru shasan |  |  |
 | 111 | झगमगता तारलानुं — Jhagmagta tarla nu derasar |  |  |
 | 112 | तन, मन, धन प्रभु ना चरणोमां — Tan man dhan prabhu na charanoma |  |  |
 | 113 | तमे मन मूकीने वरस्या — Tame man mukine varasya |  |  |
-| 114 | तारी गमती वातो — Tari gamti vato (He Jiravala) |  | Parshwanath Bhagwan* |
+| 114 | तारी गमती वातो — Tari gamti vato (He Jiravala) |  | C20 Parshwanath Bhagwan* |
 | 115 | तारुं धार्युं बधुं थाय छे — Taru dharyu badhu thay chhe |  |  |
 | 116 | तारे द्वारे आवीने कोई — Tare dware aavine koi |  |  |
-| 117 | परमात्मा बनी जाशे मारो आत्मा — Parmatma bani jashe maro aatma |  | Adinath Bhagwan, Gujarati Songs, Pratishta / Dhwaja* |
+| 117 | परमात्मा बनी जाशे मारो आत्मा — Parmatma bani jashe maro aatma |  | C3 Adinath Bhagwan, C8 Gujarati Songs, C22 Pratishta / Dhwaja* |
 | 118 | दोष थी हैयो भर्यो छुं — Dosh thi haiyo bharyo chhu |  |  |
-| 119 | धन्य धन्य बनावीश जन्म माहरो — Dhanya dhanya banavish janam maharo |  | Diksha* |
-| 120 | ऊंचा ऊंचा शत्रुंजयनां शिखरो सोहाय — Uncha uncha Shatrunjay na shikharo sohay |  | Adinath Bhagwan*, Chetya Vandan Stavan, Palitana |
-| 121 | नेमजी शामलीया — Nemji shamaliya (Girnare shobhe dekho) |  | Girnar, Neminath Bhagwan |
-| 122 | प्रभु आवशे ने लई जाशे — Prabhu aavshe ne lai jashe |  | Diksha* |
-| 123 | प्रभुजी मांगुं तारी पास — Prabhuji mangu tari paas |  | Diksha* |
-| 124 | महावीर सा मुझको बन जाना है — Mahaveer sa mujhko ban jana hai |  | Mahaveer Swamy Bhagwan* |
-| 125 | मारी आंखोमां शंखेश्वर आवजो रे — Mari aankhoma Shankheshwar aavjo re |  | Parshwanath Bhagwan*, Sankeshwar |
+| 119 | धन्य धन्य बनावीश जन्म माहरो — Dhanya dhanya banavish janam maharo |  | C13 Diksha* |
+| 120 | ऊंचा ऊंचा शत्रुंजयनां शिखरो सोहाय — Uncha uncha Shatrunjay na shikharo sohay |  | C3 Adinath Bhagwan*, C11 Chetya Vandan Stavan, C18 Palitana |
+| 121 | नेमजी शामलीया — Nemji shamaliya (Girnare shobhe dekho) |  | C4 Neminath Bhagwan, C14 Girnar |
+| 122 | प्रभु आवशे ने लई जाशे — Prabhu aavshe ne lai jashe |  | C13 Diksha* |
+| 123 | प्रभुजी मांगुं तारी पास — Prabhuji mangu tari paas |  | C13 Diksha* |
+| 124 | महावीर सा मुझको बन जाना है — Mahaveer sa mujhko ban jana hai |  | C16 Mahaveer Swamy Bhagwan* |
+| 125 | मारी आंखोमां शंखेश्वर आवजो रे — Mari aankhoma Shankheshwar aavjo re |  | C20 Parshwanath Bhagwan*, C27 Sankeshwar |
 | 126 | कभी प्यासे को पानी पिलाया नहीं — Kabhi pyase ko pani pilaya nahin |  |  |
 | 127 | मुक्ति मळे के ना मळे — Mukti male ke na male |  |  |
-| 128 | मुनि क्यारे बनीए — Muni kyare baniye |  | Diksha* |
-| 129 | रोमे रोमे गिरनार — Rome rome Girnar |  | Girnar, Neminath Bhagwan* |
-| 130 | विरतिधरनो वेष — Virtidhar no vesh |  | Diksha |
+| 128 | मुनि क्यारे बनीए — Muni kyare baniye |  | C13 Diksha* |
+| 129 | रोमे रोमे गिरनार — Rome rome Girnar |  | C4 Neminath Bhagwan*, C14 Girnar |
+| 130 | विरतिधरनो वेष — Virtidhar no vesh |  | C13 Diksha |
 | 131 | समताथी दर्द सहुं — Samta thi dard sahu |  |  |
-| 132 | सामुं जुओ ने — Samu juo ne |  | Bhaav Bhakthi |
+| 132 | सामुं जुओ ने — Samu juo ne |  | C6 Bhaav Bhakthi |
 | 133 | हे प्रभु हे प्रभु — He prabhu he prabhu |  |  |
-| 134 | विरति राग — Virti raag (Rushabh no marag, Nem no marag) |  | Diksha* |
-| 135 | गूंजे संयम नो जयकारा — Gunje sanyam no jaykara |  | Diksha* |
-| 136 | परम हर्ष पामुं वैराग्य — Param harsh pamu vairagya |  | Diksha* |
+| 134 | विरति राग — Virti raag (Rushabh no marag, Nem no marag) |  | C13 Diksha* |
+| 135 | गूंजे संयम नो जयकारा — Gunje sanyam no jaykara |  | C13 Diksha* |
+| 136 | परम हर्ष पामुं वैराग्य — Param harsh pamu vairagya |  | C13 Diksha* |
 | 137 | गुलाबी आंगी तारी — Gulabi aangi tari |  |  |
-| 138 | मेरे दोनों हाथों में — Mere dono haathon mein (aisi lakeer hai) |  | Rajendra Suriji |
+| 138 | मेरे दोनों हाथों में — Mere dono haathon mein (aisi lakeer hai) |  | C23 Rajendra Suriji |
 | 139 | ओ प्यारा नाथ जी — O pyara nath ji |  |  |
-| 140 | गिरिराज ना आदिनाथ — Giriraj na Aadinath |  | Adinath Bhagwan, Palitana* |
+| 140 | गिरिराज ना आदिनाथ — Giriraj na Aadinath |  | C3 Adinath Bhagwan, C18 Palitana* |
 | 141 | हृदय मंदिरना मारा देव — Hriday mandir na mara dev |  |  |
 | 142 | जब खिडकी खोलुं तो — Jab khidki kholu to |  |  |
-| 143 | आवजो मन मंदिरिये — Aavjo man mandiriye (Sundar aa dehrama) |  | Adinath Bhagwan, Bhaav Bhakthi |
+| 143 | आवजो मन मंदिरिये — Aavjo man mandiriye (Sundar aa dehrama) |  | C3 Adinath Bhagwan, C6 Bhaav Bhakthi |
 | 144 | तूने खूब दिया सब भगतों को — Tune khoob diya sab bhagton ko |  |  |
-| 145 | मीठां आदिनाथ — Mitha Aadinath (Mithi Paldi gam) |  | Adinath Bhagwan |
+| 145 | मीठां आदिनाथ — Mitha Aadinath (Mithi Paldi gam) |  | C3 Adinath Bhagwan |
 | 146 | तमे सुखदाता छो — Tame sukhdata chho |  |  |
-| 147 | पार्श्व मीठा छे — Parshwa mitha chhe |  | Parshwanath Bhagwan* |
-| 148 | गिरनारे श्री प्रभु नेम छे — Girnare Shri prabhu Nem chhe |  | Girnar, Neminath Bhagwan* |
-| 149 | केवा प्यारा लागे मारा पार्श्वनाथ दादा — Keva pyara lage mara Parshwanath dada |  | Parshwanath Bhagwan |
-| 150 | मन मोही लीधुं गिरनारे — Man mohi lidhu Girnare |  | Girnar, Neminath Bhagwan* |
-| 151 | सिद्धाचलना शिखरोने वंदन — Siddhachal na shikharo ne vandan |  | Adinath Bhagwan*, Palitana* |
-| 152 | केवा शोभे मारा जिनराया — Keva shobhe mara jinraya |  | Bhaav Bhakthi |
+| 147 | पार्श्व मीठा छे — Parshwa mitha chhe |  | C20 Parshwanath Bhagwan* |
+| 148 | गिरनारे श्री प्रभु नेम छे — Girnare Shri prabhu Nem chhe |  | C4 Neminath Bhagwan*, C14 Girnar |
+| 149 | केवा प्यारा लागे मारा पार्श्वनाथ दादा — Keva pyara lage mara Parshwanath dada |  | C20 Parshwanath Bhagwan |
+| 150 | मन मोही लीधुं गिरनारे — Man mohi lidhu Girnare |  | C4 Neminath Bhagwan*, C14 Girnar |
+| 151 | सिद्धाचलना शिखरोने वंदन — Siddhachal na shikharo ne vandan |  | C3 Adinath Bhagwan*, C18 Palitana* |
+| 152 | केवा शोभे मारा जिनराया — Keva shobhe mara jinraya |  | C6 Bhaav Bhakthi |
 | 153 | दर्शन देजो नाथ — Darshan dejo nath |  |  |
-| 154 | हे शंखेश्वर स्वामी — He Shankheshwar swami |  | Parshwanath Bhagwan*, Sankeshwar |
+| 154 | हे शंखेश्वर स्वामी — He Shankheshwar swami |  | C20 Parshwanath Bhagwan*, C27 Sankeshwar |
 | 155 | ऐ आत्मोद्धारे चाली गया — Ae aatmoddhare chali gaya |  |  |
-| 156 | तारा देरेथी बोलावजो — Tara derethi bolavjo |  | General Bhakthi* |
-| 157 | रोम रोम में समाया पारसनाथ — Rom rom mein samaya Parasnath |  | Parshwanath Bhagwan* |
+| 156 | तारा देरेथी बोलावजो — Tara derethi bolavjo |  | C1 General Bhakthi* |
+| 157 | रोम रोम में समाया पारसनाथ — Rom rom mein samaya Parasnath |  | C20 Parshwanath Bhagwan* |
 | 158 | तुं एक ज छे मारो सथवारो — Tu ek ja chhe maro sathvaro |  |  |
 | 159 | उंगली पकड मेरी — Ungli pakad meri |  |  |
 | 160 | आव्या श्री जिनराज — Aavya Shri Jinraj |  |  |
 | 161 | दुनिया से सहारा क्या लेना — Duniya se sahara kya lena |  |  |
-| 162 | मारे तो लेवानी लेवानी छे दीक्षा — Mare to levani levani chhe diksha |  | Diksha |
-| 163 | बधाई — Badhai |  | Utsah Songs* |
+| 162 | मारे तो लेवानी लेवानी छे दीक्षा — Mare to levani levani chhe diksha |  | C13 Diksha |
+| 163 | बधाई — Badhai |  | C30 Utsah Songs* |
 | 164 | रजा आपोने हवे दादा — Raja aapo ne have dada |  |  |
-| 165 | मैशअप २ (हुं बाळ तमारो छुं…) — Mashup 2 — Hu baal tamaro chhu… |  | Mashup* |
-| 166 | कुलपाक संग लगी प्रीतलडी (Mashup) — Kulpak sang lagi pritaldi (Kulpakji mashup) |  | Mashup* |
-| 167 | केवा प्यारा लागे मारा नेमिनाथ दादा — Keva pyara lage mara Neminath dada | ⏳ | Neminath Bhagwan |
-| 168 | वीर मेरे पथ — Veer mere patha | ⏳ | Mahaveer Swamy Bhagwan |
-| 169 | वधावो वीर जिनवरने — Vadhavo Veer Jinvar ne | ⏳ | Mahaveer Swamy Bhagwan |
-| 170 | हेलो मारो सांभळो — Helo maro sambhalo | ⏳ | Mahaveer Swamy Bhagwan |
-| 171 | खम्मा घणी खम्मा घणी — Khamma ghani khamma ghani | ⏳ | Tapasya Bhakthi |
-| 172 | तमे उत्सव आज मनावो — Tame utsav aaj mandavo | ⏳ | Tapasya Bhakthi |
-| 173 | करके तपस्या तप को तपाया — Kar ke tapasya tab ko tapasya | ⏳ | Tapasya Bhakthi |
-| 174 | त्याग समर्पण और संयमता — Tyaag samarpan aur saiyamta | ⏳ | Tapasya Bhakthi |
-| 175 | तपस्या करता करता हो — Tapasya karta karta ho | ⏳ | Tapasya Bhakthi |
-| 176 | वैरागीने वंदन — Vairagi ne vandan | ⏳ | Diksha |
-| 177 | झूमे रे झूमे — Jhume re jhume | ⏳ | Diksha |
-| 178 | मेरे साहेब ने मुझको बहुत कुछ दिया — Mere saheb ne mujhko bohot kuch diya | ⏳ | Bhaav Bhakthi, Sahebji |
-| 179 | ऋषभ जिणंद — Rishab jinand | ⏳ | Chetya Vandan Stavan |
-| 180 | ओ गुरु सा थारो चेलो बनुं मैं — O guru sa thaaro chelo banu main | ⏳ | Sahebji |
-| 181 | केवा प्यारा लागे मारा शांतिनाथ दादा — Keva pyara lage mara Shantinath dada | ⏳ | Shantinath Bhagwan |
-| 182 | मेरुशिखर न्हवरावे — Merushi karnav | ⏳ | All Pooja |
-| 183 | तू कितनी अच्छी है — Tu kitni achhi hai | ⏳ | Rishto ki Dor |
-| 184 | ये दोस्ती हम नहीं तोड़ेंगे — Yeh dosti hum nahi todenge | ⏳ | Rishto ki Dor |
-| 185 | एक दूसरे से करते हैं प्यार हम — Ek dusre se karte hai pyaar hum | ⏳ | Rishto ki Dor |
-| 186 | चंदा ने पूछा तारों से — Chanda ne poocha taaron se | ⏳ | Rishto ki Dor |
-| 187 | फूलों का तारों का — Phoolon ka taaron ka | ⏳ | Rishto ki Dor |
-| 188 | ज़माने में कब कहां — Zamane mein kab kahan | ⏳ | Nakoda Bherav |
-| 189 | म्हारा नाकोडा रा नाथ — Mara Nakoda ra nath | ⏳ | Nakoda Bherav |
-| 190 | आंगी (शांति सूरीजी) — Aangi (Shanti Suriji) | ⏳ | Shanti Suriji |
-| 191 | फूल (शांति सूरीजी) — Phool (Shanti Suriji) | ⏳ | Shanti Suriji |
-| 192 | जय जय आरती — Jay Jay Aarti (Aadi Jinanda) | text | Aarti |
-| 193 | मंगल दीवो — Mangal Divo (Divo re divo) | text | Aarti |
-| 194 | गुरुदेव आरती — Gurudev Aarti | ⏳ | Aarti |
+| 165 | मैशअप २ (हुं बाळ तमारो छुं…) — Mashup 2 — Hu baal tamaro chhu… |  | C2 Slow Mashup* |
+| 166 | कुलपाक संग लगी प्रीतलडी (Mashup) — Kulpak sang lagi pritaldi (Kulpakji mashup) |  | C2 Slow Mashup* |
+| 167 | केवा प्यारा लागे मारा नेमिनाथ दादा — Keva pyara lage mara Neminath dada | ⏳ | C4 Neminath Bhagwan |
+| 168 | वीर मेरे पथ — Veer mere patha | ⏳ | C16 Mahaveer Swamy Bhagwan |
+| 169 | वधावो वीर जिनवरने — Vadhavo Veer Jinvar ne | ⏳ | C16 Mahaveer Swamy Bhagwan |
+| 170 | हेलो मारो सांभळो — Helo maro sambhalo | ⏳ | C16 Mahaveer Swamy Bhagwan |
+| 171 | खम्मा घणी खम्मा घणी — Khamma ghani khamma ghani | ⏳ | C7 Tapasya Bhakthi |
+| 172 | तमे उत्सव आज मनावो — Tame utsav aaj mandavo | ⏳ | C7 Tapasya Bhakthi |
+| 173 | करके तपस्या तप को तपाया — Kar ke tapasya tab ko tapasya | ⏳ | C7 Tapasya Bhakthi |
+| 174 | त्याग समर्पण और संयमता — Tyaag samarpan aur saiyamta | ⏳ | C7 Tapasya Bhakthi |
+| 175 | तपस्या करता करता हो — Tapasya karta karta ho | ⏳ | C7 Tapasya Bhakthi |
+| 176 | वैरागीने वंदन — Vairagi ne vandan | ⏳ | C13 Diksha |
+| 177 | झूमे रे झूमे — Jhume re jhume | ⏳ | C13 Diksha |
+| 178 | मेरे साहेब ने मुझको बहुत कुछ दिया — Mere saheb ne mujhko bohot kuch diya | ⏳ | C6 Bhaav Bhakthi, C25 Sahebji |
+| 179 | ऋषभ जिणंद — Rishab jinand | ⏳ | C11 Chetya Vandan Stavan |
+| 180 | ओ गुरु सा थारो चेलो बनुं मैं — O guru sa thaaro chelo banu main | ⏳ | C1 General Bhakthi, C7 Tapasya Bhakthi, C9 Marvadi Songs, C10 All Pooja, C15 Grah Pravesh, C17 Nakoda Bherav, C20 Parshwanath Bhagwan, C23 Rajendra Suriji, C25 Sahebji, C28 Shanti Suriji, C29 Shantinath Bhagwan |
+| 181 | केवा प्यारा लागे मारा शांतिनाथ दादा — Keva pyara lage mara Shantinath dada | ⏳ | C29 Shantinath Bhagwan |
+| 182 | मेरुशिखर न्हवरावे — Merushi karnav | ⏳ | C10 All Pooja |
+| 183 | तू कितनी अच्छी है — Tu kitni achhi hai | ⏳ | C24 Rishto ki Dor |
+| 184 | ये दोस्ती हम नहीं तोड़ेंगे — Yeh dosti hum nahi todenge | ⏳ | C24 Rishto ki Dor |
+| 185 | एक दूसरे से करते हैं प्यार हम — Ek dusre se karte hai pyaar hum | ⏳ | C24 Rishto ki Dor |
+| 186 | चंदा ने पूछा तारों से — Chanda ne poocha taaron se | ⏳ | C24 Rishto ki Dor |
+| 187 | फूलों का तारों का — Phoolon ka taaron ka | ⏳ | C24 Rishto ki Dor |
+| 188 | ज़माने में कब कहां — Zamane mein kab kahan | ⏳ | C17 Nakoda Bherav, C20 Parshwanath Bhagwan |
+| 189 | म्हारा नाकोडा रा नाथ — Mara Nakoda ra nath | ⏳ | C17 Nakoda Bherav |
+| 190 | आंगी (शांति सूरीजी) — Aangi (Shanti Suriji) | ⏳ | C28 Shanti Suriji |
+| 191 | फूल (शांति सूरीजी) — Phool (Shanti Suriji) | ⏳ | C28 Shanti Suriji |
+| 192 | जय जय आरती — Jay Jay Aarti (Aadi Jinanda) | text | C32 Aarti |
+| 193 | मंगल दीवो — Mangal Divo (Divo re divo) | text | C32 Aarti |
+| 194 | गुरुदेव आरती — Gurudev Aarti | ⏳ | C32 Aarti |
+| 195 | सुणो चंदाजी सीमंधर परमातम पासे — Suno Chandaji Simandhar parmatam pase | ⏳ | C31 Simandhar Swamy Bhagwan |
