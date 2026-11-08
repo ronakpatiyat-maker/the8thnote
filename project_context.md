@@ -14,18 +14,19 @@ _Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–
 
 ## 0. Quick reference — what has been built (for Ronak)
 
-**Main website — `index.html`** · https://ronakpatiyat-maker.github.io/the8thnote/
+**Main website — `index.html`** · https://the8thnote.in (domain bought 7 Nov from GoDaddy; old address https://ronakpatiyat-maker.github.io/the8thnote/ forwards to it once connected)
 | Part | What it does |
 |---|---|
 | Intro splash | Logo animation once per visit, with sound button |
-| Top menu | Music · Services · logo · About · Contact — each opens a full-screen panel |
-| Music panel | Starts with the **Songbook** card: type PIN 2006 → opens the songbook. Below: "Coming soon" + countdown, Instagram / YouTube buttons |
-| Services panel | Classes (posters), Find your class (3-question wizard), Fees, For events |
+| Top menu | About us · Services · logo · **Events** · Contact us — each opens a full-screen panel |
+| Music panel (private) | Opened only from the **round ♪ button** at bottom-left (above the bell and WhatsApp) — not in the menu. Starts with the **Songbook** card: type PIN 2006 → opens the songbook. Below: "Coming soon" + countdown, Instagram / YouTube buttons |
+| Services panel | **LEARN WITH THE8THNOTE** · *Classes we offer* (YouTube teaser panel + equal course cards with *View more*) · contact form (*Let's bring your vision into reality*) → WhatsApp |
+| Events panel | *Looking for a singer with devotion & passion?* (red) · *Book The 8th Note for your Bhakthi event*: photo, 4 event types, quote line, event card, *Enquire on WhatsApp* |
 | About / Contact panels | Bio and photo; phone, WhatsApp, Instagram, address + map |
 | Home page | Hero, YouTube courses, Why learn with us, Instagram reels, testimonials (sample), FAQ, footer |
-| Floating buttons | WhatsApp, launch bell, scroll-to-top |
+| Floating buttons | Bottom-left, top to bottom: **♪ Music** (private songbook), launch bell, WhatsApp; scroll-to-top on the right |
 
-**Songbook — `music.html`** · https://ronakpatiyat-maker.github.io/the8thnote/music.html · **PIN 2006** · reached from the website's Music panel (PIN) or this link
+**Songbook — `music.html`** · https://the8thnote.in/music.html · **PIN 2006** · reached from the website's Music panel (PIN) or this link
 | Part | Where | What it does | Now |
 |---|---|---|---|
 | PIN screen | opens first | 4-digit keypad; 🔒 in the top bar locks again | PIN 2006 |
@@ -53,6 +54,7 @@ _Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–
 > Change-log entries 90–97 (6–7 Nov) use the **old** numbers (old C1 = Navkar, C2 = Adinath … C33 = Simandhar). The lists themselves are correct; only the labels changed.
 
 **Rules that apply everywhere in the songbook**
+- **Ronak's rule (7 Nov, website):** the courses Ronak sends are kept up to date in **Services → Classes & fees** (posters `COURSES`, fee cards `PLANS`); old courses he drops are removed.
 - **Ronak's rule (7 Nov):** whenever a song is added to any context, Claude also adds it to **C1 General Bhakthi** — unless Ronak says that song should not go there.
 - Song numbers never change; new songs get the next number (next = 196).
 - General Bhakthi (#4, #5, #6, #10, #14, #18, #19, #36, #39, #54, #92, #93, #96, #99, #180) shows under every context **except** Navkar, Chetya Vandan Stavan, Diksha, Grah Pravesh, Prachin Stavan, Rishto ki Dor, Sahebji, Tapasya Bhakthi, Aarti. #6 never shows under Bhaav Bhakthi.
@@ -76,7 +78,7 @@ _Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–
   2. **Performing** — devotional / Bhakti singing for Jain programs, Bhakthi Sandhya, poojas, paths, religious events.
   3. **Online courses** — YouTube: free + members-only at **₹49/month**.
 - **Coming up:** music launch in **November** — live countdown in the Music panel and the bell popup.
-- **Brand look:** black background, red accent (`#E50914`), purple→red gradient (`--grad`) on primary buttons, white text. Font: Archivo.
+- **Brand look (7 Nov): only red, black and white.** Black background, red accent (`#E50914`), deep-red→red gradient (`--grad`: #7A0109 → #B20710 → #E50914) on primary buttons, white text. No purple, pink, blue, green or gold anywhere in the design (only exception: the WhatsApp button keeps WhatsApp green). Photos keep their own colours. Font: Archivo (Events panel also uses Anton for SINGER / banners and Great Vibes script for *With Devotion & Passion* and *Patiyat*, as on the poster).
 
 ---
 
@@ -94,15 +96,16 @@ _Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–
 ## 3. Site structure
 
 ### Top navigation (`.top`)
-`[ Music · Services ]  LOGO  [ About · Contact ]` — each link opens the **menu overlay**. Logo = home (scroll to top). On phones it becomes two rows (logo, then links).
+`[ About us · Services ]  LOGO  [ Events · Contact us ]` — each link opens the **menu overlay**. Logo = home (scroll to top). On phones it becomes two rows (logo, then links).
 
 ### Menu overlay (`#menu`) — 4 panels
 | Panel | ID | Contents |
 |-------|----|----------|
-| Music | `#panel-music` | **Songbook card first** (PIN box → opens `music.html` already unlocked), then "Coming soon", 8-bar scale graphic, countdown, Instagram/YouTube buttons |
-| Services | `#panel-services` | Sub-tabs: **Classes** (ranked poster row `#trendRow`), **Find your class** (3-step wizard `#wizard`), **Fees** (`#plans`, `#batches`), **For events** (photo, services `#svcs`, event card `#event`) |
+| Music (private) | `#panel-music`, opened by `.music-float` (♪, bottom-left) | **Songbook card first** (PIN box → opens `music.html` already unlocked), then "Coming soon", 8-bar scale graphic, countdown, Instagram/YouTube buttons |
+| Services | `#panel-services` | Only **Classes & fees** (tab bar removed 8 Nov): YouTube teaser panel + course cards from `CLASS_LIST` in `#panel-fees`, detail view `#crsD` |
+| Events | `#panel-events` | Moved out of Services on 8 Nov: heading, photo, `#svcs` (4 event types), quote line, `#event` card, *Enquire on WhatsApp* |
 | About | `#panel-about` | Meet Ronak (photo + bio + highlights), Our story, What you can learn (`#pillars`), Book/Contact buttons |
-| Contact | `#panel-contact` | Phone, WhatsApp, Instagram, address pills + Google Map |
+| Contact us | `#panel-contact` | Phone, WhatsApp, Instagram, address pills + Google Map |
 
 Any element with `data-open="music|services|classes|find|fees|events|about|contact"` opens that panel/tab.
 
@@ -132,7 +135,7 @@ Ronak's **personal page for events**, locked with **PIN 2006** (change it in the
 | # | Section | ID | What's in it |
 |---|---------|----|--------------|
 | 0 | Intro splash | `#intro` | Logo animation, "Play with sound" + "Skip". Shows once per browser session |
-| 1 | Hero | `.hero` | Background `img/hero-bg.jpg`, headline, value line, "Book a class" (→ Find your class) |
+| 1 | Hero | `.hero` | Background `img/hero-bg.jpg`, headline, value line, "Book a class" (→ Classes & fees) |
 | 2 | Courses on YouTube | `#courses` | Subscribe / Join, right-to-left marquee `#ytgrid` |
 | 3 | Why learn with us | `.stories` | 4 Netflix-style cards |
 | 4 | Instagram | `#instagram` | Real Instagram reel embeds (`REELS`) in a scroll row `#reel-track` |
@@ -159,7 +162,9 @@ Ronak's **personal page for events**, locked with **PIN 2006** (change it in the
 | `music.html` | **The whole songbook in one file** — page + songs + contexts + sets + stutis + anchoring + Ronak's lyrics images (~1.8 MB) | Re-uploaded after every songbook change |
 | `robots.txt`, `sitemap.xml` | SEO | Set-once |
 | `img/hero-bg.jpg` | Hero background | Made 27 Oct from `hero-bg.png` |
-| `img/about-ronak-01.jpeg` | Events tab photo | Tapasya Bhakthi poster |
+| `img/events-stage.png` | Source of the Events stage photo | Built into `index.html` since 8 Nov (no upload needed) |
+| `img/events-poster.jpg` | Not shown (removed 8 Nov) | Ronak's "Looking for a singer" poster, 1024×1536 (8 Nov) |
+| `img/about-ronak-01.jpeg` | Old events photo | No longer shown since 8 Nov (kept for now) |
 | `img/about-ronak-02.jpeg` | About photo | |
 | `img/class-01 … 08.jpeg` | Class posters | In `COURSES` order |
 
@@ -180,7 +185,6 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 | About photo | `img/about-ronak-02.jpeg` in `#panel-about` |
 | Events photo | `img/about-ronak-01.jpeg` in the "For events" tab |
 | Class posters | `COURSES` array (`img:` field) |
-| Find-your-class wizard | `WZ_Q`, `WZ_OPTS`, `WZ_COURSE`, `WZ_FMT` |
 | About "What you can learn" | `PILLARS` array (`STEPS` is defined but not currently shown) |
 | YouTube | `CHANNEL_URL`, `MEMBERSHIP_URL`; cards in `YT` |
 | Event services | `SERVICES` array |
@@ -197,6 +201,7 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 | **Anchoring** | `music.html` → block *ANCHORING LINES* (`ANCHOR`: `id`, `title`, optional `song`, `text`; a line starting `> ` is highlighted) |
 | Lyric pictures | `music.html` → block *LYRIC PAGE PICTURES* (`IMGS`, built in — Claude rebuilds it) |
 | Context position | `music.html` → CONTEXTS: `no` sets the order (C1, C2 …); `pin:"first"` = Navkar at the top, `pin:"last"` = Aarti at the bottom |
+| Courses (Classes & fees) | `index.html` → `CLASS_LIST`: `state` ("on" = highlighted, Now enrolling / "soon" = YouTube teaser cover with countdown / "shadow" = greyed Coming-soon card with `icon`: notes, mic, guitar, drum), `t` name, `line`, `img`, `pos` (photo focus), `learn` (What you'll learn), `info` (the same 8 detail rows for every course: Mode, Format, Schedule, Duration, Timings, Tracking, Areas, Fees; + Launch for YouTube) |
 | Songbook PIN | **two places, change both together:** `music.html` → `var PIN="2006"` and `index.html` → `var PIN="2006"` in the *Songbook entry* script at the bottom |
 | Songbook filter groups / chip order | `music.html` → `FACETS` |
 
@@ -256,7 +261,8 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 **Host / security (later)**
 - [ ] Confirm "Enforce HTTPS" in Settings → Pages.
-- [ ] Custom domain + Cloudflare for real security headers (X-Frame-Options, nosniff, HSTS, CSP header). `robots.txt` only works properly on a root domain.
+- [ ] Connect the8thnote.in (DNS at GoDaddy + GitHub Pages custom domain), then Enforce HTTPS.
+- [ ] Optional later: Cloudflare in front of the domain for real security headers (X-Frame-Options, nosniff, HSTS, CSP header). `robots.txt` only works properly on a root domain.
 - [ ] Honeypot + submit timing only if a real form is ever added.
 
 ---
@@ -430,6 +436,114 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 100. **C19 Palitana 5 Chaityavandan removed** (it had no songs). Other context numbers unchanged, so C19 is now unused.
 
 101. **Standing rule:** every song Ronak adds to a context from now on also goes into C1 General Bhakthi, unless he names it as an exception. (Not applied backwards to older songs unless he asks.)
+
+102. **Domain the8thnote.in (GoDaddy, 7 Nov):** added `CNAME` file (`the8thnote.in`); all links in `index.html` (canonical, og:url, og:image, JSON-LD) and `sitemap.xml` now use https://the8thnote.in/; `robots.txt` points to the new sitemap and asks search engines to skip `music.html`. GoDaddy DNS: 4 A records `@` → 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` → ronakpatiyat-maker.github.io; remove GoDaddy's default parked A record / forwarding. GitHub → Settings → Pages → Custom domain `the8thnote.in` → Save → tick Enforce HTTPS once available.
+
+103. **Services simplified (7 Nov):** *Find your class* (3-question wizard) removed completely — tab, code, styles. *Classes* and *Fees* merged into one tab **Classes & fees**: class posters, then the fee cards below. Services now has 2 tabs: Classes & fees · For events. Every "Book a class" button opens Classes & fees; links to fees scroll down to the fee cards. FAQ #1 now points to Classes & fees.
+
+104. **Classes & fees = Ronak's real courses (7 Nov).** The 8 class posters and the 3 fee cards are replaced by course cards from `CLASS_LIST`: (1) YouTube teaser — *greyed, Coming soon*; (2) Offline Jain singing classes; (3) Online Jain singing classes; (4) Offline piano classes — all three highlighted, *Now enrolling*. Each has *View more* (stavans, twice a week × 40 min, group / 1-on-1, timings, areas VV Puram · Shankarpuram · Kumara Park · Basavanagudi · Chamarajpet, lesson tracking, fees on WhatsApp) and *Enquire on WhatsApp* with the course name filled in. Photos reused: class-05 (YouTube), class-06 (offline singing), class-07 (online singing), class-03 (piano). More courses to come from Ronak.
+
+105. **Course cards show only the name (7 Nov):** each card is photo + Now enrolling / Coming soon + course name + *View more*. All details moved into a detail view that opens on *View more* or the photo (pop-up on computer, slide-up sheet on phone; × / Esc / tap outside closes). 2 cards per row on phones.
+
+106. **YouTube teaser = Coming-soon cover (7 Nov):** the card now has an animated cover (brand gradient, YouTube play button, sparkles, light sweep) saying **COMING SOON · Launching this New Year · N days to go** (counts down to 1 Jan 2027, IST). View more opens the same cover large, with a *Subscribe on YouTube — get notified* button (`CHANNEL_URL`). Card class renamed `cs-soon` (the Music panel's `.soon` style was adding padding).
+
+107. **Standard detail view (7 Nov):** every course's detail box is now the same size (560 × 760 on computer, 92% of the screen on phone; content scrolls inside) and the same layout: photo/cover → name → short line → *What you'll learn* → *Course details* tiles with icons, always in the order Mode · Format · Schedule · Duration · Timings · Tracking · Areas · Fees (the YouTube teaser has no details) → Enquire / Subscribe button. Missing values show "To be announced" or "—". Piano *Format* set to "Personalised" — Ronak to confirm group / 1-on-1.
+
+108. **Colours: red, black, white only (7 Nov):** removed every purple / pink (and the blue, green, gold, orange tints) from the website: brand gradient is now deep red → red; all coloured placeholders, icon gradients, glows and the YouTube coming-soon cover are red / black / white. 50 colour values changed. WhatsApp green kept.
+
+109. **YouTube teaser only (7 Nov):** what is launching on YouTube is not disclosed anywhere on the site. The card is just the real YouTube logo (red, white play button) on a black-and-red cover with the animation, **COMING SOON · Launching this New Year · N days to go**, titled *Something new is coming*. View more shows the same cover large, one line ("Something exciting is coming to our YouTube channel…"), "Stay tuned — the countdown is on." and *Subscribe on YouTube — get notified*. No course details.
+
+110. **Contact → Contact us (7 Nov):** top menu, menu panel, About button and footer link now say *Contact us*. In the Contact us panel the VV Puram address and the Google map are removed; in their place a box with a pin icon: **Location yet to be finalised** · Bengaluru · address will be shared soon. Footer address now *Bengaluru · location yet to be finalised*. VV Puram still appears in: page description (Google), About bullet, Why-learn card, "Learn" step, FAQ answer, and as a class area in the course details — waiting for Ronak's decision.
+
+111. **Contact us tidy-up (7 Nov):** removed the "Ronak Patiyat" label; added a second Instagram button **@ronakpatiyat__** (instagram.com/ronakpatiyat__) under @the8thnote__; "Get in Touch" is now plain white (was a cream/grey shine) and all button text is pure white; button backgrounds black → deep red (no brown).
+
+112. **Contact us order (7 Nov):** @the8thnote__ → @ronakpatiyat__ → *Contact: 94800 61108* (tap to call) → *Chat on WhatsApp*.
+
+113. **Contact us polish (7 Nov):** every button now has one standard layout — icon in a red-tinted square · small grey label in capitals (INSTAGRAM / CONTACT) · value in bold white · › arrow. Underline removed from WhatsApp; *Chat on WhatsApp* is the main button (solid red gradient with glow, WhatsApp icon). Phone shown as +91 94800 61108 under the label CONTACT. Title spacing and the location heading tightened slightly.
+
+114. **Contact us (7 Nov):** location line now *Bengaluru · address will be shared soon* ("classes also live online" removed); *Chat on WhatsApp* is a lighter red (#E8323A → #FF5E63) with a softer glow.
+
+115. **Chat on WhatsApp back to the darker red** (brand gradient `--grad`, deep red → red) — Ronak preferred it over the lighter red.
+
+116. **Menu order + bolder (7 Nov):** top menu now **About us · Services | LOGO | Music · Contact us** (same order in the menu panel; footer: Home · About us · Services · Music · Courses · Contact us). "About" renamed *About us*. Menu text weight 900 (extra bold). On phones the four links sit in one evenly spaced row under the logo (no more crowding at 360 px).
+
+117. **Homepage poster red shades — tried and cancelled (8 Nov).** Hero stays as before; Ronak will update the poster later.
+
+118. **Menu titles bigger (8 Nov):** About us · Services | LOGO | Music · Contact us, extra bold (900), size up from 15 px to ~17–19 px on computer, 15 px on tablet, 14 px on phone (12.5 px on very small phones) — all four still fit one row.
+
+119. **About us (8 Nov):** removed the small *About* label above the heading; *Meet Ronak Patiyat* is now red (red gradient, like *With Us* in Contact us); the 5 red tick marks are gone — the 5 points are now plain white lines separated by thin dividers.
+
+120. **Spelling:** piano course song now written *Parmatma thirangase* (as Ronak writes it).
+
+121. **Course 5 added (8 Nov): Online piano classes** — highlighted, Now enrolling. Learn: 100+ Jain stavans on piano, basic music theory, explore raags, songs like Nemras, Parmatma thirangase, O Palanhare. Live online · Personalised · twice a week · 40 min · after 10:00 am · anywhere · personalised lesson tracking · fees on WhatsApp. Photo: class-02 (at the keyboard).
+
+122. **Course 6 added (8 Nov): Offline Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z music theory, chords, arpeggios, 40+ Bollywood songs. In person · Personalised · twice a week · 40 min · after 5:30 pm · VV Puram, Shankarpuram, Kumara Park, Basavanagudi, Chamarajpet · personalised lesson tracking · fees on WhatsApp. Photo: class-04. Now 6 cards (2 full rows of 3 on computer).
+
+123. **Course 7 added (8 Nov): Online Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z music theory, chords, arpeggios, 40+ Bollywood songs. Live online · Personalised · twice a week · 40 min · after 10:00 am · anywhere · personalised lesson tracking · fees on WhatsApp. Photo: class-05.
+
+124. **Courses 8–11 added in shadow (8 Nov):** Hindustani classical vocals (music-notes icon), Bollywood singing classes (mic), Guitar classes (guitar), Drumming classes (drum). New card style `state:"shadow"`: greyed striped cover with a grey icon and a grey *Coming soon* tag, name in grey; View more opens the standard-size box with the icon, *Coming soon*, one line ("This course is being planned…") and *Notify me on WhatsApp* (message names the course). No photos needed. Total 11 cards: 1 teaser, 6 enrolling, 4 shadow.
+
+125. **Course layout (8 Nov):** the YouTube teaser is now one big full-width panel at the top (large logo, COMING SOON, countdown; name and View more on one line below). All other 10 courses are cards of exactly the same size: 5 per row on computer (2 rows: 6 enrolling, then 4 coming soon), 3 per row on tablet, 2 per row on phone. Intro line now "Singing and piano with Ronak…".
+
+126. **Events in the menu, Music made private (8 Nov):** top menu now **About us · Services | LOGO | Events · Contact us** (also in the menu panel and footer). *For events* moved out of Services into its own **Events** panel (Services keeps only Classes & fees; tab bar removed). *Music* is no longer in the menu: it opens from a new round **♪ button** at bottom-left, stacked above the launch bell and WhatsApp (dark circle, white note). The bell popup's *Go to Music* still opens it.
+
+127. **Services heading (8 Nov):** the panel now opens with a big heading **LEARN WITH THE8THNOTE** ("LEARN WITH" white, "THE8THNOTE" red), replacing the old *Classes & fees* title; intro line and courses below unchanged.
+
+128. **"Classes we offer" (8 Nov):** subheading above the course cards in Services (bold white, with a red line fading to the right).
+
+129. **Services:** removed the intro sentence ("Singing and piano with Ronak…"); the panel goes straight from LEARN WITH THE8THNOTE to *Classes we offer*.
+
+130. **"Classes we offer" highlighted (8 Nov):** now a full-width bar lined up exactly with the course grid — red bar on the left, red glow fading to the right, white bold capitals with letter-spacing.
+
+131. **YouTube teaser smaller (8 Nov):** panel height cut from ~380 px to ~220 px on computer (~266 px with its name line; ~240 px on phone), smaller logo and text. Still full width, still animated, countdown kept; the course cards now show on the first screen.
+
+132. **Let's connect form (8 Nov):** at the bottom of Services, under a *LET'S CONNECT* bar: heading *Let's bring your vision into reality*, small-caps note *your contact details will not be published*, fields Name · Contact details · Course (dropdown of all courses, coming-soon ones marked, plus "Not sure yet") · Message, and a **Chat on WhatsApp** button. Name and contact are required (red outline + message if missing). The button opens WhatsApp to +91 94800 61108 with the details typed in ("Hi Ronak, I'd like to connect. Name… Contact… Course… Message…"); nothing is stored on the website. Code: `#lcForm` in `index.html`.
+
+133. **Services tidy (8 Nov):** removed the *Fees: enquire on WhatsApp* line under the courses, the *LET'S CONNECT* bar above the form, and the *Not sure yet* course option. The form now follows the course cards directly.
+
+134. **Form: required fields marked (8 Nov):** *Name* and *Contact details* labels now carry a red ✱; WhatsApp won't open until both are filled (missing box gets a red outline + message).
+
+135. **Form course list (8 Nov):** courses 8–11 (Hindustani classical vocals, Bollywood singing, Guitar, Drumming) stay in the dropdown but greyed out as "— coming soon" and cannot be picked; only the 6 open courses can be chosen.
+
+136. **Form course list = open courses only (8 Nov):** removed *Choose a course* and the 4 coming-soon courses from the dropdown; it lists only the 6 courses open for enrolment (first one shown by default).
+
+137. **Form course list (8 Nov, final):** no *Choose a course*; the 6 open courses first, then courses 8–11 greyed out as "— coming soon" (cannot be picked).
+
+138. **Form course box (8 Nov):** shows *Choose a course* (grey) until a course is picked, but *Choose a course* is not in the list itself; list = 6 open courses + courses 8–11 greyed "— coming soon". Course stays optional.
+
+139. **Course dropdown restyled (8 Nov):** the phone's plain list is replaced by the site's own dropdown (`#lcDD`), same font and alignment as the rest of the form: *Choose a course* in grey until picked; list in two groups — **OPEN FOR ENROLMENT** (the 6 courses, bold white, red highlight on hover, red tick on the chosen one) and **COMING SOON** (courses 8–11 in grey with a *Coming soon* tag, not clickable). Works with keyboard (arrows, Enter, Esc). Fills in automatically from `CLASS_LIST`.
+
+140. **Form labels highlighted (8 Nov):** NAME, CONTACT DETAILS, COURSE, MESSAGE now bold white capitals (bigger, ~15 px) with a short red bar before each; the red ✱ on Name and Contact is bigger too.
+
+141. **Links at the bottom of every panel (8 Nov):** under About us, Services, Events, Contact us and Music there is now one strip (`.mp-foot`): **ABOUT US · SERVICES · EVENTS · CONTACT US** (the one you're on is red and underlined; tapping another switches panel) and two buttons **Instagram @the8thnote__** and **YouTube** (@ronakpatiyat). Same width as the panel content; on phones the 4 links sit 2 × 2 with the two buttons side by side below.
+
+142. **Bottom strip, classic centred layout (8 Nov):** a thin line fading to red in the middle, then centred **ABOUT US | SERVICES | EVENTS | CONTACT US** (thin dividers, current one red), then three outline buttons **@the8thnote__ · @ronakpatiyat__ · YouTube**, then **📍 BENGALURU, INDIA** in small spaced capitals. Phone: links 2 × 2, the two Instagram buttons side by side, YouTube full width below.
+
+143. **BENGALURU, INDIA brighter (8 Nov):** now white, bolder and slightly bigger (was light grey); red pin a little bigger.
+
+144. **BENGALURU, INDIA toned down (8 Nov):** medium grey (#B8B8B8), small (12 px), red pin — between the first light grey and the white version.
+
+145. **Bottom strip sizes (8 Nov):** the 4 section links are bigger (~18 px computer, 15 px phone); the 3 account buttons (@the8thnote__, @ronakpatiyat__, YouTube) are smaller (12 px text, 34 px tall).
+
+146. **Location font (8 Nov):** *Bengaluru, India* in the bottom strip is now an elegant italic serif — **Cormorant Garamond** italic (Google Fonts, added to the font link), normal capitals, medium grey, ~17 px; red pin kept. Rest of the site stays Archivo.
+
+147. **Location font back to standard (8 Nov):** *Bengaluru, India* in the site font (Archivo), normal letters, regular weight, 13.5 px, medium grey; Cormorant Garamond removed again.
+
+148. **Events heading (8 Nov):** Events panel now opens with **Looking for a singer with devotion & passion?** (big, red) and under it **Book The 8th Note for your Bhakthi event** (white); the short line about Ronak, photo and event types follow as before.
+
+149. **Events red line, full wording (8 Nov):** now *Looking for a singer with devotion & passion for your Bhakthi events?* (big, red), then *Book The 8th Note for your Bhakthi event* (white).
+
+150. **Events poster (8 Nov):** Ronak's poster ("Looking for a SINGER with Devotion & Passion — FOR BHAKTHI EVENTS", What I bring, Ronak Patiyat, contact 9480061108) replaces the old events photo. Saved as **`img/events-poster.jpg`** (1024 × 1536, JPEG quality 90, 265 KB — full size, not cropped). Shown whole and centred, up to 560 px wide on computer, full width on phone.
+
+151. **Events stage photo (8 Nov):** Ronak's live-on-stage photo added right below the poster, full width, not cropped. Saved as **`img/events-stage.jpg`** — the original file, unchanged (1280 × 852, 105 KB).
+
+152. **Events stage photo updated (8 Nov):** replaced with Ronak's PNG version of the same photo, used as-is — **`img/events-stage.png`** (1280 × 852, 724 KB). `events-stage.jpg` is no longer used.
+
+153. **Events poster removed (8 Nov):** the "Looking for a SINGER" poster is no longer shown; Events now has the headings, then the stage photo (`img/events-stage.png`). `img/events-poster.jpg` is unused — no need to upload it.
+
+154. **Events photo built into index.html (8 Nov):** the stage photo is now inside `index.html` itself (as data), so it shows even when the file is opened on its own or before `img/` is uploaded. index.html ≈ 1.1 MB. `img/events-stage.png` no longer needs uploading.
+
+155. **Events = the poster, rebuilt as a web page (8 Nov):** computer: stage photo on the left, text on the right; phone: photo on top. Text exactly as on Ronak's poster: LOOKING FOR A (small, spaced, lines either side) · **SINGER** (huge red, condensed font *Anton*, speckle) · *With Devotion & Passion* (script font *Great Vibes*, white) · ◆ ornament · **FOR BHAKTHI EVENTS** on a red brush banner · quote "Classical training & **spiritual** connection to make your event divine and **memorable**." (only those two words red) · — WHAT I BRING — with red icons and a red line: Jain & Spiritual Programs, Bhakthi Sandhya, Pooja, Path & Religious Events, All Bhakthi Occasions · **Ronak** (big red) *Patiyat* (script, red underline) · red phone box CONTACT : **9480061108** (tap to call). Below: a box *Book The 8th Note for your Bhakthi event* + Enquire on WhatsApp, then the Tapasya Bhakthi event card. Removed: the old red question line, the "Ronak Patiyat — devotional singer…" line, the 4 event boxes and the old quote line. Fonts Anton + Great Vibes added to the Google Fonts link.
 
 ---
 
