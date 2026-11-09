@@ -76,9 +76,9 @@ _Last updated: 7 Nov 2026 — songbook: 195 songs · 32 contexts (Navkar + C1–
 - **Three sides:**
   1. **Teaching (one-on-one)** — piano, harmonium & vocals, basic to advanced. 100+ Jain songs on piano, 100+ Jain stavans in voice, Bollywood piano, classical vocal foundation (sur & taal). **Students 10 & above.** In person (VV Puram) or live online.
   2. **Performing** — devotional / Bhakti singing for Jain programs, Bhakthi Sandhya, poojas, paths, religious events.
-  3. **Online courses** — YouTube: free + members-only at **₹49/month**.
+  3. **Online courses** — YouTube: free + members-only at **₹99/month**.
 - **Coming up:** music launch in **November** — live countdown in the Music panel and the bell popup.
-- **Brand look (7 Nov): only red, black and white.** Black background, red accent (`#E50914`), deep-red→red gradient (`--grad`: #7A0109 → #B20710 → #E50914) on primary buttons, white text. No purple, pink, blue, green or gold anywhere in the design (only exception: the WhatsApp button keeps WhatsApp green). Photos keep their own colours. Font: Archivo (Events panel also uses Anton for SINGER / banners and Great Vibes script for *With Devotion & Passion* and *Patiyat*, as on the poster).
+- **Brand look (7 Nov): only red, black and white.** Black background, red accent (`#E50914`), deep-red→red gradient (`--grad`: #7A0109 → #B20710 → #E50914) on primary buttons, white text. No purple, pink, blue, green or gold anywhere in the design (only exception: the WhatsApp button keeps WhatsApp green). Photos keep their own colours. Font: Archivo (Events panel also uses Anton for SINGER / banners and Playfair Display italic for *With Devotion & Passion*, as on the poster).
 
 ---
 
@@ -225,7 +225,7 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 ## 8. Current content — real vs placeholder
 
-**Real:** name, Ronak's bio, phone, VV Puram + map, Instagram handles + 6 reel links, YouTube links, class list + posters, ₹49/mo membership, devotional services, hero poster, Nov launch.
+**Real:** name, Ronak's bio, phone, VV Puram + map, Instagram handles + 6 reel links, YouTube links, class list + posters, ₹99/mo membership, devotional services, hero poster, Nov launch.
 
 **Songbook status (6 Nov):** 195 songs. Lyrics images: 8 (#9, 19, 34, 35, 43, 92, 94, 99). Typed text: 6 (#27, 96, 97, 98 old stavans; #192, 193 aartis). 27 placeholder songs (names only, ⏳ in §13). Scale set for 7 songs (#1, 3, 4, 6, 24, 39, 44). 26 contexts hold Ronak's own lists; Navkar, Slow Mashup, Girnar, Sankeshwar and Sangh are still waiting for his list.
 
@@ -237,7 +237,7 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 **Urgent**
 - [ ] **Confirm the launch date** — countdown passed zero on **1 Nov 2026**; the Music panel now shows both "Coming soon / Launching this November" and "It's here — the music has launched!". What launches, and on which platform (YouTube / Spotify / Instagram)? After launch, the Music panel should show the release instead of "Coming soon".
-- [ ] **Event card** — Tapasya Bhakthi (20 Sept) is past. Replace with the next event, or switch to "Past performances".
+- [x] Event card — removed from Events on 8 Nov.
 
 **Songbook**
 - [ ] Lyrics images from Ronak (white-on-black template, with the song number). 8 done: #9, 19, 34, 35, 43, 92, 94, 99.
@@ -477,9 +477,9 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 121. **Course 5 added (8 Nov): Online piano classes** — highlighted, Now enrolling. Learn: 100+ Jain stavans on piano, basic music theory, explore raags, songs like Nemras, Parmatma thirangase, O Palanhare. Live online · Personalised · twice a week · 40 min · after 10:00 am · anywhere · personalised lesson tracking · fees on WhatsApp. Photo: class-02 (at the keyboard).
 
-122. **Course 6 added (8 Nov): Offline Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z music theory, chords, arpeggios, 40+ Bollywood songs. In person · Personalised · twice a week · 40 min · after 5:30 pm · VV Puram, Shankarpuram, Kumara Park, Basavanagudi, Chamarajpet · personalised lesson tracking · fees on WhatsApp. Photo: class-04. Now 6 cards (2 full rows of 3 on computer).
+122. **Course 6 added (8 Nov): Offline Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z of music theory, chords, arpeggios, 40+ Bollywood songs. In person · Personalised · twice a week · 40 min · after 5:30 pm · VV Puram, Shankarpuram, Kumara Park, Basavanagudi, Chamarajpet · personalised lesson tracking · fees on WhatsApp. Photo: class-04. Now 6 cards (2 full rows of 3 on computer).
 
-123. **Course 7 added (8 Nov): Online Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z music theory, chords, arpeggios, 40+ Bollywood songs. Live online · Personalised · twice a week · 40 min · after 10:00 am · anywhere · personalised lesson tracking · fees on WhatsApp. Photo: class-05.
+123. **Course 7 added (8 Nov): Online Bollywood piano classes** — highlighted, Now enrolling. Learn: A to Z of music theory, chords, arpeggios, 40+ Bollywood songs. Live online · Personalised · twice a week · 40 min · after 10:00 am · anywhere · personalised lesson tracking · fees on WhatsApp. Photo: class-05.
 
 124. **Courses 8–11 added in shadow (8 Nov):** Hindustani classical vocals (music-notes icon), Bollywood singing classes (mic), Guitar classes (guitar), Drumming classes (drum). New card style `state:"shadow"`: greyed striped cover with a grey icon and a grey *Coming soon* tag, name in grey; View more opens the standard-size box with the icon, *Coming soon*, one line ("This course is being planned…") and *Notify me on WhatsApp* (message names the course). No photos needed. Total 11 cards: 1 teaser, 6 enrolling, 4 shadow.
 
@@ -544,6 +544,64 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 154. **Events photo built into index.html (8 Nov):** the stage photo is now inside `index.html` itself (as data), so it shows even when the file is opened on its own or before `img/` is uploaded. index.html ≈ 1.1 MB. `img/events-stage.png` no longer needs uploading.
 
 155. **Events = the poster, rebuilt as a web page (8 Nov):** computer: stage photo on the left, text on the right; phone: photo on top. Text exactly as on Ronak's poster: LOOKING FOR A (small, spaced, lines either side) · **SINGER** (huge red, condensed font *Anton*, speckle) · *With Devotion & Passion* (script font *Great Vibes*, white) · ◆ ornament · **FOR BHAKTHI EVENTS** on a red brush banner · quote "Classical training & **spiritual** connection to make your event divine and **memorable**." (only those two words red) · — WHAT I BRING — with red icons and a red line: Jain & Spiritual Programs, Bhakthi Sandhya, Pooja, Path & Religious Events, All Bhakthi Occasions · **Ronak** (big red) *Patiyat* (script, red underline) · red phone box CONTACT : **9480061108** (tap to call). Below: a box *Book The 8th Note for your Bhakthi event* + Enquire on WhatsApp, then the Tapasya Bhakthi event card. Removed: the old red question line, the "Ronak Patiyat — devotional singer…" line, the 4 event boxes and the old quote line. Fonts Anton + Great Vibes added to the Google Fonts link.
+
+156. **Events order (8 Nov):** one centred column — (1) LOOKING FOR A / SINGER / With Devotion & Passion / FOR BHAKTHI EVENTS, (2) *Book The 8th Note for your Bhakthi event* + Enquire on WhatsApp, (3) the stage photo (full width, uncropped), then the quote, WHAT I BRING, Ronak Patiyat, CONTACT 9480061108, and the event card.
+
+157. **Events refinements (8 Nov):** all lines bigger (LOOKING FOR A, Book heading, quote ~24 px, list, contact); *With Devotion & Passion* now **Playfair Display** bold italic (Great Vibes script removed); the quote sits on one line on computer (wraps on phone); WHAT I BRING = 4 separate boxes (4 in a row on computer, 2 × 2 on phone) with icon + title; **Ronak Patiyat** on one row in big bold letters — Ronak red, Patiyat white — with a red underline.
+
+158. **Name line (8 Nov):** now **SINGER : RONAK PATIYAT** in bold capitals — "SINGER :" white, "RONAK PATIYAT" red — one row on computer; on phone SINGER : sits small above the name.
+
+159. **Events opening, elegant (8 Nov):** LOOKING FOR A in fine, widely spaced capitals between fading hairlines · **SINGER** in a classic serif (Playfair Display), wide-spaced capitals, red gradient with a soft red glow (no grunge/speckle) · *With Devotion & Passion* in light Playfair italic · fine red ◆ ornament · FOR BHAKTHI EVENTS as spaced white capitals between two thin red lines (brush banner removed) · soft red glow behind the block and a gentle fade-in. **Contacts:** WhatsApp added beside the call box — green WhatsApp icon, *WHATSAPP : Message me*, opens WhatsApp to 9480061108 with "Hi Ronak, I'd like to book you for a Bhakthi event." (side by side on computer, stacked on phone). Anton font no longer used for the heading.
+
+160. **Events (8 Nov):** *WHAT I BRING* renamed **WHAT I OFFER**; the WhatsApp contact button now has its own direct link (wa.me/919480061108 with the booking message) so it opens WhatsApp even before the page script runs. 5 style options for the *Looking for a Singer* opening shared for Ronak to pick (A royal serif · B bold modern · C spotlight thin · D script accent · E outline).
+
+161. **Events opening, new style (8 Nov, v3):** a framed hero card (`#evHero`) — the stage photo darkened behind it with a red glow, thin inner border and red corner brackets. Text: tiny red *THE 8TH NOTE · LIVE BHAKTHI* · *Looking for a* (elegant serif, Cormorant Garamond) · **Singer** very large red italic serif with a gently pulsing glow · *with **Devotion** & **Passion*** (the two words red italic) · ◆ ornament · *FOR BHAKTHI EVENTS* spaced capitals. Fade-in on open. **Contact:** *Message me* replaced by a real green **Chat on WhatsApp** button beside CONTACT : 9480061108 (direct wa.me link).
+
+162. **WhatsApp contact (8 Nov):** shown like the call box — green WhatsApp logo square, then **Chat on WhatsApp** as text beside it (no pill button, no extra label). Whole item opens WhatsApp.
+
+163. **Event card removed (8 Nov):** the *Tapasya Bhakthi · 20 Sep · Ask about this show* card is gone from Events (the `EVENTS` list in index.html is kept but not shown). Events now ends with SINGER : RONAK PATIYAT and the contact row.
+
+164. **Events opening back to the previous style (8 Nov):** the framed photo hero (entry 161) is undone; Events opens again with the elegant version from entry 159 — LOOKING FOR A between hairlines · **S I N G E R** in spaced red serif capitals with a soft glow · *With Devotion & Passion* italic · ◆ · FOR BHAKTHI EVENTS between thin red lines. WhatsApp contact and removed event card stay as they are.
+
+165. **Events opening bigger (8 Nov):** SINGER up to ~176 px on computer (~70 px phone), LOOKING FOR A ~21 px, *With Devotion & Passion* ~56 px, FOR BHAKTHI EVENTS ~24 px, wider ornament; same style.
+
+166. **Events opening (8 Nov):** removed *With Devotion & Passion*; now LOOKING FOR A · SINGER · ◆ · FOR BHAKTHI EVENTS.
+
+167. **"Looking for a" restyled (8 Nov):** now an elegant white italic serif (Playfair Display italic, ~46 px computer / 26 px phone) in normal letters, with short red hairlines either side, sitting close above SINGER — a soft lead-in to the big red word.
+
+168. **Events opening = plain and standard (8 Nov):** *Looking for a* / **SINGER** / *for Bhakthi Events* in the site's normal font (Archivo) — white bold lines, SINGER big bold red. No italics, no serif, no glow, no letter-spacing, no lines or ornament, no animation.
+
+169. **Events opening — light effects (8 Nov):** same plain font; SINGER gets a soft red glow and a slight dark-red drop shadow, with a glowing red underline bar under it; *for Bhakthi Events* gets a thin red underline fading at both ends; the white lines have a faint red glow.
+
+170. **"Looking for a" effects (8 Nov):** glowing red lines on both sides (fading outwards) and a soft red glow behind the white text that slowly pulses; same plain font.
+
+171. **SINGER (8 Nov):** bigger (~166 px computer, ~78 px phone), exactly centred, and the red glow swapped for a **black shadow** (solid black step under the letters + soft dark shadow). Red underline bar below kept.
+
+172. **About us (9 Nov):** the small *Our story* label is now a heading **ABOUT THE8THNOTE** — bold red capitals (~48 px computer, ~28 px phone) with a black shadow.
+
+- **173 (9 Nov)** About us: "ABOUT THE8THNOTE" heading made smaller (~34px max); "THE8THNOTE is where it begins." now in title red #E50914; both story paragraphs bright white #FFFFFF for easy reading.
+
+- **174 (9 Nov)** About us: "ABOUT THE8THNOTE" made a little bigger again (~44px max). New panel under the story with 3 empty boxes (red top border): MISSION · VISION · PERSONALITY (`.mvp-grid` / `.mvp-box`, text goes in each `<p class="mvp-text">`). 3 across on laptop, stacked on phone. Content to be filled by Ronak later.
+
+- **175 (9 Nov)** About us heading effects: "ABOUT THE8THNOTE" gets a soft red glow + glowing red underline that fades out to the right. MISSION / VISION / PERSONALITY headings get a small glowing red diamond in front, red glow, and a thin red line fading out after the word; each box has a faint red light at the top and lifts slightly with a red glow on hover.
+
+- **176 (9 Nov)** About us: black shadow (layered 2–6px offset) on "ABOUT THE8THNOTE" and on MISSION / VISION / PERSONALITY headings (replaces the red text glow on the letters; underline glow, diamonds and lines kept).
+
+- **177 (9 Nov)** About us: new separate full-width box "WHAT WE DO" (`.mvp-box.mvp-wide`) under the Mission / Vision / Personality row, same style, empty — text to be filled later.
+
+- **178 (9 Nov)** Home page "Courses on YouTube": heading now red #E50914, extra bold, black shadow; line below in bright white. YouTube membership price changed ₹99 → ₹99 everywhere on the site (8 places: intro line, Join button, Why-learn card, step card, price card, FAQ, video badges).
+
+- **179 (9 Nov)** Home "Courses on YouTube": "Subscribe free" and "Join membership · ₹99/month" buttons now stacked one below the other, same width (max 320px, full width on phone).
+
+- **180 (9 Nov)** Home "Courses on YouTube": "Subscribe free" now the same solid red as "Join membership" (was outlined).
+
+- **181 (9 Nov)** Home "Courses on YouTube": both buttons changed to a lighter red #FF4A4F (hover #FF6A6E).
+
+- **182 (9 Nov)** Home "Courses on YouTube": black box effect — both light-red buttons get a black border + solid black offset shadow (press-down on tap), and sit together inside one dark box (#141414, rounded, deep black shadow).
+
+- **183 (9 Nov)** Home "Courses on YouTube" cards replaced with Ronak's 7 courses (the `YT` list in the script; names in CAPS, tagline in white below, all marked Members · ₹99/mo): 1 Learn Piano Basic Theory — A to Z of music theory · 2 Learn Basic to Advanced Piano Exercises — helps you play the piano smoothly and confidently · 3 Learn 50+ Jain Stavan on Piano — Nemras, O Palan Haare, Rome Rome Hu Taaro · 4 Learn Songs with Chords — make an impact on every melody you perform · 5 Learn Songs with Advanced Arpeggios — advanced effects on songs · 6 Learn 25+ Bollywood Songs — Kal Ho Na Ho, Tum Hi Ho, Main Agar Kahoon · 7 Learn 10+ Old Retro Bollywood Songs — Kisi Ki Muskurahaton Pe Ho Nisaar, Jab Koi Baat Bigad Jaaye. Video links still placeholders (go to membership page).
+
+- **184 (9 Nov)** Home "Courses on YouTube": automatic sliding stopped. Cards now move only by hand — light-red round ‹ › arrow buttons (black border + black shadow) on the left/right of the row, plus finger swipe on phone; cards snap into place; each course shown once (no repeat loop); an arrow fades out at the start/end of the row. (`.yt-slider`, `.yt-arw`, script after `ytCards`.)
 
 ---
 
