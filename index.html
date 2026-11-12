@@ -2102,6 +2102,18 @@ h2.mr3{margin-bottom:clamp(36px,4.6vw,56px)!important}
 .notif-card .btn-ghost{background:#000!important;border:1.5px solid #E50914!important;color:#fff!important}
 .notif-card .btn-ghost:hover{background:linear-gradient(135deg,#000 0%,#000 28%,#5A0308 52%,#E50914 78%)!important}
 .notif-close:hover{background:rgba(229,9,20,.18)!important}
+/* 292: reel rows centre when they fit, and start at the 1st reel when there are more (Events has 6) */
+#reel-track-p,#reel-track{justify-content:flex-start!important}
+#reel-track-p>:first-child,#reel-track>:first-child{margin-left:auto}
+#reel-track-p>:last-child,#reel-track>:last-child{margin-right:auto}
+/* 294: Events — all 6 reels in ONE row, swipe or use the round black→red arrows */
+#mpIg.more .rail-wrap{position:relative}
+#mpIg.more .rarrow{display:grid!important;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;
+  background:linear-gradient(135deg,#000 0%,#000 28%,#5A0308 52%,#E50914 78%);border:1px solid #E50914;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.6);cursor:pointer}
+#mpIg.more .rarrow:hover{background:linear-gradient(135deg,#E50914 0%,#5A0308 26%,#000 50%,#000 100%)}
+#mpIg.more .rarrow.l{left:-14px}#mpIg.more .rarrow.r{right:-14px}
+#mpIg.more .rarrow svg{width:18px;height:18px}
+@media(max-width:560px){#mpIg.more .rarrow{width:34px;height:34px}#mpIg.more .rarrow.l{left:-10px}#mpIg.more .rarrow.r{right:-10px}}
 </style>
 <link rel="preload" as="image" href="img/hero-bg.jpg">
 </head>
@@ -3076,8 +3088,11 @@ if(REVIEWS.length){$("#reviews").innerHTML=revCards+revCards;}else{const m=docum
 
 /* ===== Instagram — real Instagram-post embeds, scaled to fit the card ===== */
 const REELS=[
-  "https://www.instagram.com/reel/Db0B3YIRxsh/",
+  "https://www.instagram.com/reel/DazJkLdRJTY/",
+  "https://www.instagram.com/reel/DZp1iDAx5PW/",
+  "https://www.instagram.com/reel/DfW3eEMv2jP/",
   "https://www.instagram.com/reel/DZ2EhTNRK2G/",
+  "https://www.instagram.com/reel/Db0B3YIRxsh/",
   "https://www.instagram.com/reel/DaAHHK7xH38/",
   "https://www.instagram.com/reel/DdBmXtOvD70/",
   "https://www.instagram.com/reel/DdJB2hHvnQ1/",
@@ -3092,7 +3107,15 @@ const reelCard=u=>`
     </div>
   </div>`;
 /* home page shows 4 reels, the About/Services/Events panels show 2 */
-$("#reel-track").innerHTML=REELS.slice(0,4).map(reelCard).join("");if($("#reel-track-p"))$("#reel-track-p").innerHTML=REELS.slice(0,2).map(reelCard).join("");
+$("#reel-track").innerHTML=REELS.slice(0,4).map(reelCard).join("");/* reels shown in each panel (About / Services / Events) — Events has 6 */
+const PANEL_REELS={
+  about:["https://www.instagram.com/reel/De1j1ZlPk4v/","https://www.instagram.com/reel/DZk2jmdxqZc/"],
+  services:REELS.slice(0,2),
+  events:["https://www.instagram.com/reel/Dd_e3X5PnZu/","https://www.instagram.com/reel/DfRELyOvAP0/","https://www.instagram.com/reel/Degqngrvb8B/","https://www.instagram.com/reel/DfEWo83PU9a/","https://www.instagram.com/reel/DdBmXtOvD70/","https://www.instagram.com/reel/DfTuE5CvJ3U/"]
+};
+let _prShown="";
+function setPanelReels(p){const t=$("#reel-track-p");if(!t)return;const list=PANEL_REELS[p]||REELS.slice(0,2);const key=list.join("|");if(key===_prShown)return;_prShown=key;t.innerHTML=list.map(reelCard).join("");t.scrollLeft=0;const ig=$("#mpIg");if(ig)ig.classList.toggle("more",list.length>2);if(window.instgrm)window.instgrm.Embeds.process();}
+setPanelReels("services");
 
 /* loads Instagram's own embed script once, then asks it to turn the blockquotes above into real post cards */
 (function(){
@@ -3103,7 +3126,7 @@ $("#reel-track").innerHTML=REELS.slice(0,4).map(reelCard).join("");if($("#reel-t
   document.body.appendChild(s);
 })();
 
-document.querySelectorAll(".rarrow").forEach(b=>{ b.onclick=()=>document.getElementById(b.dataset.rail).scrollBy({left:194*3*+b.dataset.dir,behavior:"smooth"}); });
+document.querySelectorAll(".rarrow").forEach(b=>{ b.onclick=()=>{const r=document.getElementById(b.dataset.rail);const step=b.dataset.rail==="reel-track-p"?Math.max(160,r.clientWidth*.8):194*3;r.scrollBy({left:step*+b.dataset.dir,behavior:"smooth"});}; });
 
 
 /* faq */
@@ -3124,7 +3147,7 @@ function setPanel(p){
 }
 const ORDER=["about","services","events","contact"],ONAME={about:"About us",services:"Services",events:"Events",contact:"Contact us"};
 let curPanel="about";
-function updNext(p){curPanel=p;const b=document.getElementById("mpNext");if(!b)return;const i=ORDER.indexOf(p);const ig=document.getElementById("mpIg");if(ig)ig.hidden=(i<0||p==="contact");if(i<0||p==="contact"){b.hidden=true;return;}b.hidden=false;const n=ORDER[(i+1)%ORDER.length];b.dataset.to=n;document.getElementById("mpNextT").textContent=ONAME[n];}
+function updNext(p){curPanel=p;const b=document.getElementById("mpNext");if(!b)return;const i=ORDER.indexOf(p);const ig=document.getElementById("mpIg");if(ig)ig.hidden=(i<0||p==="contact");if(i>=0&&p!=="contact")setPanelReels(p);if(i<0||p==="contact"){b.hidden=true;return;}b.hidden=false;const n=ORDER[(i+1)%ORDER.length];b.dataset.to=n;document.getElementById("mpNextT").textContent=ONAME[n];}
 document.getElementById("mpNext").addEventListener("click",function(){if(this.dataset.to)setPanel(this.dataset.to);});
 /* finger swipe left / right inside the menu moves to the next / previous section */
 (function(){let x0=null,y0=0,skip=false;
