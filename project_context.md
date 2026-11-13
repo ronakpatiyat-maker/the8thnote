@@ -750,6 +750,124 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 - **285 (12 Nov)** HOME: brand name written merged as **THE8THNOTE** (no spaces) in visible home-page text: "WHY LEARN WITH THE8THNOTE", "EXPLORE THE8THNOTE", Explore tile "…story behind THE8THNOTE", comment box "Learning with THE8THNOTE?", Instagram button label under @the8thnote__, bell pop-up "All THE8THNOTE notifications…", footer "© 2026 THE8THNOTE". Left as "The 8th Note": logo/image alt text, page title & Google info, WhatsApp pre-filled messages, Events/Enroll/About-panel text.
 - **285 (12 Nov)** HOME Why-learn heading: brand written merged — **WHY LEARN WITH THE8THNOTE** ("THE8THNOTE" in red, kept on one line).
 
+- **286:** New reel DazJkLdRJTY added as the first item in `REELS`, so it shows in the 1st reel slot on the home page (and first in the panels' 2 reels).
+
+- **287:** New reel DZp1iDAx5PW added as the second item in `REELS`, so it shows in the 2nd reel slot on the home page (and second in the panels).
+
+- **288:** New reel DfW3eEMv2jP added as the third item in `REELS`, so it shows in the 3rd reel slot on the home page.
+
+- **289:** Reel DZ2EhTNRK2G (already in the list) moved up to 4th in `REELS`, so the home page's 4 reels are now DazJkLdRJTY, DZp1iDAx5PW, DfW3eEMv2jP, DZ2EhTNRK2G.
+
+- **290:** Panels can now have their own reels: `PANEL_REELS` {about, services, events} + `setPanelReels(p)` (called from `updNext`). About's 1st reel is De1j1ZlPk4v, 2nd is DZp1iDAx5PW; Services and Events still show the home page's first two. To change a panel's reels, edit its list in `PANEL_REELS`.
+
+- **291:** About panel's 2nd reel set to DZk2jmdxqZc, so About shows De1j1ZlPk4v + DZk2jmdxqZc.
+
+- **292:** Events panel now shows 6 reels in this order: Dd_e3X5PnZu, DfRELyOvAP0, Degqngrvb8B, DfEWo83PU9a, DdBmXtOvD70, DfTuE5CvJ3U (`PANEL_REELS.events`); swipe with the arrows. Fixed reel rows so that when there are more reels than fit, the row starts at the 1st reel (it was cutting off the first one); rows that fit stay centred.
+
+- **293:** Events now shows all 6 reels at once, with no swiping: a grid (`#reel-track-p.reel-grid`) with 3 per row on computer and 2 per row on phone, and the arrows hidden. Any panel with more than 2 reels gets the grid automatically; About and Services (2 reels) are unchanged.
+
+- **294:** Undid the 293 grid. Events now shows all 6 reels in ONE row (1st → 6th) that you swipe, with round black→red arrows on both sides. Before this the arrows were hidden in panels, which is why reels 5 and 6 couldn't be reached on a computer. The arrows show only when a panel has more than 2 reels (`#mpIg.more`), and each click moves about one screen of the row. About and Services are unchanged.
+
+- **295:** Reel cards no longer show a white box. Each card is now an Instagram-Reels-style tile: black, with Instagram's colour ring (yellow → orange → pink → purple → blue), an Instagram icon + 'Reels', a play button and 'Watch on Instagram' (`.reel-cover`, tapping opens the reel). The white 'View on Instagram' text is hidden. When Instagram's own player loads on the live site it sits on top, and its frame is white by Instagram's own design, which we can't recolour.
+
+- **296:** Every 'practise' / 'Practise' changed to 'practice' / 'Practice' (6 places).
+
+- **296:** 'Why learn with THE8THNOTE' posters on phone: one poster at a time, full width. Swipe, tap the round black→red arrows, or tap the dots (the red dot shows which poster you're on). Wrapper `.hp-sw` with `.hp-ar` arrows + `.hp-dots`; the script is marked '296'. Computer view unchanged (all 3 side by side).
+
+- **297:** Every Instagram reel row now swipes like Events, with the same round black→red arrows; the arrows show only when there are more reels than fit and dim at either end (`reelArrows()`, class `.rs-on`). To give each row something to swipe: the home page shows all 9 reels in `REELS` (first 4 in view), About shows its own 2 first and then the rest, Services shows all 9, and Events keeps its 6.
+
+- **298:** About us → Mission / Vision / Personality filled in (draft by Claude from known facts; Ronak can edit):
+  - **Mission:** To make music simple, joyful and personal — one-on-one piano, harmonium and vocal lessons that help every student play and sing Jain stavans, bhajans and songs with confidence.
+  - **Vision:** A home for devotional music, where every learner — in Bengaluru or anywhere in India — can grow from their very first note to performing with devotion on stage.
+  - **Personality:** Patient, warm and devoted. Classes are fun, interactive and creative, built on sur, taal and regular riyaaz, with respect for every student's own pace.
+
+- **299 (13 Nov):** New top hero (only the part above Courses on YouTube; the rest of the page is unchanged). It is compact, not full screen:
+  - Small line: PIANO · HARMONIUM · VOCALS.
+  - Big title: LEARN MUSIC (white) / WITH DEVOTION. (red shades).
+  - Line below: "One-on-one classes with Ronak Patiyat — in person in Bengaluru, or from home anywhere in India."
+  - Buttons: "Enroll now" (black→red, opens the enrol form) and "Explore classes" (opens Services).
+  - 3 quick facts: 100+ Jain stavans · 1-on-1 classes · Age 10+ students.
+  - Behind the text: a glowing red sound wave that moves like a voice (`#hzWave` canvas, script marked '299'). The background photo is now very faint, with a red glow at the bottom right.
+  - Classes: `.hz`, `.hz-eye`, `.hz-h`, `.hz-sub`, `.hz-cta`, `.hz-facts`. Replaces the old 'Piano, harmonium & vocals — with Ronak Patiyat.' heading.
+
+- **300 (13 Nov):** Hero background now matches the logo: plain black with a big glossy red "8" (drawn in code, `.hz-8` SVG), tilted like the logo's 8, sitting on the right on computer and faint behind the words on phone. It glows softly and a light slowly travels along it. The old photo and the red tile pattern behind the hero are hidden; the red sound wave stays, fainter. A dark soft patch behind the words keeps them readable.
+
+- **301 (13 Nov):** Hero background restyled (replaces the solid glossy 8 from 300): a thin glowing red neon OUTLINE of the logo's "8", centred behind the title, standing on a faint red 5-line music staff that runs across the hero and fades at both ends. A small light runs around the 8, it gently pulses, and red ♪ ♫ notes drift up off the staff. The sound wave is hidden. SVG `.hz-st` (`.h8-staff`, `.h8-run`, `.h8n`).
+
+- **302 (13 Nov):** Hero background put back to the first logo style (entry 300): the big glossy red "8" on black, on the right on computer and faint behind the words on phone, with its glow, travelling light and the faint red sound wave. The neon-outline 8 + music staff from 301 removed.
+
+- **303 (13 Nov):** Ronak picked the hero from entry 299 (screenshot). The red "8" background (300/302) is removed. Back to: the faint background photo, the red glow at the bottom right, and the moving red sound wave behind the words.
+
+- **304 (13 Nov):** Hero title changed to "EXPLORE MUSIC / WITH The 8th Note". The brand name is shown in the logo's own style: a cut-out of the real logo (white "The", glossy red "8", "th", white "Note") with the black background removed, built into index.html as a small picture (`.hz-logo`), so no extra file needs uploading. "WITH" sits beside it in white. Replaces "LEARN MUSIC WITH DEVOTION."
+
+- **305 (13 Nov):** Hero title framed and made bolder in black & red:
+  - The title sits in a black box with a black→red border (black top-left, red bottom-right) and red corner brackets.
+  - "EXPLORE MUSIC" and "WITH" are in extra-bold Arial Black, filled black→red with a glowing red edge. "EXPLORE MUSIC" stays on one line on computer.
+  - The logo-style "The 8th Note" stays as it is.
+
+- **306 (13 Nov):** Hero title is now "YOUR MUSIC JOURNEY" (white) / "BEGINS HERE" (red), with the logo-style "The 8th Note" underneath like a signature (no "with"), plus a short black→red bar. The look is option A (clean & bold) from the 5-option reference page. The frame from 305 is removed. "YOUR MUSIC JOURNEY" stays on one line on computer and wraps on phone. Classes: `.hz-j`, `.hz-j1`, `.hz-j2`, `.hz-bar`.
+
+- **307 (13 Nov):** Hero title changed to "EXPLORE" (big, white, widely spaced letters) with the logo-style "The 8th Note" underneath, sized to the same width, then the short black→red bar. Replaces "Your music journey begins here". Class `.hz-ex`.
+
+- **308 (13 Nov):** The red sound wave in the hero is now always centred behind the "One-on-one classes with Ronak Patiyat…" line, as in Ronak's screenshot of entry 299. A small script (marked '308') places it there on load and on resize.
+
+- **309 (13 Nov):** "EXPLORE" restyled: red outline letters with a soft red glow. Every few seconds a white→red light sweeps through the letters, and thin red lines fade out on either side of the word. The logo-style "The 8th Note" under it is unchanged.
+
+- **310 (13 Nov):** Hero title is now "LEARN MUSIC / WITH THE8THNOTE" in plain bold letters, with no logo picture. It has the same torch-light effect as "Meet Ronak Patiyat" in About us: one light moves left↔right across both lines, lighting the letters white→red while the rest stay dark grey/red, with a soft light beam from above (`.hz-t`, `.hz-beam`, uses `mrTorch`). Both lines fit on one line each on computer and phone. The short black→red bar and the sound wave behind the 'One-on-one…' line stay.
+
+- **311 (13 Nov):** Hero title wording changed to "EXPLORE MUSIC / WITH THE8THNOTE". Same plain bold letters and the same torch-light effect as entry 310.
+
+- **312 (13 Nov):** Hero title is now ONE sentence: "EXPLORE MUSIC WITH THE8THNOTE", on a single line on computer and tablet. It is sized to fit any width, with the same torch light moving across it. On a phone it is too long for one readable line, so it flows naturally onto 2 lines (EXPLORE MUSIC WITH / THE8THNOTE). Also added `html,body{overflow-x:clip}` so the page can't slide sideways on tablets (the posters row was 7px too wide at about 768px).
+
+- **313 (13 Nov):** Hero title on TWO lines on every screen: "EXPLORE MUSIC WITH" / "THE8THNOTE", sized to fit (checked from 320px phones to 1600px screens), with the same torch light. Classes `.hz-two`, `.hz-ln`.
+
+- **314 (13 Nov):** Removed the short black→red bar under the hero title (`.hz-bar`). The red sound wave now sits a little lower: still behind the 'One-on-one classes…' sentence, but slightly below its centre (the '308' script now adds an offset).
+
+- **315 (13 Nov):** Removed the 'Enroll now' and 'Explore classes' buttons from the hero; the top nav 'Enroll now' stays. The red sound wave moved further down: it now sits just under the 'One-on-one classes…' sentence and runs behind the 3 quick facts.
+
+- **316 (13 Nov):** Removed the 3 quick facts (100+ Jain stavans · 1-on-1 classes · Age 10+ students) from the hero. The 'One-on-one classes…' sentence now sits lower under the title with more space above it; the red wave follows just below it. The hero is now: small line → title (torch light) → sentence → wave.
+
+- **317 (13 Nov):** Red wave now centred exactly behind the 'One-on-one classes…' sentence, like a frame around it. It is shorter (200px on computer, 170px on phone), and the hero has more bottom space, so the wave always stays about 70-80px clear of the red line under the hero. Checked at 360-1600px.
+
+- **318 (13 Nov):** The 'One-on-one classes…' sentence and its wave frame moved about 1cm (38px) lower. The wave stays centred on the sentence and 72-79px clear of the red line.
+
+- **319 (13 Nov):** Wave frame made taller (300px computer / 250px phone, was 200/170) so it can frame 3 sentences, which Ronak will send. The hero has more bottom space, so the wave stays 72-79px clear of the red line. The sentence box is slightly wider (680px).
+
+- **320 (13 Nov):** Hero heading 'EXPLORE MUSIC WITH / THE8THNOTE': torch light and beam removed. It is now a still black→red fill (black top-left into red bottom-right, the site's usual direction), with a thin red edge so the black letters show on the black background and a soft red glow.
+
+- **321 (13 Nov):** Hero heading split by style:
+  - "EXPLORE MUSIC WITH" stays still black→red with a red edge.
+  - "THE8THNOTE" has the torch light back, the same as "Meet Ronak Patiyat": a light moves left↔right, turning the letters white/red as it passes, with a soft beam behind that line only.
+
+- **322 (13 Nov):** "EXPLORE MUSIC WITH" is now black only: solid black letters with a thin light outline (otherwise black-on-black would be invisible), and no red. "THE8THNOTE" keeps the torch light.
+
+- **322 (13 Nov):** "EXPLORE MUSIC WITH" is now solid black letters with a red border only (2px, 1.3px on phone) and a soft red glow, with no gradient. "THE8THNOTE" keeps its torch light.
+
+- **323 (13 Nov):** Less empty space at the bottom of the hero: bottom padding cut from 200px to 112px on computer (160→92 on phone), so Courses on YouTube comes up about 90px / 70px sooner. Measured over 20 seconds of animation, the lowest point of the wave stays 36-46px clear of the red line.
+
+- **324 (13 Nov):** Hero rebuilt in the Netflix style (navigation and the side buttons unchanged):
+  - Big bold heading in normal case: "Explore music with" (black letters, red border) / "THE8THNOTE" (torch light).
+  - Bold line: "One-on-one classes with Ronak Patiyat."
+  - Lighter line: "In person in Bengaluru, or from home anywhere in India."
+  - A question: "Ready to start your music journey? Enroll now and we'll get back to you on WhatsApp."
+  - A big centred "Enroll now ›" button (black→red, Netflix size and shape) that opens the enrol form.
+  - The straight red line under the hero is now a Netflix-like curved red arc (`.rule.nfx-arc`).
+  - The 'Piano · Harmonium · Vocals' line was removed for the clean Netflix look.
+  - The wave still frames the two sentences. Classes: `nfx-h`, `nfx-sub`, `nfx-l1`, `nfx-l2`, `nfx-ask`, `nfx-cta`.
+
+- **325 (13 Nov):** Netflix-style hero, plain white as Ronak asked:
+  - Heading "Explore music with / THE8THNOTE" is now standard bold white (Netflix weight and size: 56px computer, about 30px phone). The black/red, red border and torch light on the heading are removed.
+  - Removed the question line "Ready to start your music journey? …" that 324 had added, because Ronak doesn't want new lines added.
+  - Kept: the bold line "One-on-one classes with Ronak Patiyat.", the lighter line "In person in Bengaluru…", the big centred "Enroll now ›" button (black→red), the curved red arc, the wave, the nav and the side buttons.
+
+- **326 (13 Nov):** Top-bar "Enroll now" button hidden everywhere (`.nv-enroll{display:none}`), on the home page and in the panels. The big centred "Enroll now ›" in the hero is now the main one. The nav links re-centre on their own.
+
+- **327 (13 Nov):** Home top bar: the row of 4 section headings (About us / Services / Events / Contact us) is removed. A black→red "MENU ☰" button now sits at the top right (`#nvDd`). It opens a drop-down listing 01 About us · 02 Services · 03 Events · 04 Contact us, and each item opens its panel. It closes on a pick, on an outside tap or with Esc, and the ☰ turns into ✕ while open. The tabs inside the panels are unchanged. The hero heading is kept.
+
+- **328 (13 Nov):** Removed the word "MENU" from the top-right button. It is now a round black→red icon button (☰, turning into ✕ when open). The drop-down is unchanged.
+
+- **329 (13 Nov):** Top-right menu icon is bigger (34px wide on computer, 30px on phone, thicker lines) and has no circle, border or background, just 3 white lines. The lines turn red on hover and become an ✕ when open. The drop-down is unchanged.
+
 ---
 
 ## 11. Handy facts
