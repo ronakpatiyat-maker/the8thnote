@@ -868,6 +868,28 @@ Most content is in **data lists** near the top of the main `<script>`. Edit the 
 
 - **329 (13 Nov):** Top-right menu icon is bigger (34px wide on computer, 30px on phone, thicker lines) and has no circle, border or background, just 3 white lines. The lines turn red on hover and become an ✕ when open. The drop-down is unchanged.
 
+- **330 (13 Nov) — Reliability pass (error handling + logging).** Nothing visible changed unless something fails.
+  - **Logger** `window.TN` (in `<head>`): `TN.info/warn/error(code, message, context)`. Each entry is `{time, level, code, message, context, section, page}`, the last 150 are kept in memory, and each also prints to the console as `[The 8th Note] …`. Read them with `TN.logs()`; `TN.copy()` copies them as text. Visitors' names, phones and comments are never logged.
+  - **Global catchers:** any uncaught script error (`JS_ERROR`), refused promise (`PROMISE_REJECTED`) or file that fails to load (`IMG_MISSING`, `FILE_MISSING`) is logged. A broken picture is hidden instead of showing a broken box, and a missing logo shows the text "The 8th Note".
+  - **Isolation:** the main code is split into 33 small named `<script>` sections (`TN.at("name")`). If one part breaks, only that part is lost; menu, Enroll, comments etc. keep working, and the log names the section. (Before this, one missing element stopped everything after it.)
+  - **WhatsApp hand-off:** `openWA(url, ctx)` now knows when the browser blocks the new window (`WA_BLOCKED`). Enroll then says so and offers an "Open WhatsApp" button, Let's connect and the comment form show a tap-to-send link, and the comment form no longer clears the text unless WhatsApp actually opened. In music.html, the setlist share falls back to opening WhatsApp in the same tab.
+  - **External/async:** Instagram embed.js: `IG_BLOCKED` on failure, `IG_SLOW` after 15 s, `IG_PROCESS_FAILED`. Intro "Play with sound" refused (`INTRO_SOUND_REFUSED`) → plays muted instead; intro video missing (`INTRO_VIDEO_MISSING`).
+  - **Dates:** an invalid course launch date or `LAUNCH_DATE` is logged (`BAD_DATE`), and NaN is never shown.
+  - **Forms:** precise messages (e.g. "a phone number with 10–13 digits (yours has 9)", "Classes are for students aged 10 and above (you entered 8)"). Length limits: names 60, phone 20, contact 80, messages 500. Invalid tries are logged as `FORM_INVALID` (which rule, not the data).
+  - **Error codes:** JS_ERROR, PROMISE_REJECTED, IMG_MISSING, FILE_MISSING, WA_OPENED, WA_BLOCKED, WA_OPEN_FAILED, IG_BLOCKED, IG_SLOW, IG_PROCESS_FAILED, INTRO_SOUND_REFUSED, INTRO_VIDEO_MISSING, BAD_DATE, FORM_INVALID.
+  - Backups of the files before this pass are in the scratchpad (`index.before-reliability.html`, `music.before-reliability.html`).
+
+- **331 (13 Nov) — Security hardening.** Nothing visible changed.
+  - **External things the site loads (all allowed, nothing else):**
+    - Google Fonts: stylesheet from fonts.googleapis.com, font files from fonts.gstatic.com.
+    - Instagram's reel player (www.instagram.com/embed.js) and its reel frames (www.instagram.com), plus Instagram image CDNs (*.cdninstagram.com, *.fbcdn.net) and *.cdninstagram.com for any script the player pulls in.
+    - Everything else is the site's own: img/*, logo, favicon, logo-anim.mp4, music.html. Pictures can also be embedded (data:).
+    - Links (not loads): wa.me, youtube.com, instagram.com profiles. Forms post nowhere; they open WhatsApp. No API/fetch calls.
+  - **CSP meta tags:** index.html allows only the above. music.html allows only itself plus Google Fonts and embedded pictures, with frames blocked. Both use `object-src 'none'`, `base-uri 'self'`, `form-action 'self'` and `upgrade-insecure-requests`. `'unsafe-inline'` is kept for scripts/styles because the site is one file with 35 inline scripts and is edited often; hashes would silently break a section after any edit. Removed the unused google.com frame allowance and the meta `frame-ancestors` (browsers ignore it in a meta tag). CSP blocks are logged as `CSP_BLOCKED`.
+  - **Clickjacking guard (JS, both pages):** only on the8thnote.in/github.io, if framed by another site the page hides and shows "Open The 8th Note directly" (logged as `FRAMED`). Claude previews and local copies are unaffected. A true header (X-Frame-Options / frame-ancestors) needs Cloudflare (see notes to Ronak).
+  - **Links:** all 35 `target=_blank` links use `rel="noopener noreferrer"`; referrer meta is `strict-origin-when-cross-origin` on both pages.
+  - **Anti-spam (Enroll, Comment, Let's connect):** a hidden off-screen honeypot field `hp_extra_info` (if filled → silently not sent, `BOT_HONEYPOT`) and a 2.5 s minimum since page load (too fast → "That was very quick! Please check your details and press send again.", `BOT_TOO_FAST`).
+
 ---
 
 ## 11. Handy facts

@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'none'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<script>
+/* Security: clickjacking guard. Browsers ignore "frame-ancestors" in a meta tag, so on the live site this script
+   refuses to show the page inside another website's frame (Claude previews and local copies are not affected). */
+(function(){var live=/(^|\.)the8thnote\.in$|\.github\.io$/.test(location.hostname),framed=false;try{framed=window.top!==window.self;}catch(e){framed=true;}
+if(!live||!framed)return;
+document.documentElement.style.visibility="hidden";
+try{window.top.location.replace(location.href);}catch(e){}
+document.addEventListener("DOMContentLoaded",function(){var d=document.createElement("div");d.style.cssText="visibility:visible;position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;background:#000;color:#fff;font:600 18px/1.5 Arial,sans-serif;text-align:center;padding:24px";
+d.innerHTML='<div>This page is being shown inside another website.<br><a href="'+location.href+'" target="_top" rel="noopener noreferrer" style="color:#E50914">Open The 8th Note directly</a></div>';document.body.appendChild(d);
+if(window.TN)TN.warn("FRAMED","Page was loaded inside another site's frame — content hidden",{referrer:document.referrer});});})();
+</script>
+
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#000000">
 <title>Bhakti Songbook — The 8th Note</title>
@@ -1683,7 +1695,7 @@ $("#clearSet").onclick=()=>{if(confirm("Clear the whole setlist?")){setlist=[];s
 $("#shareSet").onclick=()=>{
   const name=evIn.value.trim();
   const txt=(name?name+"\n":"Setlist\n")+setlist.map((id,i)=>`${i+1}. ${byId(id).title}`).join("\n");
-  window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank","noopener");
+  var u="https://wa.me/?text="+encodeURIComponent(txt),w=null;try{w=window.open(u,"_blank");if(w)w.opener=null;}catch(e){}if(!w){try{console.warn("[The 8th Note] WA_BLOCKED — setlist share window blocked; opening WhatsApp in this tab");}catch(_){}location.href=u;}
 };
 
 /* keyboard */
